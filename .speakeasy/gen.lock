@@ -1,0 +1,354 @@
+lockVersion: 2.0.0
+id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
+management:
+  docChecksum: 39492fe3716ddeb3cec351b4b2944fda
+  docVersion: 1.0.0
+  speakeasyVersion: 1.613.0
+  generationVersion: 2.696.0
+  releaseVersion: 0.1.1
+  configChecksum: 0189e6305fde507d7ea2f7f61f181c7f
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.12
+    core: 3.21.22
+    defaultEnabledRetries: 0.1.0
+    devContainers: 2.90.0
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.2
+    globalSecurityCallbacks: 0.1.0
+    globalServerURLs: 2.82.5
+    groups: 2.81.2
+    methodArguments: 0.1.2
+    nameOverrides: 2.81.2
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.3.0
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .gitattributes
+  - .npmignore
+  - FUNCTIONS.md
+  - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/errors/restresponseerror.md
+  - docs/models/messagedata.md
+  - docs/models/messagerole.md
+  - docs/models/operations/cancelsessionprocessingdata.md
+  - docs/models/operations/cancelsessionprocessingrequest.md
+  - docs/models/operations/cancelsessionprocessingresponse.md
+  - docs/models/operations/createsessionrequest.md
+  - docs/models/operations/createsessionresponse.md
+  - docs/models/operations/deletesessionrequest.md
+  - docs/models/operations/denypermissiondata.md
+  - docs/models/operations/denypermissionrequest.md
+  - docs/models/operations/denypermissionresponse.md
+  - docs/models/operations/forksessionrequest.md
+  - docs/models/operations/forksessionresponse.md
+  - docs/models/operations/getcommanddata.md
+  - docs/models/operations/getcommandrequest.md
+  - docs/models/operations/getcommandresponse.md
+  - docs/models/operations/getmessagehistoryrequest.md
+  - docs/models/operations/getmessagehistoryresponse.md
+  - docs/models/operations/getsessionmessagesrequest.md
+  - docs/models/operations/getsessionmessagesresponse.md
+  - docs/models/operations/getsessionrequest.md
+  - docs/models/operations/getsessionresponse.md
+  - docs/models/operations/grantpermissiondata.md
+  - docs/models/operations/grantpermissionrequest.md
+  - docs/models/operations/grantpermissionresponse.md
+  - docs/models/operations/healthcheckdata.md
+  - docs/models/operations/healthcheckresponse.md
+  - docs/models/operations/initiateoauthlogindata.md
+  - docs/models/operations/initiateoauthloginresponse.md
+  - docs/models/operations/listcommandsdata.md
+  - docs/models/operations/listcommandsresponse.md
+  - docs/models/operations/listmcpserversdata.md
+  - docs/models/operations/listmcpserversresponse.md
+  - docs/models/operations/listsessionsresponse.md
+  - docs/models/operations/sendmessagerequest.md
+  - docs/models/operations/sendmessagerequestbody.md
+  - docs/models/operations/sendmessageresponse.md
+  - docs/models/operations/setapikeydata.md
+  - docs/models/operations/setapikeyrequest.md
+  - docs/models/operations/setapikeyresponse.md
+  - docs/models/resterror.md
+  - docs/models/sessiondata.md
+  - docs/models/toolcalldata.md
+  - docs/models/type.md
+  - docs/sdks/auth/README.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/messages/README.md
+  - docs/sdks/mix/README.md
+  - docs/sdks/permissions/README.md
+  - docs/sdks/sessions/README.md
+  - docs/sdks/system/README.md
+  - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/authSetApiKey.example.ts
+  - examples/package.json
+  - jsr.json
+  - package.json
+  - src/core.ts
+  - src/funcs/authSetApiKey.ts
+  - src/funcs/authenticationLogin.ts
+  - src/funcs/messagesCancelProcessing.ts
+  - src/funcs/messagesGetHistory.ts
+  - src/funcs/messagesGetSession.ts
+  - src/funcs/messagesSend.ts
+  - src/funcs/permissionsDeny.ts
+  - src/funcs/permissionsGrant.ts
+  - src/funcs/sessionsCreate.ts
+  - src/funcs/sessionsDelete.ts
+  - src/funcs/sessionsFork.ts
+  - src/funcs/sessionsGet.ts
+  - src/funcs/sessionsList.ts
+  - src/funcs/systemGetCommand.ts
+  - src/funcs/systemHealthCheck.ts
+  - src/funcs/systemListCommands.ts
+  - src/funcs/systemListMcpServers.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/dlv.ts
+  - src/lib/encodings.ts
+  - src/lib/env.ts
+  - src/lib/files.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/models/errors/httpclienterrors.ts
+  - src/models/errors/index.ts
+  - src/models/errors/mixdefaulterror.ts
+  - src/models/errors/mixerror.ts
+  - src/models/errors/responsevalidationerror.ts
+  - src/models/errors/restresponseerror.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/models/index.ts
+  - src/models/messagedata.ts
+  - src/models/messagerole.ts
+  - src/models/operations/cancelsessionprocessing.ts
+  - src/models/operations/createsession.ts
+  - src/models/operations/deletesession.ts
+  - src/models/operations/denypermission.ts
+  - src/models/operations/forksession.ts
+  - src/models/operations/getcommand.ts
+  - src/models/operations/getmessagehistory.ts
+  - src/models/operations/getsession.ts
+  - src/models/operations/getsessionmessages.ts
+  - src/models/operations/grantpermission.ts
+  - src/models/operations/healthcheck.ts
+  - src/models/operations/index.ts
+  - src/models/operations/initiateoauthlogin.ts
+  - src/models/operations/listcommands.ts
+  - src/models/operations/listmcpservers.ts
+  - src/models/operations/listsessions.ts
+  - src/models/operations/sendmessage.ts
+  - src/models/operations/setapikey.ts
+  - src/models/resterror.ts
+  - src/models/sessiondata.ts
+  - src/models/toolcalldata.ts
+  - src/sdk/auth.ts
+  - src/sdk/authentication.ts
+  - src/sdk/index.ts
+  - src/sdk/messages.ts
+  - src/sdk/permissions.ts
+  - src/sdk/sdk.ts
+  - src/sdk/sessions.ts
+  - src/sdk/system.ts
+  - src/types/async.ts
+  - src/types/blobs.ts
+  - src/types/constdatetime.ts
+  - src/types/enums.ts
+  - src/types/fp.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - src/types/streams.ts
+  - tsconfig.json
+examples:
+  setApiKey:
+    speakeasy-default-set-api-key:
+      requestBody:
+        application/json: {"apiKey": "<value>"}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  initiateOAuthLogin:
+    speakeasy-default-initiate-O-auth-login:
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  listCommands:
+    speakeasy-default-list-commands:
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  getCommand:
+    speakeasy-default-get-command:
+      parameters:
+        path:
+          name: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        "404":
+          application/json: {}
+  listMcpServers:
+    speakeasy-default-list-mcp-servers:
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  healthCheck:
+    speakeasy-default-health-check:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {}
+  getMessageHistory:
+    speakeasy-default-get-message-history:
+      parameters:
+        query:
+          limit: 50
+          offset: 0
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  cancelSessionProcessing:
+    speakeasy-default-cancel-session-processing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "404":
+          application/json: {}
+  getSessionMessages:
+    speakeasy-default-get-session-messages:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "404":
+          application/json: {}
+  sendMessage:
+    speakeasy-default-send-message:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"content": "<value>"}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {}
+  denyPermission:
+    speakeasy-default-deny-permission:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  grantPermission:
+    speakeasy-default-grant-permission:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  listSessions:
+    speakeasy-default-list-sessions:
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  createSession:
+    speakeasy-default-create-session:
+      requestBody:
+        application/json: {}
+      responses:
+        "201":
+          application/json: {}
+        "400":
+          application/json: {}
+  deleteSession:
+    speakeasy-default-delete-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "404":
+          application/json: {}
+  getSession:
+    speakeasy-default-get-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "404":
+          application/json: {}
+  forkSession:
+    speakeasy-default-fork-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "201":
+          application/json: {}
+        "404":
+          application/json: {}
+examplesVersion: 1.0.2

@@ -1,0 +1,18 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+  title: Speakeasy Modifications
+  version: 0.0.2
+  x-speakeasy-metadata:
+    after: ""
+    before: ""
+    type: speakeasy-modifications
+actions:
+  - target: $["paths"]["/api/auth/apikey"]["post"]
+    update:
+      x-speakeasy-group: auth
+    x-speakeasy-metadata:
+      after: sdk.auth.setApiKey()
+      before: sdk.Authentication.setApiKey()
+      created_at: 1757401017437
+      type: method-name

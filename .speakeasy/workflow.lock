@@ -1,0 +1,43 @@
+speakeasyVersion: 1.613.0
+sources:
+    Mix REST API:
+        sourceNamespace: mix-rest-api
+        sourceRevisionDigest: sha256:99d71ab3d6c2e7add36fb415dfcd54a2e0fbf637771ec8ad5173d6f33c42eb37
+        sourceBlobDigest: sha256:9fa5df9d5410aa1a7d7a8ba84f8b9c5419d7953ff5a4fe62fd0e141b651af299
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    mix-ts-target:
+        source: Mix REST API
+        sourceNamespace: mix-rest-api
+        sourceRevisionDigest: sha256:99d71ab3d6c2e7add36fb415dfcd54a2e0fbf637771ec8ad5173d6f33c42eb37
+        sourceBlobDigest: sha256:9fa5df9d5410aa1a7d7a8ba84f8b9c5419d7953ff5a4fe62fd0e141b651af299
+        codeSamplesNamespace: mix-rest-api-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:9117b5c8419777cf7cbe666c0604a32ddbde42a9ddc47e55b5c9c4dc7f11ae94
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Mix REST API:
+            inputs:
+                - location: ../mix/sdk/openapi.json
+            overlays:
+                - location: .speakeasy/speakeasy-modifications-overlay.yaml
+                - location: .speakeasy/speakeasy-modifications-overlay-1.yaml
+            output: .speakeasy/out.openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api
+    targets:
+        mix:
+            target: ""
+            source: ""
+        mix-ts-target:
+            target: typescript
+            source: Mix REST API
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false
