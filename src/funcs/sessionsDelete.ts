@@ -38,7 +38,7 @@ export function sessionsDelete(
 ): APIPromise<
   Result<
     void,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -64,7 +64,7 @@ async function $do(
   [
     Result<
       void,
-      | errors.RESTResponseError
+      | errors.ErrorResponse
       | MixError
       | ResponseValidationError
       | ConnectionError
@@ -157,7 +157,7 @@ async function $do(
 
   const [result] = await M.match<
     void,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -168,7 +168,7 @@ async function $do(
     | SDKValidationError
   >(
     M.nil(204, z.void()),
-    M.jsonErr(404, errors.RESTResponseError$inboundSchema),
+    M.jsonErr(404, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

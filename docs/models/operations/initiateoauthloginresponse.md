@@ -12,8 +12,6 @@ let value: InitiateOAuthLoginResponse = {};
 
 ## Fields
 
-| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `data`                                                                                 | [operations.InitiateOAuthLoginData](../../models/operations/initiateoauthlogindata.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
-| `error`                                                                                | [models.RESTError](../../models/resterror.md)                                          | :heavy_minus_sign:                                                                     | N/A                                                                                    |
-| `message`                                                                              | *string*                                                                               | :heavy_minus_sign:                                                                     | Optional message                                                                       |
+| Field                   | Type                    | Required                | Description             |
+| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| `authUrl`               | *string*                | :heavy_minus_sign:      | OAuth authorization URL |

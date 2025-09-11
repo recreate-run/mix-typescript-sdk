@@ -8,6 +8,7 @@ import { sessionsFork } from "../funcs/sessionsFork.js";
 import { sessionsGet } from "../funcs/sessionsGet.js";
 import { sessionsList } from "../funcs/sessionsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -20,7 +21,7 @@ export class Sessions extends ClientSDK {
    */
   async list(
     options?: RequestOptions,
-  ): Promise<operations.ListSessionsResponse> {
+  ): Promise<Array<models.SessionData>> {
     return unwrapAsync(sessionsList(
       this,
       options,
@@ -31,12 +32,12 @@ export class Sessions extends ClientSDK {
    * Create a new session
    *
    * @remarks
-   * Create a new session with optional title and working directory
+   * Create a new session with required title and optional working directory
    */
   async create(
     request: operations.CreateSessionRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreateSessionResponse> {
+  ): Promise<models.SessionData> {
     return unwrapAsync(sessionsCreate(
       this,
       request,
@@ -70,7 +71,7 @@ export class Sessions extends ClientSDK {
   async get(
     request: operations.GetSessionRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSessionResponse> {
+  ): Promise<models.SessionData> {
     return unwrapAsync(sessionsGet(
       this,
       request,
@@ -82,12 +83,12 @@ export class Sessions extends ClientSDK {
    * Fork a session
    *
    * @remarks
-   * Create a new session based on an existing session
+   * Create a new session based on an existing session, copying messages up to a specified index
    */
   async fork(
     request: operations.ForkSessionRequest,
     options?: RequestOptions,
-  ): Promise<operations.ForkSessionResponse> {
+  ): Promise<models.SessionData> {
     return unwrapAsync(sessionsFork(
       this,
       request,

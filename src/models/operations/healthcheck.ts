@@ -6,9 +6,11 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
-export type HealthCheckData = {
+/**
+ * Health information
+ */
+export type HealthCheckResponse = {
   /**
    * Health status
    */
@@ -23,92 +25,22 @@ export type HealthCheckData = {
   version?: string | undefined;
 };
 
-/**
- * Health information
- */
-export type HealthCheckResponse = {
-  data?: HealthCheckData | undefined;
-  error?: models.RESTError | undefined;
-  /**
-   * Optional message
-   */
-  message?: string | undefined;
-};
-
-/** @internal */
-export const HealthCheckData$inboundSchema: z.ZodType<
-  HealthCheckData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  status: z.string().optional(),
-  timestamp: z.string().optional(),
-  version: z.string().optional(),
-});
-
-/** @internal */
-export type HealthCheckData$Outbound = {
-  status?: string | undefined;
-  timestamp?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const HealthCheckData$outboundSchema: z.ZodType<
-  HealthCheckData$Outbound,
-  z.ZodTypeDef,
-  HealthCheckData
-> = z.object({
-  status: z.string().optional(),
-  timestamp: z.string().optional(),
-  version: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HealthCheckData$ {
-  /** @deprecated use `HealthCheckData$inboundSchema` instead. */
-  export const inboundSchema = HealthCheckData$inboundSchema;
-  /** @deprecated use `HealthCheckData$outboundSchema` instead. */
-  export const outboundSchema = HealthCheckData$outboundSchema;
-  /** @deprecated use `HealthCheckData$Outbound` instead. */
-  export type Outbound = HealthCheckData$Outbound;
-}
-
-export function healthCheckDataToJSON(
-  healthCheckData: HealthCheckData,
-): string {
-  return JSON.stringify(HealthCheckData$outboundSchema.parse(healthCheckData));
-}
-
-export function healthCheckDataFromJSON(
-  jsonString: string,
-): SafeParseResult<HealthCheckData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HealthCheckData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HealthCheckData' from JSON`,
-  );
-}
-
 /** @internal */
 export const HealthCheckResponse$inboundSchema: z.ZodType<
   HealthCheckResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => HealthCheckData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
+  status: z.string().optional(),
+  timestamp: z.string().optional(),
+  version: z.string().optional(),
 });
 
 /** @internal */
 export type HealthCheckResponse$Outbound = {
-  data?: HealthCheckData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
+  status?: string | undefined;
+  timestamp?: string | undefined;
+  version?: string | undefined;
 };
 
 /** @internal */
@@ -117,9 +49,9 @@ export const HealthCheckResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HealthCheckResponse
 > = z.object({
-  data: z.lazy(() => HealthCheckData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
+  status: z.string().optional(),
+  timestamp: z.string().optional(),
+  version: z.string().optional(),
 });
 
 /**

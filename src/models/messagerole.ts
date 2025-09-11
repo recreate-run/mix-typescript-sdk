@@ -11,6 +11,7 @@ import { ClosedEnum } from "../types/enums.js";
 export const MessageRole = {
   User: "user",
   Assistant: "assistant",
+  Tool: "tool",
 } as const;
 /**
  * Message role

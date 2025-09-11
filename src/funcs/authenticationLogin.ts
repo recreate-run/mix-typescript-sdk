@@ -34,7 +34,7 @@ export function authenticationLogin(
 ): APIPromise<
   Result<
     operations.InitiateOAuthLoginResponse,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -58,7 +58,7 @@ async function $do(
   [
     Result<
       operations.InitiateOAuthLoginResponse,
-      | errors.RESTResponseError
+      | errors.ErrorResponse
       | MixError
       | ResponseValidationError
       | ConnectionError
@@ -132,7 +132,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.InitiateOAuthLoginResponse,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -143,8 +143,8 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.InitiateOAuthLoginResponse$inboundSchema),
-    M.jsonErr(401, errors.RESTResponseError$inboundSchema),
-    M.jsonErr(500, errors.RESTResponseError$inboundSchema),
+    M.jsonErr(401, errors.ErrorResponse$inboundSchema),
+    M.jsonErr(500, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

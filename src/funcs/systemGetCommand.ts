@@ -37,7 +37,7 @@ export function systemGetCommand(
 ): APIPromise<
   Result<
     operations.GetCommandResponse,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -63,7 +63,7 @@ async function $do(
   [
     Result<
       operations.GetCommandResponse,
-      | errors.RESTResponseError
+      | errors.ErrorResponse
       | MixError
       | ResponseValidationError
       | ConnectionError
@@ -156,7 +156,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetCommandResponse,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -167,7 +167,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.GetCommandResponse$inboundSchema),
-    M.jsonErr(404, errors.RESTResponseError$inboundSchema),
+    M.jsonErr(404, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

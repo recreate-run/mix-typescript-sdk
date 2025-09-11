@@ -12,8 +12,6 @@ let value: GrantPermissionResponse = {};
 
 ## Fields
 
-| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `data`                                                                           | [operations.GrantPermissionData](../../models/operations/grantpermissiondata.md) | :heavy_minus_sign:                                                               | N/A                                                                              |
-| `error`                                                                          | [models.RESTError](../../models/resterror.md)                                    | :heavy_minus_sign:                                                               | N/A                                                                              |
-| `message`                                                                        | *string*                                                                         | :heavy_minus_sign:                                                               | Optional message                                                                 |
+| Field                          | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `granted`                      | *boolean*                      | :heavy_minus_sign:             | Whether permission was granted |

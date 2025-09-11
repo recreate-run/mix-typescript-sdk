@@ -6,7 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type GetCommandRequest = {
   /**
@@ -15,7 +14,10 @@ export type GetCommandRequest = {
   name: string;
 };
 
-export type GetCommandData = {
+/**
+ * Command details
+ */
+export type GetCommandResponse = {
   /**
    * Command description
    */
@@ -28,18 +30,6 @@ export type GetCommandData = {
    * Command usage instructions
    */
   usage?: string | undefined;
-};
-
-/**
- * Command details
- */
-export type GetCommandResponse = {
-  data?: GetCommandData | undefined;
-  error?: models.RESTError | undefined;
-  /**
-   * Optional message
-   */
-  message?: string | undefined;
 };
 
 /** @internal */
@@ -97,77 +87,21 @@ export function getCommandRequestFromJSON(
 }
 
 /** @internal */
-export const GetCommandData$inboundSchema: z.ZodType<
-  GetCommandData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  description: z.string().optional(),
-  name: z.string().optional(),
-  usage: z.string().optional(),
-});
-
-/** @internal */
-export type GetCommandData$Outbound = {
-  description?: string | undefined;
-  name?: string | undefined;
-  usage?: string | undefined;
-};
-
-/** @internal */
-export const GetCommandData$outboundSchema: z.ZodType<
-  GetCommandData$Outbound,
-  z.ZodTypeDef,
-  GetCommandData
-> = z.object({
-  description: z.string().optional(),
-  name: z.string().optional(),
-  usage: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCommandData$ {
-  /** @deprecated use `GetCommandData$inboundSchema` instead. */
-  export const inboundSchema = GetCommandData$inboundSchema;
-  /** @deprecated use `GetCommandData$outboundSchema` instead. */
-  export const outboundSchema = GetCommandData$outboundSchema;
-  /** @deprecated use `GetCommandData$Outbound` instead. */
-  export type Outbound = GetCommandData$Outbound;
-}
-
-export function getCommandDataToJSON(getCommandData: GetCommandData): string {
-  return JSON.stringify(GetCommandData$outboundSchema.parse(getCommandData));
-}
-
-export function getCommandDataFromJSON(
-  jsonString: string,
-): SafeParseResult<GetCommandData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetCommandData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetCommandData' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetCommandResponse$inboundSchema: z.ZodType<
   GetCommandResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => GetCommandData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
+  description: z.string().optional(),
+  name: z.string().optional(),
+  usage: z.string().optional(),
 });
 
 /** @internal */
 export type GetCommandResponse$Outbound = {
-  data?: GetCommandData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
+  description?: string | undefined;
+  name?: string | undefined;
+  usage?: string | undefined;
 };
 
 /** @internal */
@@ -176,9 +110,9 @@ export const GetCommandResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetCommandResponse
 > = z.object({
-  data: z.lazy(() => GetCommandData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
+  description: z.string().optional(),
+  name: z.string().optional(),
+  usage: z.string().optional(),
 });
 
 /**

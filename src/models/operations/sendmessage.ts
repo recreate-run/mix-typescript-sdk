@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type SendMessageRequestBody = {
   /**
@@ -22,18 +21,6 @@ export type SendMessageRequest = {
    */
   id: string;
   requestBody: SendMessageRequestBody;
-};
-
-/**
- * Message sent and processed
- */
-export type SendMessageResponse = {
-  data?: models.MessageData | undefined;
-  error?: models.RESTError | undefined;
-  /**
-   * Optional message
-   */
-  message?: string | undefined;
 };
 
 /** @internal */
@@ -152,65 +139,5 @@ export function sendMessageRequestFromJSON(
     jsonString,
     (x) => SendMessageRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SendMessageRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const SendMessageResponse$inboundSchema: z.ZodType<
-  SendMessageResponse,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: models.MessageData$inboundSchema.optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/** @internal */
-export type SendMessageResponse$Outbound = {
-  data?: models.MessageData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const SendMessageResponse$outboundSchema: z.ZodType<
-  SendMessageResponse$Outbound,
-  z.ZodTypeDef,
-  SendMessageResponse
-> = z.object({
-  data: models.MessageData$outboundSchema.optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendMessageResponse$ {
-  /** @deprecated use `SendMessageResponse$inboundSchema` instead. */
-  export const inboundSchema = SendMessageResponse$inboundSchema;
-  /** @deprecated use `SendMessageResponse$outboundSchema` instead. */
-  export const outboundSchema = SendMessageResponse$outboundSchema;
-  /** @deprecated use `SendMessageResponse$Outbound` instead. */
-  export type Outbound = SendMessageResponse$Outbound;
-}
-
-export function sendMessageResponseToJSON(
-  sendMessageResponse: SendMessageResponse,
-): string {
-  return JSON.stringify(
-    SendMessageResponse$outboundSchema.parse(sendMessageResponse),
-  );
-}
-
-export function sendMessageResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<SendMessageResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SendMessageResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SendMessageResponse' from JSON`,
   );
 }

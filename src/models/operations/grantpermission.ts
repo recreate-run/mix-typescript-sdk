@@ -6,7 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type GrantPermissionRequest = {
   /**
@@ -15,23 +14,14 @@ export type GrantPermissionRequest = {
   id: string;
 };
 
-export type GrantPermissionData = {
-  /**
-   * Whether permission was granted
-   */
-  granted?: boolean | undefined;
-};
-
 /**
  * Permission grant status
  */
 export type GrantPermissionResponse = {
-  data?: GrantPermissionData | undefined;
-  error?: models.RESTError | undefined;
   /**
-   * Optional message
+   * Whether permission was granted
    */
-  message?: string | undefined;
+  granted?: boolean | undefined;
 };
 
 /** @internal */
@@ -89,75 +79,17 @@ export function grantPermissionRequestFromJSON(
 }
 
 /** @internal */
-export const GrantPermissionData$inboundSchema: z.ZodType<
-  GrantPermissionData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  granted: z.boolean().optional(),
-});
-
-/** @internal */
-export type GrantPermissionData$Outbound = {
-  granted?: boolean | undefined;
-};
-
-/** @internal */
-export const GrantPermissionData$outboundSchema: z.ZodType<
-  GrantPermissionData$Outbound,
-  z.ZodTypeDef,
-  GrantPermissionData
-> = z.object({
-  granted: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GrantPermissionData$ {
-  /** @deprecated use `GrantPermissionData$inboundSchema` instead. */
-  export const inboundSchema = GrantPermissionData$inboundSchema;
-  /** @deprecated use `GrantPermissionData$outboundSchema` instead. */
-  export const outboundSchema = GrantPermissionData$outboundSchema;
-  /** @deprecated use `GrantPermissionData$Outbound` instead. */
-  export type Outbound = GrantPermissionData$Outbound;
-}
-
-export function grantPermissionDataToJSON(
-  grantPermissionData: GrantPermissionData,
-): string {
-  return JSON.stringify(
-    GrantPermissionData$outboundSchema.parse(grantPermissionData),
-  );
-}
-
-export function grantPermissionDataFromJSON(
-  jsonString: string,
-): SafeParseResult<GrantPermissionData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GrantPermissionData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GrantPermissionData' from JSON`,
-  );
-}
-
-/** @internal */
 export const GrantPermissionResponse$inboundSchema: z.ZodType<
   GrantPermissionResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => GrantPermissionData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
+  granted: z.boolean().optional(),
 });
 
 /** @internal */
 export type GrantPermissionResponse$Outbound = {
-  data?: GrantPermissionData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
+  granted?: boolean | undefined;
 };
 
 /** @internal */
@@ -166,9 +98,7 @@ export const GrantPermissionResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GrantPermissionResponse
 > = z.object({
-  data: z.lazy(() => GrantPermissionData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
+  granted: z.boolean().optional(),
 });
 
 /**

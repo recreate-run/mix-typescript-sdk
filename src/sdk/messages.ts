@@ -7,6 +7,7 @@ import { messagesGetHistory } from "../funcs/messagesGetHistory.js";
 import { messagesGetSession } from "../funcs/messagesGetSession.js";
 import { messagesSend } from "../funcs/messagesSend.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -20,7 +21,7 @@ export class Messages extends ClientSDK {
   async getHistory(
     request?: operations.GetMessageHistoryRequest | undefined,
     options?: RequestOptions,
-  ): Promise<operations.GetMessageHistoryResponse> {
+  ): Promise<Array<models.MessageData>> {
     return unwrapAsync(messagesGetHistory(
       this,
       request,
@@ -54,7 +55,7 @@ export class Messages extends ClientSDK {
   async getSession(
     request: operations.GetSessionMessagesRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSessionMessagesResponse> {
+  ): Promise<Array<models.MessageData>> {
     return unwrapAsync(messagesGetSession(
       this,
       request,
@@ -71,7 +72,7 @@ export class Messages extends ClientSDK {
   async send(
     request: operations.SendMessageRequest,
     options?: RequestOptions,
-  ): Promise<operations.SendMessageResponse> {
+  ): Promise<models.MessageData> {
     return unwrapAsync(messagesSend(
       this,
       request,

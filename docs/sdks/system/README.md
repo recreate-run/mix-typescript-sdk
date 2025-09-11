@@ -66,15 +66,15 @@ run();
 
 ### Response
 
-**Promise\<[operations.ListCommandsResponse](../../models/operations/listcommandsresponse.md)\>**
+**Promise\<[operations.ListCommandsResponse[]](../../models/.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 401                      | application/json         |
-| errors.RESTResponseError | 500                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 401                    | application/json       |
+| errors.ErrorResponse   | 500                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## getCommand
 
@@ -141,10 +141,10 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 404                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 404                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## listMcpServers
 
@@ -202,15 +202,15 @@ run();
 
 ### Response
 
-**Promise\<[operations.ListMcpServersResponse](../../models/operations/listmcpserversresponse.md)\>**
+**Promise\<[operations.ListMcpServersResponse[]](../../models/.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 401                      | application/json         |
-| errors.RESTResponseError | 500                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 401                    | application/json       |
+| errors.ErrorResponse   | 500                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## healthCheck
 
@@ -272,7 +272,7 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 500                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 500                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |

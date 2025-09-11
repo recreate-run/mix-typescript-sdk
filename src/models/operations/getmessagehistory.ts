@@ -6,7 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type GetMessageHistoryRequest = {
   /**
@@ -17,18 +16,6 @@ export type GetMessageHistoryRequest = {
    * Number of messages to skip
    */
   offset?: number | undefined;
-};
-
-/**
- * Message history
- */
-export type GetMessageHistoryResponse = {
-  data?: Array<models.MessageData> | undefined;
-  error?: models.RESTError | undefined;
-  /**
-   * Optional message
-   */
-  message?: string | undefined;
 };
 
 /** @internal */
@@ -85,65 +72,5 @@ export function getMessageHistoryRequestFromJSON(
     jsonString,
     (x) => GetMessageHistoryRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetMessageHistoryRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetMessageHistoryResponse$inboundSchema: z.ZodType<
-  GetMessageHistoryResponse,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: z.array(models.MessageData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/** @internal */
-export type GetMessageHistoryResponse$Outbound = {
-  data?: Array<models.MessageData$Outbound> | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetMessageHistoryResponse$outboundSchema: z.ZodType<
-  GetMessageHistoryResponse$Outbound,
-  z.ZodTypeDef,
-  GetMessageHistoryResponse
-> = z.object({
-  data: z.array(models.MessageData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMessageHistoryResponse$ {
-  /** @deprecated use `GetMessageHistoryResponse$inboundSchema` instead. */
-  export const inboundSchema = GetMessageHistoryResponse$inboundSchema;
-  /** @deprecated use `GetMessageHistoryResponse$outboundSchema` instead. */
-  export const outboundSchema = GetMessageHistoryResponse$outboundSchema;
-  /** @deprecated use `GetMessageHistoryResponse$Outbound` instead. */
-  export type Outbound = GetMessageHistoryResponse$Outbound;
-}
-
-export function getMessageHistoryResponseToJSON(
-  getMessageHistoryResponse: GetMessageHistoryResponse,
-): string {
-  return JSON.stringify(
-    GetMessageHistoryResponse$outboundSchema.parse(getMessageHistoryResponse),
-  );
-}
-
-export function getMessageHistoryResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMessageHistoryResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMessageHistoryResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMessageHistoryResponse' from JSON`,
   );
 }

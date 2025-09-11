@@ -37,7 +37,7 @@ export function permissionsGrant(
 ): APIPromise<
   Result<
     operations.GrantPermissionResponse,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -63,7 +63,7 @@ async function $do(
   [
     Result<
       operations.GrantPermissionResponse,
-      | errors.RESTResponseError
+      | errors.ErrorResponse
       | MixError
       | ResponseValidationError
       | ConnectionError
@@ -156,7 +156,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.GrantPermissionResponse,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -167,8 +167,8 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.GrantPermissionResponse$inboundSchema),
-    M.jsonErr([401, 404], errors.RESTResponseError$inboundSchema),
-    M.jsonErr(500, errors.RESTResponseError$inboundSchema),
+    M.jsonErr([401, 404], errors.ErrorResponse$inboundSchema),
+    M.jsonErr(500, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

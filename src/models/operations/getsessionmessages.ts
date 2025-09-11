@@ -6,25 +6,12 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type GetSessionMessagesRequest = {
   /**
    * Session ID
    */
   id: string;
-};
-
-/**
- * List of session messages
- */
-export type GetSessionMessagesResponse = {
-  data?: Array<models.MessageData> | undefined;
-  error?: models.RESTError | undefined;
-  /**
-   * Optional message
-   */
-  message?: string | undefined;
 };
 
 /** @internal */
@@ -78,65 +65,5 @@ export function getSessionMessagesRequestFromJSON(
     jsonString,
     (x) => GetSessionMessagesRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetSessionMessagesRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSessionMessagesResponse$inboundSchema: z.ZodType<
-  GetSessionMessagesResponse,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: z.array(models.MessageData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/** @internal */
-export type GetSessionMessagesResponse$Outbound = {
-  data?: Array<models.MessageData$Outbound> | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetSessionMessagesResponse$outboundSchema: z.ZodType<
-  GetSessionMessagesResponse$Outbound,
-  z.ZodTypeDef,
-  GetSessionMessagesResponse
-> = z.object({
-  data: z.array(models.MessageData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSessionMessagesResponse$ {
-  /** @deprecated use `GetSessionMessagesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetSessionMessagesResponse$inboundSchema;
-  /** @deprecated use `GetSessionMessagesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetSessionMessagesResponse$outboundSchema;
-  /** @deprecated use `GetSessionMessagesResponse$Outbound` instead. */
-  export type Outbound = GetSessionMessagesResponse$Outbound;
-}
-
-export function getSessionMessagesResponseToJSON(
-  getSessionMessagesResponse: GetSessionMessagesResponse,
-): string {
-  return JSON.stringify(
-    GetSessionMessagesResponse$outboundSchema.parse(getSessionMessagesResponse),
-  );
-}
-
-export function getSessionMessagesResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSessionMessagesResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSessionMessagesResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSessionMessagesResponse' from JSON`,
   );
 }

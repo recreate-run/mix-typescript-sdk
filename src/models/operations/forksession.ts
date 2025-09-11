@@ -3,29 +3,86 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
+
+export type ForkSessionRequestBody = {
+  /**
+   * Index of the last message to include in the fork (1-based)
+   */
+  messageIndex: number;
+  /**
+   * Optional title for the forked session (defaults to 'Forked Session')
+   */
+  title?: string | undefined;
+};
 
 export type ForkSessionRequest = {
   /**
    * Source session ID to fork from
    */
   id: string;
+  requestBody: ForkSessionRequestBody;
 };
 
-/**
- * Forked session
- */
-export type ForkSessionResponse = {
-  data?: models.SessionData | undefined;
-  error?: models.RESTError | undefined;
-  /**
-   * Optional message
-   */
-  message?: string | undefined;
+/** @internal */
+export const ForkSessionRequestBody$inboundSchema: z.ZodType<
+  ForkSessionRequestBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  messageIndex: z.number().int(),
+  title: z.string().optional(),
+});
+
+/** @internal */
+export type ForkSessionRequestBody$Outbound = {
+  messageIndex: number;
+  title?: string | undefined;
 };
+
+/** @internal */
+export const ForkSessionRequestBody$outboundSchema: z.ZodType<
+  ForkSessionRequestBody$Outbound,
+  z.ZodTypeDef,
+  ForkSessionRequestBody
+> = z.object({
+  messageIndex: z.number().int(),
+  title: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ForkSessionRequestBody$ {
+  /** @deprecated use `ForkSessionRequestBody$inboundSchema` instead. */
+  export const inboundSchema = ForkSessionRequestBody$inboundSchema;
+  /** @deprecated use `ForkSessionRequestBody$outboundSchema` instead. */
+  export const outboundSchema = ForkSessionRequestBody$outboundSchema;
+  /** @deprecated use `ForkSessionRequestBody$Outbound` instead. */
+  export type Outbound = ForkSessionRequestBody$Outbound;
+}
+
+export function forkSessionRequestBodyToJSON(
+  forkSessionRequestBody: ForkSessionRequestBody,
+): string {
+  return JSON.stringify(
+    ForkSessionRequestBody$outboundSchema.parse(forkSessionRequestBody),
+  );
+}
+
+export function forkSessionRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<ForkSessionRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ForkSessionRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ForkSessionRequestBody' from JSON`,
+  );
+}
 
 /** @internal */
 export const ForkSessionRequest$inboundSchema: z.ZodType<
@@ -34,11 +91,17 @@ export const ForkSessionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  RequestBody: z.lazy(() => ForkSessionRequestBody$inboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    "RequestBody": "requestBody",
+  });
 });
 
 /** @internal */
 export type ForkSessionRequest$Outbound = {
   id: string;
+  RequestBody: ForkSessionRequestBody$Outbound;
 };
 
 /** @internal */
@@ -48,6 +111,11 @@ export const ForkSessionRequest$outboundSchema: z.ZodType<
   ForkSessionRequest
 > = z.object({
   id: z.string(),
+  requestBody: z.lazy(() => ForkSessionRequestBody$outboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    requestBody: "RequestBody",
+  });
 });
 
 /**
@@ -78,65 +146,5 @@ export function forkSessionRequestFromJSON(
     jsonString,
     (x) => ForkSessionRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ForkSessionRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const ForkSessionResponse$inboundSchema: z.ZodType<
-  ForkSessionResponse,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: models.SessionData$inboundSchema.optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/** @internal */
-export type ForkSessionResponse$Outbound = {
-  data?: models.SessionData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ForkSessionResponse$outboundSchema: z.ZodType<
-  ForkSessionResponse$Outbound,
-  z.ZodTypeDef,
-  ForkSessionResponse
-> = z.object({
-  data: models.SessionData$outboundSchema.optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForkSessionResponse$ {
-  /** @deprecated use `ForkSessionResponse$inboundSchema` instead. */
-  export const inboundSchema = ForkSessionResponse$inboundSchema;
-  /** @deprecated use `ForkSessionResponse$outboundSchema` instead. */
-  export const outboundSchema = ForkSessionResponse$outboundSchema;
-  /** @deprecated use `ForkSessionResponse$Outbound` instead. */
-  export type Outbound = ForkSessionResponse$Outbound;
-}
-
-export function forkSessionResponseToJSON(
-  forkSessionResponse: ForkSessionResponse,
-): string {
-  return JSON.stringify(
-    ForkSessionResponse$outboundSchema.parse(forkSessionResponse),
-  );
-}
-
-export function forkSessionResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<ForkSessionResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ForkSessionResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ForkSessionResponse' from JSON`,
   );
 }

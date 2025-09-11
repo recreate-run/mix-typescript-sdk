@@ -11,9 +11,6 @@ sources:
         registry:
             location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api
 targets:
-    mix:
-        target: ""
-        source: ""
     mix-ts-target:
         target: typescript
         source: Mix REST API

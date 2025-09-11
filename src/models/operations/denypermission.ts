@@ -6,7 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type DenyPermissionRequest = {
   /**
@@ -15,23 +14,14 @@ export type DenyPermissionRequest = {
   id: string;
 };
 
-export type DenyPermissionData = {
-  /**
-   * Whether permission was denied
-   */
-  denied?: boolean | undefined;
-};
-
 /**
  * Permission deny status
  */
 export type DenyPermissionResponse = {
-  data?: DenyPermissionData | undefined;
-  error?: models.RESTError | undefined;
   /**
-   * Optional message
+   * Whether permission was denied
    */
-  message?: string | undefined;
+  denied?: boolean | undefined;
 };
 
 /** @internal */
@@ -89,75 +79,17 @@ export function denyPermissionRequestFromJSON(
 }
 
 /** @internal */
-export const DenyPermissionData$inboundSchema: z.ZodType<
-  DenyPermissionData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  denied: z.boolean().optional(),
-});
-
-/** @internal */
-export type DenyPermissionData$Outbound = {
-  denied?: boolean | undefined;
-};
-
-/** @internal */
-export const DenyPermissionData$outboundSchema: z.ZodType<
-  DenyPermissionData$Outbound,
-  z.ZodTypeDef,
-  DenyPermissionData
-> = z.object({
-  denied: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DenyPermissionData$ {
-  /** @deprecated use `DenyPermissionData$inboundSchema` instead. */
-  export const inboundSchema = DenyPermissionData$inboundSchema;
-  /** @deprecated use `DenyPermissionData$outboundSchema` instead. */
-  export const outboundSchema = DenyPermissionData$outboundSchema;
-  /** @deprecated use `DenyPermissionData$Outbound` instead. */
-  export type Outbound = DenyPermissionData$Outbound;
-}
-
-export function denyPermissionDataToJSON(
-  denyPermissionData: DenyPermissionData,
-): string {
-  return JSON.stringify(
-    DenyPermissionData$outboundSchema.parse(denyPermissionData),
-  );
-}
-
-export function denyPermissionDataFromJSON(
-  jsonString: string,
-): SafeParseResult<DenyPermissionData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DenyPermissionData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DenyPermissionData' from JSON`,
-  );
-}
-
-/** @internal */
 export const DenyPermissionResponse$inboundSchema: z.ZodType<
   DenyPermissionResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => DenyPermissionData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
+  denied: z.boolean().optional(),
 });
 
 /** @internal */
 export type DenyPermissionResponse$Outbound = {
-  data?: DenyPermissionData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
+  denied?: boolean | undefined;
 };
 
 /** @internal */
@@ -166,9 +98,7 @@ export const DenyPermissionResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DenyPermissionResponse
 > = z.object({
-  data: z.lazy(() => DenyPermissionData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
+  denied: z.boolean().optional(),
 });
 
 /**

@@ -67,15 +67,15 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetMessageHistoryResponse](../../models/operations/getmessagehistoryresponse.md)\>**
+**Promise\<[models.MessageData[]](../../models/.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 401                      | application/json         |
-| errors.RESTResponseError | 500                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 401                    | application/json       |
+| errors.ErrorResponse   | 500                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## cancelProcessing
 
@@ -142,10 +142,10 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 404                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 404                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## getSession
 
@@ -208,14 +208,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetSessionMessagesResponse](../../models/operations/getsessionmessagesresponse.md)\>**
+**Promise\<[models.MessageData[]](../../models/.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 404                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 404                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## send
 
@@ -284,11 +284,11 @@ run();
 
 ### Response
 
-**Promise\<[operations.SendMessageResponse](../../models/operations/sendmessageresponse.md)\>**
+**Promise\<[models.MessageData](../../models/messagedata.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 400, 404                 | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 400, 404               | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |

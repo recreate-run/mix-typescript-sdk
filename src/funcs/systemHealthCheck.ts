@@ -34,7 +34,7 @@ export function systemHealthCheck(
 ): APIPromise<
   Result<
     operations.HealthCheckResponse,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -58,7 +58,7 @@ async function $do(
   [
     Result<
       operations.HealthCheckResponse,
-      | errors.RESTResponseError
+      | errors.ErrorResponse
       | MixError
       | ResponseValidationError
       | ConnectionError
@@ -132,7 +132,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.HealthCheckResponse,
-    | errors.RESTResponseError
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -143,7 +143,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.HealthCheckResponse$inboundSchema),
-    M.jsonErr(500, errors.RESTResponseError$inboundSchema),
+    M.jsonErr(500, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

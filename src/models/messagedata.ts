@@ -20,9 +20,9 @@ import {
 
 export type MessageData = {
   /**
-   * Message content
+   * Assistant's response message (optional)
    */
-  content: string;
+  assistantResponse?: string | undefined;
   /**
    * Unique message identifier
    */
@@ -36,10 +36,6 @@ export type MessageData = {
    */
   reasoningDuration?: number | undefined;
   /**
-   * Assistant response (optional)
-   */
-  response?: string | undefined;
-  /**
    * Message role
    */
   role: MessageRole;
@@ -51,6 +47,10 @@ export type MessageData = {
    * Tool calls made during message processing
    */
   toolCalls?: Array<ToolCallData> | undefined;
+  /**
+   * User's input message
+   */
+  userInput: string;
 };
 
 /** @internal */
@@ -59,26 +59,26 @@ export const MessageData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  content: z.string(),
+  assistantResponse: z.string().optional(),
   id: z.string(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),
-  response: z.string().optional(),
   role: MessageRole$inboundSchema,
   sessionId: z.string(),
   toolCalls: z.array(ToolCallData$inboundSchema).optional(),
+  userInput: z.string(),
 });
 
 /** @internal */
 export type MessageData$Outbound = {
-  content: string;
+  assistantResponse?: string | undefined;
   id: string;
   reasoning?: string | undefined;
   reasoningDuration?: number | undefined;
-  response?: string | undefined;
   role: string;
   sessionId: string;
   toolCalls?: Array<ToolCallData$Outbound> | undefined;
+  userInput: string;
 };
 
 /** @internal */
@@ -87,14 +87,14 @@ export const MessageData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageData
 > = z.object({
-  content: z.string(),
+  assistantResponse: z.string().optional(),
   id: z.string(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),
-  response: z.string().optional(),
   role: MessageRole$outboundSchema,
   sessionId: z.string(),
   toolCalls: z.array(ToolCallData$outboundSchema).optional(),
+  userInput: z.string(),
 });
 
 /**

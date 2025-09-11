@@ -12,8 +12,8 @@ let value: GetCommandResponse = {};
 
 ## Fields
 
-| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `data`                                                                 | [operations.GetCommandData](../../models/operations/getcommanddata.md) | :heavy_minus_sign:                                                     | N/A                                                                    |
-| `error`                                                                | [models.RESTError](../../models/resterror.md)                          | :heavy_minus_sign:                                                     | N/A                                                                    |
-| `message`                                                              | *string*                                                               | :heavy_minus_sign:                                                     | Optional message                                                       |
+| Field                      | Type                       | Required                   | Description                |
+| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
+| `description`              | *string*                   | :heavy_minus_sign:         | Command description        |
+| `name`                     | *string*                   | :heavy_minus_sign:         | Command name               |
+| `usage`                    | *string*                   | :heavy_minus_sign:         | Command usage instructions |

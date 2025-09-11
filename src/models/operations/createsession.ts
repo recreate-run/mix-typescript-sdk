@@ -6,29 +6,16 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type CreateSessionRequest = {
   /**
-   * Optional title for the session
+   * Title for the session
    */
-  title?: string | undefined;
+  title: string;
   /**
    * Optional working directory path
    */
   workingDirectory?: string | undefined;
-};
-
-/**
- * Created session
- */
-export type CreateSessionResponse = {
-  data?: models.SessionData | undefined;
-  error?: models.RESTError | undefined;
-  /**
-   * Optional message
-   */
-  message?: string | undefined;
 };
 
 /** @internal */
@@ -37,13 +24,13 @@ export const CreateSessionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  title: z.string().optional(),
+  title: z.string(),
   workingDirectory: z.string().optional(),
 });
 
 /** @internal */
 export type CreateSessionRequest$Outbound = {
-  title?: string | undefined;
+  title: string;
   workingDirectory?: string | undefined;
 };
 
@@ -53,7 +40,7 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSessionRequest
 > = z.object({
-  title: z.string().optional(),
+  title: z.string(),
   workingDirectory: z.string().optional(),
 });
 
@@ -85,65 +72,5 @@ export function createSessionRequestFromJSON(
     jsonString,
     (x) => CreateSessionRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'CreateSessionRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateSessionResponse$inboundSchema: z.ZodType<
-  CreateSessionResponse,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: models.SessionData$inboundSchema.optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/** @internal */
-export type CreateSessionResponse$Outbound = {
-  data?: models.SessionData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CreateSessionResponse$outboundSchema: z.ZodType<
-  CreateSessionResponse$Outbound,
-  z.ZodTypeDef,
-  CreateSessionResponse
-> = z.object({
-  data: models.SessionData$outboundSchema.optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateSessionResponse$ {
-  /** @deprecated use `CreateSessionResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateSessionResponse$inboundSchema;
-  /** @deprecated use `CreateSessionResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateSessionResponse$outboundSchema;
-  /** @deprecated use `CreateSessionResponse$Outbound` instead. */
-  export type Outbound = CreateSessionResponse$Outbound;
-}
-
-export function createSessionResponseToJSON(
-  createSessionResponse: CreateSessionResponse,
-): string {
-  return JSON.stringify(
-    CreateSessionResponse$outboundSchema.parse(createSessionResponse),
-  );
-}
-
-export function createSessionResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateSessionResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateSessionResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateSessionResponse' from JSON`,
   );
 }

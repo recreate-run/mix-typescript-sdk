@@ -1,9 +1,9 @@
-# mix-typescript-sdk
+# openapi
 
-Developer-friendly & type-safe Typescript SDK specifically catered to leverage *mix-typescript-sdk* API.
+Developer-friendly & type-safe Typescript SDK specifically catered to leverage *openapi* API.
 
 <div align="left">
-    <a href="https://www.speakeasy.com/?utm_source=mix-typescript-sdk&utm_campaign=typescript"><img src="https://www.speakeasy.com/assets/badges/built-by-speakeasy.svg" /></a>
+    <a href="https://www.speakeasy.com/?utm_source=openapi&utm_campaign=typescript"><img src="https://www.speakeasy.com/assets/badges/built-by-speakeasy.svg" /></a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
     </a>
@@ -23,7 +23,7 @@ Mix REST API: REST API for the Mix application - session management, messaging, 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [mix-typescript-sdk](#mix-typescript-sdk)
+* [openapi](#openapi)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
@@ -291,10 +291,8 @@ async function run() {
       console.log(error.headers);
 
       // Depending on the method different errors may be thrown
-      if (error instanceof errors.RESTResponseError) {
-        console.log(error.data$.data); // any
+      if (error instanceof errors.ErrorResponse) {
         console.log(error.data$.error); // models.RESTError
-        console.log(error.data$.message); // string
       }
     }
   }
@@ -307,7 +305,7 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`MixError`](./src/models/errors/mixerror.ts): The base class for HTTP error responses.
-  * [`RESTResponseError`](./src/models/errors/restresponseerror.ts): Generic error.
+  * [`ErrorResponse`](./src/models/errors/errorresponse.ts): Generic error.
 
 <details><summary>Less common errors (6)</summary>
 
@@ -436,4 +434,4 @@ looking for the latest version.
 While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
 
-### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=mix-typescript-sdk&utm_campaign=typescript)
+### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=openapi&utm_campaign=typescript)

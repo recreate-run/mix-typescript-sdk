@@ -19,7 +19,7 @@ export class System extends ClientSDK {
    */
   async listCommands(
     options?: RequestOptions,
-  ): Promise<operations.ListCommandsResponse> {
+  ): Promise<Array<operations.ListCommandsResponse>> {
     return unwrapAsync(systemListCommands(
       this,
       options,
@@ -51,7 +51,7 @@ export class System extends ClientSDK {
    */
   async listMcpServers(
     options?: RequestOptions,
-  ): Promise<operations.ListMcpServersResponse> {
+  ): Promise<Array<operations.ListMcpServersResponse>> {
     return unwrapAsync(systemListMcpServers(
       this,
       options,

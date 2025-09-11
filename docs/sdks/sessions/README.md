@@ -67,19 +67,19 @@ run();
 
 ### Response
 
-**Promise\<[operations.ListSessionsResponse](../../models/operations/listsessionsresponse.md)\>**
+**Promise\<[models.SessionData[]](../../models/.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 401                      | application/json         |
-| errors.RESTResponseError | 500                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 401                    | application/json       |
+| errors.ErrorResponse   | 500                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## create
 
-Create a new session with optional title and working directory
+Create a new session with required title and optional working directory
 
 ### Example Usage
 
@@ -90,7 +90,9 @@ import { Mix } from "mix-typescript-sdk";
 const mix = new Mix();
 
 async function run() {
-  const result = await mix.sessions.create({});
+  const result = await mix.sessions.create({
+    title: "<value>",
+  });
 
   console.log(result);
 }
@@ -111,7 +113,9 @@ import { sessionsCreate } from "mix-typescript-sdk/funcs/sessionsCreate.js";
 const mix = new MixCore();
 
 async function run() {
-  const res = await sessionsCreate(mix, {});
+  const res = await sessionsCreate(mix, {
+    title: "<value>",
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -134,14 +138,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateSessionResponse](../../models/operations/createsessionresponse.md)\>**
+**Promise\<[models.SessionData](../../models/sessiondata.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 400                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 400                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## delete
 
@@ -208,10 +212,10 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 404                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 404                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## get
 
@@ -274,18 +278,18 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetSessionResponse](../../models/operations/getsessionresponse.md)\>**
+**Promise\<[models.SessionData](../../models/sessiondata.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 404                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 404                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## fork
 
-Create a new session based on an existing session
+Create a new session based on an existing session, copying messages up to a specified index
 
 ### Example Usage
 
@@ -298,6 +302,9 @@ const mix = new Mix();
 async function run() {
   const result = await mix.sessions.fork({
     id: "<id>",
+    requestBody: {
+      messageIndex: 385832,
+    },
   });
 
   console.log(result);
@@ -321,6 +328,9 @@ const mix = new MixCore();
 async function run() {
   const res = await sessionsFork(mix, {
     id: "<id>",
+    requestBody: {
+      messageIndex: 385832,
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -344,11 +354,11 @@ run();
 
 ### Response
 
-**Promise\<[operations.ForkSessionResponse](../../models/operations/forksessionresponse.md)\>**
+**Promise\<[models.SessionData](../../models/sessiondata.md)\>**
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.RESTResponseError | 404                      | application/json         |
-| errors.MixDefaultError   | 4XX, 5XX                 | \*/\*                    |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 400, 404               | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |

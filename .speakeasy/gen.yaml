@@ -19,6 +19,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+    hoistGlobalSecurity: true
   inferSSEOverload: true
   sdkHooksConfigAccess: true
   tests:
@@ -26,7 +27,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.1.1
+  version: 0.2.3
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -61,6 +62,7 @@ typescript:
   outputModelSuffix: output
   packageName: mix-typescript-sdk
   responseFormat: flat
+  sseFlatResponse: false
   templateVersion: v2
   usageSDKInitImports: []
   useIndexModules: true

@@ -6,7 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type SetApiKeyRequest = {
   /**
@@ -15,23 +14,14 @@ export type SetApiKeyRequest = {
   apiKey: string;
 };
 
-export type SetApiKeyData = {
-  /**
-   * Whether API key was set successfully
-   */
-  success?: boolean | undefined;
-};
-
 /**
  * API key set status
  */
 export type SetApiKeyResponse = {
-  data?: SetApiKeyData | undefined;
-  error?: models.RESTError | undefined;
   /**
-   * Optional message
+   * Whether API key was set successfully
    */
-  message?: string | undefined;
+  success?: boolean | undefined;
 };
 
 /** @internal */
@@ -89,71 +79,17 @@ export function setApiKeyRequestFromJSON(
 }
 
 /** @internal */
-export const SetApiKeyData$inboundSchema: z.ZodType<
-  SetApiKeyData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  success: z.boolean().optional(),
-});
-
-/** @internal */
-export type SetApiKeyData$Outbound = {
-  success?: boolean | undefined;
-};
-
-/** @internal */
-export const SetApiKeyData$outboundSchema: z.ZodType<
-  SetApiKeyData$Outbound,
-  z.ZodTypeDef,
-  SetApiKeyData
-> = z.object({
-  success: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SetApiKeyData$ {
-  /** @deprecated use `SetApiKeyData$inboundSchema` instead. */
-  export const inboundSchema = SetApiKeyData$inboundSchema;
-  /** @deprecated use `SetApiKeyData$outboundSchema` instead. */
-  export const outboundSchema = SetApiKeyData$outboundSchema;
-  /** @deprecated use `SetApiKeyData$Outbound` instead. */
-  export type Outbound = SetApiKeyData$Outbound;
-}
-
-export function setApiKeyDataToJSON(setApiKeyData: SetApiKeyData): string {
-  return JSON.stringify(SetApiKeyData$outboundSchema.parse(setApiKeyData));
-}
-
-export function setApiKeyDataFromJSON(
-  jsonString: string,
-): SafeParseResult<SetApiKeyData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SetApiKeyData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SetApiKeyData' from JSON`,
-  );
-}
-
-/** @internal */
 export const SetApiKeyResponse$inboundSchema: z.ZodType<
   SetApiKeyResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => SetApiKeyData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
+  success: z.boolean().optional(),
 });
 
 /** @internal */
 export type SetApiKeyResponse$Outbound = {
-  data?: SetApiKeyData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
+  success?: boolean | undefined;
 };
 
 /** @internal */
@@ -162,9 +98,7 @@ export const SetApiKeyResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SetApiKeyResponse
 > = z.object({
-  data: z.lazy(() => SetApiKeyData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
+  success: z.boolean().optional(),
 });
 
 /**

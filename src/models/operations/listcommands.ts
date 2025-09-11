@@ -6,9 +6,8 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
-export type ListCommandsData = {
+export type ListCommandsResponse = {
   /**
    * Command description
    */
@@ -19,91 +18,20 @@ export type ListCommandsData = {
   name?: string | undefined;
 };
 
-/**
- * List of commands
- */
-export type ListCommandsResponse = {
-  data?: Array<ListCommandsData> | undefined;
-  error?: models.RESTError | undefined;
-  /**
-   * Optional message
-   */
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListCommandsData$inboundSchema: z.ZodType<
-  ListCommandsData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  description: z.string().optional(),
-  name: z.string().optional(),
-});
-
-/** @internal */
-export type ListCommandsData$Outbound = {
-  description?: string | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const ListCommandsData$outboundSchema: z.ZodType<
-  ListCommandsData$Outbound,
-  z.ZodTypeDef,
-  ListCommandsData
-> = z.object({
-  description: z.string().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCommandsData$ {
-  /** @deprecated use `ListCommandsData$inboundSchema` instead. */
-  export const inboundSchema = ListCommandsData$inboundSchema;
-  /** @deprecated use `ListCommandsData$outboundSchema` instead. */
-  export const outboundSchema = ListCommandsData$outboundSchema;
-  /** @deprecated use `ListCommandsData$Outbound` instead. */
-  export type Outbound = ListCommandsData$Outbound;
-}
-
-export function listCommandsDataToJSON(
-  listCommandsData: ListCommandsData,
-): string {
-  return JSON.stringify(
-    ListCommandsData$outboundSchema.parse(listCommandsData),
-  );
-}
-
-export function listCommandsDataFromJSON(
-  jsonString: string,
-): SafeParseResult<ListCommandsData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListCommandsData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListCommandsData' from JSON`,
-  );
-}
-
 /** @internal */
 export const ListCommandsResponse$inboundSchema: z.ZodType<
   ListCommandsResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(z.lazy(() => ListCommandsData$inboundSchema)).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
+  description: z.string().optional(),
+  name: z.string().optional(),
 });
 
 /** @internal */
 export type ListCommandsResponse$Outbound = {
-  data?: Array<ListCommandsData$Outbound> | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
+  description?: string | undefined;
+  name?: string | undefined;
 };
 
 /** @internal */
@@ -112,9 +40,8 @@ export const ListCommandsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListCommandsResponse
 > = z.object({
-  data: z.array(z.lazy(() => ListCommandsData$outboundSchema)).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
+  description: z.string().optional(),
+  name: z.string().optional(),
 });
 
 /**

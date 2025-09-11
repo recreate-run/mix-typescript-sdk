@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 39492fe3716ddeb3cec351b4b2944fda
+  docChecksum: a748c775892e3dae6a59a61f6934f140
   docVersion: 1.0.0
-  speakeasyVersion: 1.613.0
-  generationVersion: 2.696.0
-  releaseVersion: 0.1.1
-  configChecksum: 0189e6305fde507d7ea2f7f61f181c7f
+  speakeasyVersion: 1.615.1
+  generationVersion: 2.698.4
+  releaseVersion: 0.2.3
+  configChecksum: 2ab271fca52738e64c0facb1a3111023
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -21,6 +21,7 @@ features:
     groups: 2.81.2
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
+    nullables: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
@@ -34,47 +35,33 @@ generatedFiles:
   - RUNTIMES.md
   - USAGE.md
   - docs/lib/utils/retryconfig.md
-  - docs/models/errors/restresponseerror.md
+  - docs/models/errors/errorresponse.md
   - docs/models/messagedata.md
   - docs/models/messagerole.md
-  - docs/models/operations/cancelsessionprocessingdata.md
   - docs/models/operations/cancelsessionprocessingrequest.md
   - docs/models/operations/cancelsessionprocessingresponse.md
   - docs/models/operations/createsessionrequest.md
-  - docs/models/operations/createsessionresponse.md
   - docs/models/operations/deletesessionrequest.md
-  - docs/models/operations/denypermissiondata.md
   - docs/models/operations/denypermissionrequest.md
   - docs/models/operations/denypermissionresponse.md
   - docs/models/operations/forksessionrequest.md
-  - docs/models/operations/forksessionresponse.md
-  - docs/models/operations/getcommanddata.md
+  - docs/models/operations/forksessionrequestbody.md
   - docs/models/operations/getcommandrequest.md
   - docs/models/operations/getcommandresponse.md
   - docs/models/operations/getmessagehistoryrequest.md
-  - docs/models/operations/getmessagehistoryresponse.md
   - docs/models/operations/getsessionmessagesrequest.md
-  - docs/models/operations/getsessionmessagesresponse.md
   - docs/models/operations/getsessionrequest.md
-  - docs/models/operations/getsessionresponse.md
-  - docs/models/operations/grantpermissiondata.md
   - docs/models/operations/grantpermissionrequest.md
   - docs/models/operations/grantpermissionresponse.md
-  - docs/models/operations/healthcheckdata.md
   - docs/models/operations/healthcheckresponse.md
-  - docs/models/operations/initiateoauthlogindata.md
   - docs/models/operations/initiateoauthloginresponse.md
-  - docs/models/operations/listcommandsdata.md
   - docs/models/operations/listcommandsresponse.md
-  - docs/models/operations/listmcpserversdata.md
   - docs/models/operations/listmcpserversresponse.md
-  - docs/models/operations/listsessionsresponse.md
   - docs/models/operations/sendmessagerequest.md
   - docs/models/operations/sendmessagerequestbody.md
-  - docs/models/operations/sendmessageresponse.md
-  - docs/models/operations/setapikeydata.md
   - docs/models/operations/setapikeyrequest.md
   - docs/models/operations/setapikeyresponse.md
+  - docs/models/operations/tool.md
   - docs/models/resterror.md
   - docs/models/sessiondata.md
   - docs/models/toolcalldata.md
@@ -131,12 +118,12 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
+  - src/models/errors/errorresponse.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
   - src/models/errors/mixdefaulterror.ts
   - src/models/errors/mixerror.ts
   - src/models/errors/responsevalidationerror.ts
-  - src/models/errors/restresponseerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/models/index.ts
   - src/models/messagedata.ts
@@ -156,7 +143,6 @@ generatedFiles:
   - src/models/operations/initiateoauthlogin.ts
   - src/models/operations/listcommands.ts
   - src/models/operations/listmcpservers.ts
-  - src/models/operations/listsessions.ts
   - src/models/operations/sendmessage.ts
   - src/models/operations/setapikey.ts
   - src/models/resterror.ts
@@ -189,27 +175,27 @@ examples:
         "200":
           application/json: {}
         "400":
-          application/json: {}
+          application/json: {"error": {"code": 750509, "message": "<value>", "type": "bad_request"}}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 750509, "message": "<value>", "type": "bad_request"}}
   initiateOAuthLogin:
     speakeasy-default-initiate-O-auth-login:
       responses:
         "200":
           application/json: {}
         "401":
-          application/json: {}
+          application/json: {"error": {"code": 314723, "message": "<value>", "type": "validation_error"}}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 314723, "message": "<value>", "type": "validation_error"}}
   listCommands:
     speakeasy-default-list-commands:
       responses:
         "200":
-          application/json: {}
+          application/json: [{}]
         "401":
-          application/json: {}
+          application/json: {"error": {"code": 838798, "message": "<value>", "type": "unauthorized"}}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 838798, "message": "<value>", "type": "unauthorized"}}
   getCommand:
     speakeasy-default-get-command:
       parameters:
@@ -219,23 +205,23 @@ examples:
         "200":
           application/json: {}
         "404":
-          application/json: {}
+          application/json: {"error": {"code": 467416, "message": "<value>", "type": "bad_request"}}
   listMcpServers:
     speakeasy-default-list-mcp-servers:
       responses:
         "200":
-          application/json: {}
+          application/json: [{"connected": true, "name": "<value>", "status": "<value>"}]
         "401":
-          application/json: {}
+          application/json: {"error": {"code": 291310, "message": "<value>", "type": "internal_error"}}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 291310, "message": "<value>", "type": "internal_error"}}
   healthCheck:
     speakeasy-default-health-check:
       responses:
         "200":
           application/json: {}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 981446, "message": "<value>", "type": "not_found"}}
   getMessageHistory:
     speakeasy-default-get-message-history:
       parameters:
@@ -244,11 +230,11 @@ examples:
           offset: 0
       responses:
         "200":
-          application/json: {}
+          application/json: [{"id": "<id>", "role": "user", "sessionId": "<id>", "userInput": "<value>"}]
         "401":
-          application/json: {}
+          application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
   cancelSessionProcessing:
     speakeasy-default-cancel-session-processing:
       parameters:
@@ -258,7 +244,7 @@ examples:
         "200":
           application/json: {}
         "404":
-          application/json: {}
+          application/json: {"error": {"code": 83449, "message": "<value>", "type": "internal_error"}}
   getSessionMessages:
     speakeasy-default-get-session-messages:
       parameters:
@@ -266,9 +252,9 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {}
+          application/json: [{"id": "<id>", "role": "user", "sessionId": "<id>", "userInput": "<value>"}]
         "404":
-          application/json: {}
+          application/json: {"error": {"code": 355518, "message": "<value>", "type": "bad_request"}}
   sendMessage:
     speakeasy-default-send-message:
       parameters:
@@ -278,9 +264,9 @@ examples:
         application/json: {"content": "<value>"}
       responses:
         "200":
-          application/json: {}
+          application/json: {"id": "<id>", "role": "user", "sessionId": "<id>", "userInput": "<value>"}
         "400":
-          application/json: {}
+          application/json: {"error": {"code": 600162, "message": "<value>", "type": "validation_error"}}
   denyPermission:
     speakeasy-default-deny-permission:
       parameters:
@@ -290,9 +276,9 @@ examples:
         "200":
           application/json: {}
         "401":
-          application/json: {}
+          application/json: {"error": {"code": 185141, "message": "<value>", "type": "unauthorized"}}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 185141, "message": "<value>", "type": "unauthorized"}}
   grantPermission:
     speakeasy-default-grant-permission:
       parameters:
@@ -302,27 +288,27 @@ examples:
         "200":
           application/json: {}
         "401":
-          application/json: {}
+          application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
   listSessions:
     speakeasy-default-list-sessions:
       responses:
         "200":
-          application/json: {}
+          application/json: [{"assistantMessageCount": 103950, "completionTokens": 539404, "cost": 7346.82, "createdAt": "2025-02-04T14:58:04.231Z", "id": "<id>", "promptTokens": 244425, "title": "<value>", "toolCallCount": 717181, "userMessageCount": 270800}]
         "401":
-          application/json: {}
+          application/json: {"error": {"code": 306652, "message": "<value>", "type": "bad_request"}}
         "500":
-          application/json: {}
+          application/json: {"error": {"code": 306652, "message": "<value>", "type": "bad_request"}}
   createSession:
     speakeasy-default-create-session:
       requestBody:
-        application/json: {}
+        application/json: {"title": "<value>"}
       responses:
         "201":
-          application/json: {}
+          application/json: {"assistantMessageCount": 880027, "completionTokens": 524380, "cost": 8710.41, "createdAt": "2024-03-18T16:52:26.875Z", "id": "<id>", "promptTokens": 469380, "title": "<value>", "toolCallCount": 70138, "userMessageCount": 844160}
         "400":
-          application/json: {}
+          application/json: {"error": {"code": 481369, "message": "<value>", "type": "validation_error"}}
   deleteSession:
     speakeasy-default-delete-session:
       parameters:
@@ -330,7 +316,7 @@ examples:
           id: "<id>"
       responses:
         "404":
-          application/json: {}
+          application/json: {"error": {"code": 56778, "message": "<value>", "type": "validation_error"}}
   getSession:
     speakeasy-default-get-session:
       parameters:
@@ -338,17 +324,21 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {}
+          application/json: {"assistantMessageCount": 387834, "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
         "404":
-          application/json: {}
+          application/json: {"error": {"code": 125836, "message": "<value>", "type": "validation_error"}}
   forkSession:
     speakeasy-default-fork-session:
       parameters:
         path:
           id: "<id>"
+      requestBody:
+        application/json: {"messageIndex": 385832}
       responses:
         "201":
-          application/json: {}
+          application/json: {"assistantMessageCount": 385832, "completionTokens": 551389, "cost": 5945.98, "createdAt": "2025-08-26T03:33:17.824Z", "id": "<id>", "promptTokens": 770117, "title": "<value>", "toolCallCount": 905266, "userMessageCount": 239157}
         "404":
           application/json: {}
+        "400":
+          application/json: {"error": {"code": 654763, "message": "<value>", "type": "validation_error"}}
 examplesVersion: 1.0.2

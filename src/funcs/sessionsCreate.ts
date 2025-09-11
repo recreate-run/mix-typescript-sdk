@@ -20,6 +20,7 @@ import * as errors from "../models/errors/index.js";
 import { MixError } from "../models/errors/mixerror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
@@ -28,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create a new session
  *
  * @remarks
- * Create a new session with optional title and working directory
+ * Create a new session with required title and optional working directory
  */
 export function sessionsCreate(
   client: MixCore,
@@ -36,8 +37,8 @@ export function sessionsCreate(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.CreateSessionResponse,
-    | errors.RESTResponseError
+    models.SessionData,
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -62,8 +63,8 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.CreateSessionResponse,
-      | errors.RESTResponseError
+      models.SessionData,
+      | errors.ErrorResponse
       | MixError
       | ResponseValidationError
       | ConnectionError
@@ -149,8 +150,8 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.CreateSessionResponse,
-    | errors.RESTResponseError
+    models.SessionData,
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -160,8 +161,8 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(201, operations.CreateSessionResponse$inboundSchema),
-    M.jsonErr(400, errors.RESTResponseError$inboundSchema),
+    M.json(201, models.SessionData$inboundSchema),
+    M.jsonErr(400, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

@@ -12,8 +12,6 @@ let value: DenyPermissionResponse = {};
 
 ## Fields
 
-| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `data`                                                                         | [operations.DenyPermissionData](../../models/operations/denypermissiondata.md) | :heavy_minus_sign:                                                             | N/A                                                                            |
-| `error`                                                                        | [models.RESTError](../../models/resterror.md)                                  | :heavy_minus_sign:                                                             | N/A                                                                            |
-| `message`                                                                      | *string*                                                                       | :heavy_minus_sign:                                                             | Optional message                                                               |
+| Field                         | Type                          | Required                      | Description                   |
+| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
+| `denied`                      | *boolean*                     | :heavy_minus_sign:            | Whether permission was denied |

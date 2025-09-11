@@ -13,5 +13,5 @@ let value: MessageRole = "assistant";
 ## Values
 
 ```typescript
-"user" | "assistant"
+"user" | "assistant" | "tool"
 ```

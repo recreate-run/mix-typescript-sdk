@@ -6,80 +6,16 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
-
-export type InitiateOAuthLoginData = {
-  /**
-   * OAuth authorization URL
-   */
-  authUrl?: string | undefined;
-};
 
 /**
  * Authentication URL
  */
 export type InitiateOAuthLoginResponse = {
-  data?: InitiateOAuthLoginData | undefined;
-  error?: models.RESTError | undefined;
   /**
-   * Optional message
+   * OAuth authorization URL
    */
-  message?: string | undefined;
-};
-
-/** @internal */
-export const InitiateOAuthLoginData$inboundSchema: z.ZodType<
-  InitiateOAuthLoginData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  authUrl: z.string().optional(),
-});
-
-/** @internal */
-export type InitiateOAuthLoginData$Outbound = {
   authUrl?: string | undefined;
 };
-
-/** @internal */
-export const InitiateOAuthLoginData$outboundSchema: z.ZodType<
-  InitiateOAuthLoginData$Outbound,
-  z.ZodTypeDef,
-  InitiateOAuthLoginData
-> = z.object({
-  authUrl: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateOAuthLoginData$ {
-  /** @deprecated use `InitiateOAuthLoginData$inboundSchema` instead. */
-  export const inboundSchema = InitiateOAuthLoginData$inboundSchema;
-  /** @deprecated use `InitiateOAuthLoginData$outboundSchema` instead. */
-  export const outboundSchema = InitiateOAuthLoginData$outboundSchema;
-  /** @deprecated use `InitiateOAuthLoginData$Outbound` instead. */
-  export type Outbound = InitiateOAuthLoginData$Outbound;
-}
-
-export function initiateOAuthLoginDataToJSON(
-  initiateOAuthLoginData: InitiateOAuthLoginData,
-): string {
-  return JSON.stringify(
-    InitiateOAuthLoginData$outboundSchema.parse(initiateOAuthLoginData),
-  );
-}
-
-export function initiateOAuthLoginDataFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateOAuthLoginData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateOAuthLoginData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateOAuthLoginData' from JSON`,
-  );
-}
 
 /** @internal */
 export const InitiateOAuthLoginResponse$inboundSchema: z.ZodType<
@@ -87,16 +23,12 @@ export const InitiateOAuthLoginResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => InitiateOAuthLoginData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
+  authUrl: z.string().optional(),
 });
 
 /** @internal */
 export type InitiateOAuthLoginResponse$Outbound = {
-  data?: InitiateOAuthLoginData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
+  authUrl?: string | undefined;
 };
 
 /** @internal */
@@ -105,9 +37,7 @@ export const InitiateOAuthLoginResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InitiateOAuthLoginResponse
 > = z.object({
-  data: z.lazy(() => InitiateOAuthLoginData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
+  authUrl: z.string().optional(),
 });
 
 /**

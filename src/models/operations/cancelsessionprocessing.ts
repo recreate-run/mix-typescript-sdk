@@ -6,7 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 export type CancelSessionProcessingRequest = {
   /**
@@ -15,23 +14,14 @@ export type CancelSessionProcessingRequest = {
   id: string;
 };
 
-export type CancelSessionProcessingData = {
-  /**
-   * Whether cancellation was successful
-   */
-  cancelled?: boolean | undefined;
-};
-
 /**
  * Cancellation status
  */
 export type CancelSessionProcessingResponse = {
-  data?: CancelSessionProcessingData | undefined;
-  error?: models.RESTError | undefined;
   /**
-   * Optional message
+   * Whether cancellation was successful
    */
-  message?: string | undefined;
+  cancelled?: boolean | undefined;
 };
 
 /** @internal */
@@ -91,77 +81,17 @@ export function cancelSessionProcessingRequestFromJSON(
 }
 
 /** @internal */
-export const CancelSessionProcessingData$inboundSchema: z.ZodType<
-  CancelSessionProcessingData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cancelled: z.boolean().optional(),
-});
-
-/** @internal */
-export type CancelSessionProcessingData$Outbound = {
-  cancelled?: boolean | undefined;
-};
-
-/** @internal */
-export const CancelSessionProcessingData$outboundSchema: z.ZodType<
-  CancelSessionProcessingData$Outbound,
-  z.ZodTypeDef,
-  CancelSessionProcessingData
-> = z.object({
-  cancelled: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CancelSessionProcessingData$ {
-  /** @deprecated use `CancelSessionProcessingData$inboundSchema` instead. */
-  export const inboundSchema = CancelSessionProcessingData$inboundSchema;
-  /** @deprecated use `CancelSessionProcessingData$outboundSchema` instead. */
-  export const outboundSchema = CancelSessionProcessingData$outboundSchema;
-  /** @deprecated use `CancelSessionProcessingData$Outbound` instead. */
-  export type Outbound = CancelSessionProcessingData$Outbound;
-}
-
-export function cancelSessionProcessingDataToJSON(
-  cancelSessionProcessingData: CancelSessionProcessingData,
-): string {
-  return JSON.stringify(
-    CancelSessionProcessingData$outboundSchema.parse(
-      cancelSessionProcessingData,
-    ),
-  );
-}
-
-export function cancelSessionProcessingDataFromJSON(
-  jsonString: string,
-): SafeParseResult<CancelSessionProcessingData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CancelSessionProcessingData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CancelSessionProcessingData' from JSON`,
-  );
-}
-
-/** @internal */
 export const CancelSessionProcessingResponse$inboundSchema: z.ZodType<
   CancelSessionProcessingResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => CancelSessionProcessingData$inboundSchema).optional(),
-  error: models.RESTError$inboundSchema.optional(),
-  message: z.string().optional(),
+  cancelled: z.boolean().optional(),
 });
 
 /** @internal */
 export type CancelSessionProcessingResponse$Outbound = {
-  data?: CancelSessionProcessingData$Outbound | undefined;
-  error?: models.RESTError$Outbound | undefined;
-  message?: string | undefined;
+  cancelled?: boolean | undefined;
 };
 
 /** @internal */
@@ -170,9 +100,7 @@ export const CancelSessionProcessingResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CancelSessionProcessingResponse
 > = z.object({
-  data: z.lazy(() => CancelSessionProcessingData$outboundSchema).optional(),
-  error: models.RESTError$outboundSchema.optional(),
-  message: z.string().optional(),
+  cancelled: z.boolean().optional(),
 });
 
 /**

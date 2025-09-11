@@ -20,6 +20,7 @@ import * as errors from "../models/errors/index.js";
 import { MixError } from "../models/errors/mixerror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
@@ -36,8 +37,8 @@ export function messagesSend(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.SendMessageResponse,
-    | errors.RESTResponseError
+    models.MessageData,
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -62,8 +63,8 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.SendMessageResponse,
-      | errors.RESTResponseError
+      models.MessageData,
+      | errors.ErrorResponse
       | MixError
       | ResponseValidationError
       | ConnectionError
@@ -156,8 +157,8 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.SendMessageResponse,
-    | errors.RESTResponseError
+    models.MessageData,
+    | errors.ErrorResponse
     | MixError
     | ResponseValidationError
     | ConnectionError
@@ -167,8 +168,8 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.SendMessageResponse$inboundSchema),
-    M.jsonErr([400, 404], errors.RESTResponseError$inboundSchema),
+    M.json(200, models.MessageData$inboundSchema),
+    M.jsonErr([400, 404], errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

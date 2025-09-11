@@ -16,6 +16,5 @@ export * from "./healthcheck.js";
 export * from "./initiateoauthlogin.js";
 export * from "./listcommands.js";
 export * from "./listmcpservers.js";
-export * from "./listsessions.js";
 export * from "./sendmessage.js";
 export * from "./setapikey.js";
