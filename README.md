@@ -97,8 +97,9 @@ import { Mix } from "mix-typescript-sdk";
 const mix = new Mix();
 
 async function run() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   });
 
   console.log(result);
@@ -121,7 +122,13 @@ run();
 
 ### [authentication](docs/sdks/authentication/README.md)
 
+* [storeApiKey](docs/sdks/authentication/README.md#storeapikey) - Store API key
 * [login](docs/sdks/authentication/README.md#login) - OAuth authentication
+* [handleOAuthCallback](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
+* [startOAuthFlow](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
+* [getAuthStatus](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
+* [validatePreferredProvider](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
+* [deleteCredentials](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
 
 ### [messages](docs/sdks/messages/README.md)
 
@@ -135,6 +142,13 @@ run();
 
 * [deny](docs/sdks/permissions/README.md#deny) - Deny permission
 * [grant](docs/sdks/permissions/README.md#grant) - Grant permission
+
+### [preferences](docs/sdks/preferences/README.md)
+
+* [getPreferences](docs/sdks/preferences/README.md#getpreferences) - Get user preferences
+* [updatePreferences](docs/sdks/preferences/README.md#updatepreferences) - Update user preferences
+* [getAvailableProviders](docs/sdks/preferences/README.md#getavailableproviders) - Get available providers
+* [resetPreferences](docs/sdks/preferences/README.md#resetpreferences) - Reset preferences
 
 ### [sessions](docs/sdks/sessions/README.md)
 
@@ -169,7 +183,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`authenticationDeleteCredentials`](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
+- [`authenticationGetAuthStatus`](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
+- [`authenticationHandleOAuthCallback`](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
 - [`authenticationLogin`](docs/sdks/authentication/README.md#login) - OAuth authentication
+- [`authenticationStartOAuthFlow`](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
+- [`authenticationStoreApiKey`](docs/sdks/authentication/README.md#storeapikey) - Store API key
+- [`authenticationValidatePreferredProvider`](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
 - [`authSetApiKey`](docs/sdks/auth/README.md#setapikey) - Set API key
 - [`messagesCancelProcessing`](docs/sdks/messages/README.md#cancelprocessing) - Cancel agent processing
 - [`messagesGetHistory`](docs/sdks/messages/README.md#gethistory) - Get global message history
@@ -177,6 +197,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesSend`](docs/sdks/messages/README.md#send) - Send a message to session
 - [`permissionsDeny`](docs/sdks/permissions/README.md#deny) - Deny permission
 - [`permissionsGrant`](docs/sdks/permissions/README.md#grant) - Grant permission
+- [`preferencesGetAvailableProviders`](docs/sdks/preferences/README.md#getavailableproviders) - Get available providers
+- [`preferencesGetPreferences`](docs/sdks/preferences/README.md#getpreferences) - Get user preferences
+- [`preferencesResetPreferences`](docs/sdks/preferences/README.md#resetpreferences) - Reset preferences
+- [`preferencesUpdatePreferences`](docs/sdks/preferences/README.md#updatepreferences) - Update user preferences
 - [`sessionsCreate`](docs/sdks/sessions/README.md#create) - Create a new session
 - [`sessionsDelete`](docs/sdks/sessions/README.md#delete) - Delete a session
 - [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
@@ -202,8 +226,9 @@ import { Mix } from "mix-typescript-sdk";
 const mix = new Mix();
 
 async function run() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   }, {
     retries: {
       strategy: "backoff",
@@ -242,8 +267,9 @@ const mix = new Mix({
 });
 
 async function run() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   });
 
   console.log(result);
@@ -277,8 +303,9 @@ const mix = new Mix();
 
 async function run() {
   try {
-    const result = await mix.auth.setApiKey({
+    const result = await mix.authentication.storeApiKey({
       apiKey: "<value>",
+      provider: "openrouter",
     });
 
     console.log(result);
@@ -339,8 +366,9 @@ const mix = new Mix({
 });
 
 async function run() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   });
 
   console.log(result);

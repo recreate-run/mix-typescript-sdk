@@ -20,21 +20,22 @@ specific category of applications.
 
 ```typescript
 import { MixCore } from "mix-typescript-sdk/core.js";
-import { authSetApiKey } from "mix-typescript-sdk/funcs/authSetApiKey.js";
+import { authenticationStoreApiKey } from "mix-typescript-sdk/funcs/authenticationStoreApiKey.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const mix = new MixCore();
 
 async function run() {
-  const res = await authSetApiKey(mix, {
+  const res = await authenticationStoreApiKey(mix, {
     apiKey: "<value>",
+    provider: "openrouter",
   });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("authSetApiKey failed:", res.error);
+    console.log("authenticationStoreApiKey failed:", res.error);
   }
 }
 

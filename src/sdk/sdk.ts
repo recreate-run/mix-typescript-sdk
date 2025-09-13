@@ -7,18 +7,19 @@ import { Auth } from "./auth.js";
 import { Authentication } from "./authentication.js";
 import { Messages } from "./messages.js";
 import { Permissions } from "./permissions.js";
+import { Preferences } from "./preferences.js";
 import { Sessions } from "./sessions.js";
 import { System } from "./system.js";
 
 export class Mix extends ClientSDK {
-  private _auth?: Auth;
-  get auth(): Auth {
-    return (this._auth ??= new Auth(this._options));
-  }
-
   private _authentication?: Authentication;
   get authentication(): Authentication {
     return (this._authentication ??= new Authentication(this._options));
+  }
+
+  private _auth?: Auth;
+  get auth(): Auth {
+    return (this._auth ??= new Auth(this._options));
   }
 
   private _system?: System;
@@ -34,6 +35,11 @@ export class Mix extends ClientSDK {
   private _permissions?: Permissions;
   get permissions(): Permissions {
     return (this._permissions ??= new Permissions(this._options));
+  }
+
+  private _preferences?: Preferences;
+  get preferences(): Preferences {
+    return (this._preferences ??= new Preferences(this._options));
   }
 
   private _sessions?: Sessions;
