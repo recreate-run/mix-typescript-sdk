@@ -1,6 +1,6 @@
 {
   "name": "mix-typescript-sdk",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "author": "Speakeasy",
   "type": "module",
   "tshy": {

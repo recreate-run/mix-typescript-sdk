@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 3ed70adc281786c39a8298dba987642b
+  docChecksum: 8a4c6e274ffd6e712490846f13055bb0
   docVersion: 1.0.0
   speakeasyVersion: 1.615.2
   generationVersion: 2.698.4
-  releaseVersion: 0.2.6
-  configChecksum: 408a82a14f39f6bddf1d8cdd0fe4fc1e
+  releaseVersion: 0.2.8
+  configChecksum: c49e8a9e1e9f5d03b8c8b32a9e7e43ed
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -38,6 +38,7 @@ generatedFiles:
   - docs/models/errors/errorresponse.md
   - docs/models/messagedata.md
   - docs/models/messagerole.md
+  - docs/models/operations/availableproviders.md
   - docs/models/operations/cancelsessionprocessingrequest.md
   - docs/models/operations/cancelsessionprocessingresponse.md
   - docs/models/operations/createsessionrequest.md
@@ -65,6 +66,7 @@ generatedFiles:
   - docs/models/operations/initiateoauthloginresponse.md
   - docs/models/operations/listcommandsresponse.md
   - docs/models/operations/listmcpserversresponse.md
+  - docs/models/operations/preferences.md
   - docs/models/operations/provider.md
   - docs/models/operations/providers.md
   - docs/models/operations/resetpreferencesresponse.md
@@ -446,7 +448,7 @@ examples:
     speakeasy-default-get-preferences:
       responses:
         "200":
-          application/json: {}
+          application/json: {"available_providers": {"key": {}}}
         "500":
           application/json: {"error": {"code": 735073, "message": "<value>", "type": "bad_request"}}
   updatePreferences:

@@ -8,10 +8,21 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type AvailableProviders = {
+  /**
+   * User-friendly provider name
+   */
+  displayName?: string | undefined;
+  /**
+   * Available models from this provider
+   */
+  models?: Array<string> | undefined;
+};
+
 /**
- * User preferences
+ * User preferences (null if no preferences exist)
  */
-export type GetPreferencesResponse = {
+export type Preferences = {
   /**
    * Unix timestamp when preferences were created
    */
@@ -50,9 +61,88 @@ export type GetPreferencesResponse = {
   updatedAt?: number | undefined;
 };
 
+/**
+ * User preferences and available providers
+ */
+export type GetPreferencesResponse = {
+  /**
+   * Map of available AI providers and their models
+   */
+  availableProviders: { [k: string]: AvailableProviders };
+  /**
+   * User preferences (null if no preferences exist)
+   */
+  preferences?: Preferences | null | undefined;
+};
+
 /** @internal */
-export const GetPreferencesResponse$inboundSchema: z.ZodType<
-  GetPreferencesResponse,
+export const AvailableProviders$inboundSchema: z.ZodType<
+  AvailableProviders,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  display_name: z.string().optional(),
+  models: z.array(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "display_name": "displayName",
+  });
+});
+
+/** @internal */
+export type AvailableProviders$Outbound = {
+  display_name?: string | undefined;
+  models?: Array<string> | undefined;
+};
+
+/** @internal */
+export const AvailableProviders$outboundSchema: z.ZodType<
+  AvailableProviders$Outbound,
+  z.ZodTypeDef,
+  AvailableProviders
+> = z.object({
+  displayName: z.string().optional(),
+  models: z.array(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    displayName: "display_name",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AvailableProviders$ {
+  /** @deprecated use `AvailableProviders$inboundSchema` instead. */
+  export const inboundSchema = AvailableProviders$inboundSchema;
+  /** @deprecated use `AvailableProviders$outboundSchema` instead. */
+  export const outboundSchema = AvailableProviders$outboundSchema;
+  /** @deprecated use `AvailableProviders$Outbound` instead. */
+  export type Outbound = AvailableProviders$Outbound;
+}
+
+export function availableProvidersToJSON(
+  availableProviders: AvailableProviders,
+): string {
+  return JSON.stringify(
+    AvailableProviders$outboundSchema.parse(availableProviders),
+  );
+}
+
+export function availableProvidersFromJSON(
+  jsonString: string,
+): SafeParseResult<AvailableProviders, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AvailableProviders$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AvailableProviders' from JSON`,
+  );
+}
+
+/** @internal */
+export const Preferences$inboundSchema: z.ZodType<
+  Preferences,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -80,7 +170,7 @@ export const GetPreferencesResponse$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetPreferencesResponse$Outbound = {
+export type Preferences$Outbound = {
   created_at?: number | undefined;
   main_agent_max_tokens?: number | undefined;
   main_agent_model?: string | undefined;
@@ -93,10 +183,10 @@ export type GetPreferencesResponse$Outbound = {
 };
 
 /** @internal */
-export const GetPreferencesResponse$outboundSchema: z.ZodType<
-  GetPreferencesResponse$Outbound,
+export const Preferences$outboundSchema: z.ZodType<
+  Preferences$Outbound,
   z.ZodTypeDef,
-  GetPreferencesResponse
+  Preferences
 > = z.object({
   createdAt: z.number().int().optional(),
   mainAgentMaxTokens: z.number().int().optional(),
@@ -118,6 +208,67 @@ export const GetPreferencesResponse$outboundSchema: z.ZodType<
     subAgentModel: "sub_agent_model",
     subAgentReasoningEffort: "sub_agent_reasoning_effort",
     updatedAt: "updated_at",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Preferences$ {
+  /** @deprecated use `Preferences$inboundSchema` instead. */
+  export const inboundSchema = Preferences$inboundSchema;
+  /** @deprecated use `Preferences$outboundSchema` instead. */
+  export const outboundSchema = Preferences$outboundSchema;
+  /** @deprecated use `Preferences$Outbound` instead. */
+  export type Outbound = Preferences$Outbound;
+}
+
+export function preferencesToJSON(preferences: Preferences): string {
+  return JSON.stringify(Preferences$outboundSchema.parse(preferences));
+}
+
+export function preferencesFromJSON(
+  jsonString: string,
+): SafeParseResult<Preferences, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Preferences$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Preferences' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetPreferencesResponse$inboundSchema: z.ZodType<
+  GetPreferencesResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  available_providers: z.record(z.lazy(() => AvailableProviders$inboundSchema)),
+  preferences: z.nullable(z.lazy(() => Preferences$inboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "available_providers": "availableProviders",
+  });
+});
+
+/** @internal */
+export type GetPreferencesResponse$Outbound = {
+  available_providers: { [k: string]: AvailableProviders$Outbound };
+  preferences?: Preferences$Outbound | null | undefined;
+};
+
+/** @internal */
+export const GetPreferencesResponse$outboundSchema: z.ZodType<
+  GetPreferencesResponse$Outbound,
+  z.ZodTypeDef,
+  GetPreferencesResponse
+> = z.object({
+  availableProviders: z.record(z.lazy(() => AvailableProviders$outboundSchema)),
+  preferences: z.nullable(z.lazy(() => Preferences$outboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    availableProviders: "available_providers",
   });
 });
 
