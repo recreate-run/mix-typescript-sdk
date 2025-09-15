@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the mix-typescript-sdk SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx authSetApiKey.example.ts
+ * npm run build && npx tsx authenticationStoreApiKey.example.ts
  */
 
 import { Mix } from "mix-typescript-sdk";
@@ -16,8 +16,9 @@ import { Mix } from "mix-typescript-sdk";
 const mix = new Mix();
 
 async function main() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   });
 
   console.log(result);

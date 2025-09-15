@@ -29,6 +29,7 @@ Mix REST API: REST API for the Mix application - session management, messaging, 
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Standalone functions](#standalone-functions)
+  * [File uploads](#file-uploads)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -97,8 +98,9 @@ import { Mix } from "mix-typescript-sdk";
 const mix = new Mix();
 
 async function run() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   });
 
   console.log(result);
@@ -121,7 +123,20 @@ run();
 
 ### [authentication](docs/sdks/authentication/README.md)
 
+* [storeApiKey](docs/sdks/authentication/README.md#storeapikey) - Store API key
 * [login](docs/sdks/authentication/README.md#login) - OAuth authentication
+* [handleOAuthCallback](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
+* [startOAuthFlow](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
+* [getAuthStatus](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
+* [validatePreferredProvider](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
+* [deleteCredentials](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
+
+### [files](docs/sdks/files/README.md)
+
+* [list](docs/sdks/files/README.md#list) - List session files
+* [upload](docs/sdks/files/README.md#upload) - Upload file to session
+* [delete](docs/sdks/files/README.md#delete) - Delete session file
+* [get](docs/sdks/files/README.md#get) - Get session file
 
 ### [messages](docs/sdks/messages/README.md)
 
@@ -135,6 +150,13 @@ run();
 
 * [deny](docs/sdks/permissions/README.md#deny) - Deny permission
 * [grant](docs/sdks/permissions/README.md#grant) - Grant permission
+
+### [preferences](docs/sdks/preferences/README.md)
+
+* [get](docs/sdks/preferences/README.md#get) - Get user preferences
+* [update](docs/sdks/preferences/README.md#update) - Update user preferences
+* [getProviders](docs/sdks/preferences/README.md#getproviders) - Get available providers
+* [reset](docs/sdks/preferences/README.md#reset) - Reset preferences
 
 ### [sessions](docs/sdks/sessions/README.md)
 
@@ -169,14 +191,28 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`authenticationDeleteCredentials`](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
+- [`authenticationGetAuthStatus`](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
+- [`authenticationHandleOAuthCallback`](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
 - [`authenticationLogin`](docs/sdks/authentication/README.md#login) - OAuth authentication
+- [`authenticationStartOAuthFlow`](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
+- [`authenticationStoreApiKey`](docs/sdks/authentication/README.md#storeapikey) - Store API key
+- [`authenticationValidatePreferredProvider`](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
 - [`authSetApiKey`](docs/sdks/auth/README.md#setapikey) - Set API key
+- [`filesDelete`](docs/sdks/files/README.md#delete) - Delete session file
+- [`filesGet`](docs/sdks/files/README.md#get) - Get session file
+- [`filesList`](docs/sdks/files/README.md#list) - List session files
+- [`filesUpload`](docs/sdks/files/README.md#upload) - Upload file to session
 - [`messagesCancelProcessing`](docs/sdks/messages/README.md#cancelprocessing) - Cancel agent processing
 - [`messagesGetHistory`](docs/sdks/messages/README.md#gethistory) - Get global message history
 - [`messagesGetSession`](docs/sdks/messages/README.md#getsession) - List session messages
 - [`messagesSend`](docs/sdks/messages/README.md#send) - Send a message to session
 - [`permissionsDeny`](docs/sdks/permissions/README.md#deny) - Deny permission
 - [`permissionsGrant`](docs/sdks/permissions/README.md#grant) - Grant permission
+- [`preferencesGet`](docs/sdks/preferences/README.md#get) - Get user preferences
+- [`preferencesGetProviders`](docs/sdks/preferences/README.md#getproviders) - Get available providers
+- [`preferencesReset`](docs/sdks/preferences/README.md#reset) - Reset preferences
+- [`preferencesUpdate`](docs/sdks/preferences/README.md#update) - Update user preferences
 - [`sessionsCreate`](docs/sdks/sessions/README.md#create) - Create a new session
 - [`sessionsDelete`](docs/sdks/sessions/README.md#delete) - Delete a session
 - [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
@@ -190,6 +226,42 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
 
+<!-- Start File uploads [file-upload] -->
+## File uploads
+
+Certain SDK methods accept files as part of a multi-part request. It is possible and typically recommended to upload files as a stream rather than reading the entire contents into memory. This avoids excessive memory consumption and potentially crashing with out-of-memory errors when working with very large files. The following example demonstrates how to attach a file stream to a request.
+
+> [!TIP]
+>
+> Depending on your JavaScript runtime, there are convenient utilities that return a handle to a file without reading the entire contents into memory:
+>
+> - **Node.js v20+:** Since v20, Node.js comes with a native `openAsBlob` function in [`node:fs`](https://nodejs.org/docs/latest-v20.x/api/fs.html#fsopenasblobpath-options).
+> - **Bun:** The native [`Bun.file`](https://bun.sh/docs/api/file-io#reading-files-bun-file) function produces a file handle that can be used for streaming file uploads.
+> - **Browsers:** All supported browsers return an instance to a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
+> - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
+
+```typescript
+import { Mix } from "mix-typescript-sdk";
+import { openAsBlob } from "node:fs";
+
+const mix = new Mix();
+
+async function run() {
+  const result = await mix.files.upload({
+    id: "<id>",
+    requestBody: {
+      file: await openAsBlob("example.file"),
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+
+```
+<!-- End File uploads [file-upload] -->
+
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -202,8 +274,9 @@ import { Mix } from "mix-typescript-sdk";
 const mix = new Mix();
 
 async function run() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   }, {
     retries: {
       strategy: "backoff",
@@ -242,8 +315,9 @@ const mix = new Mix({
 });
 
 async function run() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   });
 
   console.log(result);
@@ -277,8 +351,9 @@ const mix = new Mix();
 
 async function run() {
   try {
-    const result = await mix.auth.setApiKey({
+    const result = await mix.authentication.storeApiKey({
       apiKey: "<value>",
+      provider: "openrouter",
     });
 
     console.log(result);
@@ -339,8 +414,9 @@ const mix = new Mix({
 });
 
 async function run() {
-  const result = await mix.auth.setApiKey({
+  const result = await mix.authentication.storeApiKey({
     apiKey: "<value>",
+    provider: "openrouter",
   });
 
   console.log(result);

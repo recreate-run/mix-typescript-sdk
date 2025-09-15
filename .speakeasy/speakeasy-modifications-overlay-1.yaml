@@ -2,7 +2,7 @@ overlay: 1.0.0
 x-speakeasy-jsonpath: rfc9535
 info:
   title: Speakeasy Modifications
-  version: 0.0.2
+  version: 0.0.3
   x-speakeasy-metadata:
     after: ""
     before: ""
@@ -15,4 +15,68 @@ actions:
       after: sdk.auth.setApiKey()
       before: sdk.Authentication.setApiKey()
       created_at: 1757401017437
+      type: method-name
+  - target: $["paths"]["/api/preferences/reset"]["post"]
+    update:
+      x-speakeasy-name-override: reset
+    x-speakeasy-metadata:
+      after: sdk.preferences.reset()
+      before: sdk.Preferences.resetPreferences()
+      created_at: 1757957984790
+      type: method-name
+  - target: $["paths"]["/api/preferences"]["post"]
+    update:
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      after: sdk.preferences.update()
+      before: sdk.Preferences.updatePreferences()
+      created_at: 1757957984790
+      type: method-name
+  - target: $["paths"]["/api/sessions/{id}/files/upload"]["post"]
+    update:
+      x-speakeasy-name-override: upload
+    x-speakeasy-metadata:
+      after: sdk.files.upload()
+      before: sdk.Files.uploadSessionFile()
+      created_at: 1757957984790
+      type: method-name
+  - target: $["paths"]["/api/preferences"]["get"]
+    update:
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.preferences.get()
+      before: sdk.Preferences.getPreferences()
+      created_at: 1757957984790
+      type: method-name
+  - target: $["paths"]["/api/preferences/providers"]["get"]
+    update:
+      x-speakeasy-name-override: getProviders
+    x-speakeasy-metadata:
+      after: sdk.preferences.getProviders()
+      before: sdk.Preferences.getAvailableProviders()
+      created_at: 1757957984790
+      type: method-name
+  - target: $["paths"]["/api/sessions/{id}/files"]["get"]
+    update:
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.files.list()
+      before: sdk.Files.listSessionFiles()
+      created_at: 1757957984790
+      type: method-name
+  - target: $["paths"]["/api/sessions/{id}/files/{filename}"]["get"]
+    update:
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.files.get()
+      before: sdk.Files.getSessionFile()
+      created_at: 1757957984790
+      type: method-name
+  - target: $["paths"]["/api/sessions/{id}/files/{filename}"]["delete"]
+    update:
+      x-speakeasy-name-override: delete
+    x-speakeasy-metadata:
+      after: sdk.files.delete()
+      before: sdk.Files.deleteSessionFile()
+      created_at: 1757957984790
       type: method-name

@@ -79,7 +79,7 @@ run();
 
 ## create
 
-Create a new session with required title and optional working directory
+Create a new session with required title. Session automatically gets isolated storage directory.
 
 ### Example Usage
 
