@@ -3,7 +3,7 @@ id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
   docChecksum: 8f7f7e20466a55e7eae554f1ca111afe
   docVersion: 1.0.0
-  speakeasyVersion: 1.615.1
+  speakeasyVersion: 1.615.2
   generationVersion: 2.698.4
   releaseVersion: 0.3.2
   configChecksum: 973a20083a6b89029ad0c30aaad5659e
