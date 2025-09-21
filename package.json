@@ -3,6 +3,10 @@
   "version": "0.3.3",
   "author": "Speakeasy",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/recreate-run/mix-typescript-sdk"
+  },
   "tshy": {
     "sourceDialects": [
       "mix-typescript-sdk/source"
