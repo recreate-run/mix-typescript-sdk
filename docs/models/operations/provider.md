@@ -1,6 +1,6 @@
 # Provider
 
-Provider name (anthropic, openai, openrouter)
+Provider name (anthropic, openai, openrouter, gemini)
 
 ## Example Usage
 
@@ -13,5 +13,5 @@ let value: Provider = "anthropic";
 ## Values
 
 ```typescript
-"anthropic" | "openai" | "openrouter"
+"anthropic" | "openai" | "openrouter" | "gemini"
 ```

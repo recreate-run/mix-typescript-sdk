@@ -5,5 +5,6 @@
 export * from "./errorresponse.js";
 export * from "./httpclienterrors.js";
 export * from "./mixdefaulterror.js";
+export * from "./mixerror.js";
 export * from "./responsevalidationerror.js";
 export * from "./sdkvalidationerror.js";

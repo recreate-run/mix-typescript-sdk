@@ -10,15 +10,16 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Provider name (anthropic, openai, openrouter)
+ * Provider name (anthropic, openai, openrouter, gemini)
  */
 export const Provider = {
   Anthropic: "anthropic",
   Openai: "openai",
   Openrouter: "openrouter",
+  Gemini: "gemini",
 } as const;
 /**
- * Provider name (anthropic, openai, openrouter)
+ * Provider name (anthropic, openai, openrouter, gemini)
  */
 export type Provider = ClosedEnum<typeof Provider>;
 
@@ -28,7 +29,7 @@ export type StoreApiKeyRequest = {
    */
   apiKey: string;
   /**
-   * Provider name (anthropic, openai, openrouter)
+   * Provider name (anthropic, openai, openrouter, gemini)
    */
   provider: Provider;
 };

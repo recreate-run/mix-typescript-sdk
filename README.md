@@ -20,7 +20,7 @@ Mix REST API: REST API for the Mix application - session management, messaging, 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [openapi](#openapi)
+* [Mix TypeScript SDK](#mix-typescript-sdk)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
@@ -41,31 +41,34 @@ Mix REST API: REST API for the Mix application - session management, messaging, 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+> [!TIP]
+> To finish publishing your SDK to npm and others you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
+
 
 The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
 ```bash
-npm add mix-typescript-sdk
+npm add <UNSET>
 ```
 
 ### PNPM
 
 ```bash
-pnpm add mix-typescript-sdk
+pnpm add <UNSET>
 ```
 
 ### Bun
 
 ```bash
-bun add mix-typescript-sdk
+bun add <UNSET>
 ```
 
 ### Yarn
 
 ```bash
-yarn add mix-typescript-sdk zod
+yarn add <UNSET> zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -139,6 +142,7 @@ run();
 * [getSession](docs/sdks/messages/README.md#getsession) - List session messages
 * [send](docs/sdks/messages/README.md#send) - Send a message to session
 
+
 ### [permissions](docs/sdks/permissions/README.md)
 
 * [deny](docs/sdks/permissions/README.md#deny) - Deny permission
@@ -184,37 +188,37 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-* [`authenticationDeleteCredentials`](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
-* [`authenticationGetAuthStatus`](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
-* [`authenticationHandleOAuthCallback`](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
-* [`authenticationLogin`](docs/sdks/authentication/README.md#login) - OAuth authentication
-* [`authenticationStartOAuthFlow`](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
-* [`authenticationStoreApiKey`](docs/sdks/authentication/README.md#storeapikey) - Store API key
-* [`authenticationValidatePreferredProvider`](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
-* [`authSetApiKey`](docs/sdks/auth/README.md#setapikey) - Set API key
-* [`filesDelete`](docs/sdks/files/README.md#delete) - Delete session file
-* [`filesGet`](docs/sdks/files/README.md#get) - Get session file
-* [`filesList`](docs/sdks/files/README.md#list) - List session files
-* [`filesUpload`](docs/sdks/files/README.md#upload) - Upload file to session
-* [`messagesCancelProcessing`](docs/sdks/messages/README.md#cancelprocessing) - Cancel agent processing
-* [`messagesGetHistory`](docs/sdks/messages/README.md#gethistory) - Get global message history
-* [`messagesGetSession`](docs/sdks/messages/README.md#getsession) - List session messages
-* [`messagesSend`](docs/sdks/messages/README.md#send) - Send a message to session
-* [`permissionsDeny`](docs/sdks/permissions/README.md#deny) - Deny permission
-* [`permissionsGrant`](docs/sdks/permissions/README.md#grant) - Grant permission
-* [`preferencesGet`](docs/sdks/preferences/README.md#get) - Get user preferences
-* [`preferencesGetProviders`](docs/sdks/preferences/README.md#getproviders) - Get available providers
-* [`preferencesReset`](docs/sdks/preferences/README.md#reset) - Reset preferences
-* [`preferencesUpdate`](docs/sdks/preferences/README.md#update) - Update user preferences
-* [`sessionsCreate`](docs/sdks/sessions/README.md#create) - Create a new session
-* [`sessionsDelete`](docs/sdks/sessions/README.md#delete) - Delete a session
-* [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
-* [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
-* [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions
-* [`systemGetCommand`](docs/sdks/system/README.md#getcommand) - Get specific command
-* [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check
-* [`systemListCommands`](docs/sdks/system/README.md#listcommands) - List available commands
-* [`systemListMcpServers`](docs/sdks/system/README.md#listmcpservers) - List MCP servers
+- [`authenticationDeleteCredentials`](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
+- [`authenticationGetAuthStatus`](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
+- [`authenticationHandleOAuthCallback`](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
+- [`authenticationLogin`](docs/sdks/authentication/README.md#login) - OAuth authentication
+- [`authenticationStartOAuthFlow`](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
+- [`authenticationStoreApiKey`](docs/sdks/authentication/README.md#storeapikey) - Store API key
+- [`authenticationValidatePreferredProvider`](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
+- [`authSetApiKey`](docs/sdks/auth/README.md#setapikey) - Set API key
+- [`filesDelete`](docs/sdks/files/README.md#delete) - Delete session file
+- [`filesGet`](docs/sdks/files/README.md#get) - Get session file
+- [`filesList`](docs/sdks/files/README.md#list) - List session files
+- [`filesUpload`](docs/sdks/files/README.md#upload) - Upload file to session
+- [`messagesCancelProcessing`](docs/sdks/messages/README.md#cancelprocessing) - Cancel agent processing
+- [`messagesGetHistory`](docs/sdks/messages/README.md#gethistory) - Get global message history
+- [`messagesGetSession`](docs/sdks/messages/README.md#getsession) - List session messages
+- [`messagesSend`](docs/sdks/messages/README.md#send) - Send a message to session
+- [`permissionsDeny`](docs/sdks/permissions/README.md#deny) - Deny permission
+- [`permissionsGrant`](docs/sdks/permissions/README.md#grant) - Grant permission
+- [`preferencesGet`](docs/sdks/preferences/README.md#get) - Get user preferences
+- [`preferencesGetProviders`](docs/sdks/preferences/README.md#getproviders) - Get available providers
+- [`preferencesReset`](docs/sdks/preferences/README.md#reset) - Reset preferences
+- [`preferencesUpdate`](docs/sdks/preferences/README.md#update) - Update user preferences
+- [`sessionsCreate`](docs/sdks/sessions/README.md#create) - Create a new session
+- [`sessionsDelete`](docs/sdks/sessions/README.md#delete) - Delete a session
+- [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
+- [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
+- [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions
+- [`systemGetCommand`](docs/sdks/system/README.md#getcommand) - Get specific command
+- [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check
+- [`systemListCommands`](docs/sdks/system/README.md#listcommands) - List available commands
+- [`systemListMcpServers`](docs/sdks/system/README.md#listmcpservers) - List MCP servers
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -228,10 +232,10 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 >
 > Depending on your JavaScript runtime, there are convenient utilities that return a handle to a file without reading the entire contents into memory:
 >
-> * **Node.js v20+:** Since v20, Node.js comes with a native `openAsBlob` function in [`node:fs`](https://nodejs.org/docs/latest-v20.x/api/fs.html#fsopenasblobpath-options).
-> * **Bun:** The native [`Bun.file`](https://bun.sh/docs/api/file-io#reading-files-bun-file) function produces a file handle that can be used for streaming file uploads.
-> * **Browsers:** All supported browsers return an instance to a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
-> * **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
+> - **Node.js v20+:** Since v20, Node.js comes with a native `openAsBlob` function in [`node:fs`](https://nodejs.org/docs/latest-v20.x/api/fs.html#fsopenasblobpath-options).
+> - **Bun:** The native [`Bun.file`](https://bun.sh/docs/api/file-io#reading-files-bun-file) function produces a file handle that can be used for streaming file uploads.
+> - **Browsers:** All supported browsers return an instance to a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
+> - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
 
 ```typescript
 import { Mix } from "mix-typescript-sdk";
@@ -261,7 +265,6 @@ run();
 Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
-
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
@@ -292,7 +295,6 @@ run();
 ```
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
-
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
@@ -338,7 +340,6 @@ run();
 | `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
 ### Example
-
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 import * as errors from "mix-typescript-sdk/models/errors";
@@ -374,9 +375,7 @@ run();
 ```
 
 ### Error Classes
-
 **Primary errors:**
-
 * [`MixError`](./src/models/errors/mixerror.ts): The base class for HTTP error responses.
   * [`ErrorResponse`](./src/models/errors/errorresponse.ts): Generic error.
 
@@ -385,15 +384,14 @@ run();
 <br />
 
 **Network errors:**
-
 * [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
 * [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
 * [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
 * [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
 * [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
 
-**Inherit from [`MixError`](./src/models/errors/mixerror.ts)**:
 
+**Inherit from [`MixError`](./src/models/errors/mixerror.ts)**:
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -405,7 +403,6 @@ run();
 ### Override Server URL Per-Client
 
 The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
-
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
@@ -472,7 +469,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Mix({ httpClient });
+const sdk = new Mix({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
