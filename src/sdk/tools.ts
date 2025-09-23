@@ -11,21 +11,6 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Tools extends ClientSDK {
   /**
-   * Get tools status
-   *
-   * @remarks
-   * Get status and authentication information for all available tools and categories
-   */
-  async getToolsStatus(
-    options?: RequestOptions,
-  ): Promise<operations.GetToolsStatusResponse> {
-    return unwrapAsync(toolsGetToolsStatus(
-      this,
-      options,
-    ));
-  }
-
-  /**
    * Store tool API key
    *
    * @remarks
@@ -55,6 +40,21 @@ export class Tools extends ClientSDK {
     return unwrapAsync(toolsDeleteToolCredentials(
       this,
       request,
+      options,
+    ));
+  }
+
+  /**
+   * Get tools status
+   *
+   * @remarks
+   * Get status and authentication information for all available tools and categories
+   */
+  async getToolsStatus(
+    options?: RequestOptions,
+  ): Promise<operations.GetToolsStatusResponse> {
+    return unwrapAsync(toolsGetToolsStatus(
+      this,
       options,
     ));
   }

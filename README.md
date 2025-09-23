@@ -50,25 +50,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add mix-typescript-sdk
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add mix-typescript-sdk
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add mix-typescript-sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add mix-typescript-sdk zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -172,9 +172,9 @@ run();
 
 ### [tools](docs/sdks/tools/README.md)
 
-* [getToolsStatus](docs/sdks/tools/README.md#gettoolsstatus) - Get tools status
 * [storeToolCredentials](docs/sdks/tools/README.md#storetoolcredentials) - Store tool API key
 * [deleteToolCredentials](docs/sdks/tools/README.md#deletetoolcredentials) - Delete tool API key
+* [getToolsStatus](docs/sdks/tools/README.md#gettoolsstatus) - Get tools status
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
