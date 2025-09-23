@@ -41,6 +41,7 @@ typescript:
   enableCustomCodeRegions: false
   enableMCPServer: false
   enableReactQuery: false
+  githubURL: https://github.com/recreate-run/mix-python-sdk
   enumFormat: union
   envVarPrefix: MIX
   flattenGlobalSecurity: true
