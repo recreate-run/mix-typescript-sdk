@@ -5,7 +5,6 @@
 import { authenticationDeleteCredentials } from "../funcs/authenticationDeleteCredentials.js";
 import { authenticationGetAuthStatus } from "../funcs/authenticationGetAuthStatus.js";
 import { authenticationHandleOAuthCallback } from "../funcs/authenticationHandleOAuthCallback.js";
-import { authenticationLogin } from "../funcs/authenticationLogin.js";
 import { authenticationStartOAuthFlow } from "../funcs/authenticationStartOAuthFlow.js";
 import { authenticationStoreApiKey } from "../funcs/authenticationStoreApiKey.js";
 import { authenticationValidatePreferredProvider } from "../funcs/authenticationValidatePreferredProvider.js";
@@ -27,21 +26,6 @@ export class Authentication extends ClientSDK {
     return unwrapAsync(authenticationStoreApiKey(
       this,
       request,
-      options,
-    ));
-  }
-
-  /**
-   * OAuth authentication
-   *
-   * @remarks
-   * Initiate OAuth authentication flow
-   */
-  async login(
-    options?: RequestOptions,
-  ): Promise<operations.InitiateOAuthLoginResponse> {
-    return unwrapAsync(authenticationLogin(
-      this,
       options,
     ));
   }
