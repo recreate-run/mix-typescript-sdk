@@ -9,7 +9,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteCredentialsRequest = {
   /**
-   * Provider name (anthropic, openai, openrouter)
+   * Provider name (anthropic, openai, openrouter, gemini, brave)
    */
   provider: string;
 };

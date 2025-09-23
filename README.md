@@ -172,8 +172,6 @@ run();
 
 ### [tools](docs/sdks/tools/README.md)
 
-* [storeToolCredentials](docs/sdks/tools/README.md#storetoolcredentials) - Store tool API key
-* [deleteToolCredentials](docs/sdks/tools/README.md#deletetoolcredentials) - Delete tool API key
 * [getToolsStatus](docs/sdks/tools/README.md#gettoolsstatus) - Get tools status
 
 </details>
@@ -225,9 +223,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check
 - [`systemListCommands`](docs/sdks/system/README.md#listcommands) - List available commands
 - [`systemListMcpServers`](docs/sdks/system/README.md#listmcpservers) - List MCP servers
-- [`toolsDeleteToolCredentials`](docs/sdks/tools/README.md#deletetoolcredentials) - Delete tool API key
 - [`toolsGetToolsStatus`](docs/sdks/tools/README.md#gettoolsstatus) - Get tools status
-- [`toolsStoreToolCredentials`](docs/sdks/tools/README.md#storetoolcredentials) - Store tool API key
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
