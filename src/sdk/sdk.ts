@@ -3,7 +3,6 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { Auth } from "./auth.js";
 import { Authentication } from "./authentication.js";
 import { Files } from "./files.js";
 import { Messages } from "./messages.js";
@@ -17,11 +16,6 @@ export class Mix extends ClientSDK {
   private _authentication?: Authentication;
   get authentication(): Authentication {
     return (this._authentication ??= new Authentication(this._options));
-  }
-
-  private _auth?: Auth;
-  get auth(): Auth {
-    return (this._auth ??= new Auth(this._options));
   }
 
   private _system?: System;

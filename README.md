@@ -114,14 +114,9 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [auth](docs/sdks/auth/README.md)
-
-* [setApiKey](docs/sdks/auth/README.md#setapikey) - Set API key
-
 ### [authentication](docs/sdks/authentication/README.md)
 
 * [storeApiKey](docs/sdks/authentication/README.md#storeapikey) - Store API key
-* [login](docs/sdks/authentication/README.md#login) - OAuth authentication
 * [handleOAuthCallback](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
 * [startOAuthFlow](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
 * [getAuthStatus](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
@@ -195,11 +190,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`authenticationDeleteCredentials`](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
 - [`authenticationGetAuthStatus`](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
 - [`authenticationHandleOAuthCallback`](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
-- [`authenticationLogin`](docs/sdks/authentication/README.md#login) - OAuth authentication
 - [`authenticationStartOAuthFlow`](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
 - [`authenticationStoreApiKey`](docs/sdks/authentication/README.md#storeapikey) - Store API key
 - [`authenticationValidatePreferredProvider`](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
-- [`authSetApiKey`](docs/sdks/auth/README.md#setapikey) - Set API key
 - [`filesDelete`](docs/sdks/files/README.md#delete) - Delete session file
 - [`filesGet`](docs/sdks/files/README.md#get) - Get session file
 - [`filesList`](docs/sdks/files/README.md#list) - List session files

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 3a9ea4f224075a79fe9c5c3bdc1ba656
+  docChecksum: 4773d64a4a3f47af524161b220d4cdd8
   docVersion: 1.0.0
   speakeasyVersion: 1.622.1
   generationVersion: 2.709.0
-  releaseVersion: 0.3.6
-  configChecksum: 262f53aa20025a2e0bc5c1ce752aae5e
+  releaseVersion: 0.4.1
+  configChecksum: 48b14a83a5562a06dd7e993facadff61
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -20,7 +20,6 @@ features:
     envVarSecurityUsage: 0.1.2
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.5
-    groups: 2.81.2
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
@@ -74,7 +73,6 @@ generatedFiles:
   - docs/models/operations/handleoauthcallbackrequest.md
   - docs/models/operations/handleoauthcallbackresponse.md
   - docs/models/operations/healthcheckresponse.md
-  - docs/models/operations/initiateoauthloginresponse.md
   - docs/models/operations/listcommandsresponse.md
   - docs/models/operations/listmcpserversresponse.md
   - docs/models/operations/listmcpserverstool.md
@@ -85,8 +83,6 @@ generatedFiles:
   - docs/models/operations/resetpreferencesresponse.md
   - docs/models/operations/sendmessagerequest.md
   - docs/models/operations/sendmessagerequestbody.md
-  - docs/models/operations/setapikeyrequest.md
-  - docs/models/operations/setapikeyresponse.md
   - docs/models/operations/startoauthflowrequest.md
   - docs/models/operations/startoauthflowresponse.md
   - docs/models/operations/storeapikeyrequest.md
@@ -101,7 +97,6 @@ generatedFiles:
   - docs/models/sessiondata.md
   - docs/models/toolcalldata.md
   - docs/models/type.md
-  - docs/sdks/auth/README.md
   - docs/sdks/authentication/README.md
   - docs/sdks/files/README.md
   - docs/sdks/messages/README.md
@@ -119,11 +114,9 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/authSetApiKey.ts
   - src/funcs/authenticationDeleteCredentials.ts
   - src/funcs/authenticationGetAuthStatus.ts
   - src/funcs/authenticationHandleOAuthCallback.ts
-  - src/funcs/authenticationLogin.ts
   - src/funcs/authenticationStartOAuthFlow.ts
   - src/funcs/authenticationStoreApiKey.ts
   - src/funcs/authenticationValidatePreferredProvider.ts
@@ -202,13 +195,11 @@ generatedFiles:
   - src/models/operations/handleoauthcallback.ts
   - src/models/operations/healthcheck.ts
   - src/models/operations/index.ts
-  - src/models/operations/initiateoauthlogin.ts
   - src/models/operations/listcommands.ts
   - src/models/operations/listmcpservers.ts
   - src/models/operations/listsessionfiles.ts
   - src/models/operations/resetpreferences.ts
   - src/models/operations/sendmessage.ts
-  - src/models/operations/setapikey.ts
   - src/models/operations/startoauthflow.ts
   - src/models/operations/storeapikey.ts
   - src/models/operations/updatepreferences.ts
@@ -217,7 +208,6 @@ generatedFiles:
   - src/models/resterror.ts
   - src/models/sessiondata.ts
   - src/models/toolcalldata.ts
-  - src/sdk/auth.ts
   - src/sdk/authentication.ts
   - src/sdk/files.ts
   - src/sdk/index.ts

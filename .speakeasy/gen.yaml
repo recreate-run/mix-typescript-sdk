@@ -27,7 +27,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.3.6
+  version: 0.4.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -41,12 +41,12 @@ typescript:
   enableCustomCodeRegions: false
   enableMCPServer: false
   enableReactQuery: false
-  githubURL: https://github.com/recreate-run/mix-python-sdk
   enumFormat: union
   envVarPrefix: MIX
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
   generateExamples: true
+  githubURL: https://github.com/recreate-run/mix-typescript-sdk
   imports:
     option: openapi
     paths:
