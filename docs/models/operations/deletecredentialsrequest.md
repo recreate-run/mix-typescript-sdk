@@ -12,6 +12,6 @@ let value: DeleteCredentialsRequest = {
 
 ## Fields
 
-| Field                                         | Type                                          | Required                                      | Description                                   |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `provider`                                    | *string*                                      | :heavy_check_mark:                            | Provider name (anthropic, openai, openrouter) |
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `provider`                                                   | *string*                                                     | :heavy_check_mark:                                           | Provider name (anthropic, openai, openrouter, gemini, brave) |

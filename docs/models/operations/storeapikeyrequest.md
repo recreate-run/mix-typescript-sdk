@@ -7,13 +7,13 @@ import { StoreApiKeyRequest } from "mix-typescript-sdk/models/operations";
 
 let value: StoreApiKeyRequest = {
   apiKey: "<value>",
-  provider: "openrouter",
+  provider: "gemini",
 };
 ```
 
 ## Fields
 
-| Field                                                      | Type                                                       | Required                                                   | Description                                                |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `apiKey`                                                   | *string*                                                   | :heavy_check_mark:                                         | API key for authentication                                 |
-| `provider`                                                 | [operations.Provider](../../models/operations/provider.md) | :heavy_check_mark:                                         | Provider name (anthropic, openai, openrouter, gemini)      |
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `apiKey`                                                     | *string*                                                     | :heavy_check_mark:                                           | API key for authentication                                   |
+| `provider`                                                   | [operations.Provider](../../models/operations/provider.md)   | :heavy_check_mark:                                           | Provider name (anthropic, openai, openrouter, gemini, brave) |
