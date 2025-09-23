@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 050d086e276232fb34e60caf29089059
+  docChecksum: 2b8b13b7886148fba855fb99b207f637
   docVersion: 1.0.0
-  speakeasyVersion: 1.622.0
+  speakeasyVersion: 1.622.1
   generationVersion: 2.709.0
-  releaseVersion: 0.3.3
-  configChecksum: 605adb3a4f48d97b11f6a7446d28be23
+  releaseVersion: 0.3.4
+  configChecksum: 7800aacbd8de5f6e2aa056b965de995f
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -45,11 +45,14 @@ generatedFiles:
   - docs/models/operations/availableproviders.md
   - docs/models/operations/cancelsessionprocessingrequest.md
   - docs/models/operations/cancelsessionprocessingresponse.md
+  - docs/models/operations/categories.md
   - docs/models/operations/createsessionrequest.md
   - docs/models/operations/deletecredentialsrequest.md
   - docs/models/operations/deletecredentialsresponse.md
   - docs/models/operations/deletesessionfilerequest.md
   - docs/models/operations/deletesessionrequest.md
+  - docs/models/operations/deletetoolcredentialsrequest.md
+  - docs/models/operations/deletetoolcredentialsresponse.md
   - docs/models/operations/denypermissionrequest.md
   - docs/models/operations/denypermissionresponse.md
   - docs/models/operations/filet.md
@@ -66,6 +69,8 @@ generatedFiles:
   - docs/models/operations/getsessionfileresponse.md
   - docs/models/operations/getsessionmessagesrequest.md
   - docs/models/operations/getsessionrequest.md
+  - docs/models/operations/gettoolsstatusresponse.md
+  - docs/models/operations/gettoolsstatustool.md
   - docs/models/operations/grantpermissionrequest.md
   - docs/models/operations/grantpermissionresponse.md
   - docs/models/operations/handleoauthcallbackrequest.md
@@ -74,6 +79,7 @@ generatedFiles:
   - docs/models/operations/initiateoauthloginresponse.md
   - docs/models/operations/listcommandsresponse.md
   - docs/models/operations/listmcpserversresponse.md
+  - docs/models/operations/listmcpserverstool.md
   - docs/models/operations/listsessionfilesrequest.md
   - docs/models/operations/preferences.md
   - docs/models/operations/provider.md
@@ -87,7 +93,9 @@ generatedFiles:
   - docs/models/operations/startoauthflowresponse.md
   - docs/models/operations/storeapikeyrequest.md
   - docs/models/operations/storeapikeyresponse.md
-  - docs/models/operations/tool.md
+  - docs/models/operations/storetoolcredentialsrequest.md
+  - docs/models/operations/storetoolcredentialsresponse.md
+  - docs/models/operations/tooltype.md
   - docs/models/operations/updatepreferencesrequest.md
   - docs/models/operations/updatepreferencesresponse.md
   - docs/models/operations/uploadsessionfilerequest.md
@@ -107,6 +115,7 @@ generatedFiles:
   - docs/sdks/preferences/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/system/README.md
+  - docs/sdks/tools/README.md
   - eslint.config.mjs
   - examples/.env.template
   - examples/README.md
@@ -146,6 +155,9 @@ generatedFiles:
   - src/funcs/systemHealthCheck.ts
   - src/funcs/systemListCommands.ts
   - src/funcs/systemListMcpServers.ts
+  - src/funcs/toolsDeleteToolCredentials.ts
+  - src/funcs/toolsGetToolsStatus.ts
+  - src/funcs/toolsStoreToolCredentials.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -182,6 +194,7 @@ generatedFiles:
   - src/models/operations/deletecredentials.ts
   - src/models/operations/deletesession.ts
   - src/models/operations/deletesessionfile.ts
+  - src/models/operations/deletetoolcredentials.ts
   - src/models/operations/denypermission.ts
   - src/models/operations/forksession.ts
   - src/models/operations/getauthstatus.ts
@@ -192,6 +205,7 @@ generatedFiles:
   - src/models/operations/getsession.ts
   - src/models/operations/getsessionfile.ts
   - src/models/operations/getsessionmessages.ts
+  - src/models/operations/gettoolsstatus.ts
   - src/models/operations/grantpermission.ts
   - src/models/operations/handleoauthcallback.ts
   - src/models/operations/healthcheck.ts
@@ -205,6 +219,7 @@ generatedFiles:
   - src/models/operations/setapikey.ts
   - src/models/operations/startoauthflow.ts
   - src/models/operations/storeapikey.ts
+  - src/models/operations/storetoolcredentials.ts
   - src/models/operations/updatepreferences.ts
   - src/models/operations/uploadsessionfile.ts
   - src/models/operations/validatepreferredprovider.ts
@@ -221,6 +236,7 @@ generatedFiles:
   - src/sdk/sdk.ts
   - src/sdk/sessions.ts
   - src/sdk/system.ts
+  - src/sdk/tools.ts
   - src/types/async.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
@@ -541,4 +557,35 @@ examples:
           application/json: {}
         "500":
           application/json: {"error": {"code": 941390, "message": "<value>", "type": "unauthorized"}}
+  getToolsStatus:
+    speakeasy-default-get-tools-status:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 561833, "message": "<value>", "type": "validation_error"}}
+  storeToolCredentials:
+    speakeasy-default-store-tool-credentials:
+      requestBody:
+        application/json: {"api_key": "<value>", "provider": "<value>", "tool_type": "multimodal_analyzer"}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 290401, "message": "<value>", "type": "internal_error"}}
+        "500":
+          application/json: {"error": {"code": 290401, "message": "<value>", "type": "internal_error"}}
+  deleteToolCredentials:
+    speakeasy-default-delete-tool-credentials:
+      parameters:
+        path:
+          tool_type: "<value>"
+          provider: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 50299, "message": "<value>", "type": "not_found"}}
+        "500":
+          application/json: {"error": {"code": 50299, "message": "<value>", "type": "not_found"}}
 examplesVersion: 1.0.2

@@ -7,7 +7,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type Tool = {
+export type ListMcpServersTool = {
   /**
    * Tool description
    */
@@ -34,53 +34,63 @@ export type ListMcpServersResponse = {
   /**
    * List of tools provided by this MCP server (null if server is not connected)
    */
-  tools?: Array<Tool> | null | undefined;
+  tools?: Array<ListMcpServersTool> | null | undefined;
 };
 
 /** @internal */
-export const Tool$inboundSchema: z.ZodType<Tool, z.ZodTypeDef, unknown> = z
-  .object({
-    description: z.string(),
-    name: z.string(),
-  });
+export const ListMcpServersTool$inboundSchema: z.ZodType<
+  ListMcpServersTool,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  description: z.string(),
+  name: z.string(),
+});
 
 /** @internal */
-export type Tool$Outbound = {
+export type ListMcpServersTool$Outbound = {
   description: string;
   name: string;
 };
 
 /** @internal */
-export const Tool$outboundSchema: z.ZodType<Tool$Outbound, z.ZodTypeDef, Tool> =
-  z.object({
-    description: z.string(),
-    name: z.string(),
-  });
+export const ListMcpServersTool$outboundSchema: z.ZodType<
+  ListMcpServersTool$Outbound,
+  z.ZodTypeDef,
+  ListMcpServersTool
+> = z.object({
+  description: z.string(),
+  name: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Tool$ {
-  /** @deprecated use `Tool$inboundSchema` instead. */
-  export const inboundSchema = Tool$inboundSchema;
-  /** @deprecated use `Tool$outboundSchema` instead. */
-  export const outboundSchema = Tool$outboundSchema;
-  /** @deprecated use `Tool$Outbound` instead. */
-  export type Outbound = Tool$Outbound;
+export namespace ListMcpServersTool$ {
+  /** @deprecated use `ListMcpServersTool$inboundSchema` instead. */
+  export const inboundSchema = ListMcpServersTool$inboundSchema;
+  /** @deprecated use `ListMcpServersTool$outboundSchema` instead. */
+  export const outboundSchema = ListMcpServersTool$outboundSchema;
+  /** @deprecated use `ListMcpServersTool$Outbound` instead. */
+  export type Outbound = ListMcpServersTool$Outbound;
 }
 
-export function toolToJSON(tool: Tool): string {
-  return JSON.stringify(Tool$outboundSchema.parse(tool));
+export function listMcpServersToolToJSON(
+  listMcpServersTool: ListMcpServersTool,
+): string {
+  return JSON.stringify(
+    ListMcpServersTool$outboundSchema.parse(listMcpServersTool),
+  );
 }
 
-export function toolFromJSON(
+export function listMcpServersToolFromJSON(
   jsonString: string,
-): SafeParseResult<Tool, SDKValidationError> {
+): SafeParseResult<ListMcpServersTool, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Tool$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Tool' from JSON`,
+    (x) => ListMcpServersTool$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListMcpServersTool' from JSON`,
   );
 }
 
@@ -93,7 +103,8 @@ export const ListMcpServersResponse$inboundSchema: z.ZodType<
   connected: z.boolean(),
   name: z.string(),
   status: z.string(),
-  tools: z.nullable(z.array(z.lazy(() => Tool$inboundSchema))).optional(),
+  tools: z.nullable(z.array(z.lazy(() => ListMcpServersTool$inboundSchema)))
+    .optional(),
 });
 
 /** @internal */
@@ -101,7 +112,7 @@ export type ListMcpServersResponse$Outbound = {
   connected: boolean;
   name: string;
   status: string;
-  tools?: Array<Tool$Outbound> | null | undefined;
+  tools?: Array<ListMcpServersTool$Outbound> | null | undefined;
 };
 
 /** @internal */
@@ -113,7 +124,8 @@ export const ListMcpServersResponse$outboundSchema: z.ZodType<
   connected: z.boolean(),
   name: z.string(),
   status: z.string(),
-  tools: z.nullable(z.array(z.lazy(() => Tool$outboundSchema))).optional(),
+  tools: z.nullable(z.array(z.lazy(() => ListMcpServersTool$outboundSchema)))
+    .optional(),
 });
 
 /**

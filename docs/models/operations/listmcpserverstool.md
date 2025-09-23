@@ -1,12 +1,12 @@
-# Tool
+# ListMcpServersTool
 
 ## Example Usage
 
 ```typescript
-import { Tool } from "mix-typescript-sdk/models/operations";
+import { ListMcpServersTool } from "mix-typescript-sdk/models/operations";
 
-let value: Tool = {
-  description: "mealy ew industrialize colossal",
+let value: ListMcpServersTool = {
+  description: "harp if partial amid if ragged hopelessly ack apropos divine",
   name: "<value>",
 };
 ```
