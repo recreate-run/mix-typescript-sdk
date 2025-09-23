@@ -11,6 +11,7 @@ import { Permissions } from "./permissions.js";
 import { Preferences } from "./preferences.js";
 import { Sessions } from "./sessions.js";
 import { System } from "./system.js";
+import { Tools } from "./tools.js";
 
 export class Mix extends ClientSDK {
   private _authentication?: Authentication;
@@ -51,5 +52,10 @@ export class Mix extends ClientSDK {
   private _files?: Files;
   get files(): Files {
     return (this._files ??= new Files(this._options));
+  }
+
+  private _tools?: Tools;
+  get tools(): Tools {
+    return (this._tools ??= new Tools(this._options));
   }
 }
