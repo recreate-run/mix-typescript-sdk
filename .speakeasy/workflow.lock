@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:5c133900fcc348db53a96b688c57326cf08f0a06cb9a23e39b45dd59b91e07f4
         sourceBlobDigest: sha256:7787d81f4875ece28f0568c9b46ed3de2fc2707724f404de7b81607400005575
         codeSamplesNamespace: mix-rest-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:8fe5413448b81f46b8c6119f503d94a9255b5b796471f5d60c9f22adcd08c6b3
+        codeSamplesRevisionDigest: sha256:a83b2c70e0b7896f196d83baff436ece209c1cb2011b8cad40b9ee6d725e2003
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -32,6 +32,9 @@ workflow:
         mix-ts-target:
             target: typescript
             source: Mix REST API
+            publish:
+                npm:
+                    token: $npm_token
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api-typescript-code-samples
