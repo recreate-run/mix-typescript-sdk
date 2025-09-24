@@ -42,6 +42,7 @@ jobs:
         uses: speakeasy-api/sdk-generation-action@v15
         with:
           speakeasy_version: latest
+          speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           openapi_doc_location: ../mix/mix_sdk/openapi.json
           github_pat: ${{ secrets.GITHUB_TOKEN }}
