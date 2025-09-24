@@ -8,4 +8,5 @@ export * from "./messagerole.js";
 export * from "./resterror.js";
 export * from "./sessiondata.js";
 export * from "./sseeventstream.js";
+export * from "./streammessageresponse.js";
 export * from "./toolcalldata.js";

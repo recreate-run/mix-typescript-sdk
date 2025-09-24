@@ -155,6 +155,7 @@ run();
 ### [streaming](docs/sdks/streaming/README.md)
 
 * [streamEvents](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
+* [sendStreamingMessage](docs/sdks/streaming/README.md#sendstreamingmessage) - Send message via streaming pipeline
 
 ### [system](docs/sdks/system/README.md)
 
@@ -210,6 +211,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
 - [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
 - [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions
+- [`streamingSendStreamingMessage`](docs/sdks/streaming/README.md#sendstreamingmessage) - Send message via streaming pipeline
 - [`streamingStreamEvents`](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
 - [`systemGetCommand`](docs/sdks/system/README.md#getcommand) - Get specific command
 - [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check

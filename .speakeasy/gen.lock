@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: aac590e9e20b15f51b27fe3fdb96c794
+  docChecksum: 14bee3bd702faa2256a427d813b53613
   docVersion: 1.0.0
   speakeasyVersion: 1.624.0
   generationVersion: 2.714.0
-  releaseVersion: 0.5.5
-  configChecksum: 4abe78d7a785720c7cd4255d3883670e
+  releaseVersion: 0.5.6
+  configChecksum: 48b40ec582fc2f5cbec141b8c20f1115
   published: true
 features:
   typescript:
@@ -86,6 +86,8 @@ generatedFiles:
   - docs/models/operations/resetpreferencesresponse.md
   - docs/models/operations/sendmessagerequest.md
   - docs/models/operations/sendmessagerequestbody.md
+  - docs/models/operations/sendstreamingmessagerequest.md
+  - docs/models/operations/sendstreamingmessagerequestbody.md
   - docs/models/operations/startoauthflowrequest.md
   - docs/models/operations/startoauthflowresponse.md
   - docs/models/operations/storeapikeyrequest.md
@@ -135,6 +137,8 @@ generatedFiles:
   - docs/models/ssetoolexecutionstartevent.md
   - docs/models/ssetoolexecutionstarteventdata.md
   - docs/models/ssetoolexecutionstarteventevent.md
+  - docs/models/status.md
+  - docs/models/streammessageresponse.md
   - docs/models/toolcalldata.md
   - docs/models/type.md
   - docs/sdks/authentication/README.md
@@ -180,6 +184,7 @@ generatedFiles:
   - src/funcs/sessionsFork.ts
   - src/funcs/sessionsGet.ts
   - src/funcs/sessionsList.ts
+  - src/funcs/streamingSendStreamingMessage.ts
   - src/funcs/streamingStreamEvents.ts
   - src/funcs/systemGetCommand.ts
   - src/funcs/systemHealthCheck.ts
@@ -243,6 +248,7 @@ generatedFiles:
   - src/models/operations/listsessionfiles.ts
   - src/models/operations/resetpreferences.ts
   - src/models/operations/sendmessage.ts
+  - src/models/operations/sendstreamingmessage.ts
   - src/models/operations/startoauthflow.ts
   - src/models/operations/storeapikey.ts
   - src/models/operations/streamevents.ts
@@ -252,6 +258,7 @@ generatedFiles:
   - src/models/resterror.ts
   - src/models/sessiondata.ts
   - src/models/sseeventstream.ts
+  - src/models/streammessageresponse.ts
   - src/models/toolcalldata.ts
   - src/sdk/authentication.ts
   - src/sdk/files.ts
@@ -625,4 +632,18 @@ examples:
           application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
         "500":
           application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
+  sendStreamingMessage:
+    speakeasy-default-send-streaming-message:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"content": "<value>"}
+      responses:
+        "200":
+          application/json: {"sessionId": "<id>", "status": "broadcasted"}
+        "400":
+          application/json: {"error": {"code": 812628, "message": "<value>", "type": "not_found"}}
+        "500":
+          application/json: {"error": {"code": 812628, "message": "<value>", "type": "not_found"}}
 examplesVersion: 1.0.2
