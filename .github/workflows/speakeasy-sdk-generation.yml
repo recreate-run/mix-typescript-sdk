@@ -36,10 +36,10 @@ jobs:
         uses: speakeasy-api/sdk-generation-action@v15
         with:
           speakeasy_version: latest
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
           mode: direct
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup Git
         run: |
