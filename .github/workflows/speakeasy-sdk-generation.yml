@@ -37,7 +37,6 @@ jobs:
         with:
           speakeasy_version: latest
           mode: direct
-          action: all
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
