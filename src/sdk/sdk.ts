@@ -9,6 +9,7 @@ import { Messages } from "./messages.js";
 import { Permissions } from "./permissions.js";
 import { Preferences } from "./preferences.js";
 import { Sessions } from "./sessions.js";
+import { Streaming } from "./streaming.js";
 import { System } from "./system.js";
 import { Tools } from "./tools.js";
 
@@ -51,5 +52,10 @@ export class Mix extends ClientSDK {
   private _tools?: Tools;
   get tools(): Tools {
     return (this._tools ??= new Tools(this._options));
+  }
+
+  private _streaming?: Streaming;
+  get streaming(): Streaming {
+    return (this._streaming ??= new Streaming(this._options));
   }
 }

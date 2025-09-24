@@ -26,6 +26,7 @@ Mix REST API: REST API for the Mix application - session management, messaging, 
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Standalone functions](#standalone-functions)
+  * [Server-sent event streaming](#server-sent-event-streaming)
   * [File uploads](#file-uploads)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
@@ -68,10 +69,7 @@ bun add mix-typescript-sdk
 ### Yarn
 
 ```bash
-yarn add mix-typescript-sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add mix-typescript-sdk
 ```
 
 > [!NOTE]
@@ -158,6 +156,10 @@ run();
 * [get](docs/sdks/sessions/README.md#get) - Get a specific session
 * [fork](docs/sdks/sessions/README.md#fork) - Fork a session
 
+### [streaming](docs/sdks/streaming/README.md)
+
+* [streamEvents](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
+
 ### [system](docs/sdks/system/README.md)
 
 * [listCommands](docs/sdks/system/README.md#listcommands) - List available commands
@@ -212,6 +214,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
 - [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
 - [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions
+- [`streamingStreamEvents`](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
 - [`systemGetCommand`](docs/sdks/system/README.md#getcommand) - Get specific command
 - [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check
 - [`systemListCommands`](docs/sdks/system/README.md#listcommands) - List available commands
@@ -220,6 +223,38 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Server-sent event streaming [eventstream] -->
+## Server-sent event streaming
+
+[Server-sent events][mdn-sse] are used to stream content from certain
+operations. These operations will expose the stream as an async iterable that
+can be consumed using a [`for await...of`][mdn-for-await-of] loop. The loop will
+terminate when the server no longer has any events to send and closes the
+underlying connection.
+
+```typescript
+import { Mix } from "mix-typescript-sdk";
+
+const mix = new Mix();
+
+async function run() {
+  const result = await mix.streaming.streamEvents({
+    sessionId: "<id>",
+  });
+
+  for await (const event of result) {
+    console.log(event);
+  }
+}
+
+run();
+
+```
+
+[mdn-sse]: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+[mdn-for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
+<!-- End Server-sent event streaming [eventstream] -->
 
 <!-- Start File uploads [file-upload] -->
 ## File uploads

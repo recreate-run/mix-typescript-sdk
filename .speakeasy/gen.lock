@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 4773d64a4a3f47af524161b220d4cdd8
+  docChecksum: aac590e9e20b15f51b27fe3fdb96c794
   docVersion: 1.0.0
-  speakeasyVersion: 1.622.1
-  generationVersion: 2.709.0
-  releaseVersion: 0.4.1
-  configChecksum: 48b14a83a5562a06dd7e993facadff61
+  speakeasyVersion: 1.624.0
+  generationVersion: 2.714.0
+  releaseVersion: 0.5.4
+  configChecksum: d830638a73c7ad972186aec21e7eb888
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.23
+    core: 3.21.25
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -26,6 +26,8 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
+    serverEvents: 0.1.10
+    unions: 2.85.11
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -87,14 +89,51 @@ generatedFiles:
   - docs/models/operations/startoauthflowresponse.md
   - docs/models/operations/storeapikeyrequest.md
   - docs/models/operations/storeapikeyresponse.md
+  - docs/models/operations/streameventsrequest.md
+  - docs/models/operations/streameventsresponse.md
   - docs/models/operations/updatepreferencesrequest.md
   - docs/models/operations/updatepreferencesresponse.md
   - docs/models/operations/uploadsessionfilerequest.md
   - docs/models/operations/uploadsessionfilerequestbody.md
   - docs/models/operations/validatepreferredproviderauthmethod.md
   - docs/models/operations/validatepreferredproviderresponse.md
+  - docs/models/params.md
   - docs/models/resterror.md
   - docs/models/sessiondata.md
+  - docs/models/ssecompleteevent.md
+  - docs/models/ssecompleteeventdata.md
+  - docs/models/ssecompleteeventevent.md
+  - docs/models/sseconnectedevent.md
+  - docs/models/sseconnectedeventdata.md
+  - docs/models/sseconnectedeventevent.md
+  - docs/models/ssecontentevent.md
+  - docs/models/ssecontenteventdata.md
+  - docs/models/ssecontenteventevent.md
+  - docs/models/sseerrorevent.md
+  - docs/models/sseerroreventdata.md
+  - docs/models/sseerroreventevent.md
+  - docs/models/sseeventstream.md
+  - docs/models/sseheartbeatevent.md
+  - docs/models/sseheartbeateventdata.md
+  - docs/models/sseheartbeateventevent.md
+  - docs/models/ssepermissionevent.md
+  - docs/models/ssepermissioneventdata.md
+  - docs/models/ssepermissioneventevent.md
+  - docs/models/ssesummarizeevent.md
+  - docs/models/ssesummarizeeventdata.md
+  - docs/models/ssesummarizeeventevent.md
+  - docs/models/ssethinkingevent.md
+  - docs/models/ssethinkingeventdata.md
+  - docs/models/ssethinkingeventevent.md
+  - docs/models/ssetoolevent.md
+  - docs/models/ssetooleventdata.md
+  - docs/models/ssetooleventevent.md
+  - docs/models/ssetoolexecutioncompleteevent.md
+  - docs/models/ssetoolexecutioncompleteeventdata.md
+  - docs/models/ssetoolexecutioncompleteeventevent.md
+  - docs/models/ssetoolexecutionstartevent.md
+  - docs/models/ssetoolexecutionstarteventdata.md
+  - docs/models/ssetoolexecutionstarteventevent.md
   - docs/models/toolcalldata.md
   - docs/models/type.md
   - docs/sdks/authentication/README.md
@@ -104,6 +143,7 @@ generatedFiles:
   - docs/sdks/permissions/README.md
   - docs/sdks/preferences/README.md
   - docs/sdks/sessions/README.md
+  - docs/sdks/streaming/README.md
   - docs/sdks/system/README.md
   - docs/sdks/tools/README.md
   - eslint.config.mjs
@@ -139,6 +179,7 @@ generatedFiles:
   - src/funcs/sessionsFork.ts
   - src/funcs/sessionsGet.ts
   - src/funcs/sessionsList.ts
+  - src/funcs/streamingStreamEvents.ts
   - src/funcs/systemGetCommand.ts
   - src/funcs/systemHealthCheck.ts
   - src/funcs/systemListCommands.ts
@@ -153,6 +194,7 @@ generatedFiles:
   - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/env.ts
+  - src/lib/event-streams.ts
   - src/lib/files.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
@@ -202,11 +244,13 @@ generatedFiles:
   - src/models/operations/sendmessage.ts
   - src/models/operations/startoauthflow.ts
   - src/models/operations/storeapikey.ts
+  - src/models/operations/streamevents.ts
   - src/models/operations/updatepreferences.ts
   - src/models/operations/uploadsessionfile.ts
   - src/models/operations/validatepreferredprovider.ts
   - src/models/resterror.ts
   - src/models/sessiondata.ts
+  - src/models/sseeventstream.ts
   - src/models/toolcalldata.ts
   - src/sdk/authentication.ts
   - src/sdk/files.ts
@@ -216,6 +260,7 @@ generatedFiles:
   - src/sdk/preferences.ts
   - src/sdk/sdk.ts
   - src/sdk/sessions.ts
+  - src/sdk/streaming.ts
   - src/sdk/system.ts
   - src/sdk/tools.ts
   - src/types/async.ts
@@ -569,4 +614,14 @@ examples:
           application/json: {"error": {"code": 50299, "message": "<value>", "type": "not_found"}}
         "500":
           application/json: {"error": {"code": 50299, "message": "<value>", "type": "not_found"}}
+  streamEvents:
+    speakeasy-default-stream-events:
+      parameters:
+        query:
+          sessionId: "<id>"
+      responses:
+        "404":
+          application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
 examplesVersion: 1.0.2

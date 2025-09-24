@@ -1,12 +1,15 @@
 {
   "name": "mix-typescript-sdk",
-  "version": "0.4.1",
+  "version": "0.5.4",
   "author": "Speakeasy",
-  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/recreate-run/mix-typescript-sdk"
   },
+  "type": "module",
   "tshy": {
     "sourceDialects": [
       "mix-typescript-sdk/source"

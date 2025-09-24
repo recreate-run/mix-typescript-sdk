@@ -28,6 +28,7 @@ export * from "./resetpreferences.js";
 export * from "./sendmessage.js";
 export * from "./startoauthflow.js";
 export * from "./storeapikey.js";
+export * from "./streamevents.js";
 export * from "./updatepreferences.js";
 export * from "./uploadsessionfile.js";
 export * from "./validatepreferredprovider.js";

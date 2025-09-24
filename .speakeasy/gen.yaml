@@ -27,12 +27,17 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.4.1
+  version: 0.5.4
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
-  additionalPackageJSON: {}
+  additionalPackageJSON:
+    publishConfig:
+      access: public
+    repository:
+      type: git
+      url: https://github.com/recreate-run/mix-typescript-sdk
   author: Speakeasy
   baseErrorName: MixError
   clientServerStatusCodesAsErrors: true
