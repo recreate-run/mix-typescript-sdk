@@ -32,12 +32,6 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
       
-      - name: Update workflow.yaml for GitHub Actions
-        run: |
-          # Create a temporary workflow file with the remote OpenAPI URL
-          sed 's|location: ../mix/mix_sdk/openapi.json|location: https://raw.githubusercontent.com/recreate-run/mix/main/mix_sdk/openapi.json|' .speakeasy/workflow.yaml > .speakeasy/workflow-github.yaml
-          mv .speakeasy/workflow-github.yaml .speakeasy/workflow.yaml
-          
       - name: Generate SDK
         uses: speakeasy-api/sdk-generation-action@v15
         with:
