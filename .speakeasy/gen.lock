@@ -3,10 +3,10 @@ id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
   docChecksum: 660cd1c7d170998b42f20fcd717f02e8
   docVersion: 1.0.0
-  speakeasyVersion: 1.628.1
-  generationVersion: 2.716.1
-  releaseVersion: 0.5.9
-  configChecksum: 81430e1bf4b4842b50c8e77826368faf
+  speakeasyVersion: 1.628.3
+  generationVersion: 2.716.4
+  releaseVersion: 0.5.10
+  configChecksum: 73e30cda5cbff2ecc3834a4775d1cf1c
   published: true
 features:
   typescript:
@@ -28,7 +28,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverEvents: 0.1.10
-    unions: 2.85.11
+    unions: 2.85.12
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
