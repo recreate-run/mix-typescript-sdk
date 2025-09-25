@@ -293,7 +293,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetSessionFileResponse](../../models/operations/getsessionfileresponse.md)\>**
+**Promise\<[ReadableStream<Uint8Array>](../../models/.md)\>**
 
 ### Errors
 

@@ -3,15 +3,13 @@
  */
 
 import { filesDelete } from "../funcs/filesDelete.js";
-import { filesGet, GetAcceptEnum } from "../funcs/filesGet.js";
+import { filesGet } from "../funcs/filesGet.js";
 import { filesList } from "../funcs/filesList.js";
 import { filesUpload } from "../funcs/filesUpload.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
-
-export { GetAcceptEnum } from "../funcs/filesGet.js";
 
 export class Files extends ClientSDK {
   /**
@@ -73,8 +71,8 @@ export class Files extends ClientSDK {
    */
   async get(
     request: operations.GetSessionFileRequest,
-    options?: RequestOptions & { acceptHeaderOverride?: GetAcceptEnum },
-  ): Promise<operations.GetSessionFileResponse> {
+    options?: RequestOptions,
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(filesGet(
       this,
       request,

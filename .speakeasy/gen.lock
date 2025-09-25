@@ -1,16 +1,15 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 660cd1c7d170998b42f20fcd717f02e8
+  docChecksum: 7e7e45d890c0f2da5e0f2972d9132483
   docVersion: 1.0.0
-  speakeasyVersion: 1.628.1
-  generationVersion: 2.716.1
-  releaseVersion: 0.5.9
-  configChecksum: 81430e1bf4b4842b50c8e77826368faf
+  speakeasyVersion: 1.628.4
+  generationVersion: 2.716.5
+  releaseVersion: 0.6.0
+  configChecksum: 621184b593e7e245a1ba31bdf5f76efc
   published: true
 features:
   typescript:
-    acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
     core: 3.21.25
@@ -28,7 +27,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverEvents: 0.1.10
-    unions: 2.85.11
+    unions: 2.85.12
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -65,7 +64,6 @@ generatedFiles:
   - docs/models/operations/getmessagehistoryrequest.md
   - docs/models/operations/getpreferencesresponse.md
   - docs/models/operations/getsessionfilerequest.md
-  - docs/models/operations/getsessionfileresponse.md
   - docs/models/operations/getsessionmessagesrequest.md
   - docs/models/operations/getsessionrequest.md
   - docs/models/operations/gettoolsstatusresponse.md
@@ -495,6 +493,7 @@ examples:
         "200":
           application/octet-stream: "x-file: example.file"
           image/jpeg: "x-file: example.file"
+          '*/*': "x-file: example.file"
         "400":
           application/json: {"error": {"code": 958191, "message": "<value>", "type": "internal_error"}}
   storeApiKey:

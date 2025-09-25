@@ -26,10 +26,6 @@ export type GetSessionFileRequest = {
   time?: number | undefined;
 };
 
-export type GetSessionFileResponse =
-  | ReadableStream<Uint8Array>
-  | ReadableStream<Uint8Array>;
-
 /** @internal */
 export const GetSessionFileRequest$inboundSchema: z.ZodType<
   GetSessionFileRequest,
@@ -90,61 +86,5 @@ export function getSessionFileRequestFromJSON(
     jsonString,
     (x) => GetSessionFileRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetSessionFileRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSessionFileResponse$inboundSchema: z.ZodType<
-  GetSessionFileResponse,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.instanceof(ReadableStream<Uint8Array>),
-  z.instanceof(ReadableStream<Uint8Array>),
-]);
-
-/** @internal */
-export type GetSessionFileResponse$Outbound =
-  | ReadableStream<Uint8Array>
-  | ReadableStream<Uint8Array>;
-
-/** @internal */
-export const GetSessionFileResponse$outboundSchema: z.ZodType<
-  GetSessionFileResponse$Outbound,
-  z.ZodTypeDef,
-  GetSessionFileResponse
-> = z.union([
-  z.instanceof(ReadableStream<Uint8Array>),
-  z.instanceof(ReadableStream<Uint8Array>),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSessionFileResponse$ {
-  /** @deprecated use `GetSessionFileResponse$inboundSchema` instead. */
-  export const inboundSchema = GetSessionFileResponse$inboundSchema;
-  /** @deprecated use `GetSessionFileResponse$outboundSchema` instead. */
-  export const outboundSchema = GetSessionFileResponse$outboundSchema;
-  /** @deprecated use `GetSessionFileResponse$Outbound` instead. */
-  export type Outbound = GetSessionFileResponse$Outbound;
-}
-
-export function getSessionFileResponseToJSON(
-  getSessionFileResponse: GetSessionFileResponse,
-): string {
-  return JSON.stringify(
-    GetSessionFileResponse$outboundSchema.parse(getSessionFileResponse),
-  );
-}
-
-export function getSessionFileResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSessionFileResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSessionFileResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSessionFileResponse' from JSON`,
   );
 }
