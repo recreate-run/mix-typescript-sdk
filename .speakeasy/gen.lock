@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 14bee3bd702faa2256a427d813b53613
+  docChecksum: f92ff675b71e9a4c738ea22abc600dcd
   docVersion: 1.0.0
   speakeasyVersion: 1.624.0
   generationVersion: 2.714.0
-  releaseVersion: 0.5.6
-  configChecksum: 48b40ec582fc2f5cbec141b8c20f1115
+  releaseVersion: 0.5.8
+  configChecksum: 449b2efa0a08e4f3a9f5c4bef1d4ca27
   published: true
 features:
   typescript:
@@ -43,7 +43,6 @@ generatedFiles:
   - docs/models/errors/errorresponse.md
   - docs/models/fileinfo.md
   - docs/models/messagedata.md
-  - docs/models/messagerole.md
   - docs/models/operations/availableproviders.md
   - docs/models/operations/cancelsessionprocessingrequest.md
   - docs/models/operations/cancelsessionprocessingresponse.md
@@ -139,7 +138,6 @@ generatedFiles:
   - docs/models/ssetoolexecutionstarteventevent.md
   - docs/models/status.md
   - docs/models/streammessageresponse.md
-  - docs/models/toolcalldata.md
   - docs/models/type.md
   - docs/sdks/authentication/README.md
   - docs/sdks/files/README.md
@@ -222,7 +220,6 @@ generatedFiles:
   - src/models/fileinfo.ts
   - src/models/index.ts
   - src/models/messagedata.ts
-  - src/models/messagerole.ts
   - src/models/operations/cancelsessionprocessing.ts
   - src/models/operations/createsession.ts
   - src/models/operations/deletecredentials.ts
@@ -259,7 +256,6 @@ generatedFiles:
   - src/models/sessiondata.ts
   - src/models/sseeventstream.ts
   - src/models/streammessageresponse.ts
-  - src/models/toolcalldata.ts
   - src/sdk/authentication.ts
   - src/sdk/files.ts
   - src/sdk/index.ts
@@ -345,7 +341,7 @@ examples:
           offset: 0
       responses:
         "200":
-          application/json: [{"id": "<id>", "role": "user", "sessionId": "<id>", "userInput": "<value>"}]
+          application/json: [{"apps": [], "media": [], "plan_mode": false, "text": "<value>"}]
         "401":
           application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
         "500":
@@ -367,7 +363,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: [{"id": "<id>", "role": "user", "sessionId": "<id>", "userInput": "<value>"}]
+          application/json: [{"apps": [], "media": ["<value 1>"], "plan_mode": true, "text": "<value>"}]
         "404":
           application/json: {"error": {"code": 355518, "message": "<value>", "type": "bad_request"}}
   sendMessage:
@@ -376,10 +372,10 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"content": "<value>"}
+        application/json: {"apps": ["<value 1>"], "media": ["<value 1>", "<value 2>"], "plan_mode": false, "text": "<value>"}
       responses:
         "200":
-          application/json: {"id": "<id>", "role": "user", "sessionId": "<id>", "userInput": "<value>"}
+          application/json: {"apps": ["<value 1>", "<value 2>", "<value 3>"], "media": ["<value 1>", "<value 2>"], "plan_mode": true, "text": "<value>"}
         "400":
           application/json: {"error": {"code": 600162, "message": "<value>", "type": "validation_error"}}
   denyPermission:

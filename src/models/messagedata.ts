@@ -3,54 +3,31 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  MessageRole,
-  MessageRole$inboundSchema,
-  MessageRole$outboundSchema,
-} from "./messagerole.js";
-import {
-  ToolCallData,
-  ToolCallData$inboundSchema,
-  ToolCallData$Outbound,
-  ToolCallData$outboundSchema,
-} from "./toolcalldata.js";
 
+/**
+ * Message data structure for user input
+ */
 export type MessageData = {
   /**
-   * Assistant's response message (optional)
+   * Array of app identifiers or references
    */
-  assistantResponse?: string | undefined;
+  apps: Array<string>;
   /**
-   * Unique message identifier
+   * Array of media file references or URLs
    */
-  id: string;
+  media: Array<string>;
   /**
-   * Reasoning process (optional)
+   * Whether the message is in planning mode
    */
-  reasoning?: string | undefined;
+  planMode: boolean;
   /**
-   * Reasoning duration in milliseconds (optional)
+   * The text content of the message
    */
-  reasoningDuration?: number | undefined;
-  /**
-   * Message role
-   */
-  role: MessageRole;
-  /**
-   * Session identifier
-   */
-  sessionId: string;
-  /**
-   * Tool calls made during message processing
-   */
-  toolCalls?: Array<ToolCallData> | undefined;
-  /**
-   * User's input message
-   */
-  userInput: string;
+  text: string;
 };
 
 /** @internal */
@@ -59,26 +36,22 @@ export const MessageData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  assistantResponse: z.string().optional(),
-  id: z.string(),
-  reasoning: z.string().optional(),
-  reasoningDuration: z.number().int().optional(),
-  role: MessageRole$inboundSchema,
-  sessionId: z.string(),
-  toolCalls: z.array(ToolCallData$inboundSchema).optional(),
-  userInput: z.string(),
+  apps: z.array(z.string()),
+  media: z.array(z.string()),
+  plan_mode: z.boolean(),
+  text: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "plan_mode": "planMode",
+  });
 });
 
 /** @internal */
 export type MessageData$Outbound = {
-  assistantResponse?: string | undefined;
-  id: string;
-  reasoning?: string | undefined;
-  reasoningDuration?: number | undefined;
-  role: string;
-  sessionId: string;
-  toolCalls?: Array<ToolCallData$Outbound> | undefined;
-  userInput: string;
+  apps: Array<string>;
+  media: Array<string>;
+  plan_mode: boolean;
+  text: string;
 };
 
 /** @internal */
@@ -87,14 +60,14 @@ export const MessageData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageData
 > = z.object({
-  assistantResponse: z.string().optional(),
-  id: z.string(),
-  reasoning: z.string().optional(),
-  reasoningDuration: z.number().int().optional(),
-  role: MessageRole$outboundSchema,
-  sessionId: z.string(),
-  toolCalls: z.array(ToolCallData$outboundSchema).optional(),
-  userInput: z.string(),
+  apps: z.array(z.string()),
+  media: z.array(z.string()),
+  planMode: z.boolean(),
+  text: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    planMode: "plan_mode",
+  });
 });
 
 /**

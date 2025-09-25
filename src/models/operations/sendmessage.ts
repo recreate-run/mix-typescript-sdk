@@ -10,9 +10,21 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SendMessageRequestBody = {
   /**
-   * Message content to send
+   * Array of app identifiers or references
    */
-  content: string;
+  apps: Array<string>;
+  /**
+   * Array of media file references or URLs
+   */
+  media: Array<string>;
+  /**
+   * Whether the message is in planning mode
+   */
+  planMode: boolean;
+  /**
+   * The text content of the message
+   */
+  text: string;
 };
 
 export type SendMessageRequest = {
@@ -29,12 +41,22 @@ export const SendMessageRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  content: z.string(),
+  apps: z.array(z.string()),
+  media: z.array(z.string()),
+  plan_mode: z.boolean(),
+  text: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "plan_mode": "planMode",
+  });
 });
 
 /** @internal */
 export type SendMessageRequestBody$Outbound = {
-  content: string;
+  apps: Array<string>;
+  media: Array<string>;
+  plan_mode: boolean;
+  text: string;
 };
 
 /** @internal */
@@ -43,7 +65,14 @@ export const SendMessageRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendMessageRequestBody
 > = z.object({
-  content: z.string(),
+  apps: z.array(z.string()),
+  media: z.array(z.string()),
+  planMode: z.boolean(),
+  text: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    planMode: "plan_mode",
+  });
 });
 
 /**
