@@ -38,7 +38,7 @@ export function messagesGetHistory(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    Array<models.MessageData>,
+    Array<models.BackendMessage>,
     | errors.ErrorResponse
     | MixError
     | ResponseValidationError
@@ -64,7 +64,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      Array<models.MessageData>,
+      Array<models.BackendMessage>,
       | errors.ErrorResponse
       | MixError
       | ResponseValidationError
@@ -159,7 +159,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    Array<models.MessageData>,
+    Array<models.BackendMessage>,
     | errors.ErrorResponse
     | MixError
     | ResponseValidationError
@@ -170,7 +170,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, z.array(models.MessageData$inboundSchema)),
+    M.json(200, z.array(models.BackendMessage$inboundSchema)),
     M.jsonErr(401, errors.ErrorResponse$inboundSchema),
     M.jsonErr(500, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),

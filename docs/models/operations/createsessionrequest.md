@@ -12,7 +12,6 @@ let value: CreateSessionRequest = {
 
 ## Fields
 
-| Field                           | Type                            | Required                        | Description                     |
-| ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| `title`                         | *string*                        | :heavy_check_mark:              | Title for the session           |
-| `workingDirectory`              | *string*                        | :heavy_minus_sign:              | Optional working directory path |
+| Field                 | Type                  | Required              | Description           |
+| --------------------- | --------------------- | --------------------- | --------------------- |
+| `title`               | *string*              | :heavy_check_mark:    | Title for the session |

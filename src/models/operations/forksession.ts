@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ForkSessionRequestBody = {
   /**
-   * Index of the last message to include in the fork (1-based)
+   * Index of the last message to include in the fork (0-based)
    */
   messageIndex: number;
   /**

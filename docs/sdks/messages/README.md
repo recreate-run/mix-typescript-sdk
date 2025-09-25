@@ -67,7 +67,7 @@ run();
 
 ### Response
 
-**Promise\<[models.MessageData[]](../../models/.md)\>**
+**Promise\<[models.BackendMessage[]](../../models/.md)\>**
 
 ### Errors
 
@@ -208,7 +208,7 @@ run();
 
 ### Response
 
-**Promise\<[models.MessageData[]](../../models/.md)\>**
+**Promise\<[models.BackendMessage[]](../../models/.md)\>**
 
 ### Errors
 
@@ -300,7 +300,7 @@ run();
 
 ### Response
 
-**Promise\<[models.MessageData](../../models/messagedata.md)\>**
+**Promise\<[models.BackendMessage](../../models/backendmessage.md)\>**
 
 ### Errors
 

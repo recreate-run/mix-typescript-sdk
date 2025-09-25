@@ -48,10 +48,6 @@ export type SessionData = {
    * Number of user messages in session
    */
   userMessageCount: number;
-  /**
-   * Working directory path (optional)
-   */
-  workingDirectory?: string | undefined;
 };
 
 /** @internal */
@@ -70,7 +66,6 @@ export const SessionData$inboundSchema: z.ZodType<
   title: z.string(),
   toolCallCount: z.number().int(),
   userMessageCount: z.number().int(),
-  workingDirectory: z.string().optional(),
 });
 
 /** @internal */
@@ -85,7 +80,6 @@ export type SessionData$Outbound = {
   title: string;
   toolCallCount: number;
   userMessageCount: number;
-  workingDirectory?: string | undefined;
 };
 
 /** @internal */
@@ -104,7 +98,6 @@ export const SessionData$outboundSchema: z.ZodType<
   title: z.string(),
   toolCallCount: z.number().int(),
   userMessageCount: z.number().int(),
-  workingDirectory: z.string().optional(),
 });
 
 /**

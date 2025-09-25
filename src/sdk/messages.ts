@@ -21,7 +21,7 @@ export class Messages extends ClientSDK {
   async getHistory(
     request?: operations.GetMessageHistoryRequest | undefined,
     options?: RequestOptions,
-  ): Promise<Array<models.MessageData>> {
+  ): Promise<Array<models.BackendMessage>> {
     return unwrapAsync(messagesGetHistory(
       this,
       request,
@@ -55,7 +55,7 @@ export class Messages extends ClientSDK {
   async getSession(
     request: operations.GetSessionMessagesRequest,
     options?: RequestOptions,
-  ): Promise<Array<models.MessageData>> {
+  ): Promise<Array<models.BackendMessage>> {
     return unwrapAsync(messagesGetSession(
       this,
       request,
@@ -72,7 +72,7 @@ export class Messages extends ClientSDK {
   async send(
     request: operations.SendMessageRequest,
     options?: RequestOptions,
-  ): Promise<models.MessageData> {
+  ): Promise<models.BackendMessage> {
     return unwrapAsync(messagesSend(
       this,
       request,

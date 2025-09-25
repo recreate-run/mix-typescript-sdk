@@ -37,7 +37,7 @@ export function messagesSend(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    models.MessageData,
+    models.BackendMessage,
     | errors.ErrorResponse
     | MixError
     | ResponseValidationError
@@ -63,7 +63,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      models.MessageData,
+      models.BackendMessage,
       | errors.ErrorResponse
       | MixError
       | ResponseValidationError
@@ -157,7 +157,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    models.MessageData,
+    models.BackendMessage,
     | errors.ErrorResponse
     | MixError
     | ResponseValidationError
@@ -168,7 +168,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, models.MessageData$inboundSchema),
+    M.json(200, models.BackendMessage$inboundSchema),
     M.jsonErr([400, 404], errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),

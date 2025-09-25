@@ -12,10 +12,6 @@ export type CreateSessionRequest = {
    * Title for the session
    */
   title: string;
-  /**
-   * Optional working directory path
-   */
-  workingDirectory?: string | undefined;
 };
 
 /** @internal */
@@ -25,13 +21,11 @@ export const CreateSessionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   title: z.string(),
-  workingDirectory: z.string().optional(),
 });
 
 /** @internal */
 export type CreateSessionRequest$Outbound = {
   title: string;
-  workingDirectory?: string | undefined;
 };
 
 /** @internal */
@@ -41,7 +35,6 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
   CreateSessionRequest
 > = z.object({
   title: z.string(),
-  workingDirectory: z.string().optional(),
 });
 
 /**
