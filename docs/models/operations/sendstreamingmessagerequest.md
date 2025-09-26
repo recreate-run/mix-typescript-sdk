@@ -7,15 +7,15 @@ import { SendStreamingMessageRequest } from "mix-typescript-sdk/models/operation
 
 let value: SendStreamingMessageRequest = {
   id: "<id>",
-  requestBody: {
-    content: "<value>",
+  messageData: {
+    text: "<value>",
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                     | *string*                                                                                                 | :heavy_check_mark:                                                                                       | Session ID to send message to                                                                            |
-| `requestBody`                                                                                            | [operations.SendStreamingMessageRequestBody](../../models/operations/sendstreamingmessagerequestbody.md) | :heavy_check_mark:                                                                                       | N/A                                                                                                      |
+| Field                                             | Type                                              | Required                                          | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `id`                                              | *string*                                          | :heavy_check_mark:                                | Session ID to send message to                     |
+| `messageData`                                     | [models.MessageData](../../models/messagedata.md) | :heavy_check_mark:                                | N/A                                               |

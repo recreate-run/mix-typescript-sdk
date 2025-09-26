@@ -1,11 +1,13 @@
-# SendMessageRequestBody
+# MessageData
+
+Message data structure for user input
 
 ## Example Usage
 
 ```typescript
-import { SendMessageRequestBody } from "mix-typescript-sdk/models/operations";
+import { MessageData } from "mix-typescript-sdk/models";
 
-let value: SendMessageRequestBody = {
+let value: MessageData = {
   text: "<value>",
 };
 ```
