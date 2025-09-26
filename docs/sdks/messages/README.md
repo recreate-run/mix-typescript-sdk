@@ -233,6 +233,14 @@ async function run() {
   const result = await mix.messages.send({
     id: "<id>",
     requestBody: {
+      apps: [
+        "<value 1>",
+      ],
+      media: [
+        "<value 1>",
+        "<value 2>",
+      ],
+      planMode: false,
       text: "<value>",
     },
   });
@@ -259,6 +267,14 @@ async function run() {
   const res = await messagesSend(mix, {
     id: "<id>",
     requestBody: {
+      apps: [
+        "<value 1>",
+      ],
+      media: [
+        "<value 1>",
+        "<value 2>",
+      ],
+      planMode: false,
       text: "<value>",
     },
   });

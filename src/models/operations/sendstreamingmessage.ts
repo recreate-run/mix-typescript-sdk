@@ -7,15 +7,77 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
+
+export type SendStreamingMessageRequestBody = {
+  /**
+   * Message content to send for processing
+   */
+  content: string;
+};
 
 export type SendStreamingMessageRequest = {
   /**
    * Session ID to send message to
    */
   id: string;
-  messageData: models.MessageData;
+  requestBody: SendStreamingMessageRequestBody;
 };
+
+/** @internal */
+export const SendStreamingMessageRequestBody$inboundSchema: z.ZodType<
+  SendStreamingMessageRequestBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  content: z.string(),
+});
+
+/** @internal */
+export type SendStreamingMessageRequestBody$Outbound = {
+  content: string;
+};
+
+/** @internal */
+export const SendStreamingMessageRequestBody$outboundSchema: z.ZodType<
+  SendStreamingMessageRequestBody$Outbound,
+  z.ZodTypeDef,
+  SendStreamingMessageRequestBody
+> = z.object({
+  content: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendStreamingMessageRequestBody$ {
+  /** @deprecated use `SendStreamingMessageRequestBody$inboundSchema` instead. */
+  export const inboundSchema = SendStreamingMessageRequestBody$inboundSchema;
+  /** @deprecated use `SendStreamingMessageRequestBody$outboundSchema` instead. */
+  export const outboundSchema = SendStreamingMessageRequestBody$outboundSchema;
+  /** @deprecated use `SendStreamingMessageRequestBody$Outbound` instead. */
+  export type Outbound = SendStreamingMessageRequestBody$Outbound;
+}
+
+export function sendStreamingMessageRequestBodyToJSON(
+  sendStreamingMessageRequestBody: SendStreamingMessageRequestBody,
+): string {
+  return JSON.stringify(
+    SendStreamingMessageRequestBody$outboundSchema.parse(
+      sendStreamingMessageRequestBody,
+    ),
+  );
+}
+
+export function sendStreamingMessageRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<SendStreamingMessageRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendStreamingMessageRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendStreamingMessageRequestBody' from JSON`,
+  );
+}
 
 /** @internal */
 export const SendStreamingMessageRequest$inboundSchema: z.ZodType<
@@ -24,17 +86,17 @@ export const SendStreamingMessageRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  MessageData: models.MessageData$inboundSchema,
+  RequestBody: z.lazy(() => SendStreamingMessageRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
-    "MessageData": "messageData",
+    "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type SendStreamingMessageRequest$Outbound = {
   id: string;
-  MessageData: models.MessageData$Outbound;
+  RequestBody: SendStreamingMessageRequestBody$Outbound;
 };
 
 /** @internal */
@@ -44,10 +106,10 @@ export const SendStreamingMessageRequest$outboundSchema: z.ZodType<
   SendStreamingMessageRequest
 > = z.object({
   id: z.string(),
-  messageData: models.MessageData$outboundSchema,
+  requestBody: z.lazy(() => SendStreamingMessageRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
-    messageData: "MessageData",
+    requestBody: "RequestBody",
   });
 });
 

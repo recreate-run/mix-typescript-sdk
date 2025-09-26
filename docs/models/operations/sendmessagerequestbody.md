@@ -6,6 +6,17 @@
 import { SendMessageRequestBody } from "mix-typescript-sdk/models/operations";
 
 let value: SendMessageRequestBody = {
+  apps: [
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
+  ],
+  media: [
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
+  ],
+  planMode: true,
   text: "<value>",
 };
 ```
@@ -14,7 +25,7 @@ let value: SendMessageRequestBody = {
 
 | Field                                   | Type                                    | Required                                | Description                             |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `apps`                                  | *string*[]                              | :heavy_minus_sign:                      | Array of app identifiers or references  |
-| `media`                                 | *string*[]                              | :heavy_minus_sign:                      | Array of media file references or URLs  |
-| `planMode`                              | *boolean*                               | :heavy_minus_sign:                      | Whether the message is in planning mode |
+| `apps`                                  | *string*[]                              | :heavy_check_mark:                      | Array of app identifiers or references  |
+| `media`                                 | *string*[]                              | :heavy_check_mark:                      | Array of media file references or URLs  |
+| `planMode`                              | *boolean*                               | :heavy_check_mark:                      | Whether the message is in planning mode |
 | `text`                                  | *string*                                | :heavy_check_mark:                      | The text content of the message         |

@@ -1184,6 +1184,9 @@ paths:
                   type: "string"
               required:
                 - "text"
+                - "media"
+                - "apps"
+                - "plan_mode"
               type: "object"
         required: true
       responses:
@@ -1354,7 +1357,14 @@ paths:
       requestBody:
         content:
           "application/json":
-            schema: {"$ref": "#/components/schemas/MessageData"}
+            schema:
+              properties:
+                "content":
+                  description: "Message content to send for processing"
+                  type: "string"
+              required:
+                - "content"
+              type: "object"
         required: true
       responses:
         "200":
@@ -1465,6 +1475,9 @@ components:
           type: "string"
       required:
         - "text"
+        - "media"
+        - "apps"
+        - "plan_mode"
       type: "object"
     "MessageRole":
       description: "Message role"

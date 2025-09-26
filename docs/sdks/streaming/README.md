@@ -98,8 +98,8 @@ const mix = new Mix();
 async function run() {
   const result = await mix.streaming.sendStreamingMessage({
     id: "<id>",
-    messageData: {
-      text: "<value>",
+    requestBody: {
+      content: "<value>",
     },
   });
 
@@ -124,8 +124,8 @@ const mix = new MixCore();
 async function run() {
   const res = await streamingSendStreamingMessage(mix, {
     id: "<id>",
-    messageData: {
-      text: "<value>",
+    requestBody: {
+      content: "<value>",
     },
   });
   if (res.ok) {

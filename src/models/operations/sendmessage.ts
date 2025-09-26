@@ -12,15 +12,15 @@ export type SendMessageRequestBody = {
   /**
    * Array of app identifiers or references
    */
-  apps?: Array<string> | undefined;
+  apps: Array<string>;
   /**
    * Array of media file references or URLs
    */
-  media?: Array<string> | undefined;
+  media: Array<string>;
   /**
    * Whether the message is in planning mode
    */
-  planMode?: boolean | undefined;
+  planMode: boolean;
   /**
    * The text content of the message
    */
@@ -41,9 +41,9 @@ export const SendMessageRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  apps: z.array(z.string()).optional(),
-  media: z.array(z.string()).optional(),
-  plan_mode: z.boolean().optional(),
+  apps: z.array(z.string()),
+  media: z.array(z.string()),
+  plan_mode: z.boolean(),
   text: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -53,9 +53,9 @@ export const SendMessageRequestBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SendMessageRequestBody$Outbound = {
-  apps?: Array<string> | undefined;
-  media?: Array<string> | undefined;
-  plan_mode?: boolean | undefined;
+  apps: Array<string>;
+  media: Array<string>;
+  plan_mode: boolean;
   text: string;
 };
 
@@ -65,9 +65,9 @@ export const SendMessageRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendMessageRequestBody
 > = z.object({
-  apps: z.array(z.string()).optional(),
-  media: z.array(z.string()).optional(),
-  planMode: z.boolean().optional(),
+  apps: z.array(z.string()),
+  media: z.array(z.string()),
+  planMode: z.boolean(),
   text: z.string(),
 }).transform((v) => {
   return remap$(v, {

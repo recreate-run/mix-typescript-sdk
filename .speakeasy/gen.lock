@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 263e6e63fda1b7b3e8b8cb2031d43f89
+  docChecksum: 3294793c8e8e0664c3a53e2b5267eeb3
   docVersion: 1.0.0
   speakeasyVersion: 1.630.0
   generationVersion: 2.716.10
-  releaseVersion: 0.6.3
-  configChecksum: 1f8fa65060a242ff9bcc865b8b929468
+  releaseVersion: 0.6.4
+  configChecksum: cb1b99adb6696536e7d35592e8d4451c
   published: true
 features:
   typescript:
@@ -42,7 +42,6 @@ generatedFiles:
   - docs/models/backendmessage.md
   - docs/models/errors/errorresponse.md
   - docs/models/fileinfo.md
-  - docs/models/messagedata.md
   - docs/models/operations/availableproviders.md
   - docs/models/operations/cancelsessionprocessingrequest.md
   - docs/models/operations/cancelsessionprocessingresponse.md
@@ -86,6 +85,7 @@ generatedFiles:
   - docs/models/operations/sendmessagerequest.md
   - docs/models/operations/sendmessagerequestbody.md
   - docs/models/operations/sendstreamingmessagerequest.md
+  - docs/models/operations/sendstreamingmessagerequestbody.md
   - docs/models/operations/startoauthflowrequest.md
   - docs/models/operations/startoauthflowresponse.md
   - docs/models/operations/storeapikeyrequest.md
@@ -220,7 +220,6 @@ generatedFiles:
   - src/models/errors/sdkvalidationerror.ts
   - src/models/fileinfo.ts
   - src/models/index.ts
-  - src/models/messagedata.ts
   - src/models/operations/cancelsessionprocessing.ts
   - src/models/operations/createsession.ts
   - src/models/operations/deletecredentials.ts
@@ -374,7 +373,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"text": "<value>"}
+        application/json: {"apps": ["<value 1>"], "media": ["<value 1>", "<value 2>"], "plan_mode": false, "text": "<value>"}
       responses:
         "200":
           application/json: {"id": "<id>", "role": "<value>", "sessionId": "<id>", "userInput": "<value>"}
@@ -661,7 +660,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"text": "<value>"}
+        application/json: {"content": "<value>"}
       responses:
         "200":
           application/json: {"sessionId": "<id>", "status": "broadcasted"}
