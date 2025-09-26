@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 3294793c8e8e0664c3a53e2b5267eeb3
+  docChecksum: c992c3256a31456029d684e32552a317
   docVersion: 1.0.0
   speakeasyVersion: 1.630.0
   generationVersion: 2.716.10
-  releaseVersion: 0.6.4
-  configChecksum: cb1b99adb6696536e7d35592e8d4451c
+  releaseVersion: 0.6.5
+  configChecksum: 0d5980f97f1944e10371a825f281cf05
   published: true
 features:
   typescript:
@@ -373,7 +373,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"apps": ["<value 1>"], "media": ["<value 1>", "<value 2>"], "plan_mode": false, "text": "<value>"}
+        application/json: {"plan_mode": false, "text": "<value>"}
       responses:
         "200":
           application/json: {"id": "<id>", "role": "<value>", "sessionId": "<id>", "userInput": "<value>"}

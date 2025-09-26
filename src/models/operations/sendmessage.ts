@@ -10,17 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SendMessageRequestBody = {
   /**
-   * Array of app identifiers or references
-   */
-  apps: Array<string>;
-  /**
-   * Array of media file references or URLs
-   */
-  media: Array<string>;
-  /**
    * Whether the message is in planning mode
    */
-  planMode: boolean;
+  planMode?: boolean | undefined;
   /**
    * The text content of the message
    */
@@ -41,9 +33,7 @@ export const SendMessageRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  apps: z.array(z.string()),
-  media: z.array(z.string()),
-  plan_mode: z.boolean(),
+  plan_mode: z.boolean().default(false),
   text: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -53,8 +43,6 @@ export const SendMessageRequestBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SendMessageRequestBody$Outbound = {
-  apps: Array<string>;
-  media: Array<string>;
   plan_mode: boolean;
   text: string;
 };
@@ -65,9 +53,7 @@ export const SendMessageRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendMessageRequestBody
 > = z.object({
-  apps: z.array(z.string()),
-  media: z.array(z.string()),
-  planMode: z.boolean(),
+  planMode: z.boolean().default(false),
   text: z.string(),
 }).transform((v) => {
   return remap$(v, {
