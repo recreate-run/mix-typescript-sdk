@@ -4,10 +4,47 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Custom prompt handling mode:
+ *
+ * @remarks
+ * - 'default': Use base system prompt only (customSystemPrompt ignored)
+ * - 'append': Append customSystemPrompt to base system prompt (50KB limit)
+ * - 'replace': Replace base system prompt with customSystemPrompt (100KB limit)
+ */
+export const PromptMode = {
+  Default: "default",
+  Append: "append",
+  Replace: "replace",
+} as const;
+/**
+ * Custom prompt handling mode:
+ *
+ * @remarks
+ * - 'default': Use base system prompt only (customSystemPrompt ignored)
+ * - 'append': Append customSystemPrompt to base system prompt (50KB limit)
+ * - 'replace': Replace base system prompt with customSystemPrompt (100KB limit)
+ */
+export type PromptMode = ClosedEnum<typeof PromptMode>;
+
 export type CreateSessionRequest = {
+  /**
+   * Custom system prompt content. Size limits apply based on promptMode: 100KB (102,400 bytes) for replace mode, 50KB (51,200 bytes) for append mode. Ignored in default mode. Supports environment variable substitution with $<variable> syntax.
+   */
+  customSystemPrompt?: string | undefined;
+  /**
+   * Custom prompt handling mode:
+   *
+   * @remarks
+   * - 'default': Use base system prompt only (customSystemPrompt ignored)
+   * - 'append': Append customSystemPrompt to base system prompt (50KB limit)
+   * - 'replace': Replace base system prompt with customSystemPrompt (100KB limit)
+   */
+  promptMode?: PromptMode | undefined;
   /**
    * Title for the session
    */
@@ -15,16 +52,39 @@ export type CreateSessionRequest = {
 };
 
 /** @internal */
+export const PromptMode$inboundSchema: z.ZodNativeEnum<typeof PromptMode> = z
+  .nativeEnum(PromptMode);
+
+/** @internal */
+export const PromptMode$outboundSchema: z.ZodNativeEnum<typeof PromptMode> =
+  PromptMode$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PromptMode$ {
+  /** @deprecated use `PromptMode$inboundSchema` instead. */
+  export const inboundSchema = PromptMode$inboundSchema;
+  /** @deprecated use `PromptMode$outboundSchema` instead. */
+  export const outboundSchema = PromptMode$outboundSchema;
+}
+
+/** @internal */
 export const CreateSessionRequest$inboundSchema: z.ZodType<
   CreateSessionRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
+  customSystemPrompt: z.string().optional(),
+  promptMode: PromptMode$inboundSchema.default("default"),
   title: z.string(),
 });
 
 /** @internal */
 export type CreateSessionRequest$Outbound = {
+  customSystemPrompt?: string | undefined;
+  promptMode: string;
   title: string;
 };
 
@@ -34,6 +94,8 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSessionRequest
 > = z.object({
+  customSystemPrompt: z.string().optional(),
+  promptMode: PromptMode$outboundSchema.default("default"),
   title: z.string(),
 });
 

@@ -8,13 +8,6 @@ import { SendMessageRequest } from "mix-typescript-sdk/models/operations";
 let value: SendMessageRequest = {
   id: "<id>",
   requestBody: {
-    apps: [],
-    media: [
-      "<value 1>",
-      "<value 2>",
-      "<value 3>",
-    ],
-    planMode: false,
     text: "<value>",
   },
 };

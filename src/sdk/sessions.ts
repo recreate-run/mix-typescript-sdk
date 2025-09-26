@@ -32,7 +32,7 @@ export class Sessions extends ClientSDK {
    * Create a new session
    *
    * @remarks
-   * Create a new session with required title. Session automatically gets isolated storage directory.
+   * Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory.
    */
   async create(
     request: operations.CreateSessionRequest,
