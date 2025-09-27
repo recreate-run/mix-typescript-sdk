@@ -16,7 +16,7 @@ let value: SSEPermissionEvent = {
     description: "deed or reflate huzzah",
     id: "<id>",
     sessionId: "<id>",
-    toolName: "<value>",
+    toolName: "brave_search",
     type: "<value>",
   },
 };

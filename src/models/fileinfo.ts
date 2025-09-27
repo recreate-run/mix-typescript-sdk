@@ -24,6 +24,10 @@ export type FileInfo = {
    * File size in bytes
    */
   size: number;
+  /**
+   * Static URL to access the file
+   */
+  url: string;
 };
 
 /** @internal */
@@ -36,6 +40,7 @@ export const FileInfo$inboundSchema: z.ZodType<
   modified: z.number().int(),
   name: z.string(),
   size: z.number().int(),
+  url: z.string(),
 });
 
 /** @internal */
@@ -44,6 +49,7 @@ export type FileInfo$Outbound = {
   modified: number;
   name: string;
   size: number;
+  url: string;
 };
 
 /** @internal */
@@ -56,6 +62,7 @@ export const FileInfo$outboundSchema: z.ZodType<
   modified: z.number().int(),
   name: z.string(),
   size: z.number().int(),
+  url: z.string(),
 });
 
 /**

@@ -15,7 +15,7 @@ let value: SSEToolExecutionCompleteEvent = {
     progress: "<value>",
     success: true,
     toolCallId: "<id>",
-    toolName: "<value>",
+    toolName: "brave_search",
     type: "<value>",
   },
 };

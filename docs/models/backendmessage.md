@@ -11,6 +11,15 @@ let value: BackendMessage = {
   id: "<id>",
   role: "<value>",
   sessionId: "<id>",
+  toolCalls: [
+    {
+      finished: false,
+      id: "<id>",
+      input: "<value>",
+      name: "brave_search",
+      type: "<value>",
+    },
+  ],
   userInput: "<value>",
 };
 ```

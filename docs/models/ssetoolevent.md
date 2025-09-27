@@ -14,7 +14,7 @@ let value: SSEToolEvent = {
   data: {
     id: "<id>",
     input: "<value>",
-    name: "<value>",
+    name: "brave_search",
     status: "<value>",
     type: "<value>",
   },

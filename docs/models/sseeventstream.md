@@ -84,7 +84,7 @@ const value: models.SSEPermissionEvent = {
     description: "deed or reflate huzzah",
     id: "<id>",
     sessionId: "<id>",
-    toolName: "<value>",
+    toolName: "brave_search",
     type: "<value>",
   },
 };
@@ -129,7 +129,7 @@ const value: models.SSEToolEvent = {
   data: {
     id: "<id>",
     input: "<value>",
-    name: "<value>",
+    name: "brave_search",
     status: "<value>",
     type: "<value>",
   },
@@ -147,7 +147,7 @@ const value: models.SSEToolExecutionCompleteEvent = {
     progress: "<value>",
     success: true,
     toolCallId: "<id>",
-    toolName: "<value>",
+    toolName: "brave_search",
     type: "<value>",
   },
 };
@@ -163,7 +163,7 @@ const value: models.SSEToolExecutionStartEvent = {
   data: {
     progress: "<value>",
     toolCallId: "<id>",
-    toolName: "<value>",
+    toolName: "brave_search",
     type: "<value>",
   },
 };

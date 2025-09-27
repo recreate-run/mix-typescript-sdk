@@ -6,6 +6,12 @@ import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
+import {
+  ToolName,
+  ToolName$inboundSchema,
+  ToolName$Outbound,
+  ToolName$outboundSchema,
+} from "./toolname.js";
 
 export type ToolCallData = {
   /**
@@ -25,9 +31,9 @@ export type ToolCallData = {
    */
   isError?: boolean | undefined;
   /**
-   * Tool name
+   * Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
    */
-  name: string;
+  name: ToolName;
   /**
    * Tool execution result (optional)
    */
@@ -48,7 +54,7 @@ export const ToolCallData$inboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   isError: z.boolean().optional(),
-  name: z.string(),
+  name: ToolName$inboundSchema,
   result: z.string().optional(),
   type: z.string(),
 });
@@ -59,7 +65,7 @@ export type ToolCallData$Outbound = {
   id: string;
   input: string;
   isError?: boolean | undefined;
-  name: string;
+  name: ToolName$Outbound;
   result?: string | undefined;
   type: string;
 };
@@ -74,7 +80,7 @@ export const ToolCallData$outboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   isError: z.boolean().optional(),
-  name: z.string(),
+  name: ToolName$outboundSchema,
   result: z.string().optional(),
   type: z.string(),
 });

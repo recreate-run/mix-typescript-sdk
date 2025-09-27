@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: c992c3256a31456029d684e32552a317
+  docChecksum: 8f7306f0abc02dcb0aebc82c9cf8bb31
   docVersion: 1.0.0
-  speakeasyVersion: 1.630.0
+  speakeasyVersion: 1.631.0
   generationVersion: 2.716.10
-  releaseVersion: 0.6.5
-  configChecksum: 0d5980f97f1944e10371a825f281cf05
+  releaseVersion: 0.6.6
+  configChecksum: a84d2241f471b8b86d40a0bbe679934b
   published: true
 features:
   typescript:
@@ -40,6 +40,7 @@ generatedFiles:
   - USAGE.md
   - docs/lib/utils/retryconfig.md
   - docs/models/backendmessage.md
+  - docs/models/coretoolname.md
   - docs/models/errors/errorresponse.md
   - docs/models/fileinfo.md
   - docs/models/operations/availableproviders.md
@@ -138,6 +139,7 @@ generatedFiles:
   - docs/models/status.md
   - docs/models/streammessageresponse.md
   - docs/models/toolcalldata.md
+  - docs/models/toolname.md
   - docs/models/type.md
   - docs/sdks/authentication/README.md
   - docs/sdks/files/README.md
@@ -211,6 +213,7 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/models/backendmessage.ts
+  - src/models/coretoolname.ts
   - src/models/errors/errorresponse.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
@@ -257,6 +260,7 @@ generatedFiles:
   - src/models/sseeventstream.ts
   - src/models/streammessageresponse.ts
   - src/models/toolcalldata.ts
+  - src/models/toolname.ts
   - src/sdk/authentication.ts
   - src/sdk/files.ts
   - src/sdk/index.ts
@@ -376,7 +380,7 @@ examples:
         application/json: {"plan_mode": false, "text": "<value>"}
       responses:
         "200":
-          application/json: {"id": "<id>", "role": "<value>", "sessionId": "<id>", "userInput": "<value>"}
+          application/json: {"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}
         "400":
           application/json: {"error": {"code": 600162, "message": "<value>", "type": "validation_error"}}
   denyPermission:
@@ -484,7 +488,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: [{"isDir": false, "modified": 765133, "name": "<value>", "size": 287523}]
+          application/json: [{"isDir": false, "modified": 765133, "name": "<value>", "size": 287523, "url": "https://sniveling-eggplant.net"}]
         "404":
           application/json: {"error": {"code": 744976, "message": "<value>", "type": "not_found"}}
   uploadSessionFile:
@@ -496,7 +500,7 @@ examples:
         multipart/form-data: {"file": "x-file: example.file"}
       responses:
         "201":
-          application/json: {"isDir": false, "modified": 467218, "name": "<value>", "size": 793494}
+          application/json: {"isDir": false, "modified": 467218, "name": "<value>", "size": 793494, "url": "https://likable-seagull.name"}
         "400":
           application/json: {"error": {"code": 658099, "message": "<value>", "type": "not_found"}}
   deleteSessionFile:
@@ -507,6 +511,8 @@ examples:
           filename: "example.file"
       responses:
         "404":
+          application/json: {"error": {"code": 565254, "message": "<value>", "type": "internal_error"}}
+        "400":
           application/json: {"error": {"code": 565254, "message": "<value>", "type": "internal_error"}}
   getSessionFile:
     speakeasy-default-get-session-file:

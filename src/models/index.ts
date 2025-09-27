@@ -3,9 +3,11 @@
  */
 
 export * from "./backendmessage.js";
+export * from "./coretoolname.js";
 export * from "./fileinfo.js";
 export * from "./resterror.js";
 export * from "./sessiondata.js";
 export * from "./sseeventstream.js";
 export * from "./streammessageresponse.js";
 export * from "./toolcalldata.js";
+export * from "./toolname.js";

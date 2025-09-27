@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Delete session file
  *
  * @remarks
- * Delete a specific file from session storage
+ * Delete a specific file from session storage. Only files are supported - directories cannot be deleted.
  */
 export function filesDelete(
   client: MixCore,
@@ -146,7 +146,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["404", "4XX", "5XX"],
+    errorCodes: ["400", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -172,7 +172,7 @@ async function $do(
     | SDKValidationError
   >(
     M.nil(204, z.void()),
-    M.jsonErr(404, errors.ErrorResponse$inboundSchema),
+    M.jsonErr([400, 404], errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

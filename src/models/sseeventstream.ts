@@ -7,6 +7,12 @@ import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
+import {
+  ToolName,
+  ToolName$inboundSchema,
+  ToolName$Outbound,
+  ToolName$outboundSchema,
+} from "./toolname.js";
 
 /**
  * Event type identifier
@@ -117,9 +123,9 @@ export type SSEPermissionEventData = {
    */
   sessionId: string;
   /**
-   * Tool requiring permission
+   * Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
    */
-  toolName: string;
+  toolName: ToolName;
   /**
    * Permission event type
    */
@@ -182,9 +188,9 @@ export type SSEToolExecutionCompleteEventData = {
    */
   toolCallId: string;
   /**
-   * Name of the completed tool
+   * Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
    */
-  toolName: string;
+  toolName: ToolName;
   /**
    * Tool execution complete event type
    */
@@ -243,9 +249,9 @@ export type SSEToolExecutionStartEventData = {
    */
   toolCallId: string;
   /**
-   * Name of the tool being executed
+   * Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
    */
-  toolName: string;
+  toolName: ToolName;
   /**
    * Tool execution start event type
    */
@@ -302,9 +308,9 @@ export type SSEToolEventData = {
    */
   input: string;
   /**
-   * Tool name being executed
+   * Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
    */
-  name: string;
+  name: ToolName;
   /**
    * Tool execution status
    */
@@ -904,7 +910,7 @@ export const SSEPermissionEventData$inboundSchema: z.ZodType<
   params: z.lazy(() => Params$inboundSchema).optional(),
   path: z.string().optional(),
   sessionId: z.string(),
-  toolName: z.string(),
+  toolName: ToolName$inboundSchema,
   type: z.string(),
 });
 
@@ -916,7 +922,7 @@ export type SSEPermissionEventData$Outbound = {
   params?: Params$Outbound | undefined;
   path?: string | undefined;
   sessionId: string;
-  toolName: string;
+  toolName: ToolName$Outbound;
   type: string;
 };
 
@@ -932,7 +938,7 @@ export const SSEPermissionEventData$outboundSchema: z.ZodType<
   params: z.lazy(() => Params$outboundSchema).optional(),
   path: z.string().optional(),
   sessionId: z.string(),
-  toolName: z.string(),
+  toolName: ToolName$outboundSchema,
   type: z.string(),
 });
 
@@ -1071,7 +1077,7 @@ export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
   progress: z.string(),
   success: z.boolean(),
   toolCallId: z.string(),
-  toolName: z.string(),
+  toolName: ToolName$inboundSchema,
   type: z.string(),
 });
 
@@ -1080,7 +1086,7 @@ export type SSEToolExecutionCompleteEventData$Outbound = {
   progress: string;
   success: boolean;
   toolCallId: string;
-  toolName: string;
+  toolName: ToolName$Outbound;
   type: string;
 };
 
@@ -1093,7 +1099,7 @@ export const SSEToolExecutionCompleteEventData$outboundSchema: z.ZodType<
   progress: z.string(),
   success: z.boolean(),
   toolCallId: z.string(),
-  toolName: z.string(),
+  toolName: ToolName$outboundSchema,
   type: z.string(),
 });
 
@@ -1235,7 +1241,7 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
 > = z.object({
   progress: z.string(),
   toolCallId: z.string(),
-  toolName: z.string(),
+  toolName: ToolName$inboundSchema,
   type: z.string(),
 });
 
@@ -1243,7 +1249,7 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
 export type SSEToolExecutionStartEventData$Outbound = {
   progress: string;
   toolCallId: string;
-  toolName: string;
+  toolName: ToolName$Outbound;
   type: string;
 };
 
@@ -1255,7 +1261,7 @@ export const SSEToolExecutionStartEventData$outboundSchema: z.ZodType<
 > = z.object({
   progress: z.string(),
   toolCallId: z.string(),
-  toolName: z.string(),
+  toolName: ToolName$outboundSchema,
   type: z.string(),
 });
 
@@ -1394,7 +1400,7 @@ export const SSEToolEventData$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   input: z.string(),
-  name: z.string(),
+  name: ToolName$inboundSchema,
   status: z.string(),
   type: z.string(),
 });
@@ -1403,7 +1409,7 @@ export const SSEToolEventData$inboundSchema: z.ZodType<
 export type SSEToolEventData$Outbound = {
   id: string;
   input: string;
-  name: string;
+  name: ToolName$Outbound;
   status: string;
   type: string;
 };
@@ -1416,7 +1422,7 @@ export const SSEToolEventData$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   input: z.string(),
-  name: z.string(),
+  name: ToolName$outboundSchema,
   status: z.string(),
   type: z.string(),
 });

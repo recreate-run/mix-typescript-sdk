@@ -50,7 +50,7 @@ export class Files extends ClientSDK {
    * Delete session file
    *
    * @remarks
-   * Delete a specific file from session storage
+   * Delete a specific file from session storage. Only files are supported - directories cannot be deleted.
    */
   async delete(
     request: operations.DeleteSessionFileRequest,
