@@ -8,6 +8,7 @@ export * from "./deletecredentials.js";
 export * from "./deletesession.js";
 export * from "./deletesessionfile.js";
 export * from "./denypermission.js";
+export * from "./exportsession.js";
 export * from "./forksession.js";
 export * from "./getauthstatus.js";
 export * from "./getavailableproviders.js";

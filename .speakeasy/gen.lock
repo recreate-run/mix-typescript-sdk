@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: fe1562c7c0326e7ba8e870baea060d6a
+  docChecksum: 67db1d887f1b52f46f0ee72614def3b3
   docVersion: 1.0.0
   speakeasyVersion: 1.631.5
   generationVersion: 2.716.16
-  releaseVersion: 0.6.7
-  configChecksum: 61dbf3d7d6379c9fee33f937c8a5ca1f
+  releaseVersion: 0.6.8
+  configChecksum: 623cc53c3de9bd5b9590dccc2de04871
   published: true
 features:
   typescript:
@@ -42,7 +42,11 @@ generatedFiles:
   - docs/models/backendmessage.md
   - docs/models/coretoolname.md
   - docs/models/errors/errorresponse.md
+  - docs/models/exportmessage.md
+  - docs/models/exportsession.md
+  - docs/models/exporttoolcall.md
   - docs/models/fileinfo.md
+  - docs/models/inputjson.md
   - docs/models/operations/availableproviders.md
   - docs/models/operations/cancelsessionprocessingrequest.md
   - docs/models/operations/cancelsessionprocessingresponse.md
@@ -54,6 +58,8 @@ generatedFiles:
   - docs/models/operations/deletesessionrequest.md
   - docs/models/operations/denypermissionrequest.md
   - docs/models/operations/denypermissionresponse.md
+  - docs/models/operations/exportsessionrequest.md
+  - docs/models/operations/exportsessionresponse.md
   - docs/models/operations/filet.md
   - docs/models/operations/forksessionrequest.md
   - docs/models/operations/forksessionrequestbody.md
@@ -183,6 +189,7 @@ generatedFiles:
   - src/funcs/preferencesUpdate.ts
   - src/funcs/sessionsCreate.ts
   - src/funcs/sessionsDelete.ts
+  - src/funcs/sessionsExportSession.ts
   - src/funcs/sessionsFork.ts
   - src/funcs/sessionsGet.ts
   - src/funcs/sessionsList.ts
@@ -224,6 +231,9 @@ generatedFiles:
   - src/models/errors/mixerror.ts
   - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/exportmessage.ts
+  - src/models/exportsession.ts
+  - src/models/exporttoolcall.ts
   - src/models/fileinfo.ts
   - src/models/index.ts
   - src/models/operations/cancelsessionprocessing.ts
@@ -232,6 +242,7 @@ generatedFiles:
   - src/models/operations/deletesession.ts
   - src/models/operations/deletesessionfile.ts
   - src/models/operations/denypermission.ts
+  - src/models/operations/exportsession.ts
   - src/models/operations/forksession.ts
   - src/models/operations/getauthstatus.ts
   - src/models/operations/getavailableproviders.ts
@@ -690,4 +701,16 @@ examples:
           application/json: {"assistantMessageCount": 676019, "completionTokens": 18242, "cost": 1903.72, "createdAt": "2024-09-02T07:59:03.378Z", "id": "<id>", "promptTokens": 505203, "title": "<value>", "toolCallCount": 938253, "userMessageCount": 629623}
         "400":
           application/json: {"error": {"code": 877894, "message": "<value>", "type": "bad_request"}}
+  exportSession:
+    speakeasy-default-export-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "messages": [], "title": "<value>"}
+        "404":
+          application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
 examplesVersion: 1.0.2

@@ -150,6 +150,7 @@ run();
 * [create](docs/sdks/sessions/README.md#create) - Create a new session
 * [delete](docs/sdks/sessions/README.md#delete) - Delete a session
 * [get](docs/sdks/sessions/README.md#get) - Get a specific session
+* [exportSession](docs/sdks/sessions/README.md#exportsession) - Export session transcript
 * [fork](docs/sdks/sessions/README.md#fork) - Fork a session
 * [rewindSession](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
 
@@ -209,6 +210,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`preferencesUpdate`](docs/sdks/preferences/README.md#update) - Update user preferences
 - [`sessionsCreate`](docs/sdks/sessions/README.md#create) - Create a new session
 - [`sessionsDelete`](docs/sdks/sessions/README.md#delete) - Delete a session
+- [`sessionsExportSession`](docs/sdks/sessions/README.md#exportsession) - Export session transcript
 - [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
 - [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
 - [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions

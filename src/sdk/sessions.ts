@@ -4,6 +4,7 @@
 
 import { sessionsCreate } from "../funcs/sessionsCreate.js";
 import { sessionsDelete } from "../funcs/sessionsDelete.js";
+import { sessionsExportSession } from "../funcs/sessionsExportSession.js";
 import { sessionsFork } from "../funcs/sessionsFork.js";
 import { sessionsGet } from "../funcs/sessionsGet.js";
 import { sessionsList } from "../funcs/sessionsList.js";
@@ -74,6 +75,23 @@ export class Sessions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<models.SessionData> {
     return unwrapAsync(sessionsGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Export session transcript
+   *
+   * @remarks
+   * Export complete session transcript with all messages, tool calls, reasoning, and metadata as JSON
+   */
+  async exportSession(
+    request: operations.ExportSessionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ExportSessionResponse> {
+    return unwrapAsync(sessionsExportSession(
       this,
       request,
       options,

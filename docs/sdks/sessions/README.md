@@ -9,6 +9,7 @@
 * [create](#create) - Create a new session
 * [delete](#delete) - Delete a session
 * [get](#get) - Get a specific session
+* [exportSession](#exportsession) - Export session transcript
 * [fork](#fork) - Fork a session
 * [rewindSession](#rewindsession) - Rewind a session
 
@@ -286,6 +287,77 @@ run();
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.ErrorResponse   | 404                    | application/json       |
+| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
+
+## exportSession
+
+Export complete session transcript with all messages, tool calls, reasoning, and metadata as JSON
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="exportSession" method="get" path="/api/sessions/{id}/export" -->
+```typescript
+import { Mix } from "mix-typescript-sdk";
+
+const mix = new Mix();
+
+async function run() {
+  const result = await mix.sessions.exportSession({
+    id: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { MixCore } from "mix-typescript-sdk/core.js";
+import { sessionsExportSession } from "mix-typescript-sdk/funcs/sessionsExportSession.js";
+
+// Use `MixCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const mix = new MixCore();
+
+async function run() {
+  const res = await sessionsExportSession(mix, {
+    id: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsExportSession failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ExportSessionRequest](../../models/operations/exportsessionrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.ExportSessionResponse](../../models/operations/exportsessionresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.ErrorResponse   | 404                    | application/json       |
+| errors.ErrorResponse   | 500                    | application/json       |
 | errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## fork
