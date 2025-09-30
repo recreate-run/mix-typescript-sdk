@@ -25,6 +25,7 @@ export * from "./listcommands.js";
 export * from "./listmcpservers.js";
 export * from "./listsessionfiles.js";
 export * from "./resetpreferences.js";
+export * from "./rewindsession.js";
 export * from "./sendmessage.js";
 export * from "./sendstreamingmessage.js";
 export * from "./startoauthflow.js";

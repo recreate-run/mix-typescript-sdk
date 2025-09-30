@@ -7,6 +7,7 @@ import { sessionsDelete } from "../funcs/sessionsDelete.js";
 import { sessionsFork } from "../funcs/sessionsFork.js";
 import { sessionsGet } from "../funcs/sessionsGet.js";
 import { sessionsList } from "../funcs/sessionsList.js";
+import { sessionsRewindSession } from "../funcs/sessionsRewindSession.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
@@ -90,6 +91,23 @@ export class Sessions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<models.SessionData> {
     return unwrapAsync(sessionsFork(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Rewind a session
+   *
+   * @remarks
+   * Delete messages after a specified message in the current session, optionally cleaning up media files created after that point
+   */
+  async rewindSession(
+    request: operations.RewindSessionRequest,
+    options?: RequestOptions,
+  ): Promise<models.SessionData> {
+    return unwrapAsync(sessionsRewindSession(
       this,
       request,
       options,

@@ -151,6 +151,7 @@ run();
 * [delete](docs/sdks/sessions/README.md#delete) - Delete a session
 * [get](docs/sdks/sessions/README.md#get) - Get a specific session
 * [fork](docs/sdks/sessions/README.md#fork) - Fork a session
+* [rewindSession](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
 
 ### [streaming](docs/sdks/streaming/README.md)
 
@@ -211,6 +212,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
 - [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
 - [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions
+- [`sessionsRewindSession`](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
 - [`streamingSendStreamingMessage`](docs/sdks/streaming/README.md#sendstreamingmessage) - Send message via streaming pipeline
 - [`streamingStreamEvents`](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
 - [`systemGetCommand`](docs/sdks/system/README.md#getcommand) - Get specific command

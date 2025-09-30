@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 8f7306f0abc02dcb0aebc82c9cf8bb31
+  docChecksum: fe1562c7c0326e7ba8e870baea060d6a
   docVersion: 1.0.0
-  speakeasyVersion: 1.631.0
-  generationVersion: 2.716.10
-  releaseVersion: 0.6.6
-  configChecksum: a84d2241f471b8b86d40a0bbe679934b
+  speakeasyVersion: 1.631.5
+  generationVersion: 2.716.16
+  releaseVersion: 0.6.7
+  configChecksum: 61dbf3d7d6379c9fee33f937c8a5ca1f
   published: true
 features:
   typescript:
@@ -83,6 +83,8 @@ generatedFiles:
   - docs/models/operations/provider.md
   - docs/models/operations/providers.md
   - docs/models/operations/resetpreferencesresponse.md
+  - docs/models/operations/rewindsessionrequest.md
+  - docs/models/operations/rewindsessionrequestbody.md
   - docs/models/operations/sendmessagerequest.md
   - docs/models/operations/sendmessagerequestbody.md
   - docs/models/operations/sendstreamingmessagerequest.md
@@ -184,6 +186,7 @@ generatedFiles:
   - src/funcs/sessionsFork.ts
   - src/funcs/sessionsGet.ts
   - src/funcs/sessionsList.ts
+  - src/funcs/sessionsRewindSession.ts
   - src/funcs/streamingSendStreamingMessage.ts
   - src/funcs/streamingStreamEvents.ts
   - src/funcs/systemGetCommand.ts
@@ -247,6 +250,7 @@ generatedFiles:
   - src/models/operations/listmcpservers.ts
   - src/models/operations/listsessionfiles.ts
   - src/models/operations/resetpreferences.ts
+  - src/models/operations/rewindsession.ts
   - src/models/operations/sendmessage.ts
   - src/models/operations/sendstreamingmessage.ts
   - src/models/operations/startoauthflow.ts
@@ -674,4 +678,16 @@ examples:
           application/json: {"error": {"code": 812628, "message": "<value>", "type": "not_found"}}
         "500":
           application/json: {"error": {"code": 812628, "message": "<value>", "type": "not_found"}}
+  rewindSession:
+    speakeasy-default-rewind-session:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"cleanupMedia": true, "messageId": "<id>"}
+      responses:
+        "200":
+          application/json: {"assistantMessageCount": 676019, "completionTokens": 18242, "cost": 1903.72, "createdAt": "2024-09-02T07:59:03.378Z", "id": "<id>", "promptTokens": 505203, "title": "<value>", "toolCallCount": 938253, "userMessageCount": 629623}
+        "400":
+          application/json: {"error": {"code": 877894, "message": "<value>", "type": "bad_request"}}
 examplesVersion: 1.0.2
