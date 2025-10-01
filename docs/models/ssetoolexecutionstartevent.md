@@ -8,7 +8,7 @@ Base SSE event with standard fields
 import { SSEToolExecutionStartEvent } from "mix-typescript-sdk/models";
 
 let value: SSEToolExecutionStartEvent = {
-  event: "permission",
+  event: "summarize",
   id: "1234567890",
   retry: 30000,
   data: {

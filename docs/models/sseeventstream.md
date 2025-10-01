@@ -9,7 +9,7 @@ Server-Sent Event stream with discriminated event types
 
 ```typescript
 const value: models.SSECompleteEvent = {
-  event: "connected",
+  event: "heartbeat",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -23,7 +23,7 @@ const value: models.SSECompleteEvent = {
 
 ```typescript
 const value: models.SSEConnectedEvent = {
-  event: "summarize",
+  event: "session_deleted",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -36,7 +36,7 @@ const value: models.SSEConnectedEvent = {
 
 ```typescript
 const value: models.SSEContentEvent = {
-  event: "permission",
+  event: "session_created",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -50,7 +50,7 @@ const value: models.SSEContentEvent = {
 
 ```typescript
 const value: models.SSEErrorEvent = {
-  event: "tool_execution_start",
+  event: "tool_execution_complete",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -63,7 +63,7 @@ const value: models.SSEErrorEvent = {
 
 ```typescript
 const value: models.SSEHeartbeatEvent = {
-  event: "tool_execution_complete",
+  event: "summarize",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -76,7 +76,7 @@ const value: models.SSEHeartbeatEvent = {
 
 ```typescript
 const value: models.SSEPermissionEvent = {
-  event: "summarize",
+  event: "session_deleted",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -86,6 +86,36 @@ const value: models.SSEPermissionEvent = {
     sessionId: "<id>",
     toolName: "brave_search",
     type: "<value>",
+  },
+};
+```
+
+### `models.SSESessionCreatedEvent`
+
+```typescript
+const value: models.SSESessionCreatedEvent = {
+  event: "heartbeat",
+  id: "1234567890",
+  retry: 30000,
+  data: {
+    createdAt: 419339,
+    sessionId: "<id>",
+    title: "<value>",
+    type: "session_created",
+  },
+};
+```
+
+### `models.SSESessionDeletedEvent`
+
+```typescript
+const value: models.SSESessionDeletedEvent = {
+  event: "session_deleted",
+  id: "1234567890",
+  retry: 30000,
+  data: {
+    sessionId: "<id>",
+    type: "session_deleted",
   },
 };
 ```
@@ -123,7 +153,7 @@ const value: models.SSEThinkingEvent = {
 
 ```typescript
 const value: models.SSEToolEvent = {
-  event: "tool_execution_start",
+  event: "tool_execution_complete",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -140,7 +170,7 @@ const value: models.SSEToolEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionCompleteEvent = {
-  event: "complete",
+  event: "thinking",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -157,7 +187,7 @@ const value: models.SSEToolExecutionCompleteEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionStartEvent = {
-  event: "permission",
+  event: "summarize",
   id: "1234567890",
   retry: 30000,
   data: {

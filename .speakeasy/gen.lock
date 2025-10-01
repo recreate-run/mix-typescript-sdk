@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 67db1d887f1b52f46f0ee72614def3b3
+  docChecksum: 307c96acac2c5b23f87613221a0a86df
   docVersion: 1.0.0
   speakeasyVersion: 1.631.5
   generationVersion: 2.716.16
-  releaseVersion: 0.6.8
-  configChecksum: 623cc53c3de9bd5b9590dccc2de04871
+  releaseVersion: 0.6.9
+  configChecksum: 99994296711a591a0a3b0d42c87bc670
   published: true
 features:
   typescript:
@@ -129,6 +129,12 @@ generatedFiles:
   - docs/models/ssepermissionevent.md
   - docs/models/ssepermissioneventdata.md
   - docs/models/ssepermissioneventevent.md
+  - docs/models/ssesessioncreatedevent.md
+  - docs/models/ssesessioncreatedeventdata.md
+  - docs/models/ssesessioncreatedeventevent.md
+  - docs/models/ssesessiondeletedevent.md
+  - docs/models/ssesessiondeletedeventdata.md
+  - docs/models/ssesessiondeletedeventevent.md
   - docs/models/ssesummarizeevent.md
   - docs/models/ssesummarizeeventdata.md
   - docs/models/ssesummarizeeventevent.md

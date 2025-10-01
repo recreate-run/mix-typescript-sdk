@@ -8,7 +8,7 @@ Base SSE event with standard fields
 import { SSEHeartbeatEvent } from "mix-typescript-sdk/models";
 
 let value: SSEHeartbeatEvent = {
-  event: "tool_execution_complete",
+  event: "summarize",
   id: "1234567890",
   retry: 30000,
   data: {

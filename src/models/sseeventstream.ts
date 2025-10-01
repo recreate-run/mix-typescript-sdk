@@ -17,6 +17,124 @@ import {
 /**
  * Event type identifier
  */
+export const SSESessionDeletedEventEvent = {
+  Connected: "connected",
+  Heartbeat: "heartbeat",
+  Error: "error",
+  Complete: "complete",
+  Thinking: "thinking",
+  Content: "content",
+  Tool: "tool",
+  ToolExecutionStart: "tool_execution_start",
+  ToolExecutionComplete: "tool_execution_complete",
+  Permission: "permission",
+  Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
+} as const;
+/**
+ * Event type identifier
+ */
+export type SSESessionDeletedEventEvent = ClosedEnum<
+  typeof SSESessionDeletedEventEvent
+>;
+
+export type SSESessionDeletedEventData = {
+  /**
+   * ID of the deleted session
+   */
+  sessionId: string;
+  /**
+   * Event type
+   */
+  type: string;
+};
+
+/**
+ * Base SSE event with standard fields
+ */
+export type SSESessionDeletedEvent = {
+  /**
+   * Event type identifier
+   */
+  event: SSESessionDeletedEventEvent;
+  /**
+   * Unique sequential event identifier for ordering and reconnection
+   */
+  id: string;
+  /**
+   * Client retry interval in milliseconds
+   */
+  retry?: number | undefined;
+  data: SSESessionDeletedEventData;
+};
+
+/**
+ * Event type identifier
+ */
+export const SSESessionCreatedEventEvent = {
+  Connected: "connected",
+  Heartbeat: "heartbeat",
+  Error: "error",
+  Complete: "complete",
+  Thinking: "thinking",
+  Content: "content",
+  Tool: "tool",
+  ToolExecutionStart: "tool_execution_start",
+  ToolExecutionComplete: "tool_execution_complete",
+  Permission: "permission",
+  Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
+} as const;
+/**
+ * Event type identifier
+ */
+export type SSESessionCreatedEventEvent = ClosedEnum<
+  typeof SSESessionCreatedEventEvent
+>;
+
+export type SSESessionCreatedEventData = {
+  /**
+   * Unix timestamp when the session was created
+   */
+  createdAt: number;
+  /**
+   * ID of the newly created session
+   */
+  sessionId: string;
+  /**
+   * Title of the newly created session
+   */
+  title: string;
+  /**
+   * Event type
+   */
+  type: string;
+};
+
+/**
+ * Base SSE event with standard fields
+ */
+export type SSESessionCreatedEvent = {
+  /**
+   * Event type identifier
+   */
+  event: SSESessionCreatedEventEvent;
+  /**
+   * Unique sequential event identifier for ordering and reconnection
+   */
+  id: string;
+  /**
+   * Client retry interval in milliseconds
+   */
+  retry?: number | undefined;
+  data: SSESessionCreatedEventData;
+};
+
+/**
+ * Event type identifier
+ */
 export const SSESummarizeEventEvent = {
   Connected: "connected",
   Heartbeat: "heartbeat",
@@ -29,6 +147,8 @@ export const SSESummarizeEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -84,6 +204,8 @@ export const SSEPermissionEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -166,6 +288,8 @@ export const SSEToolExecutionCompleteEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -231,6 +355,8 @@ export const SSEToolExecutionStartEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -292,6 +418,8 @@ export const SSEToolEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -355,6 +483,8 @@ export const SSEContentEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -406,6 +536,8 @@ export const SSEThinkingEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -457,6 +589,8 @@ export const SSECompleteEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -524,6 +658,8 @@ export const SSEErrorEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -587,6 +723,8 @@ export const SSEHeartbeatEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -634,6 +772,8 @@ export const SSEConnectedEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
 } as const;
 /**
  * Event type identifier
@@ -676,11 +816,321 @@ export type SSEEventStream =
   | (SSEErrorEvent & { event: "error" })
   | (SSEHeartbeatEvent & { event: "heartbeat" })
   | (SSEPermissionEvent & { event: "permission" })
+  | (SSESessionCreatedEvent & { event: "session_created" })
+  | (SSESessionDeletedEvent & { event: "session_deleted" })
   | (SSESummarizeEvent & { event: "summarize" })
   | (SSEThinkingEvent & { event: "thinking" })
   | (SSEToolEvent & { event: "tool" })
   | (SSEToolExecutionCompleteEvent & { event: "tool_execution_complete" })
   | (SSEToolExecutionStartEvent & { event: "tool_execution_start" });
+
+/** @internal */
+export const SSESessionDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
+  typeof SSESessionDeletedEventEvent
+> = z.nativeEnum(SSESessionDeletedEventEvent);
+
+/** @internal */
+export const SSESessionDeletedEventEvent$outboundSchema: z.ZodNativeEnum<
+  typeof SSESessionDeletedEventEvent
+> = SSESessionDeletedEventEvent$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESessionDeletedEventEvent$ {
+  /** @deprecated use `SSESessionDeletedEventEvent$inboundSchema` instead. */
+  export const inboundSchema = SSESessionDeletedEventEvent$inboundSchema;
+  /** @deprecated use `SSESessionDeletedEventEvent$outboundSchema` instead. */
+  export const outboundSchema = SSESessionDeletedEventEvent$outboundSchema;
+}
+
+/** @internal */
+export const SSESessionDeletedEventData$inboundSchema: z.ZodType<
+  SSESessionDeletedEventData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sessionId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type SSESessionDeletedEventData$Outbound = {
+  sessionId: string;
+  type: string;
+};
+
+/** @internal */
+export const SSESessionDeletedEventData$outboundSchema: z.ZodType<
+  SSESessionDeletedEventData$Outbound,
+  z.ZodTypeDef,
+  SSESessionDeletedEventData
+> = z.object({
+  sessionId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESessionDeletedEventData$ {
+  /** @deprecated use `SSESessionDeletedEventData$inboundSchema` instead. */
+  export const inboundSchema = SSESessionDeletedEventData$inboundSchema;
+  /** @deprecated use `SSESessionDeletedEventData$outboundSchema` instead. */
+  export const outboundSchema = SSESessionDeletedEventData$outboundSchema;
+  /** @deprecated use `SSESessionDeletedEventData$Outbound` instead. */
+  export type Outbound = SSESessionDeletedEventData$Outbound;
+}
+
+export function sseSessionDeletedEventDataToJSON(
+  sseSessionDeletedEventData: SSESessionDeletedEventData,
+): string {
+  return JSON.stringify(
+    SSESessionDeletedEventData$outboundSchema.parse(sseSessionDeletedEventData),
+  );
+}
+
+export function sseSessionDeletedEventDataFromJSON(
+  jsonString: string,
+): SafeParseResult<SSESessionDeletedEventData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSESessionDeletedEventData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSESessionDeletedEventData' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSESessionDeletedEvent$inboundSchema: z.ZodType<
+  SSESessionDeletedEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  event: SSESessionDeletedEventEvent$inboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.string().transform((v, ctx) => {
+    try {
+      return JSON.parse(v);
+    } catch (err) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `malformed json: ${err}`,
+      });
+      return z.NEVER;
+    }
+  }).pipe(z.lazy(() => SSESessionDeletedEventData$inboundSchema)),
+});
+
+/** @internal */
+export type SSESessionDeletedEvent$Outbound = {
+  event: string;
+  id: string;
+  retry?: number | undefined;
+  data: SSESessionDeletedEventData$Outbound;
+};
+
+/** @internal */
+export const SSESessionDeletedEvent$outboundSchema: z.ZodType<
+  SSESessionDeletedEvent$Outbound,
+  z.ZodTypeDef,
+  SSESessionDeletedEvent
+> = z.object({
+  event: SSESessionDeletedEventEvent$outboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.lazy(() => SSESessionDeletedEventData$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESessionDeletedEvent$ {
+  /** @deprecated use `SSESessionDeletedEvent$inboundSchema` instead. */
+  export const inboundSchema = SSESessionDeletedEvent$inboundSchema;
+  /** @deprecated use `SSESessionDeletedEvent$outboundSchema` instead. */
+  export const outboundSchema = SSESessionDeletedEvent$outboundSchema;
+  /** @deprecated use `SSESessionDeletedEvent$Outbound` instead. */
+  export type Outbound = SSESessionDeletedEvent$Outbound;
+}
+
+export function sseSessionDeletedEventToJSON(
+  sseSessionDeletedEvent: SSESessionDeletedEvent,
+): string {
+  return JSON.stringify(
+    SSESessionDeletedEvent$outboundSchema.parse(sseSessionDeletedEvent),
+  );
+}
+
+export function sseSessionDeletedEventFromJSON(
+  jsonString: string,
+): SafeParseResult<SSESessionDeletedEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSESessionDeletedEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSESessionDeletedEvent' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSESessionCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
+  typeof SSESessionCreatedEventEvent
+> = z.nativeEnum(SSESessionCreatedEventEvent);
+
+/** @internal */
+export const SSESessionCreatedEventEvent$outboundSchema: z.ZodNativeEnum<
+  typeof SSESessionCreatedEventEvent
+> = SSESessionCreatedEventEvent$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESessionCreatedEventEvent$ {
+  /** @deprecated use `SSESessionCreatedEventEvent$inboundSchema` instead. */
+  export const inboundSchema = SSESessionCreatedEventEvent$inboundSchema;
+  /** @deprecated use `SSESessionCreatedEventEvent$outboundSchema` instead. */
+  export const outboundSchema = SSESessionCreatedEventEvent$outboundSchema;
+}
+
+/** @internal */
+export const SSESessionCreatedEventData$inboundSchema: z.ZodType<
+  SSESessionCreatedEventData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  createdAt: z.number().int(),
+  sessionId: z.string(),
+  title: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type SSESessionCreatedEventData$Outbound = {
+  createdAt: number;
+  sessionId: string;
+  title: string;
+  type: string;
+};
+
+/** @internal */
+export const SSESessionCreatedEventData$outboundSchema: z.ZodType<
+  SSESessionCreatedEventData$Outbound,
+  z.ZodTypeDef,
+  SSESessionCreatedEventData
+> = z.object({
+  createdAt: z.number().int(),
+  sessionId: z.string(),
+  title: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESessionCreatedEventData$ {
+  /** @deprecated use `SSESessionCreatedEventData$inboundSchema` instead. */
+  export const inboundSchema = SSESessionCreatedEventData$inboundSchema;
+  /** @deprecated use `SSESessionCreatedEventData$outboundSchema` instead. */
+  export const outboundSchema = SSESessionCreatedEventData$outboundSchema;
+  /** @deprecated use `SSESessionCreatedEventData$Outbound` instead. */
+  export type Outbound = SSESessionCreatedEventData$Outbound;
+}
+
+export function sseSessionCreatedEventDataToJSON(
+  sseSessionCreatedEventData: SSESessionCreatedEventData,
+): string {
+  return JSON.stringify(
+    SSESessionCreatedEventData$outboundSchema.parse(sseSessionCreatedEventData),
+  );
+}
+
+export function sseSessionCreatedEventDataFromJSON(
+  jsonString: string,
+): SafeParseResult<SSESessionCreatedEventData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSESessionCreatedEventData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSESessionCreatedEventData' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSESessionCreatedEvent$inboundSchema: z.ZodType<
+  SSESessionCreatedEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  event: SSESessionCreatedEventEvent$inboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.string().transform((v, ctx) => {
+    try {
+      return JSON.parse(v);
+    } catch (err) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `malformed json: ${err}`,
+      });
+      return z.NEVER;
+    }
+  }).pipe(z.lazy(() => SSESessionCreatedEventData$inboundSchema)),
+});
+
+/** @internal */
+export type SSESessionCreatedEvent$Outbound = {
+  event: string;
+  id: string;
+  retry?: number | undefined;
+  data: SSESessionCreatedEventData$Outbound;
+};
+
+/** @internal */
+export const SSESessionCreatedEvent$outboundSchema: z.ZodType<
+  SSESessionCreatedEvent$Outbound,
+  z.ZodTypeDef,
+  SSESessionCreatedEvent
+> = z.object({
+  event: SSESessionCreatedEventEvent$outboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.lazy(() => SSESessionCreatedEventData$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESessionCreatedEvent$ {
+  /** @deprecated use `SSESessionCreatedEvent$inboundSchema` instead. */
+  export const inboundSchema = SSESessionCreatedEvent$inboundSchema;
+  /** @deprecated use `SSESessionCreatedEvent$outboundSchema` instead. */
+  export const outboundSchema = SSESessionCreatedEvent$outboundSchema;
+  /** @deprecated use `SSESessionCreatedEvent$Outbound` instead. */
+  export type Outbound = SSESessionCreatedEvent$Outbound;
+}
+
+export function sseSessionCreatedEventToJSON(
+  sseSessionCreatedEvent: SSESessionCreatedEvent,
+): string {
+  return JSON.stringify(
+    SSESessionCreatedEvent$outboundSchema.parse(sseSessionCreatedEvent),
+  );
+}
+
+export function sseSessionCreatedEventFromJSON(
+  jsonString: string,
+): SafeParseResult<SSESessionCreatedEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSESessionCreatedEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSESessionCreatedEvent' from JSON`,
+  );
+}
 
 /** @internal */
 export const SSESummarizeEventEvent$inboundSchema: z.ZodNativeEnum<
@@ -2478,6 +2928,16 @@ export const SSEEventStream$inboundSchema: z.ZodType<
       event: v.event,
     })),
   ),
+  z.lazy(() => SSESessionCreatedEvent$inboundSchema).and(
+    z.object({ event: z.literal("session_created") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
+  z.lazy(() => SSESessionDeletedEvent$inboundSchema).and(
+    z.object({ event: z.literal("session_deleted") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
   z.lazy(() => SSESummarizeEvent$inboundSchema).and(
     z.object({ event: z.literal("summarize") }).transform((v) => ({
       event: v.event,
@@ -2513,6 +2973,8 @@ export type SSEEventStream$Outbound =
   | (SSEErrorEvent$Outbound & { event: "error" })
   | (SSEHeartbeatEvent$Outbound & { event: "heartbeat" })
   | (SSEPermissionEvent$Outbound & { event: "permission" })
+  | (SSESessionCreatedEvent$Outbound & { event: "session_created" })
+  | (SSESessionDeletedEvent$Outbound & { event: "session_deleted" })
   | (SSESummarizeEvent$Outbound & { event: "summarize" })
   | (SSEThinkingEvent$Outbound & { event: "thinking" })
   | (SSEToolEvent$Outbound & { event: "tool" })
@@ -2554,6 +3016,16 @@ export const SSEEventStream$outboundSchema: z.ZodType<
   ),
   z.lazy(() => SSEPermissionEvent$outboundSchema).and(
     z.object({ event: z.literal("permission") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
+  z.lazy(() => SSESessionCreatedEvent$outboundSchema).and(
+    z.object({ event: z.literal("session_created") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
+  z.lazy(() => SSESessionDeletedEvent$outboundSchema).and(
+    z.object({ event: z.literal("session_deleted") }).transform((v) => ({
       event: v.event,
     })),
   ),

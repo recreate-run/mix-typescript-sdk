@@ -8,7 +8,7 @@ Base SSE event with standard fields
 import { SSEConnectedEvent } from "mix-typescript-sdk/models";
 
 let value: SSEConnectedEvent = {
-  event: "summarize",
+  event: "session_deleted",
   id: "1234567890",
   retry: 30000,
   data: {

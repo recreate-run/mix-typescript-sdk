@@ -1,13 +1,13 @@
-# SSEContentEventEvent
+# SSESessionCreatedEventEvent
 
 Event type identifier
 
 ## Example Usage
 
 ```typescript
-import { SSEContentEventEvent } from "mix-typescript-sdk/models";
+import { SSESessionCreatedEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSEContentEventEvent = "heartbeat";
+let value: SSESessionCreatedEventEvent = "tool_execution_complete";
 ```
 
 ## Values
