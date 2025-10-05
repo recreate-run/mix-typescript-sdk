@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 1add569ef07d0c152d56345f65db4469
+  docChecksum: 8a2d65c7116b5ac61888a2e8bf76d8c8
   docVersion: 1.0.0
   speakeasyVersion: 1.634.2
   generationVersion: 2.721.3
-  releaseVersion: 0.7.0
-  configChecksum: d135f72556989a652965e48aa7cee868
+  releaseVersion: 0.7.1
+  configChecksum: af927e692a32989b47b3f2037f6a1a9e
   published: true
 features:
   typescript:
@@ -73,6 +73,7 @@ generatedFiles:
   - docs/models/operations/getsessionfilerequest.md
   - docs/models/operations/getsessionmessagesrequest.md
   - docs/models/operations/getsessionrequest.md
+  - docs/models/operations/getsysteminforesponse.md
   - docs/models/operations/gettoolsstatusresponse.md
   - docs/models/operations/gettoolsstatustool.md
   - docs/models/operations/grantpermissionrequest.md
@@ -198,6 +199,7 @@ generatedFiles:
   - src/funcs/sessionsRewindSession.ts
   - src/funcs/streamingStreamEvents.ts
   - src/funcs/systemGetCommand.ts
+  - src/funcs/systemGetSystemInfo.ts
   - src/funcs/systemHealthCheck.ts
   - src/funcs/systemListCommands.ts
   - src/funcs/systemListMcpServers.ts
@@ -253,6 +255,7 @@ generatedFiles:
   - src/models/operations/getsession.ts
   - src/models/operations/getsessionfile.ts
   - src/models/operations/getsessionmessages.ts
+  - src/models/operations/getsysteminfo.ts
   - src/models/operations/gettoolsstatus.ts
   - src/models/operations/grantpermission.ts
   - src/models/operations/handleoauthcallback.ts
