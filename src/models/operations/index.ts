@@ -18,6 +18,7 @@ export * from "./getpreferences.js";
 export * from "./getsession.js";
 export * from "./getsessionfile.js";
 export * from "./getsessionmessages.js";
+export * from "./getsysteminfo.js";
 export * from "./gettoolsstatus.js";
 export * from "./grantpermission.js";
 export * from "./handleoauthcallback.js";

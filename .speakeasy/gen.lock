@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 307c96acac2c5b23f87613221a0a86df
+  docChecksum: 210edb6787bfb24a468a26e1f67593a1
   docVersion: 1.0.0
   speakeasyVersion: 1.631.5
   generationVersion: 2.716.16
-  releaseVersion: 0.6.9
-  configChecksum: 99994296711a591a0a3b0d42c87bc670
+  releaseVersion: 0.6.10
+  configChecksum: 2a713943fe897cd5a1422721bdeb5e60
   published: true
 features:
   typescript:
@@ -73,6 +73,7 @@ generatedFiles:
   - docs/models/operations/getsessionfilerequest.md
   - docs/models/operations/getsessionmessagesrequest.md
   - docs/models/operations/getsessionrequest.md
+  - docs/models/operations/getsysteminforesponse.md
   - docs/models/operations/gettoolsstatusresponse.md
   - docs/models/operations/gettoolsstatustool.md
   - docs/models/operations/grantpermissionrequest.md
@@ -203,6 +204,7 @@ generatedFiles:
   - src/funcs/streamingSendStreamingMessage.ts
   - src/funcs/streamingStreamEvents.ts
   - src/funcs/systemGetCommand.ts
+  - src/funcs/systemGetSystemInfo.ts
   - src/funcs/systemHealthCheck.ts
   - src/funcs/systemListCommands.ts
   - src/funcs/systemListMcpServers.ts
@@ -258,6 +260,7 @@ generatedFiles:
   - src/models/operations/getsession.ts
   - src/models/operations/getsessionfile.ts
   - src/models/operations/getsessionmessages.ts
+  - src/models/operations/getsysteminfo.ts
   - src/models/operations/gettoolsstatus.ts
   - src/models/operations/grantpermission.ts
   - src/models/operations/handleoauthcallback.ts
@@ -719,4 +722,11 @@ examples:
           application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
         "500":
           application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
+  getSystemInfo:
+    speakeasy-default-get-system-info:
+      responses:
+        "200":
+          application/json: {"storageBasePath": "<value>"}
+        "500":
+          application/json: {"error": {"code": 39436, "message": "<value>", "type": "internal_error"}}
 examplesVersion: 1.0.2

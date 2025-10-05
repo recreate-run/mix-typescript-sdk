@@ -164,6 +164,7 @@ run();
 * [listCommands](docs/sdks/system/README.md#listcommands) - List available commands
 * [getCommand](docs/sdks/system/README.md#getcommand) - Get specific command
 * [listMcpServers](docs/sdks/system/README.md#listmcpservers) - List MCP servers
+* [getSystemInfo](docs/sdks/system/README.md#getsysteminfo) - Get system information
 * [healthCheck](docs/sdks/system/README.md#healthcheck) - Health check
 
 ### [tools](docs/sdks/tools/README.md)
@@ -218,6 +219,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`streamingSendStreamingMessage`](docs/sdks/streaming/README.md#sendstreamingmessage) - Send message via streaming pipeline
 - [`streamingStreamEvents`](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
 - [`systemGetCommand`](docs/sdks/system/README.md#getcommand) - Get specific command
+- [`systemGetSystemInfo`](docs/sdks/system/README.md#getsysteminfo) - Get system information
 - [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check
 - [`systemListCommands`](docs/sdks/system/README.md#listcommands) - List available commands
 - [`systemListMcpServers`](docs/sdks/system/README.md#listmcpservers) - List MCP servers

@@ -1,6 +1,6 @@
 {
   "name": "mix-typescript-sdk",
-  "version": "0.6.9",
+  "version": "0.6.10",
   "author": "Speakeasy",
   "publishConfig": {
     "access": "public"
