@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 210edb6787bfb24a468a26e1f67593a1
+  docChecksum: 1add569ef07d0c152d56345f65db4469
   docVersion: 1.0.0
-  speakeasyVersion: 1.631.5
-  generationVersion: 2.716.16
-  releaseVersion: 0.6.10
-  configChecksum: 2a713943fe897cd5a1422721bdeb5e60
+  speakeasyVersion: 1.634.2
+  generationVersion: 2.721.3
+  releaseVersion: 0.7.0
+  configChecksum: d135f72556989a652965e48aa7cee868
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.25
+    core: 3.21.26
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -27,7 +27,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverEvents: 0.1.10
-    unions: 2.85.12
+    unions: 2.86.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -73,7 +73,6 @@ generatedFiles:
   - docs/models/operations/getsessionfilerequest.md
   - docs/models/operations/getsessionmessagesrequest.md
   - docs/models/operations/getsessionrequest.md
-  - docs/models/operations/getsysteminforesponse.md
   - docs/models/operations/gettoolsstatusresponse.md
   - docs/models/operations/gettoolsstatustool.md
   - docs/models/operations/grantpermissionrequest.md
@@ -94,8 +93,6 @@ generatedFiles:
   - docs/models/operations/rewindsessionrequestbody.md
   - docs/models/operations/sendmessagerequest.md
   - docs/models/operations/sendmessagerequestbody.md
-  - docs/models/operations/sendstreamingmessagerequest.md
-  - docs/models/operations/sendstreamingmessagerequestbody.md
   - docs/models/operations/startoauthflowrequest.md
   - docs/models/operations/startoauthflowresponse.md
   - docs/models/operations/storeapikeyrequest.md
@@ -151,8 +148,6 @@ generatedFiles:
   - docs/models/ssetoolexecutionstartevent.md
   - docs/models/ssetoolexecutionstarteventdata.md
   - docs/models/ssetoolexecutionstarteventevent.md
-  - docs/models/status.md
-  - docs/models/streammessageresponse.md
   - docs/models/toolcalldata.md
   - docs/models/toolname.md
   - docs/models/type.md
@@ -201,10 +196,8 @@ generatedFiles:
   - src/funcs/sessionsGet.ts
   - src/funcs/sessionsList.ts
   - src/funcs/sessionsRewindSession.ts
-  - src/funcs/streamingSendStreamingMessage.ts
   - src/funcs/streamingStreamEvents.ts
   - src/funcs/systemGetCommand.ts
-  - src/funcs/systemGetSystemInfo.ts
   - src/funcs/systemHealthCheck.ts
   - src/funcs/systemListCommands.ts
   - src/funcs/systemListMcpServers.ts
@@ -260,7 +253,6 @@ generatedFiles:
   - src/models/operations/getsession.ts
   - src/models/operations/getsessionfile.ts
   - src/models/operations/getsessionmessages.ts
-  - src/models/operations/getsysteminfo.ts
   - src/models/operations/gettoolsstatus.ts
   - src/models/operations/grantpermission.ts
   - src/models/operations/handleoauthcallback.ts
@@ -272,7 +264,6 @@ generatedFiles:
   - src/models/operations/resetpreferences.ts
   - src/models/operations/rewindsession.ts
   - src/models/operations/sendmessage.ts
-  - src/models/operations/sendstreamingmessage.ts
   - src/models/operations/startoauthflow.ts
   - src/models/operations/storeapikey.ts
   - src/models/operations/streamevents.ts
@@ -282,7 +273,6 @@ generatedFiles:
   - src/models/resterror.ts
   - src/models/sessiondata.ts
   - src/models/sseeventstream.ts
-  - src/models/streammessageresponse.ts
   - src/models/toolcalldata.ts
   - src/models/toolname.ts
   - src/sdk/authentication.ts

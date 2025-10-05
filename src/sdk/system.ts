@@ -3,7 +3,6 @@
  */
 
 import { systemGetCommand } from "../funcs/systemGetCommand.js";
-import { systemGetSystemInfo } from "../funcs/systemGetSystemInfo.js";
 import { systemHealthCheck } from "../funcs/systemHealthCheck.js";
 import { systemListCommands } from "../funcs/systemListCommands.js";
 import { systemListMcpServers } from "../funcs/systemListMcpServers.js";
@@ -54,21 +53,6 @@ export class System extends ClientSDK {
     options?: RequestOptions,
   ): Promise<Array<operations.ListMcpServersResponse>> {
     return unwrapAsync(systemListMcpServers(
-      this,
-      options,
-    ));
-  }
-
-  /**
-   * Get system information
-   *
-   * @remarks
-   * Retrieve system information including storage configuration
-   */
-  async getSystemInfo(
-    options?: RequestOptions,
-  ): Promise<operations.GetSystemInfoResponse> {
-    return unwrapAsync(systemGetSystemInfo(
       this,
       options,
     ));
