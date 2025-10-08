@@ -3,10 +3,10 @@ id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
   docChecksum: 8a2d65c7116b5ac61888a2e8bf76d8c8
   docVersion: 1.0.0
-  speakeasyVersion: 1.634.2
-  generationVersion: 2.721.3
-  releaseVersion: 0.7.1
-  configChecksum: af927e692a32989b47b3f2037f6a1a9e
+  speakeasyVersion: 1.636.1
+  generationVersion: 2.723.4
+  releaseVersion: 0.7.2
+  configChecksum: 893f430396e4ac6a344c292f5590a637
   published: true
 features:
   typescript:
@@ -155,7 +155,6 @@ generatedFiles:
   - docs/sdks/authentication/README.md
   - docs/sdks/files/README.md
   - docs/sdks/messages/README.md
-  - docs/sdks/mix/README.md
   - docs/sdks/permissions/README.md
   - docs/sdks/preferences/README.md
   - docs/sdks/sessions/README.md

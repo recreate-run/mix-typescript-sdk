@@ -131,7 +131,6 @@ run();
 * [getSession](docs/sdks/messages/README.md#getsession) - List session messages
 * [send](docs/sdks/messages/README.md#send) - Send a message to session
 
-
 ### [permissions](docs/sdks/permissions/README.md)
 
 * [deny](docs/sdks/permissions/README.md#deny) - Deny permission
