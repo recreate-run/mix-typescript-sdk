@@ -5,7 +5,7 @@
  * These models provide type safety, validation, and IDE autocomplete support.
  *
  * Example:
- *    import { MediaOutput, MediaType } from 'mix-typescript-sdk/models';
+ *    import { MediaOutput, MediaType } from 'mix-typescript-sdk/toolmodels';
  *
  *    const output: MediaOutput = {
  *        path: "http://localhost:8088/files/video.mp4",
@@ -16,10 +16,10 @@
  */
 
 import * as z from "zod";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { ClosedEnum } from "../types/enums.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
+import { safeParse } from "./lib/schemas.js";
+import { Result as SafeParseResult } from "./types/fp.js";
+import { ClosedEnum } from "./types/enums.js";
+import { SDKValidationError } from "./models/errors/sdkvalidationerror.js";
 
 // ===== show_media Tool =====
 
