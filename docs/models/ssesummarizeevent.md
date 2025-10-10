@@ -8,7 +8,7 @@ Base SSE event with standard fields
 import { SSESummarizeEvent } from "mix-typescript-sdk/models";
 
 let value: SSESummarizeEvent = {
-  event: "heartbeat",
+  event: "error",
   id: "1234567890",
   retry: 30000,
   data: {

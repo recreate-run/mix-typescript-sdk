@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 9130d49cf435257677d2a67ac4287808
+  docChecksum: e4c0a77c51b54092271f89dea901f1e9
   docVersion: 1.0.0
   speakeasyVersion: 1.636.3
   generationVersion: 2.723.11
-  releaseVersion: 0.7.4
-  configChecksum: b082a806bbbd141237c95380e5f9124f
+  releaseVersion: 0.7.5
+  configChecksum: 242300a7d9bfc7992fd24ba3fe21e8f1
   published: true
 features:
   typescript:
@@ -150,6 +150,9 @@ generatedFiles:
   - docs/models/ssetoolexecutionstartevent.md
   - docs/models/ssetoolexecutionstarteventdata.md
   - docs/models/ssetoolexecutionstarteventevent.md
+  - docs/models/ssetoolparameterdeltaevent.md
+  - docs/models/ssetoolparameterdeltaeventdata.md
+  - docs/models/ssetoolparameterdeltaeventevent.md
   - docs/models/toolcalldata.md
   - docs/models/toolname.md
   - docs/models/type.md

@@ -110,7 +110,7 @@ const value: models.SSESessionCreatedEvent = {
 
 ```typescript
 const value: models.SSESessionDeletedEvent = {
-  event: "session_deleted",
+  event: "session_created",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -124,7 +124,7 @@ const value: models.SSESessionDeletedEvent = {
 
 ```typescript
 const value: models.SSESummarizeEvent = {
-  event: "heartbeat",
+  event: "error",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -153,7 +153,7 @@ const value: models.SSEThinkingEvent = {
 
 ```typescript
 const value: models.SSEToolEvent = {
-  event: "tool_execution_complete",
+  event: "tool_execution_start",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -194,6 +194,21 @@ const value: models.SSEToolExecutionStartEvent = {
     progress: "<value>",
     toolCallId: "<id>",
     toolName: "brave_search",
+    type: "<value>",
+  },
+};
+```
+
+### `models.SSEToolParameterDeltaEvent`
+
+```typescript
+const value: models.SSEToolParameterDeltaEvent = {
+  event: "heartbeat",
+  id: "1234567890",
+  retry: 30000,
+  data: {
+    input: "<value>",
+    toolCallId: "<id>",
     type: "<value>",
   },
 };

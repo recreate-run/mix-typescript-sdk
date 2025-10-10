@@ -25,6 +25,7 @@ export const SSESessionDeletedEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -80,6 +81,7 @@ export const SSESessionCreatedEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -143,6 +145,7 @@ export const SSESummarizeEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -200,6 +203,7 @@ export const SSEPermissionEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -284,6 +288,7 @@ export const SSEToolExecutionCompleteEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -351,6 +356,7 @@ export const SSEToolExecutionStartEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -406,6 +412,66 @@ export type SSEToolExecutionStartEvent = {
 /**
  * Event type identifier
  */
+export const SSEToolParameterDeltaEventEvent = {
+  Connected: "connected",
+  Heartbeat: "heartbeat",
+  Error: "error",
+  Complete: "complete",
+  Thinking: "thinking",
+  Content: "content",
+  Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
+  ToolExecutionStart: "tool_execution_start",
+  ToolExecutionComplete: "tool_execution_complete",
+  Permission: "permission",
+  Summarize: "summarize",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
+} as const;
+/**
+ * Event type identifier
+ */
+export type SSEToolParameterDeltaEventEvent = ClosedEnum<
+  typeof SSEToolParameterDeltaEventEvent
+>;
+
+export type SSEToolParameterDeltaEventData = {
+  /**
+   * Partial JSON parameter delta - may not be parseable until complete
+   */
+  input: string;
+  /**
+   * Tool call identifier for correlation
+   */
+  toolCallId: string;
+  /**
+   * Tool parameter delta event type
+   */
+  type: string;
+};
+
+/**
+ * Base SSE event with standard fields
+ */
+export type SSEToolParameterDeltaEvent = {
+  /**
+   * Event type identifier
+   */
+  event: SSEToolParameterDeltaEventEvent;
+  /**
+   * Unique sequential event identifier for ordering and reconnection
+   */
+  id: string;
+  /**
+   * Client retry interval in milliseconds
+   */
+  retry?: number | undefined;
+  data: SSEToolParameterDeltaEventData;
+};
+
+/**
+ * Event type identifier
+ */
 export const SSEToolEventEvent = {
   Connected: "connected",
   Heartbeat: "heartbeat",
@@ -414,6 +480,7 @@ export const SSEToolEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -479,6 +546,7 @@ export const SSEContentEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -532,6 +600,7 @@ export const SSEThinkingEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -585,6 +654,7 @@ export const SSECompleteEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -654,6 +724,7 @@ export const SSEErrorEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -719,6 +790,7 @@ export const SSEHeartbeatEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -768,6 +840,7 @@ export const SSEConnectedEventEvent = {
   Thinking: "thinking",
   Content: "content",
   Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
@@ -822,7 +895,8 @@ export type SSEEventStream =
   | (SSEThinkingEvent & { event: "thinking" })
   | (SSEToolEvent & { event: "tool" })
   | (SSEToolExecutionCompleteEvent & { event: "tool_execution_complete" })
-  | (SSEToolExecutionStartEvent & { event: "tool_execution_start" });
+  | (SSEToolExecutionStartEvent & { event: "tool_execution_start" })
+  | (SSEToolParameterDeltaEvent & { event: "tool_parameter_delta" });
 
 /** @internal */
 export const SSESessionDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
@@ -1818,6 +1892,162 @@ export function sseToolExecutionStartEventFromJSON(
     jsonString,
     (x) => SSEToolExecutionStartEvent$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SSEToolExecutionStartEvent' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSEToolParameterDeltaEventEvent$inboundSchema: z.ZodNativeEnum<
+  typeof SSEToolParameterDeltaEventEvent
+> = z.nativeEnum(SSEToolParameterDeltaEventEvent);
+
+/** @internal */
+export const SSEToolParameterDeltaEventEvent$outboundSchema: z.ZodNativeEnum<
+  typeof SSEToolParameterDeltaEventEvent
+> = SSEToolParameterDeltaEventEvent$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSEToolParameterDeltaEventEvent$ {
+  /** @deprecated use `SSEToolParameterDeltaEventEvent$inboundSchema` instead. */
+  export const inboundSchema = SSEToolParameterDeltaEventEvent$inboundSchema;
+  /** @deprecated use `SSEToolParameterDeltaEventEvent$outboundSchema` instead. */
+  export const outboundSchema = SSEToolParameterDeltaEventEvent$outboundSchema;
+}
+
+/** @internal */
+export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
+  SSEToolParameterDeltaEventData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  input: z.string(),
+  toolCallId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type SSEToolParameterDeltaEventData$Outbound = {
+  input: string;
+  toolCallId: string;
+  type: string;
+};
+
+/** @internal */
+export const SSEToolParameterDeltaEventData$outboundSchema: z.ZodType<
+  SSEToolParameterDeltaEventData$Outbound,
+  z.ZodTypeDef,
+  SSEToolParameterDeltaEventData
+> = z.object({
+  input: z.string(),
+  toolCallId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSEToolParameterDeltaEventData$ {
+  /** @deprecated use `SSEToolParameterDeltaEventData$inboundSchema` instead. */
+  export const inboundSchema = SSEToolParameterDeltaEventData$inboundSchema;
+  /** @deprecated use `SSEToolParameterDeltaEventData$outboundSchema` instead. */
+  export const outboundSchema = SSEToolParameterDeltaEventData$outboundSchema;
+  /** @deprecated use `SSEToolParameterDeltaEventData$Outbound` instead. */
+  export type Outbound = SSEToolParameterDeltaEventData$Outbound;
+}
+
+export function sseToolParameterDeltaEventDataToJSON(
+  sseToolParameterDeltaEventData: SSEToolParameterDeltaEventData,
+): string {
+  return JSON.stringify(
+    SSEToolParameterDeltaEventData$outboundSchema.parse(
+      sseToolParameterDeltaEventData,
+    ),
+  );
+}
+
+export function sseToolParameterDeltaEventDataFromJSON(
+  jsonString: string,
+): SafeParseResult<SSEToolParameterDeltaEventData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSEToolParameterDeltaEventData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSEToolParameterDeltaEventData' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSEToolParameterDeltaEvent$inboundSchema: z.ZodType<
+  SSEToolParameterDeltaEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  event: SSEToolParameterDeltaEventEvent$inboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.string().transform((v, ctx) => {
+    try {
+      return JSON.parse(v);
+    } catch (err) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `malformed json: ${err}`,
+      });
+      return z.NEVER;
+    }
+  }).pipe(z.lazy(() => SSEToolParameterDeltaEventData$inboundSchema)),
+});
+
+/** @internal */
+export type SSEToolParameterDeltaEvent$Outbound = {
+  event: string;
+  id: string;
+  retry?: number | undefined;
+  data: SSEToolParameterDeltaEventData$Outbound;
+};
+
+/** @internal */
+export const SSEToolParameterDeltaEvent$outboundSchema: z.ZodType<
+  SSEToolParameterDeltaEvent$Outbound,
+  z.ZodTypeDef,
+  SSEToolParameterDeltaEvent
+> = z.object({
+  event: SSEToolParameterDeltaEventEvent$outboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.lazy(() => SSEToolParameterDeltaEventData$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSEToolParameterDeltaEvent$ {
+  /** @deprecated use `SSEToolParameterDeltaEvent$inboundSchema` instead. */
+  export const inboundSchema = SSEToolParameterDeltaEvent$inboundSchema;
+  /** @deprecated use `SSEToolParameterDeltaEvent$outboundSchema` instead. */
+  export const outboundSchema = SSEToolParameterDeltaEvent$outboundSchema;
+  /** @deprecated use `SSEToolParameterDeltaEvent$Outbound` instead. */
+  export type Outbound = SSEToolParameterDeltaEvent$Outbound;
+}
+
+export function sseToolParameterDeltaEventToJSON(
+  sseToolParameterDeltaEvent: SSEToolParameterDeltaEvent,
+): string {
+  return JSON.stringify(
+    SSEToolParameterDeltaEvent$outboundSchema.parse(sseToolParameterDeltaEvent),
+  );
+}
+
+export function sseToolParameterDeltaEventFromJSON(
+  jsonString: string,
+): SafeParseResult<SSEToolParameterDeltaEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSEToolParameterDeltaEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSEToolParameterDeltaEvent' from JSON`,
   );
 }
 
@@ -2963,6 +3193,11 @@ export const SSEEventStream$inboundSchema: z.ZodType<
       event: v.event,
     })),
   ),
+  z.lazy(() => SSEToolParameterDeltaEvent$inboundSchema).and(
+    z.object({ event: z.literal("tool_parameter_delta") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
 ]);
 
 /** @internal */
@@ -2981,7 +3216,8 @@ export type SSEEventStream$Outbound =
   | (SSEToolExecutionCompleteEvent$Outbound & {
     event: "tool_execution_complete";
   })
-  | (SSEToolExecutionStartEvent$Outbound & { event: "tool_execution_start" });
+  | (SSEToolExecutionStartEvent$Outbound & { event: "tool_execution_start" })
+  | (SSEToolParameterDeltaEvent$Outbound & { event: "tool_parameter_delta" });
 
 /** @internal */
 export const SSEEventStream$outboundSchema: z.ZodType<
@@ -3051,6 +3287,11 @@ export const SSEEventStream$outboundSchema: z.ZodType<
   ),
   z.lazy(() => SSEToolExecutionStartEvent$outboundSchema).and(
     z.object({ event: z.literal("tool_execution_start") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
+  z.lazy(() => SSEToolParameterDeltaEvent$outboundSchema).and(
+    z.object({ event: z.literal("tool_parameter_delta") }).transform((v) => ({
       event: v.event,
     })),
   ),

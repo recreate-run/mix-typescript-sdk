@@ -1,13 +1,13 @@
-# SSEToolExecutionCompleteEventEvent
+# SSEToolParameterDeltaEventEvent
 
 Event type identifier
 
 ## Example Usage
 
 ```typescript
-import { SSEToolExecutionCompleteEventEvent } from "mix-typescript-sdk/models";
+import { SSEToolParameterDeltaEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSEToolExecutionCompleteEventEvent = "tool_parameter_delta";
+let value: SSEToolParameterDeltaEventEvent = "heartbeat";
 ```
 
 ## Values

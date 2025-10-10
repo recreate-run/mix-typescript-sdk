@@ -1721,6 +1721,7 @@ components:
             - "thinking"
             - "content"
             - "tool"
+            - "tool_parameter_delta"
             - "tool_execution_start"
             - "tool_execution_complete"
             - "permission"
@@ -1849,6 +1850,7 @@ components:
           "tool": "#/components/schemas/SSEToolEvent"
           "tool_execution_complete": "#/components/schemas/SSEToolExecutionCompleteEvent"
           "tool_execution_start": "#/components/schemas/SSEToolExecutionStartEvent"
+          "tool_parameter_delta": "#/components/schemas/SSEToolParameterDeltaEvent"
         propertyName: "event"
       oneOf:
         - {"$ref": "#/components/schemas/SSEConnectedEvent"}
@@ -1858,6 +1860,7 @@ components:
         - {"$ref": "#/components/schemas/SSEThinkingEvent"}
         - {"$ref": "#/components/schemas/SSEContentEvent"}
         - {"$ref": "#/components/schemas/SSEToolEvent"}
+        - {"$ref": "#/components/schemas/SSEToolParameterDeltaEvent"}
         - {"$ref": "#/components/schemas/SSEToolExecutionStartEvent"}
         - {"$ref": "#/components/schemas/SSEToolExecutionCompleteEvent"}
         - {"$ref": "#/components/schemas/SSEPermissionEvent"}
@@ -2090,6 +2093,29 @@ components:
                 - "toolName"
                 - "progress"
                 - "toolCallId"
+              type: "object"
+          required:
+            - "data"
+          type: "object"
+    "SSEToolParameterDeltaEvent":
+      allOf:
+        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - properties:
+            "data":
+              properties:
+                "input":
+                  description: "Partial JSON parameter delta - may not be parseable until complete"
+                  type: "string"
+                "toolCallId":
+                  description: "Tool call identifier for correlation"
+                  type: "string"
+                "type":
+                  description: "Tool parameter delta event type"
+                  type: "string"
+              required:
+                - "type"
+                - "toolCallId"
+                - "input"
               type: "object"
           required:
             - "data"
