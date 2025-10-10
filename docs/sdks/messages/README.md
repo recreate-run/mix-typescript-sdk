@@ -8,7 +8,7 @@
 * [getHistory](#gethistory) - Get global message history
 * [cancelProcessing](#cancelprocessing) - Cancel agent processing
 * [getSession](#getsession) - List session messages
-* [send](#send) - Send a message to session
+* [send](#send) - Send a message to session (async)
 
 ## getHistory
 
@@ -219,7 +219,7 @@ run();
 
 ## send
 
-Send a user message to a specific session for AI processing
+Send a user message to a specific session for AI processing. Returns immediately with 202 Accepted. All results stream via Server-Sent Events (SSE) connection.
 
 ### Example Usage
 
@@ -284,7 +284,7 @@ run();
 
 ### Response
 
-**Promise\<[models.BackendMessage](../../models/backendmessage.md)\>**
+**Promise\<[operations.SendMessageResponse](../../models/operations/sendmessageresponse.md)\>**
 
 ### Errors
 

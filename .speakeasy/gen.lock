@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 8a2d65c7116b5ac61888a2e8bf76d8c8
+  docChecksum: 9130d49cf435257677d2a67ac4287808
   docVersion: 1.0.0
-  speakeasyVersion: 1.636.1
-  generationVersion: 2.723.4
-  releaseVersion: 0.7.3
-  configChecksum: c38043c1bcefc34f633c1f0394314607
+  speakeasyVersion: 1.636.3
+  generationVersion: 2.723.11
+  releaseVersion: 0.7.4
+  configChecksum: b082a806bbbd141237c95380e5f9124f
   published: true
 features:
   typescript:
@@ -26,7 +26,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    serverEvents: 0.1.10
+    serverEvents: 0.1.12
     unions: 2.86.0
     uploadStreams: 0.1.0
 generatedFiles:
@@ -94,6 +94,7 @@ generatedFiles:
   - docs/models/operations/rewindsessionrequestbody.md
   - docs/models/operations/sendmessagerequest.md
   - docs/models/operations/sendmessagerequestbody.md
+  - docs/models/operations/sendmessageresponse.md
   - docs/models/operations/startoauthflowrequest.md
   - docs/models/operations/startoauthflowresponse.md
   - docs/models/operations/storeapikeyrequest.md
@@ -399,6 +400,8 @@ examples:
           application/json: {"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}
         "400":
           application/json: {"error": {"code": 600162, "message": "<value>", "type": "validation_error"}}
+        "202":
+          application/json: {"sessionId": "<id>", "status": "processing"}
   denyPermission:
     speakeasy-default-deny-permission:
       parameters:

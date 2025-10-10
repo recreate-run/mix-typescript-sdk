@@ -64,15 +64,15 @@ export class Messages extends ClientSDK {
   }
 
   /**
-   * Send a message to session
+   * Send a message to session (async)
    *
    * @remarks
-   * Send a user message to a specific session for AI processing
+   * Send a user message to a specific session for AI processing. Returns immediately with 202 Accepted. All results stream via Server-Sent Events (SSE) connection.
    */
   async send(
     request: operations.SendMessageRequest,
     options?: RequestOptions,
-  ): Promise<models.BackendMessage> {
+  ): Promise<operations.SendMessageResponse> {
     return unwrapAsync(messagesSend(
       this,
       request,

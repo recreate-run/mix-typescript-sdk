@@ -27,6 +27,20 @@ export type SendMessageRequest = {
   requestBody: SendMessageRequestBody;
 };
 
+/**
+ * Message accepted for processing. Agent runs asynchronously and streams results via SSE.
+ */
+export type SendMessageResponse = {
+  /**
+   * Session ID for the processing task
+   */
+  sessionId: string;
+  /**
+   * Processing status
+   */
+  status: string;
+};
+
 /** @internal */
 export const SendMessageRequestBody$inboundSchema: z.ZodType<
   SendMessageRequestBody,
@@ -154,5 +168,62 @@ export function sendMessageRequestFromJSON(
     jsonString,
     (x) => SendMessageRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SendMessageRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const SendMessageResponse$inboundSchema: z.ZodType<
+  SendMessageResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sessionId: z.string(),
+  status: z.string(),
+});
+
+/** @internal */
+export type SendMessageResponse$Outbound = {
+  sessionId: string;
+  status: string;
+};
+
+/** @internal */
+export const SendMessageResponse$outboundSchema: z.ZodType<
+  SendMessageResponse$Outbound,
+  z.ZodTypeDef,
+  SendMessageResponse
+> = z.object({
+  sessionId: z.string(),
+  status: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendMessageResponse$ {
+  /** @deprecated use `SendMessageResponse$inboundSchema` instead. */
+  export const inboundSchema = SendMessageResponse$inboundSchema;
+  /** @deprecated use `SendMessageResponse$outboundSchema` instead. */
+  export const outboundSchema = SendMessageResponse$outboundSchema;
+  /** @deprecated use `SendMessageResponse$Outbound` instead. */
+  export type Outbound = SendMessageResponse$Outbound;
+}
+
+export function sendMessageResponseToJSON(
+  sendMessageResponse: SendMessageResponse,
+): string {
+  return JSON.stringify(
+    SendMessageResponse$outboundSchema.parse(sendMessageResponse),
+  );
+}
+
+export function sendMessageResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<SendMessageResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendMessageResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendMessageResponse' from JSON`,
   );
 }
