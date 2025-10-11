@@ -305,6 +305,10 @@ export type SSEToolExecutionCompleteEventEvent = ClosedEnum<
 
 export type SSEToolExecutionCompleteEventData = {
   /**
+   * Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool.
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * Final execution progress description
    */
   progress: string;
@@ -372,6 +376,10 @@ export type SSEToolExecutionStartEventEvent = ClosedEnum<
 >;
 
 export type SSEToolExecutionStartEventData = {
+  /**
+   * Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool.
+   */
+  parentToolCallId?: string | undefined;
   /**
    * Execution progress description
    */
@@ -441,6 +449,10 @@ export type SSEToolParameterDeltaEventData = {
    */
   input: string;
   /**
+   * Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool.
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * Tool call identifier for correlation
    */
   toolCallId: string;
@@ -506,6 +518,10 @@ export type SSEToolEventData = {
    * Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
    */
   name: ToolName;
+  /**
+   * Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool.
+   */
+  parentToolCallId?: string | undefined;
   /**
    * Tool execution status
    */
@@ -1598,6 +1614,7 @@ export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   success: z.boolean(),
   toolCallId: z.string(),
@@ -1607,6 +1624,7 @@ export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEToolExecutionCompleteEventData$Outbound = {
+  parentToolCallId?: string | undefined;
   progress: string;
   success: boolean;
   toolCallId: string;
@@ -1620,6 +1638,7 @@ export const SSEToolExecutionCompleteEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEToolExecutionCompleteEventData
 > = z.object({
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   success: z.boolean(),
   toolCallId: z.string(),
@@ -1763,6 +1782,7 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   toolCallId: z.string(),
   toolName: ToolName$inboundSchema,
@@ -1771,6 +1791,7 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEToolExecutionStartEventData$Outbound = {
+  parentToolCallId?: string | undefined;
   progress: string;
   toolCallId: string;
   toolName: ToolName$Outbound;
@@ -1783,6 +1804,7 @@ export const SSEToolExecutionStartEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEToolExecutionStartEventData
 > = z.object({
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   toolCallId: z.string(),
   toolName: ToolName$outboundSchema,
@@ -1923,6 +1945,7 @@ export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   input: z.string(),
+  parentToolCallId: z.string().optional(),
   toolCallId: z.string(),
   type: z.string(),
 });
@@ -1930,6 +1953,7 @@ export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
 /** @internal */
 export type SSEToolParameterDeltaEventData$Outbound = {
   input: string;
+  parentToolCallId?: string | undefined;
   toolCallId: string;
   type: string;
 };
@@ -1941,6 +1965,7 @@ export const SSEToolParameterDeltaEventData$outboundSchema: z.ZodType<
   SSEToolParameterDeltaEventData
 > = z.object({
   input: z.string(),
+  parentToolCallId: z.string().optional(),
   toolCallId: z.string(),
   type: z.string(),
 });
@@ -2081,6 +2106,7 @@ export const SSEToolEventData$inboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   name: ToolName$inboundSchema,
+  parentToolCallId: z.string().optional(),
   status: z.string(),
   type: z.string(),
 });
@@ -2090,6 +2116,7 @@ export type SSEToolEventData$Outbound = {
   id: string;
   input: string;
   name: ToolName$Outbound;
+  parentToolCallId?: string | undefined;
   status: string;
   type: string;
 };
@@ -2103,6 +2130,7 @@ export const SSEToolEventData$outboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   name: ToolName$outboundSchema,
+  parentToolCallId: z.string().optional(),
   status: z.string(),
   type: z.string(),
 });

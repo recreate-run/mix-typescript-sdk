@@ -2027,6 +2027,9 @@ components:
                   description: "Tool input parameters"
                   type: "string"
                 "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name being executed"}
+                "parentToolCallId":
+                  description: "Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool."
+                  type: "string"
                 "status":
                   description: "Tool execution status"
                   type: "string"
@@ -2049,6 +2052,9 @@ components:
         - properties:
             "data":
               properties:
+                "parentToolCallId":
+                  description: "Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool."
+                  type: "string"
                 "progress":
                   description: "Final execution progress description"
                   type: "string"
@@ -2078,6 +2084,9 @@ components:
         - properties:
             "data":
               properties:
+                "parentToolCallId":
+                  description: "Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool."
+                  type: "string"
                 "progress":
                   description: "Execution progress description"
                   type: "string"
@@ -2105,6 +2114,9 @@ components:
               properties:
                 "input":
                   description: "Partial JSON parameter delta - may not be parseable until complete"
+                  type: "string"
+                "parentToolCallId":
+                  description: "Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool."
                   type: "string"
                 "toolCallId":
                   description: "Tool call identifier for correlation"
