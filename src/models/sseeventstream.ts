@@ -30,6 +30,7 @@ export const SSESessionDeletedEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -86,6 +87,7 @@ export const SSESessionCreatedEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -137,6 +139,67 @@ export type SSESessionCreatedEvent = {
 /**
  * Event type identifier
  */
+export const SSESubagentCreatedEventEvent = {
+  Connected: "connected",
+  Heartbeat: "heartbeat",
+  Error: "error",
+  Complete: "complete",
+  Thinking: "thinking",
+  Content: "content",
+  Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
+  ToolExecutionStart: "tool_execution_start",
+  ToolExecutionComplete: "tool_execution_complete",
+  Permission: "permission",
+  Summarize: "summarize",
+  SubagentCreated: "subagent_created",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
+} as const;
+/**
+ * Event type identifier
+ */
+export type SSESubagentCreatedEventEvent = ClosedEnum<
+  typeof SSESubagentCreatedEventEvent
+>;
+
+export type SSESubagentCreatedEventData = {
+  /**
+   * Parent Task tool call ID that spawned this subagent
+   */
+  parentToolCallId: string;
+  /**
+   * Subagent session ID for correlation with nested tool events
+   */
+  subagentSessionId: string;
+  /**
+   * Event type
+   */
+  type: string;
+};
+
+/**
+ * Base SSE event with standard fields
+ */
+export type SSESubagentCreatedEvent = {
+  /**
+   * Event type identifier
+   */
+  event: SSESubagentCreatedEventEvent;
+  /**
+   * Unique sequential event identifier for ordering and reconnection
+   */
+  id: string;
+  /**
+   * Client retry interval in milliseconds
+   */
+  retry?: number | undefined;
+  data: SSESubagentCreatedEventData;
+};
+
+/**
+ * Event type identifier
+ */
 export const SSESummarizeEventEvent = {
   Connected: "connected",
   Heartbeat: "heartbeat",
@@ -150,6 +213,7 @@ export const SSESummarizeEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -208,6 +272,7 @@ export const SSEPermissionEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -293,6 +358,7 @@ export const SSEToolExecutionCompleteEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -305,13 +371,13 @@ export type SSEToolExecutionCompleteEventEvent = ClosedEnum<
 
 export type SSEToolExecutionCompleteEventData = {
   /**
-   * Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool.
-   */
-  parentToolCallId?: string | undefined;
-  /**
    * Final execution progress description
    */
   progress: string;
+  /**
+   * Session that generated this completion event (parent or subagent session)
+   */
+  sessionId: string;
   /**
    * Indicates if tool execution succeeded
    */
@@ -365,6 +431,7 @@ export const SSEToolExecutionStartEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -377,13 +444,13 @@ export type SSEToolExecutionStartEventEvent = ClosedEnum<
 
 export type SSEToolExecutionStartEventData = {
   /**
-   * Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool.
-   */
-  parentToolCallId?: string | undefined;
-  /**
    * Execution progress description
    */
   progress: string;
+  /**
+   * Session that generated this execution event (parent or subagent session)
+   */
+  sessionId: string;
   /**
    * Tool call identifier
    */
@@ -433,6 +500,7 @@ export const SSEToolParameterDeltaEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -449,9 +517,9 @@ export type SSEToolParameterDeltaEventData = {
    */
   input: string;
   /**
-   * Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool.
+   * Session that generated this parameter delta (parent or subagent session)
    */
-  parentToolCallId?: string | undefined;
+  sessionId: string;
   /**
    * Tool call identifier for correlation
    */
@@ -497,6 +565,7 @@ export const SSEToolEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -519,9 +588,9 @@ export type SSEToolEventData = {
    */
   name: ToolName;
   /**
-   * Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool.
+   * Session that generated this tool event (parent or subagent session)
    */
-  parentToolCallId?: string | undefined;
+  sessionId: string;
   /**
    * Tool execution status
    */
@@ -567,6 +636,7 @@ export const SSEContentEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -621,6 +691,7 @@ export const SSEThinkingEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -634,6 +705,10 @@ export type SSEThinkingEventData = {
    * Thinking or reasoning content
    */
   content: string;
+  /**
+   * Session that generated this thinking event (parent or subagent session)
+   */
+  sessionId: string;
   /**
    * Thinking event type
    */
@@ -675,6 +750,7 @@ export const SSECompleteEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -745,6 +821,7 @@ export const SSEErrorEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -811,6 +888,7 @@ export const SSEHeartbeatEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -861,6 +939,7 @@ export const SSEConnectedEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  SubagentCreated: "subagent_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -907,6 +986,7 @@ export type SSEEventStream =
   | (SSEPermissionEvent & { event: "permission" })
   | (SSESessionCreatedEvent & { event: "session_created" })
   | (SSESessionDeletedEvent & { event: "session_deleted" })
+  | (SSESubagentCreatedEvent & { event: "subagent_created" })
   | (SSESummarizeEvent & { event: "summarize" })
   | (SSEThinkingEvent & { event: "thinking" })
   | (SSEToolEvent & { event: "tool" })
@@ -1219,6 +1299,162 @@ export function sseSessionCreatedEventFromJSON(
     jsonString,
     (x) => SSESessionCreatedEvent$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SSESessionCreatedEvent' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSESubagentCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
+  typeof SSESubagentCreatedEventEvent
+> = z.nativeEnum(SSESubagentCreatedEventEvent);
+
+/** @internal */
+export const SSESubagentCreatedEventEvent$outboundSchema: z.ZodNativeEnum<
+  typeof SSESubagentCreatedEventEvent
+> = SSESubagentCreatedEventEvent$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESubagentCreatedEventEvent$ {
+  /** @deprecated use `SSESubagentCreatedEventEvent$inboundSchema` instead. */
+  export const inboundSchema = SSESubagentCreatedEventEvent$inboundSchema;
+  /** @deprecated use `SSESubagentCreatedEventEvent$outboundSchema` instead. */
+  export const outboundSchema = SSESubagentCreatedEventEvent$outboundSchema;
+}
+
+/** @internal */
+export const SSESubagentCreatedEventData$inboundSchema: z.ZodType<
+  SSESubagentCreatedEventData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  parentToolCallId: z.string(),
+  subagentSessionId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type SSESubagentCreatedEventData$Outbound = {
+  parentToolCallId: string;
+  subagentSessionId: string;
+  type: string;
+};
+
+/** @internal */
+export const SSESubagentCreatedEventData$outboundSchema: z.ZodType<
+  SSESubagentCreatedEventData$Outbound,
+  z.ZodTypeDef,
+  SSESubagentCreatedEventData
+> = z.object({
+  parentToolCallId: z.string(),
+  subagentSessionId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESubagentCreatedEventData$ {
+  /** @deprecated use `SSESubagentCreatedEventData$inboundSchema` instead. */
+  export const inboundSchema = SSESubagentCreatedEventData$inboundSchema;
+  /** @deprecated use `SSESubagentCreatedEventData$outboundSchema` instead. */
+  export const outboundSchema = SSESubagentCreatedEventData$outboundSchema;
+  /** @deprecated use `SSESubagentCreatedEventData$Outbound` instead. */
+  export type Outbound = SSESubagentCreatedEventData$Outbound;
+}
+
+export function sseSubagentCreatedEventDataToJSON(
+  sseSubagentCreatedEventData: SSESubagentCreatedEventData,
+): string {
+  return JSON.stringify(
+    SSESubagentCreatedEventData$outboundSchema.parse(
+      sseSubagentCreatedEventData,
+    ),
+  );
+}
+
+export function sseSubagentCreatedEventDataFromJSON(
+  jsonString: string,
+): SafeParseResult<SSESubagentCreatedEventData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSESubagentCreatedEventData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSESubagentCreatedEventData' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSESubagentCreatedEvent$inboundSchema: z.ZodType<
+  SSESubagentCreatedEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  event: SSESubagentCreatedEventEvent$inboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.string().transform((v, ctx) => {
+    try {
+      return JSON.parse(v);
+    } catch (err) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `malformed json: ${err}`,
+      });
+      return z.NEVER;
+    }
+  }).pipe(z.lazy(() => SSESubagentCreatedEventData$inboundSchema)),
+});
+
+/** @internal */
+export type SSESubagentCreatedEvent$Outbound = {
+  event: string;
+  id: string;
+  retry?: number | undefined;
+  data: SSESubagentCreatedEventData$Outbound;
+};
+
+/** @internal */
+export const SSESubagentCreatedEvent$outboundSchema: z.ZodType<
+  SSESubagentCreatedEvent$Outbound,
+  z.ZodTypeDef,
+  SSESubagentCreatedEvent
+> = z.object({
+  event: SSESubagentCreatedEventEvent$outboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.lazy(() => SSESubagentCreatedEventData$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSESubagentCreatedEvent$ {
+  /** @deprecated use `SSESubagentCreatedEvent$inboundSchema` instead. */
+  export const inboundSchema = SSESubagentCreatedEvent$inboundSchema;
+  /** @deprecated use `SSESubagentCreatedEvent$outboundSchema` instead. */
+  export const outboundSchema = SSESubagentCreatedEvent$outboundSchema;
+  /** @deprecated use `SSESubagentCreatedEvent$Outbound` instead. */
+  export type Outbound = SSESubagentCreatedEvent$Outbound;
+}
+
+export function sseSubagentCreatedEventToJSON(
+  sseSubagentCreatedEvent: SSESubagentCreatedEvent,
+): string {
+  return JSON.stringify(
+    SSESubagentCreatedEvent$outboundSchema.parse(sseSubagentCreatedEvent),
+  );
+}
+
+export function sseSubagentCreatedEventFromJSON(
+  jsonString: string,
+): SafeParseResult<SSESubagentCreatedEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSESubagentCreatedEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSESubagentCreatedEvent' from JSON`,
   );
 }
 
@@ -1614,8 +1850,8 @@ export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  parentToolCallId: z.string().optional(),
   progress: z.string(),
+  sessionId: z.string(),
   success: z.boolean(),
   toolCallId: z.string(),
   toolName: ToolName$inboundSchema,
@@ -1624,8 +1860,8 @@ export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEToolExecutionCompleteEventData$Outbound = {
-  parentToolCallId?: string | undefined;
   progress: string;
+  sessionId: string;
   success: boolean;
   toolCallId: string;
   toolName: ToolName$Outbound;
@@ -1638,8 +1874,8 @@ export const SSEToolExecutionCompleteEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEToolExecutionCompleteEventData
 > = z.object({
-  parentToolCallId: z.string().optional(),
   progress: z.string(),
+  sessionId: z.string(),
   success: z.boolean(),
   toolCallId: z.string(),
   toolName: ToolName$outboundSchema,
@@ -1782,8 +2018,8 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  parentToolCallId: z.string().optional(),
   progress: z.string(),
+  sessionId: z.string(),
   toolCallId: z.string(),
   toolName: ToolName$inboundSchema,
   type: z.string(),
@@ -1791,8 +2027,8 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEToolExecutionStartEventData$Outbound = {
-  parentToolCallId?: string | undefined;
   progress: string;
+  sessionId: string;
   toolCallId: string;
   toolName: ToolName$Outbound;
   type: string;
@@ -1804,8 +2040,8 @@ export const SSEToolExecutionStartEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEToolExecutionStartEventData
 > = z.object({
-  parentToolCallId: z.string().optional(),
   progress: z.string(),
+  sessionId: z.string(),
   toolCallId: z.string(),
   toolName: ToolName$outboundSchema,
   type: z.string(),
@@ -1945,7 +2181,7 @@ export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   input: z.string(),
-  parentToolCallId: z.string().optional(),
+  sessionId: z.string(),
   toolCallId: z.string(),
   type: z.string(),
 });
@@ -1953,7 +2189,7 @@ export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
 /** @internal */
 export type SSEToolParameterDeltaEventData$Outbound = {
   input: string;
-  parentToolCallId?: string | undefined;
+  sessionId: string;
   toolCallId: string;
   type: string;
 };
@@ -1965,7 +2201,7 @@ export const SSEToolParameterDeltaEventData$outboundSchema: z.ZodType<
   SSEToolParameterDeltaEventData
 > = z.object({
   input: z.string(),
-  parentToolCallId: z.string().optional(),
+  sessionId: z.string(),
   toolCallId: z.string(),
   type: z.string(),
 });
@@ -2106,7 +2342,7 @@ export const SSEToolEventData$inboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   name: ToolName$inboundSchema,
-  parentToolCallId: z.string().optional(),
+  sessionId: z.string(),
   status: z.string(),
   type: z.string(),
 });
@@ -2116,7 +2352,7 @@ export type SSEToolEventData$Outbound = {
   id: string;
   input: string;
   name: ToolName$Outbound;
-  parentToolCallId?: string | undefined;
+  sessionId: string;
   status: string;
   type: string;
 };
@@ -2130,7 +2366,7 @@ export const SSEToolEventData$outboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   name: ToolName$outboundSchema,
-  parentToolCallId: z.string().optional(),
+  sessionId: z.string(),
   status: z.string(),
   type: z.string(),
 });
@@ -2412,12 +2648,14 @@ export const SSEThinkingEventData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   content: z.string(),
+  sessionId: z.string(),
   type: z.string(),
 });
 
 /** @internal */
 export type SSEThinkingEventData$Outbound = {
   content: string;
+  sessionId: string;
   type: string;
 };
 
@@ -2428,6 +2666,7 @@ export const SSEThinkingEventData$outboundSchema: z.ZodType<
   SSEThinkingEventData
 > = z.object({
   content: z.string(),
+  sessionId: z.string(),
   type: z.string(),
 });
 
@@ -3196,6 +3435,11 @@ export const SSEEventStream$inboundSchema: z.ZodType<
       event: v.event,
     })),
   ),
+  z.lazy(() => SSESubagentCreatedEvent$inboundSchema).and(
+    z.object({ event: z.literal("subagent_created") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
   z.lazy(() => SSESummarizeEvent$inboundSchema).and(
     z.object({ event: z.literal("summarize") }).transform((v) => ({
       event: v.event,
@@ -3238,6 +3482,7 @@ export type SSEEventStream$Outbound =
   | (SSEPermissionEvent$Outbound & { event: "permission" })
   | (SSESessionCreatedEvent$Outbound & { event: "session_created" })
   | (SSESessionDeletedEvent$Outbound & { event: "session_deleted" })
+  | (SSESubagentCreatedEvent$Outbound & { event: "subagent_created" })
   | (SSESummarizeEvent$Outbound & { event: "summarize" })
   | (SSEThinkingEvent$Outbound & { event: "thinking" })
   | (SSEToolEvent$Outbound & { event: "tool" })
@@ -3290,6 +3535,11 @@ export const SSEEventStream$outboundSchema: z.ZodType<
   ),
   z.lazy(() => SSESessionDeletedEvent$outboundSchema).and(
     z.object({ event: z.literal("session_deleted") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
+  z.lazy(() => SSESubagentCreatedEvent$outboundSchema).and(
+    z.object({ event: z.literal("subagent_created") }).transform((v) => ({
       event: v.event,
     })),
   ),

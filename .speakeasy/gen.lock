@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 707122f453c2617c9387d4078b9c8d9e
+  docChecksum: b484093b3936acba05af05542a57c737
   docVersion: 1.0.0
   speakeasyVersion: 1.636.3
   generationVersion: 2.723.11
-  releaseVersion: 0.7.6
-  configChecksum: ed806ccad370e4781cc0eeb257990595
+  releaseVersion: 0.7.7
+  configChecksum: d64c1273ea0c84d0599083c4b5f55526
   published: true
 features:
   typescript:
@@ -135,6 +135,9 @@ generatedFiles:
   - docs/models/ssesessiondeletedevent.md
   - docs/models/ssesessiondeletedeventdata.md
   - docs/models/ssesessiondeletedeventevent.md
+  - docs/models/ssesubagentcreatedevent.md
+  - docs/models/ssesubagentcreatedeventdata.md
+  - docs/models/ssesubagentcreatedeventevent.md
   - docs/models/ssesummarizeevent.md
   - docs/models/ssesummarizeeventdata.md
   - docs/models/ssesummarizeeventevent.md

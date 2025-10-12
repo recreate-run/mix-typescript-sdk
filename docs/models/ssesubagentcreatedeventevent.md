@@ -1,13 +1,13 @@
-# SSECompleteEventEvent
+# SSESubagentCreatedEventEvent
 
 Event type identifier
 
 ## Example Usage
 
 ```typescript
-import { SSECompleteEventEvent } from "mix-typescript-sdk/models";
+import { SSESubagentCreatedEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSECompleteEventEvent = "subagent_created";
+let value: SSESubagentCreatedEventEvent = "thinking";
 ```
 
 ## Values

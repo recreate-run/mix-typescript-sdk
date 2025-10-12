@@ -50,7 +50,7 @@ const value: models.SSEContentEvent = {
 
 ```typescript
 const value: models.SSEErrorEvent = {
-  event: "tool_execution_complete",
+  event: "permission",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -63,7 +63,7 @@ const value: models.SSEErrorEvent = {
 
 ```typescript
 const value: models.SSEHeartbeatEvent = {
-  event: "summarize",
+  event: "subagent_created",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -120,6 +120,21 @@ const value: models.SSESessionDeletedEvent = {
 };
 ```
 
+### `models.SSESubagentCreatedEvent`
+
+```typescript
+const value: models.SSESubagentCreatedEvent = {
+  event: "error",
+  id: "1234567890",
+  retry: 30000,
+  data: {
+    parentToolCallId: "<id>",
+    subagentSessionId: "<id>",
+    type: "subagent_created",
+  },
+};
+```
+
 ### `models.SSESummarizeEvent`
 
 ```typescript
@@ -144,6 +159,7 @@ const value: models.SSEThinkingEvent = {
   retry: 30000,
   data: {
     content: "<value>",
+    sessionId: "<id>",
     type: "<value>",
   },
 };
@@ -153,13 +169,14 @@ const value: models.SSEThinkingEvent = {
 
 ```typescript
 const value: models.SSEToolEvent = {
-  event: "tool_execution_start",
+  event: "tool_execution_complete",
   id: "1234567890",
   retry: 30000,
   data: {
     id: "<id>",
     input: "<value>",
     name: "brave_search",
+    sessionId: "<id>",
     status: "<value>",
     type: "<value>",
   },
@@ -170,11 +187,12 @@ const value: models.SSEToolEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionCompleteEvent = {
-  event: "thinking",
+  event: "content",
   id: "1234567890",
   retry: 30000,
   data: {
     progress: "<value>",
+    sessionId: "<id>",
     success: true,
     toolCallId: "<id>",
     toolName: "brave_search",
@@ -187,11 +205,12 @@ const value: models.SSEToolExecutionCompleteEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionStartEvent = {
-  event: "summarize",
+  event: "subagent_created",
   id: "1234567890",
   retry: 30000,
   data: {
     progress: "<value>",
+    sessionId: "<id>",
     toolCallId: "<id>",
     toolName: "brave_search",
     type: "<value>",
@@ -208,6 +227,7 @@ const value: models.SSEToolParameterDeltaEvent = {
   retry: 30000,
   data: {
     input: "<value>",
+    sessionId: "<id>",
     toolCallId: "<id>",
     type: "<value>",
   },

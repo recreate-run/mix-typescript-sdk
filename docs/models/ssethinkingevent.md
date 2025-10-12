@@ -13,6 +13,7 @@ let value: SSEThinkingEvent = {
   retry: 30000,
   data: {
     content: "<value>",
+    sessionId: "<id>",
     type: "<value>",
   },
 };

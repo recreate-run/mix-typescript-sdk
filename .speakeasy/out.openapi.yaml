@@ -1726,6 +1726,7 @@ components:
             - "tool_execution_complete"
             - "permission"
             - "summarize"
+            - "subagent_created"
             - "session_created"
             - "session_deleted"
           type: "string"
@@ -1845,6 +1846,7 @@ components:
           "permission": "#/components/schemas/SSEPermissionEvent"
           "session_created": "#/components/schemas/SSESessionCreatedEvent"
           "session_deleted": "#/components/schemas/SSESessionDeletedEvent"
+          "subagent_created": "#/components/schemas/SSESubagentCreatedEvent"
           "summarize": "#/components/schemas/SSESummarizeEvent"
           "thinking": "#/components/schemas/SSEThinkingEvent"
           "tool": "#/components/schemas/SSEToolEvent"
@@ -1865,6 +1867,7 @@ components:
         - {"$ref": "#/components/schemas/SSEToolExecutionCompleteEvent"}
         - {"$ref": "#/components/schemas/SSEPermissionEvent"}
         - {"$ref": "#/components/schemas/SSESummarizeEvent"}
+        - {"$ref": "#/components/schemas/SSESubagentCreatedEvent"}
         - {"$ref": "#/components/schemas/SSESessionCreatedEvent"}
         - {"$ref": "#/components/schemas/SSESessionDeletedEvent"}
       type: "object"
@@ -1972,6 +1975,30 @@ components:
           required:
             - "data"
           type: "object"
+    "SSESubagentCreatedEvent":
+      allOf:
+        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - properties:
+            "data":
+              properties:
+                "parentToolCallId":
+                  description: "Parent Task tool call ID that spawned this subagent"
+                  type: "string"
+                "subagentSessionId":
+                  description: "Subagent session ID for correlation with nested tool events"
+                  type: "string"
+                "type":
+                  description: "Event type"
+                  example: "subagent_created"
+                  type: "string"
+              required:
+                - "type"
+                - "parentToolCallId"
+                - "subagentSessionId"
+              type: "object"
+          required:
+            - "data"
+          type: "object"
     "SSESummarizeEvent":
       allOf:
         - {"$ref": "#/components/schemas/SSEBaseEvent"}
@@ -2004,11 +2031,15 @@ components:
                 "content":
                   description: "Thinking or reasoning content"
                   type: "string"
+                "sessionId":
+                  description: "Session that generated this thinking event (parent or subagent session)"
+                  type: "string"
                 "type":
                   description: "Thinking event type"
                   type: "string"
               required:
                 - "type"
+                - "sessionId"
                 - "content"
               type: "object"
           required:
@@ -2027,8 +2058,8 @@ components:
                   description: "Tool input parameters"
                   type: "string"
                 "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name being executed"}
-                "parentToolCallId":
-                  description: "Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool."
+                "sessionId":
+                  description: "Session that generated this tool event (parent or subagent session)"
                   type: "string"
                 "status":
                   description: "Tool execution status"
@@ -2038,6 +2069,7 @@ components:
                   type: "string"
               required:
                 - "type"
+                - "sessionId"
                 - "name"
                 - "input"
                 - "id"
@@ -2052,11 +2084,11 @@ components:
         - properties:
             "data":
               properties:
-                "parentToolCallId":
-                  description: "Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool."
-                  type: "string"
                 "progress":
                   description: "Final execution progress description"
+                  type: "string"
+                "sessionId":
+                  description: "Session that generated this completion event (parent or subagent session)"
                   type: "string"
                 "success":
                   description: "Indicates if tool execution succeeded"
@@ -2070,6 +2102,7 @@ components:
                   type: "string"
               required:
                 - "type"
+                - "sessionId"
                 - "toolName"
                 - "progress"
                 - "success"
@@ -2084,11 +2117,11 @@ components:
         - properties:
             "data":
               properties:
-                "parentToolCallId":
-                  description: "Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool."
-                  type: "string"
                 "progress":
                   description: "Execution progress description"
+                  type: "string"
+                "sessionId":
+                  description: "Session that generated this execution event (parent or subagent session)"
                   type: "string"
                 "toolCallId":
                   description: "Tool call identifier"
@@ -2099,6 +2132,7 @@ components:
                   type: "string"
               required:
                 - "type"
+                - "sessionId"
                 - "toolName"
                 - "progress"
                 - "toolCallId"
@@ -2115,8 +2149,8 @@ components:
                 "input":
                   description: "Partial JSON parameter delta - may not be parseable until complete"
                   type: "string"
-                "parentToolCallId":
-                  description: "Optional. Parent tool call ID when this tool is executed by a subagent (nested execution). Present when the tool is spawned by a Task tool."
+                "sessionId":
+                  description: "Session that generated this parameter delta (parent or subagent session)"
                   type: "string"
                 "toolCallId":
                   description: "Tool call identifier for correlation"
@@ -2126,6 +2160,7 @@ components:
                   type: "string"
               required:
                 - "type"
+                - "sessionId"
                 - "toolCallId"
                 - "input"
               type: "object"

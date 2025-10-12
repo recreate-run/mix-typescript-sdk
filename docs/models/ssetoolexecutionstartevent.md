@@ -8,11 +8,12 @@ Base SSE event with standard fields
 import { SSEToolExecutionStartEvent } from "mix-typescript-sdk/models";
 
 let value: SSEToolExecutionStartEvent = {
-  event: "summarize",
+  event: "subagent_created",
   id: "1234567890",
   retry: 30000,
   data: {
     progress: "<value>",
+    sessionId: "<id>",
     toolCallId: "<id>",
     toolName: "brave_search",
     type: "<value>",
