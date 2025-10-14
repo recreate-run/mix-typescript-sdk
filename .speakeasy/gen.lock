@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 9bb92554e064548306d3993da99eeb3b
+  docChecksum: ea8ca8d6035e4435f7afc4e9006102d4
   docVersion: 1.0.0
   speakeasyVersion: 1.636.3
   generationVersion: 2.723.11
-  releaseVersion: 0.7.8
-  configChecksum: a3f4c4e2add949cea8de3782cbc53ccf
+  releaseVersion: 0.7.9
+  configChecksum: 4fd51a773e1fc411b68a60ccbd29d46b
   published: true
 features:
   typescript:
@@ -64,14 +64,11 @@ generatedFiles:
   - docs/models/operations/forksessionrequest.md
   - docs/models/operations/forksessionrequestbody.md
   - docs/models/operations/getauthstatusauthmethod.md
-  - docs/models/operations/getauthstatusproviders.md
   - docs/models/operations/getauthstatusresponse.md
   - docs/models/operations/getavailableprovidersresponse.md
   - docs/models/operations/getcommandrequest.md
   - docs/models/operations/getcommandresponse.md
   - docs/models/operations/getmessagehistoryrequest.md
-  - docs/models/operations/getoauthhealthproviders.md
-  - docs/models/operations/getoauthhealthresponse.md
   - docs/models/operations/getpreferencesresponse.md
   - docs/models/operations/getsessionfilerequest.md
   - docs/models/operations/getsessionmessagesrequest.md
@@ -91,17 +88,16 @@ generatedFiles:
   - docs/models/operations/preferences.md
   - docs/models/operations/promptmode.md
   - docs/models/operations/provider.md
-  - docs/models/operations/providersstatus.md
-  - docs/models/operations/refreshoauthtokensresponse.md
+  - docs/models/operations/providers.md
   - docs/models/operations/resetpreferencesresponse.md
   - docs/models/operations/rewindsessionrequest.md
   - docs/models/operations/rewindsessionrequestbody.md
   - docs/models/operations/sendmessagerequest.md
   - docs/models/operations/sendmessagerequestbody.md
   - docs/models/operations/sendmessageresponse.md
+  - docs/models/operations/sessiontype.md
   - docs/models/operations/startoauthflowrequest.md
   - docs/models/operations/startoauthflowresponse.md
-  - docs/models/operations/status.md
   - docs/models/operations/storeapikeyrequest.md
   - docs/models/operations/storeapikeyresponse.md
   - docs/models/operations/streameventsrequest.md
@@ -115,6 +111,7 @@ generatedFiles:
   - docs/models/params.md
   - docs/models/resterror.md
   - docs/models/sessiondata.md
+  - docs/models/sessiontype.md
   - docs/models/ssecompleteevent.md
   - docs/models/ssecompleteeventdata.md
   - docs/models/ssecompleteeventevent.md
@@ -158,13 +155,12 @@ generatedFiles:
   - docs/models/ssetoolparameterdeltaevent.md
   - docs/models/ssetoolparameterdeltaeventdata.md
   - docs/models/ssetoolparameterdeltaeventevent.md
+  - docs/models/subagenttype.md
   - docs/models/toolcalldata.md
   - docs/models/toolname.md
   - docs/models/type.md
   - docs/sdks/authentication/README.md
   - docs/sdks/files/README.md
-  - docs/sdks/health/README.md
-  - docs/sdks/internal/README.md
   - docs/sdks/messages/README.md
   - docs/sdks/permissions/README.md
   - docs/sdks/preferences/README.md
@@ -182,9 +178,7 @@ generatedFiles:
   - src/core.ts
   - src/funcs/authenticationDeleteCredentials.ts
   - src/funcs/authenticationGetAuthStatus.ts
-  - src/funcs/authenticationGetOAuthHealth.ts
   - src/funcs/authenticationHandleOAuthCallback.ts
-  - src/funcs/authenticationRefreshOAuthTokens.ts
   - src/funcs/authenticationStartOAuthFlow.ts
   - src/funcs/authenticationStoreApiKey.ts
   - src/funcs/authenticationValidatePreferredProvider.ts
@@ -263,7 +257,6 @@ generatedFiles:
   - src/models/operations/getavailableproviders.ts
   - src/models/operations/getcommand.ts
   - src/models/operations/getmessagehistory.ts
-  - src/models/operations/getoauthhealth.ts
   - src/models/operations/getpreferences.ts
   - src/models/operations/getsession.ts
   - src/models/operations/getsessionfile.ts
@@ -277,7 +270,6 @@ generatedFiles:
   - src/models/operations/listcommands.ts
   - src/models/operations/listmcpservers.ts
   - src/models/operations/listsessionfiles.ts
-  - src/models/operations/refreshoauthtokens.ts
   - src/models/operations/resetpreferences.ts
   - src/models/operations/rewindsession.ts
   - src/models/operations/sendmessage.ts
@@ -294,9 +286,7 @@ generatedFiles:
   - src/models/toolname.ts
   - src/sdk/authentication.ts
   - src/sdk/files.ts
-  - src/sdk/health.ts
   - src/sdk/index.ts
-  - src/sdk/internal.ts
   - src/sdk/messages.ts
   - src/sdk/permissions.ts
   - src/sdk/preferences.ts
@@ -446,7 +436,7 @@ examples:
     speakeasy-default-list-sessions:
       responses:
         "200":
-          application/json: [{"assistantMessageCount": 103950, "completionTokens": 539404, "cost": 7346.82, "createdAt": "2025-02-04T14:58:04.231Z", "id": "<id>", "promptTokens": 244425, "title": "<value>", "toolCallCount": 717181, "userMessageCount": 270800}]
+          application/json: [{"assistantMessageCount": 103950, "completionTokens": 539404, "cost": 7346.82, "createdAt": "2025-02-04T14:58:04.231Z", "id": "<id>", "promptTokens": 244425, "sessionType": "main", "title": "<value>", "toolCallCount": 717181, "userMessageCount": 270800}]
         "401":
           application/json: {"error": {"code": 306652, "message": "<value>", "type": "bad_request"}}
         "500":
@@ -462,28 +452,40 @@ examples:
           application/json: {"error": {"code": 481369, "message": "<value>", "type": "validation_error"}}
     invalid_prompt_mode:
       requestBody:
-        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "title": "<value>"}
+        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "promptMode must be 'default', 'append', or 'replace'", "type": "validation_error"}}
     missing_title:
       requestBody:
-        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "title": "<value>"}
+        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "title is required", "type": "validation_error"}}
     prompt_size_exceeded_append:
       requestBody:
-        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "title": "<value>"}
+        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "Custom prompt size (75KB) exceeds append mode limit of 50KB", "type": "validation_error"}}
     prompt_size_exceeded_replace:
       requestBody:
-        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "title": "<value>"}
+        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "Custom prompt size (150KB) exceeds replace mode limit of 100KB", "type": "validation_error"}}
+    invalid_session_type:
+      requestBody:
+        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "API can only create main sessions. Use /fork endpoint for forked sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
+    subagent_type_not_allowed:
+      requestBody:
+        application/json: {"customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system.", "type": "validation_error"}}
   deleteSession:
     speakeasy-default-delete-session:
       parameters:
@@ -499,7 +501,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"assistantMessageCount": 387834, "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
+          application/json: {"assistantMessageCount": 387834, "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "sessionType": "forked", "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
         "404":
           application/json: {"error": {"code": 125836, "message": "<value>", "type": "validation_error"}}
   forkSession:
@@ -511,7 +513,7 @@ examples:
         application/json: {"messageIndex": 385832}
       responses:
         "201":
-          application/json: {"assistantMessageCount": 385832, "completionTokens": 551389, "cost": 5945.98, "createdAt": "2025-08-26T03:33:17.824Z", "id": "<id>", "promptTokens": 770117, "title": "<value>", "toolCallCount": 905266, "userMessageCount": 239157}
+          application/json: {"assistantMessageCount": 385832, "completionTokens": 551389, "cost": 5945.98, "createdAt": "2025-08-26T03:33:17.824Z", "id": "<id>", "promptTokens": 770117, "sessionType": "forked", "title": "<value>", "toolCallCount": 905266, "userMessageCount": 239157}
         "404":
           application/json: {}
         "400":
@@ -718,7 +720,7 @@ examples:
         application/json: {"cleanupMedia": true, "messageId": "<id>"}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 676019, "completionTokens": 18242, "cost": 1903.72, "createdAt": "2024-09-02T07:59:03.378Z", "id": "<id>", "promptTokens": 505203, "title": "<value>", "toolCallCount": 938253, "userMessageCount": 629623}
+          application/json: {"assistantMessageCount": 676019, "completionTokens": 18242, "cost": 1903.72, "createdAt": "2024-09-02T07:59:03.378Z", "id": "<id>", "promptTokens": 505203, "sessionType": "subagent", "title": "<value>", "toolCallCount": 938253, "userMessageCount": 629623}
         "400":
           application/json: {"error": {"code": 877894, "message": "<value>", "type": "bad_request"}}
   exportSession:

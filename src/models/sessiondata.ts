@@ -4,8 +4,43 @@
 
 import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
+
+/**
+ * Session type:
+ *
+ * @remarks
+ * - 'main': Root-level user interactions
+ * - 'forked': User-created conversation branches
+ * - 'subagent': Delegated task workers
+ */
+export const SessionType = {
+  Main: "main",
+  Forked: "forked",
+  Subagent: "subagent",
+} as const;
+/**
+ * Session type:
+ *
+ * @remarks
+ * - 'main': Root-level user interactions
+ * - 'forked': User-created conversation branches
+ * - 'subagent': Delegated task workers
+ */
+export type SessionType = ClosedEnum<typeof SessionType>;
+
+/**
+ * Subagent specialization type (only present for subagent sessions)
+ */
+export const SubagentType = {
+  GeneralPurpose: "general-purpose",
+} as const;
+/**
+ * Subagent specialization type (only present for subagent sessions)
+ */
+export type SubagentType = ClosedEnum<typeof SubagentType>;
 
 export type SessionData = {
   /**
@@ -17,7 +52,7 @@ export type SessionData = {
    */
   completionTokens: number;
   /**
-   * Total cost of session
+   * Total cost of session (for subagent sessions, costs are also accumulated in parent session)
    */
   cost: number;
   /**
@@ -33,9 +68,26 @@ export type SessionData = {
    */
   id: string;
   /**
+   * Parent session ID for forked and subagent sessions (null for main sessions)
+   */
+  parentSessionId?: string | undefined;
+  /**
    * Total prompt tokens used
    */
   promptTokens: number;
+  /**
+   * Session type:
+   *
+   * @remarks
+   * - 'main': Root-level user interactions
+   * - 'forked': User-created conversation branches
+   * - 'subagent': Delegated task workers
+   */
+  sessionType: SessionType;
+  /**
+   * Subagent specialization type (only present for subagent sessions)
+   */
+  subagentType?: SubagentType | undefined;
   /**
    * Session title
    */
@@ -51,6 +103,44 @@ export type SessionData = {
 };
 
 /** @internal */
+export const SessionType$inboundSchema: z.ZodNativeEnum<typeof SessionType> = z
+  .nativeEnum(SessionType);
+
+/** @internal */
+export const SessionType$outboundSchema: z.ZodNativeEnum<typeof SessionType> =
+  SessionType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SessionType$ {
+  /** @deprecated use `SessionType$inboundSchema` instead. */
+  export const inboundSchema = SessionType$inboundSchema;
+  /** @deprecated use `SessionType$outboundSchema` instead. */
+  export const outboundSchema = SessionType$outboundSchema;
+}
+
+/** @internal */
+export const SubagentType$inboundSchema: z.ZodNativeEnum<typeof SubagentType> =
+  z.nativeEnum(SubagentType);
+
+/** @internal */
+export const SubagentType$outboundSchema: z.ZodNativeEnum<typeof SubagentType> =
+  SubagentType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubagentType$ {
+  /** @deprecated use `SubagentType$inboundSchema` instead. */
+  export const inboundSchema = SubagentType$inboundSchema;
+  /** @deprecated use `SubagentType$outboundSchema` instead. */
+  export const outboundSchema = SubagentType$outboundSchema;
+}
+
+/** @internal */
 export const SessionData$inboundSchema: z.ZodType<
   SessionData,
   z.ZodTypeDef,
@@ -62,7 +152,10 @@ export const SessionData$inboundSchema: z.ZodType<
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   firstUserMessage: z.string().optional(),
   id: z.string(),
+  parentSessionId: z.string().optional(),
   promptTokens: z.number().int(),
+  sessionType: SessionType$inboundSchema,
+  subagentType: SubagentType$inboundSchema.optional(),
   title: z.string(),
   toolCallCount: z.number().int(),
   userMessageCount: z.number().int(),
@@ -76,7 +169,10 @@ export type SessionData$Outbound = {
   createdAt: string;
   firstUserMessage?: string | undefined;
   id: string;
+  parentSessionId?: string | undefined;
   promptTokens: number;
+  sessionType: string;
+  subagentType?: string | undefined;
   title: string;
   toolCallCount: number;
   userMessageCount: number;
@@ -94,7 +190,10 @@ export const SessionData$outboundSchema: z.ZodType<
   createdAt: z.date().transform(v => v.toISOString()),
   firstUserMessage: z.string().optional(),
   id: z.string(),
+  parentSessionId: z.string().optional(),
   promptTokens: z.number().int(),
+  sessionType: SessionType$outboundSchema,
+  subagentType: SubagentType$outboundSchema.optional(),
   title: z.string(),
   toolCallCount: z.number().int(),
   userMessageCount: z.number().int(),

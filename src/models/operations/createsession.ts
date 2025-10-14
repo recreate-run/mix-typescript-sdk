@@ -31,6 +31,17 @@ export const PromptMode = {
  */
 export type PromptMode = ClosedEnum<typeof PromptMode>;
 
+/**
+ * Session type. API can only create 'main' sessions. Forked sessions are created via /fork endpoint. Subagent sessions are created automatically by the task delegation system.
+ */
+export const SessionType = {
+  Main: "main",
+} as const;
+/**
+ * Session type. API can only create 'main' sessions. Forked sessions are created via /fork endpoint. Subagent sessions are created automatically by the task delegation system.
+ */
+export type SessionType = ClosedEnum<typeof SessionType>;
+
 export type CreateSessionRequest = {
   /**
    * Custom system prompt content. Size limits apply based on promptMode: 100KB (102,400 bytes) for replace mode, 50KB (51,200 bytes) for append mode. Ignored in default mode. Supports environment variable substitution with $<variable> syntax.
@@ -45,6 +56,14 @@ export type CreateSessionRequest = {
    * - 'replace': Replace base system prompt with customSystemPrompt (100KB limit)
    */
   promptMode?: PromptMode | undefined;
+  /**
+   * Session type. API can only create 'main' sessions. Forked sessions are created via /fork endpoint. Subagent sessions are created automatically by the task delegation system.
+   */
+  sessionType?: SessionType | undefined;
+  /**
+   * Subagent type - must not be set for API-created sessions. This field is reserved for programmatic subagent creation.
+   */
+  subagentType?: string | undefined;
   /**
    * Title for the session
    */
@@ -71,6 +90,25 @@ export namespace PromptMode$ {
 }
 
 /** @internal */
+export const SessionType$inboundSchema: z.ZodNativeEnum<typeof SessionType> = z
+  .nativeEnum(SessionType);
+
+/** @internal */
+export const SessionType$outboundSchema: z.ZodNativeEnum<typeof SessionType> =
+  SessionType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SessionType$ {
+  /** @deprecated use `SessionType$inboundSchema` instead. */
+  export const inboundSchema = SessionType$inboundSchema;
+  /** @deprecated use `SessionType$outboundSchema` instead. */
+  export const outboundSchema = SessionType$outboundSchema;
+}
+
+/** @internal */
 export const CreateSessionRequest$inboundSchema: z.ZodType<
   CreateSessionRequest,
   z.ZodTypeDef,
@@ -78,6 +116,8 @@ export const CreateSessionRequest$inboundSchema: z.ZodType<
 > = z.object({
   customSystemPrompt: z.string().optional(),
   promptMode: PromptMode$inboundSchema.default("default"),
+  sessionType: SessionType$inboundSchema.default("main"),
+  subagentType: z.string().optional(),
   title: z.string(),
 });
 
@@ -85,6 +125,8 @@ export const CreateSessionRequest$inboundSchema: z.ZodType<
 export type CreateSessionRequest$Outbound = {
   customSystemPrompt?: string | undefined;
   promptMode: string;
+  sessionType: string;
+  subagentType?: string | undefined;
   title: string;
 };
 
@@ -96,6 +138,8 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
 > = z.object({
   customSystemPrompt: z.string().optional(),
   promptMode: PromptMode$outboundSchema.default("default"),
+  sessionType: SessionType$outboundSchema.default("main"),
+  subagentType: z.string().optional(),
   title: z.string(),
 });
 

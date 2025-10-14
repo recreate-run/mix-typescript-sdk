@@ -1,11 +1,11 @@
-# GetAuthStatusProviders
+# Providers
 
 ## Example Usage
 
 ```typescript
-import { GetAuthStatusProviders } from "mix-typescript-sdk/models/operations";
+import { Providers } from "mix-typescript-sdk/models/operations";
 
-let value: GetAuthStatusProviders = {};
+let value: Providers = {};
 ```
 
 ## Fields

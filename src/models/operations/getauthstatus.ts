@@ -24,7 +24,7 @@ export type GetAuthStatusAuthMethod = ClosedEnum<
   typeof GetAuthStatusAuthMethod
 >;
 
-export type GetAuthStatusProviders = {
+export type Providers = {
   /**
    * Authentication method (oauth, api_key, none)
    */
@@ -46,7 +46,7 @@ export type GetAuthStatusResponse = {
   /**
    * Map of provider authentication status
    */
-  providers?: { [k: string]: GetAuthStatusProviders } | undefined;
+  providers?: { [k: string]: Providers } | undefined;
 };
 
 /** @internal */
@@ -71,8 +71,8 @@ export namespace GetAuthStatusAuthMethod$ {
 }
 
 /** @internal */
-export const GetAuthStatusProviders$inboundSchema: z.ZodType<
-  GetAuthStatusProviders,
+export const Providers$inboundSchema: z.ZodType<
+  Providers,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -87,17 +87,17 @@ export const GetAuthStatusProviders$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetAuthStatusProviders$Outbound = {
+export type Providers$Outbound = {
   auth_method?: string | undefined;
   authenticated?: boolean | undefined;
   display_name?: string | undefined;
 };
 
 /** @internal */
-export const GetAuthStatusProviders$outboundSchema: z.ZodType<
-  GetAuthStatusProviders$Outbound,
+export const Providers$outboundSchema: z.ZodType<
+  Providers$Outbound,
   z.ZodTypeDef,
-  GetAuthStatusProviders
+  Providers
 > = z.object({
   authMethod: GetAuthStatusAuthMethod$outboundSchema.optional(),
   authenticated: z.boolean().optional(),
@@ -113,30 +113,26 @@ export const GetAuthStatusProviders$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetAuthStatusProviders$ {
-  /** @deprecated use `GetAuthStatusProviders$inboundSchema` instead. */
-  export const inboundSchema = GetAuthStatusProviders$inboundSchema;
-  /** @deprecated use `GetAuthStatusProviders$outboundSchema` instead. */
-  export const outboundSchema = GetAuthStatusProviders$outboundSchema;
-  /** @deprecated use `GetAuthStatusProviders$Outbound` instead. */
-  export type Outbound = GetAuthStatusProviders$Outbound;
+export namespace Providers$ {
+  /** @deprecated use `Providers$inboundSchema` instead. */
+  export const inboundSchema = Providers$inboundSchema;
+  /** @deprecated use `Providers$outboundSchema` instead. */
+  export const outboundSchema = Providers$outboundSchema;
+  /** @deprecated use `Providers$Outbound` instead. */
+  export type Outbound = Providers$Outbound;
 }
 
-export function getAuthStatusProvidersToJSON(
-  getAuthStatusProviders: GetAuthStatusProviders,
-): string {
-  return JSON.stringify(
-    GetAuthStatusProviders$outboundSchema.parse(getAuthStatusProviders),
-  );
+export function providersToJSON(providers: Providers): string {
+  return JSON.stringify(Providers$outboundSchema.parse(providers));
 }
 
-export function getAuthStatusProvidersFromJSON(
+export function providersFromJSON(
   jsonString: string,
-): SafeParseResult<GetAuthStatusProviders, SDKValidationError> {
+): SafeParseResult<Providers, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetAuthStatusProviders$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetAuthStatusProviders' from JSON`,
+    (x) => Providers$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Providers' from JSON`,
   );
 }
 
@@ -146,13 +142,12 @@ export const GetAuthStatusResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  providers: z.record(z.lazy(() => GetAuthStatusProviders$inboundSchema))
-    .optional(),
+  providers: z.record(z.lazy(() => Providers$inboundSchema)).optional(),
 });
 
 /** @internal */
 export type GetAuthStatusResponse$Outbound = {
-  providers?: { [k: string]: GetAuthStatusProviders$Outbound } | undefined;
+  providers?: { [k: string]: Providers$Outbound } | undefined;
 };
 
 /** @internal */
@@ -161,8 +156,7 @@ export const GetAuthStatusResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAuthStatusResponse
 > = z.object({
-  providers: z.record(z.lazy(() => GetAuthStatusProviders$outboundSchema))
-    .optional(),
+  providers: z.record(z.lazy(() => Providers$outboundSchema)).optional(),
 });
 
 /**

@@ -5,8 +5,6 @@
 import { ClientSDK } from "../lib/sdks.js";
 import { Authentication } from "./authentication.js";
 import { Files } from "./files.js";
-import { Health } from "./health.js";
-import { Internal } from "./internal.js";
 import { Messages } from "./messages.js";
 import { Permissions } from "./permissions.js";
 import { Preferences } from "./preferences.js";
@@ -54,16 +52,6 @@ export class Mix extends ClientSDK {
   private _tools?: Tools;
   get tools(): Tools {
     return (this._tools ??= new Tools(this._options));
-  }
-
-  private _health?: Health;
-  get health(): Health {
-    return (this._health ??= new Health(this._options));
-  }
-
-  private _internal?: Internal;
-  get internal(): Internal {
-    return (this._internal ??= new Internal(this._options));
   }
 
   private _streaming?: Streaming;
