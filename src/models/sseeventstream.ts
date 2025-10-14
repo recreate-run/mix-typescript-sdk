@@ -164,6 +164,10 @@ export type SSESummarizeEventData = {
    */
   done: boolean;
   /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * Summarization progress description
    */
   progress: string;
@@ -241,6 +245,10 @@ export type SSEPermissionEventData = {
    */
   params?: Params | undefined;
   /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * File path for permission request
    */
   path?: string | undefined;
@@ -304,6 +312,10 @@ export type SSEToolExecutionCompleteEventEvent = ClosedEnum<
 >;
 
 export type SSEToolExecutionCompleteEventData = {
+  /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
   /**
    * Final execution progress description
    */
@@ -373,6 +385,10 @@ export type SSEToolExecutionStartEventEvent = ClosedEnum<
 
 export type SSEToolExecutionStartEventData = {
   /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * Execution progress description
    */
   progress: string;
@@ -441,6 +457,10 @@ export type SSEToolParameterDeltaEventData = {
    */
   input: string;
   /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * Tool call identifier for correlation
    */
   toolCallId: string;
@@ -507,6 +527,10 @@ export type SSEToolEventData = {
    */
   name: ToolName;
   /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * Tool execution status
    */
   status: string;
@@ -565,6 +589,10 @@ export type SSEContentEventData = {
    */
   content: string;
   /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * Content event type
    */
   type: string;
@@ -618,6 +646,10 @@ export type SSEThinkingEventData = {
    * Thinking or reasoning content
    */
   content: string;
+  /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
   /**
    * Thinking event type
    */
@@ -680,6 +712,10 @@ export type SSECompleteEventData = {
    * Completed message identifier
    */
   messageId?: string | undefined;
+  /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
   /**
    * Optional reasoning content
    */
@@ -750,6 +786,10 @@ export type SSEErrorEventData = {
    * Maximum number of retry attempts
    */
   maxAttempts?: number | undefined;
+  /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
   /**
    * Milliseconds to wait before retry
    */
@@ -1234,6 +1274,7 @@ export const SSESummarizeEventData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   done: z.boolean(),
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   type: z.string(),
 });
@@ -1241,6 +1282,7 @@ export const SSESummarizeEventData$inboundSchema: z.ZodType<
 /** @internal */
 export type SSESummarizeEventData$Outbound = {
   done: boolean;
+  parentToolCallId?: string | undefined;
   progress: string;
   type: string;
 };
@@ -1252,6 +1294,7 @@ export const SSESummarizeEventData$outboundSchema: z.ZodType<
   SSESummarizeEventData
 > = z.object({
   done: z.boolean(),
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   type: z.string(),
 });
@@ -1432,6 +1475,7 @@ export const SSEPermissionEventData$inboundSchema: z.ZodType<
   description: z.string(),
   id: z.string(),
   params: z.lazy(() => Params$inboundSchema).optional(),
+  parentToolCallId: z.string().optional(),
   path: z.string().optional(),
   sessionId: z.string(),
   toolName: ToolName$inboundSchema,
@@ -1444,6 +1488,7 @@ export type SSEPermissionEventData$Outbound = {
   description: string;
   id: string;
   params?: Params$Outbound | undefined;
+  parentToolCallId?: string | undefined;
   path?: string | undefined;
   sessionId: string;
   toolName: ToolName$Outbound;
@@ -1460,6 +1505,7 @@ export const SSEPermissionEventData$outboundSchema: z.ZodType<
   description: z.string(),
   id: z.string(),
   params: z.lazy(() => Params$outboundSchema).optional(),
+  parentToolCallId: z.string().optional(),
   path: z.string().optional(),
   sessionId: z.string(),
   toolName: ToolName$outboundSchema,
@@ -1598,6 +1644,7 @@ export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   success: z.boolean(),
   toolCallId: z.string(),
@@ -1607,6 +1654,7 @@ export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEToolExecutionCompleteEventData$Outbound = {
+  parentToolCallId?: string | undefined;
   progress: string;
   success: boolean;
   toolCallId: string;
@@ -1620,6 +1668,7 @@ export const SSEToolExecutionCompleteEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEToolExecutionCompleteEventData
 > = z.object({
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   success: z.boolean(),
   toolCallId: z.string(),
@@ -1763,6 +1812,7 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   toolCallId: z.string(),
   toolName: ToolName$inboundSchema,
@@ -1771,6 +1821,7 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEToolExecutionStartEventData$Outbound = {
+  parentToolCallId?: string | undefined;
   progress: string;
   toolCallId: string;
   toolName: ToolName$Outbound;
@@ -1783,6 +1834,7 @@ export const SSEToolExecutionStartEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEToolExecutionStartEventData
 > = z.object({
+  parentToolCallId: z.string().optional(),
   progress: z.string(),
   toolCallId: z.string(),
   toolName: ToolName$outboundSchema,
@@ -1923,6 +1975,7 @@ export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   input: z.string(),
+  parentToolCallId: z.string().optional(),
   toolCallId: z.string(),
   type: z.string(),
 });
@@ -1930,6 +1983,7 @@ export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
 /** @internal */
 export type SSEToolParameterDeltaEventData$Outbound = {
   input: string;
+  parentToolCallId?: string | undefined;
   toolCallId: string;
   type: string;
 };
@@ -1941,6 +1995,7 @@ export const SSEToolParameterDeltaEventData$outboundSchema: z.ZodType<
   SSEToolParameterDeltaEventData
 > = z.object({
   input: z.string(),
+  parentToolCallId: z.string().optional(),
   toolCallId: z.string(),
   type: z.string(),
 });
@@ -2081,6 +2136,7 @@ export const SSEToolEventData$inboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   name: ToolName$inboundSchema,
+  parentToolCallId: z.string().optional(),
   status: z.string(),
   type: z.string(),
 });
@@ -2090,6 +2146,7 @@ export type SSEToolEventData$Outbound = {
   id: string;
   input: string;
   name: ToolName$Outbound;
+  parentToolCallId?: string | undefined;
   status: string;
   type: string;
 };
@@ -2103,6 +2160,7 @@ export const SSEToolEventData$outboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   name: ToolName$outboundSchema,
+  parentToolCallId: z.string().optional(),
   status: z.string(),
   type: z.string(),
 });
@@ -2235,12 +2293,14 @@ export const SSEContentEventData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   content: z.string(),
+  parentToolCallId: z.string().optional(),
   type: z.string(),
 });
 
 /** @internal */
 export type SSEContentEventData$Outbound = {
   content: string;
+  parentToolCallId?: string | undefined;
   type: string;
 };
 
@@ -2251,6 +2311,7 @@ export const SSEContentEventData$outboundSchema: z.ZodType<
   SSEContentEventData
 > = z.object({
   content: z.string(),
+  parentToolCallId: z.string().optional(),
   type: z.string(),
 });
 
@@ -2384,12 +2445,14 @@ export const SSEThinkingEventData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   content: z.string(),
+  parentToolCallId: z.string().optional(),
   type: z.string(),
 });
 
 /** @internal */
 export type SSEThinkingEventData$Outbound = {
   content: string;
+  parentToolCallId?: string | undefined;
   type: string;
 };
 
@@ -2400,6 +2463,7 @@ export const SSEThinkingEventData$outboundSchema: z.ZodType<
   SSEThinkingEventData
 > = z.object({
   content: z.string(),
+  parentToolCallId: z.string().optional(),
   type: z.string(),
 });
 
@@ -2537,6 +2601,7 @@ export const SSECompleteEventData$inboundSchema: z.ZodType<
   content: z.string().optional(),
   done: z.boolean(),
   messageId: z.string().optional(),
+  parentToolCallId: z.string().optional(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),
   type: z.string(),
@@ -2547,6 +2612,7 @@ export type SSECompleteEventData$Outbound = {
   content?: string | undefined;
   done: boolean;
   messageId?: string | undefined;
+  parentToolCallId?: string | undefined;
   reasoning?: string | undefined;
   reasoningDuration?: number | undefined;
   type: string;
@@ -2561,6 +2627,7 @@ export const SSECompleteEventData$outboundSchema: z.ZodType<
   content: z.string().optional(),
   done: z.boolean(),
   messageId: z.string().optional(),
+  parentToolCallId: z.string().optional(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),
   type: z.string(),
@@ -2700,6 +2767,7 @@ export const SSEErrorEventData$inboundSchema: z.ZodType<
   attempt: z.number().int().optional(),
   error: z.string(),
   maxAttempts: z.number().int().optional(),
+  parentToolCallId: z.string().optional(),
   retryAfter: z.number().int().optional(),
   type: z.string().optional(),
 });
@@ -2709,6 +2777,7 @@ export type SSEErrorEventData$Outbound = {
   attempt?: number | undefined;
   error: string;
   maxAttempts?: number | undefined;
+  parentToolCallId?: string | undefined;
   retryAfter?: number | undefined;
   type?: string | undefined;
 };
@@ -2722,6 +2791,7 @@ export const SSEErrorEventData$outboundSchema: z.ZodType<
   attempt: z.number().int().optional(),
   error: z.string(),
   maxAttempts: z.number().int().optional(),
+  parentToolCallId: z.string().optional(),
   retryAfter: z.number().int().optional(),
   type: z.string().optional(),
 });

@@ -1773,6 +1773,9 @@ components:
                 "messageId":
                   description: "Completed message identifier"
                   type: "string"
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
                 "reasoning":
                   description: "Optional reasoning content"
                   type: "string"
@@ -1813,6 +1816,9 @@ components:
                 "content":
                   description: "Streaming content delta"
                   type: "string"
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
                 "type":
                   description: "Content event type"
                   type: "string"
@@ -1838,6 +1844,9 @@ components:
                 "maxAttempts":
                   description: "Maximum number of retry attempts"
                   type: "integer"
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
                 "retryAfter":
                   description: "Milliseconds to wait before retry"
                   type: "integer"
@@ -1919,6 +1928,9 @@ components:
                 "params":
                   description: "Additional parameters for the permission request"
                   type: "object"
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
                 "path":
                   description: "File path for permission request"
                   type: "string"
@@ -1998,6 +2010,9 @@ components:
                 "done":
                   description: "Indicates if summarization is complete"
                   type: "boolean"
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
                 "progress":
                   description: "Summarization progress description"
                   type: "string"
@@ -2020,6 +2035,9 @@ components:
               properties:
                 "content":
                   description: "Thinking or reasoning content"
+                  type: "string"
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
                 "type":
                   description: "Thinking event type"
@@ -2044,6 +2062,9 @@ components:
                   description: "Tool input parameters"
                   type: "string"
                 "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name being executed"}
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
                 "status":
                   description: "Tool execution status"
                   type: "string"
@@ -2066,6 +2087,9 @@ components:
         - properties:
             "data":
               properties:
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
                 "progress":
                   description: "Final execution progress description"
                   type: "string"
@@ -2095,6 +2119,9 @@ components:
         - properties:
             "data":
               properties:
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
                 "progress":
                   description: "Execution progress description"
                   type: "string"
@@ -2122,6 +2149,9 @@ components:
               properties:
                 "input":
                   description: "Partial JSON parameter delta - may not be parseable until complete"
+                  type: "string"
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
                 "toolCallId":
                   description: "Tool call identifier for correlation"

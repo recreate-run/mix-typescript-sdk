@@ -13,7 +13,8 @@ let value: SSEContentEventData = {
 
 ## Fields
 
-| Field                   | Type                    | Required                | Description             |
-| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
-| `content`               | *string*                | :heavy_check_mark:      | Streaming content delta |
-| `type`                  | *string*                | :heavy_check_mark:      | Content event type      |
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `content`                                                                 | *string*                                                                  | :heavy_check_mark:                                                        | Streaming content delta                                                   |
+| `parentToolCallId`                                                        | *string*                                                                  | :heavy_minus_sign:                                                        | ID of the parent tool call that spawned this subagent (for nested events) |
+| `type`                                                                    | *string*                                                                  | :heavy_check_mark:                                                        | Content event type                                                        |

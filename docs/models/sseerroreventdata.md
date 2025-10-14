@@ -12,10 +12,11 @@ let value: SSEErrorEventData = {
 
 ## Fields
 
-| Field                             | Type                              | Required                          | Description                       |
-| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
-| `attempt`                         | *number*                          | :heavy_minus_sign:                | Current retry attempt number      |
-| `error`                           | *string*                          | :heavy_check_mark:                | Error message description         |
-| `maxAttempts`                     | *number*                          | :heavy_minus_sign:                | Maximum number of retry attempts  |
-| `retryAfter`                      | *number*                          | :heavy_minus_sign:                | Milliseconds to wait before retry |
-| `type`                            | *string*                          | :heavy_minus_sign:                | Error type classification         |
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `attempt`                                                                 | *number*                                                                  | :heavy_minus_sign:                                                        | Current retry attempt number                                              |
+| `error`                                                                   | *string*                                                                  | :heavy_check_mark:                                                        | Error message description                                                 |
+| `maxAttempts`                                                             | *number*                                                                  | :heavy_minus_sign:                                                        | Maximum number of retry attempts                                          |
+| `parentToolCallId`                                                        | *string*                                                                  | :heavy_minus_sign:                                                        | ID of the parent tool call that spawned this subagent (for nested events) |
+| `retryAfter`                                                              | *number*                                                                  | :heavy_minus_sign:                                                        | Milliseconds to wait before retry                                         |
+| `type`                                                                    | *string*                                                                  | :heavy_minus_sign:                                                        | Error type classification                                                 |
