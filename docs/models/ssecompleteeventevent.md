@@ -7,11 +7,11 @@ Event type identifier
 ```typescript
 import { SSECompleteEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSECompleteEventEvent = "subagent_created";
+let value: SSECompleteEventEvent = "summarize";
 ```
 
 ## Values
 
 ```typescript
-"connected" | "heartbeat" | "error" | "complete" | "thinking" | "content" | "tool" | "tool_parameter_delta" | "tool_execution_start" | "tool_execution_complete" | "permission" | "summarize" | "subagent_created" | "session_created" | "session_deleted"
+"connected" | "heartbeat" | "error" | "complete" | "thinking" | "content" | "tool" | "tool_parameter_delta" | "tool_execution_start" | "tool_execution_complete" | "permission" | "summarize" | "session_created" | "session_deleted"
 ```

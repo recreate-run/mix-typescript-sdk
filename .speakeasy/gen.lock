@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: b484093b3936acba05af05542a57c737
+  docChecksum: 9bb92554e064548306d3993da99eeb3b
   docVersion: 1.0.0
   speakeasyVersion: 1.636.3
   generationVersion: 2.723.11
-  releaseVersion: 0.7.7
-  configChecksum: d64c1273ea0c84d0599083c4b5f55526
+  releaseVersion: 0.7.8
+  configChecksum: a3f4c4e2add949cea8de3782cbc53ccf
   published: true
 features:
   typescript:
@@ -64,11 +64,14 @@ generatedFiles:
   - docs/models/operations/forksessionrequest.md
   - docs/models/operations/forksessionrequestbody.md
   - docs/models/operations/getauthstatusauthmethod.md
+  - docs/models/operations/getauthstatusproviders.md
   - docs/models/operations/getauthstatusresponse.md
   - docs/models/operations/getavailableprovidersresponse.md
   - docs/models/operations/getcommandrequest.md
   - docs/models/operations/getcommandresponse.md
   - docs/models/operations/getmessagehistoryrequest.md
+  - docs/models/operations/getoauthhealthproviders.md
+  - docs/models/operations/getoauthhealthresponse.md
   - docs/models/operations/getpreferencesresponse.md
   - docs/models/operations/getsessionfilerequest.md
   - docs/models/operations/getsessionmessagesrequest.md
@@ -88,7 +91,8 @@ generatedFiles:
   - docs/models/operations/preferences.md
   - docs/models/operations/promptmode.md
   - docs/models/operations/provider.md
-  - docs/models/operations/providers.md
+  - docs/models/operations/providersstatus.md
+  - docs/models/operations/refreshoauthtokensresponse.md
   - docs/models/operations/resetpreferencesresponse.md
   - docs/models/operations/rewindsessionrequest.md
   - docs/models/operations/rewindsessionrequestbody.md
@@ -97,6 +101,7 @@ generatedFiles:
   - docs/models/operations/sendmessageresponse.md
   - docs/models/operations/startoauthflowrequest.md
   - docs/models/operations/startoauthflowresponse.md
+  - docs/models/operations/status.md
   - docs/models/operations/storeapikeyrequest.md
   - docs/models/operations/storeapikeyresponse.md
   - docs/models/operations/streameventsrequest.md
@@ -135,9 +140,6 @@ generatedFiles:
   - docs/models/ssesessiondeletedevent.md
   - docs/models/ssesessiondeletedeventdata.md
   - docs/models/ssesessiondeletedeventevent.md
-  - docs/models/ssesubagentcreatedevent.md
-  - docs/models/ssesubagentcreatedeventdata.md
-  - docs/models/ssesubagentcreatedeventevent.md
   - docs/models/ssesummarizeevent.md
   - docs/models/ssesummarizeeventdata.md
   - docs/models/ssesummarizeeventevent.md
@@ -161,6 +163,8 @@ generatedFiles:
   - docs/models/type.md
   - docs/sdks/authentication/README.md
   - docs/sdks/files/README.md
+  - docs/sdks/health/README.md
+  - docs/sdks/internal/README.md
   - docs/sdks/messages/README.md
   - docs/sdks/permissions/README.md
   - docs/sdks/preferences/README.md
@@ -178,7 +182,9 @@ generatedFiles:
   - src/core.ts
   - src/funcs/authenticationDeleteCredentials.ts
   - src/funcs/authenticationGetAuthStatus.ts
+  - src/funcs/authenticationGetOAuthHealth.ts
   - src/funcs/authenticationHandleOAuthCallback.ts
+  - src/funcs/authenticationRefreshOAuthTokens.ts
   - src/funcs/authenticationStartOAuthFlow.ts
   - src/funcs/authenticationStoreApiKey.ts
   - src/funcs/authenticationValidatePreferredProvider.ts
@@ -257,6 +263,7 @@ generatedFiles:
   - src/models/operations/getavailableproviders.ts
   - src/models/operations/getcommand.ts
   - src/models/operations/getmessagehistory.ts
+  - src/models/operations/getoauthhealth.ts
   - src/models/operations/getpreferences.ts
   - src/models/operations/getsession.ts
   - src/models/operations/getsessionfile.ts
@@ -270,6 +277,7 @@ generatedFiles:
   - src/models/operations/listcommands.ts
   - src/models/operations/listmcpservers.ts
   - src/models/operations/listsessionfiles.ts
+  - src/models/operations/refreshoauthtokens.ts
   - src/models/operations/resetpreferences.ts
   - src/models/operations/rewindsession.ts
   - src/models/operations/sendmessage.ts
@@ -286,7 +294,9 @@ generatedFiles:
   - src/models/toolname.ts
   - src/sdk/authentication.ts
   - src/sdk/files.ts
+  - src/sdk/health.ts
   - src/sdk/index.ts
+  - src/sdk/internal.ts
   - src/sdk/messages.ts
   - src/sdk/permissions.ts
   - src/sdk/preferences.ts
@@ -730,4 +740,18 @@ examples:
           application/json: {"storageBasePath": "<value>"}
         "500":
           application/json: {"error": {"code": 39436, "message": "<value>", "type": "internal_error"}}
+  getOAuthHealth:
+    speakeasy-default-get-O-auth-health:
+      responses:
+        "200":
+          application/json: {"providers": {"key": {"expires_in": "2h30m15s", "provider": "<value>", "status": "expired"}}, "status": "healthy", "timestamp": "2024-10-11T14:02:57.011Z"}
+        "500":
+          application/json: {"error": {"code": 52281, "message": "<value>", "type": "internal_error"}}
+  refreshOAuthTokens:
+    speakeasy-default-refresh-O-auth-tokens:
+      responses:
+        "200":
+          application/json: {"message": "Token refresh triggered successfully", "status": "success"}
+        "500":
+          application/json: {"error": {"code": 726372, "message": "<value>", "type": "bad_request"}}
 examplesVersion: 1.0.2

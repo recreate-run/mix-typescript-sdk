@@ -8,12 +8,11 @@ Base SSE event with standard fields
 import { SSEToolExecutionCompleteEvent } from "mix-typescript-sdk/models";
 
 let value: SSEToolExecutionCompleteEvent = {
-  event: "content",
+  event: "thinking",
   id: "1234567890",
   retry: 30000,
   data: {
     progress: "<value>",
-    sessionId: "<id>",
     success: true,
     toolCallId: "<id>",
     toolName: "brave_search",

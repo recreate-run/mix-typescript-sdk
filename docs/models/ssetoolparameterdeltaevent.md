@@ -13,7 +13,6 @@ let value: SSEToolParameterDeltaEvent = {
   retry: 30000,
   data: {
     input: "<value>",
-    sessionId: "<id>",
     toolCallId: "<id>",
     type: "<value>",
   },

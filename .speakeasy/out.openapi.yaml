@@ -1401,6 +1401,108 @@ paths:
       summary: "Health check"
       tags:
         - "System"
+  "/health/auth":
+    get:
+      description: "Get health status of all OAuth credentials including expiry information. Health statuses: 'healthy' (all tokens valid), 'degraded' (some tokens expired but refreshable), 'unhealthy' (tokens expired without refresh capability)"
+      operationId: "getOAuthHealth"
+      responses:
+        "200":
+          content:
+            "application/json":
+              schema:
+                properties:
+                  "providers":
+                    additionalProperties:
+                      properties:
+                        "error":
+                          description: "Error message if status is 'error'"
+                          type: "string"
+                        "expires_at":
+                          description: "Token expiration time"
+                          format: "date-time"
+                          type: "string"
+                        "expires_in":
+                          description: "Human-readable time until expiration"
+                          example: "2h30m15s"
+                          type: "string"
+                        "last_refresh":
+                          description: "Last time token was refreshed"
+                          format: "date-time"
+                          type: "string"
+                        "provider":
+                          description: "Provider name"
+                          type: "string"
+                        "status":
+                          description: "Token status"
+                          enum:
+                            - "active"
+                            - "expired"
+                            - "expired_no_refresh"
+                            - "error"
+                            - "not_found"
+                          type: "string"
+                      required:
+                        - "provider"
+                        - "status"
+                      type: "object"
+                    description: "Map of provider OAuth health status"
+                    type: "object"
+                  "status":
+                    description: "Overall health status"
+                    enum:
+                      - "healthy"
+                      - "degraded"
+                      - "unhealthy"
+                    example: "healthy"
+                    type: "string"
+                  "timestamp":
+                    description: "Health check timestamp"
+                    format: "date-time"
+                    type: "string"
+                required:
+                  - "status"
+                  - "providers"
+                  - "timestamp"
+                type: "object"
+          description: "OAuth health status"
+        "500":
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+          description: "Health check service not available or internal error"
+      summary: "Get OAuth authentication health"
+      tags:
+        - "Health"
+        - "Authentication"
+  "/internal/auth/refresh-tokens":
+    post:
+      description: "Manually trigger OAuth token refresh for all expired tokens. Normally tokens are refreshed automatically by the background service every 30 minutes."
+      operationId: "refreshOAuthTokens"
+      responses:
+        "200":
+          content:
+            "application/json":
+              schema:
+                properties:
+                  "message":
+                    description: "Status message"
+                    example: "Token refresh triggered successfully"
+                    type: "string"
+                  "status":
+                    description: "Operation status"
+                    example: "success"
+                    type: "string"
+                type: "object"
+          description: "Token refresh triggered"
+        "500":
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+          description: "Token refresh service not available or internal error"
+      summary: "Manually refresh OAuth tokens"
+      tags:
+        - "Authentication"
+        - "Internal"
   "/stream":
     get:
       description: "Establishes a persistent SSE connection for receiving real-time updates during message processing. Connection remains open for multiple messages and includes proper reconnection support with Last-Event-ID header."
@@ -1726,7 +1828,6 @@ components:
             - "tool_execution_complete"
             - "permission"
             - "summarize"
-            - "subagent_created"
             - "session_created"
             - "session_deleted"
           type: "string"
@@ -1846,7 +1947,6 @@ components:
           "permission": "#/components/schemas/SSEPermissionEvent"
           "session_created": "#/components/schemas/SSESessionCreatedEvent"
           "session_deleted": "#/components/schemas/SSESessionDeletedEvent"
-          "subagent_created": "#/components/schemas/SSESubagentCreatedEvent"
           "summarize": "#/components/schemas/SSESummarizeEvent"
           "thinking": "#/components/schemas/SSEThinkingEvent"
           "tool": "#/components/schemas/SSEToolEvent"
@@ -1867,7 +1967,6 @@ components:
         - {"$ref": "#/components/schemas/SSEToolExecutionCompleteEvent"}
         - {"$ref": "#/components/schemas/SSEPermissionEvent"}
         - {"$ref": "#/components/schemas/SSESummarizeEvent"}
-        - {"$ref": "#/components/schemas/SSESubagentCreatedEvent"}
         - {"$ref": "#/components/schemas/SSESessionCreatedEvent"}
         - {"$ref": "#/components/schemas/SSESessionDeletedEvent"}
       type: "object"
@@ -1975,30 +2074,6 @@ components:
           required:
             - "data"
           type: "object"
-    "SSESubagentCreatedEvent":
-      allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
-        - properties:
-            "data":
-              properties:
-                "parentToolCallId":
-                  description: "Parent Task tool call ID that spawned this subagent"
-                  type: "string"
-                "subagentSessionId":
-                  description: "Subagent session ID for correlation with nested tool events"
-                  type: "string"
-                "type":
-                  description: "Event type"
-                  example: "subagent_created"
-                  type: "string"
-              required:
-                - "type"
-                - "parentToolCallId"
-                - "subagentSessionId"
-              type: "object"
-          required:
-            - "data"
-          type: "object"
     "SSESummarizeEvent":
       allOf:
         - {"$ref": "#/components/schemas/SSEBaseEvent"}
@@ -2031,15 +2106,11 @@ components:
                 "content":
                   description: "Thinking or reasoning content"
                   type: "string"
-                "sessionId":
-                  description: "Session that generated this thinking event (parent or subagent session)"
-                  type: "string"
                 "type":
                   description: "Thinking event type"
                   type: "string"
               required:
                 - "type"
-                - "sessionId"
                 - "content"
               type: "object"
           required:
@@ -2058,9 +2129,6 @@ components:
                   description: "Tool input parameters"
                   type: "string"
                 "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name being executed"}
-                "sessionId":
-                  description: "Session that generated this tool event (parent or subagent session)"
-                  type: "string"
                 "status":
                   description: "Tool execution status"
                   type: "string"
@@ -2069,7 +2137,6 @@ components:
                   type: "string"
               required:
                 - "type"
-                - "sessionId"
                 - "name"
                 - "input"
                 - "id"
@@ -2087,9 +2154,6 @@ components:
                 "progress":
                   description: "Final execution progress description"
                   type: "string"
-                "sessionId":
-                  description: "Session that generated this completion event (parent or subagent session)"
-                  type: "string"
                 "success":
                   description: "Indicates if tool execution succeeded"
                   type: "boolean"
@@ -2102,7 +2166,6 @@ components:
                   type: "string"
               required:
                 - "type"
-                - "sessionId"
                 - "toolName"
                 - "progress"
                 - "success"
@@ -2120,9 +2183,6 @@ components:
                 "progress":
                   description: "Execution progress description"
                   type: "string"
-                "sessionId":
-                  description: "Session that generated this execution event (parent or subagent session)"
-                  type: "string"
                 "toolCallId":
                   description: "Tool call identifier"
                   type: "string"
@@ -2132,7 +2192,6 @@ components:
                   type: "string"
               required:
                 - "type"
-                - "sessionId"
                 - "toolName"
                 - "progress"
                 - "toolCallId"
@@ -2149,9 +2208,6 @@ components:
                 "input":
                   description: "Partial JSON parameter delta - may not be parseable until complete"
                   type: "string"
-                "sessionId":
-                  description: "Session that generated this parameter delta (parent or subagent session)"
-                  type: "string"
                 "toolCallId":
                   description: "Tool call identifier for correlation"
                   type: "string"
@@ -2160,7 +2216,6 @@ components:
                   type: "string"
               required:
                 - "type"
-                - "sessionId"
                 - "toolCallId"
                 - "input"
               type: "object"
