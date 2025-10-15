@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 4c8e67bff98710278a8ed048c8e37359
+  docChecksum: 5bc7f6915d5bd7892a0a2786837bb0b5
   docVersion: 1.0.0
   speakeasyVersion: 1.636.3
   generationVersion: 2.723.11
-  releaseVersion: 0.7.11
-  configChecksum: 8a8101f2197f81477c03d3d2d4feb581
+  releaseVersion: 0.7.12
+  configChecksum: fa0bd3ed4e22b7bef4ec95a8f1d59d5e
   published: true
 features:
   typescript:
@@ -85,6 +85,7 @@ generatedFiles:
   - docs/models/operations/listmcpserversresponse.md
   - docs/models/operations/listmcpserverstool.md
   - docs/models/operations/listsessionfilesrequest.md
+  - docs/models/operations/listsessionsrequest.md
   - docs/models/operations/preferences.md
   - docs/models/operations/promptmode.md
   - docs/models/operations/provider.md
@@ -270,6 +271,7 @@ generatedFiles:
   - src/models/operations/listcommands.ts
   - src/models/operations/listmcpservers.ts
   - src/models/operations/listsessionfiles.ts
+  - src/models/operations/listsessions.ts
   - src/models/operations/resetpreferences.ts
   - src/models/operations/rewindsession.ts
   - src/models/operations/sendmessage.ts
@@ -434,6 +436,9 @@ examples:
           application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
   listSessions:
     speakeasy-default-list-sessions:
+      parameters:
+        query:
+          includeSubagents: false
       responses:
         "200":
           application/json: [{"assistantMessageCount": 103950, "completionTokens": 539404, "cost": 7346.82, "createdAt": "2025-02-04T14:58:04.231Z", "id": "<id>", "promptTokens": 244425, "sessionType": "main", "title": "<value>", "toolCallCount": 717181, "userMessageCount": 270800}]

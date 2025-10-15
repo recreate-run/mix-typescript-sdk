@@ -22,10 +22,12 @@ export class Sessions extends ClientSDK {
    * Retrieve a list of all available sessions with their metadata
    */
   async list(
+    request?: operations.ListSessionsRequest | undefined,
     options?: RequestOptions,
   ): Promise<Array<models.SessionData>> {
     return unwrapAsync(sessionsList(
       this,
+      request,
       options,
     ));
   }
