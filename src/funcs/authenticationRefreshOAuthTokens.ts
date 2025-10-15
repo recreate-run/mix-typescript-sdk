@@ -3,10 +3,8 @@
  */
 
 import { MixCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -20,24 +18,22 @@ import * as errors from "../models/errors/index.js";
 import { MixError } from "../models/errors/mixerror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create a new session
+ * Manually refresh OAuth tokens
  *
  * @remarks
- * Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory. Supports session-level callbacks for automated actions after tool execution.
+ * Manually trigger OAuth token refresh for all expired tokens. Normally tokens are refreshed automatically by the background service every 30 minutes.
  */
-export function sessionsCreate(
+export function authenticationRefreshOAuthTokens(
   client: MixCore,
-  request: operations.CreateSessionRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    models.SessionData,
+    operations.RefreshOAuthTokensResponse,
     | errors.ErrorResponse
     | MixError
     | ResponseValidationError
@@ -51,19 +47,17 @@ export function sessionsCreate(
 > {
   return new APIPromise($do(
     client,
-    request,
     options,
   ));
 }
 
 async function $do(
   client: MixCore,
-  request: operations.CreateSessionRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      models.SessionData,
+      operations.RefreshOAuthTokensResponse,
       | errors.ErrorResponse
       | MixError
       | ResponseValidationError
@@ -77,28 +71,16 @@ async function $do(
     APICall,
   ]
 > {
-  const parsed = safeParse(
-    request,
-    (value) => operations.CreateSessionRequest$outboundSchema.parse(value),
-    "Input validation failed",
-  );
-  if (!parsed.ok) {
-    return [parsed, { status: "invalid" }];
-  }
-  const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
-
-  const path = pathToFunc("/api/sessions")();
+  const path = pathToFunc("/internal/auth/refresh-tokens")();
 
   const headers = new Headers(compactMap({
-    "Content-Type": "application/json",
     Accept: "application/json",
   }));
 
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "createSession",
+    operationID: "refreshOAuthTokens",
     oAuth2Scopes: null,
 
     resolvedSecurity: null,
@@ -125,7 +107,6 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -136,7 +117,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "4XX", "5XX"],
+    errorCodes: ["4XX", "500", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -150,7 +131,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    models.SessionData,
+    operations.RefreshOAuthTokensResponse,
     | errors.ErrorResponse
     | MixError
     | ResponseValidationError
@@ -161,8 +142,8 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(201, models.SessionData$inboundSchema),
-    M.jsonErr(400, errors.ErrorResponse$inboundSchema),
+    M.json(200, operations.RefreshOAuthTokensResponse$inboundSchema),
+    M.jsonErr(500, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

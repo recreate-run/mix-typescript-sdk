@@ -116,6 +116,8 @@ run();
 * [getAuthStatus](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
 * [validatePreferredProvider](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
 * [deleteCredentials](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
+* [getOAuthHealth](docs/sdks/authentication/README.md#getoauthhealth) - Get OAuth authentication health
+* [refreshOAuthTokens](docs/sdks/authentication/README.md#refreshoauthtokens) - Manually refresh OAuth tokens
 
 ### [files](docs/sdks/files/README.md)
 
@@ -123,6 +125,14 @@ run();
 * [upload](docs/sdks/files/README.md#upload) - Upload file to session
 * [delete](docs/sdks/files/README.md#delete) - Delete session file
 * [get](docs/sdks/files/README.md#get) - Get session file
+
+### [health](docs/sdks/health/README.md)
+
+* [getOAuthHealth](docs/sdks/health/README.md#getoauthhealth) - Get OAuth authentication health
+
+### [internal](docs/sdks/internal/README.md)
+
+* [refreshOAuthTokens](docs/sdks/internal/README.md#refreshoauthtokens) - Manually refresh OAuth tokens
 
 ### [messages](docs/sdks/messages/README.md)
 
@@ -149,6 +159,7 @@ run();
 * [create](docs/sdks/sessions/README.md#create) - Create a new session
 * [delete](docs/sdks/sessions/README.md#delete) - Delete a session
 * [get](docs/sdks/sessions/README.md#get) - Get a specific session
+* [updateSessionCallbacks](docs/sdks/sessions/README.md#updatesessioncallbacks) - Update session callbacks
 * [exportSession](docs/sdks/sessions/README.md#exportsession) - Export session transcript
 * [fork](docs/sdks/sessions/README.md#fork) - Fork a session
 * [rewindSession](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
@@ -189,7 +200,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`authenticationDeleteCredentials`](docs/sdks/authentication/README.md#deletecredentials) - Delete provider credentials
 - [`authenticationGetAuthStatus`](docs/sdks/authentication/README.md#getauthstatus) - Get authentication status
+- [`authenticationGetOAuthHealth`](docs/sdks/authentication/README.md#getoauthhealth) - Get OAuth authentication health
+- [`authenticationGetOAuthHealth`](docs/sdks/health/README.md#getoauthhealth) - Get OAuth authentication health
 - [`authenticationHandleOAuthCallback`](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
+- [`authenticationRefreshOAuthTokens`](docs/sdks/authentication/README.md#refreshoauthtokens) - Manually refresh OAuth tokens
+- [`authenticationRefreshOAuthTokens`](docs/sdks/internal/README.md#refreshoauthtokens) - Manually refresh OAuth tokens
 - [`authenticationStartOAuthFlow`](docs/sdks/authentication/README.md#startoauthflow) - Start OAuth authentication
 - [`authenticationStoreApiKey`](docs/sdks/authentication/README.md#storeapikey) - Store API key
 - [`authenticationValidatePreferredProvider`](docs/sdks/authentication/README.md#validatepreferredprovider) - Validate preferred provider
@@ -214,6 +229,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
 - [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions
 - [`sessionsRewindSession`](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
+- [`sessionsUpdateSessionCallbacks`](docs/sdks/sessions/README.md#updatesessioncallbacks) - Update session callbacks
 - [`streamingStreamEvents`](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
 - [`systemGetCommand`](docs/sdks/system/README.md#getcommand) - Get specific command
 - [`systemGetSystemInfo`](docs/sdks/system/README.md#getsysteminfo) - Get system information
@@ -411,7 +427,7 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`MixError`](./src/models/errors/mixerror.ts): The base class for HTTP error responses.
-  * [`ErrorResponse`](./src/models/errors/errorresponse.ts): Generic error.
+  * [`ErrorResponse`](./src/models/errors/errorresponse.ts): *
 
 <details><summary>Less common errors (6)</summary>
 
@@ -429,6 +445,8 @@ run();
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->

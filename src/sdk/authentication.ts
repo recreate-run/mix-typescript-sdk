@@ -4,7 +4,9 @@
 
 import { authenticationDeleteCredentials } from "../funcs/authenticationDeleteCredentials.js";
 import { authenticationGetAuthStatus } from "../funcs/authenticationGetAuthStatus.js";
+import { authenticationGetOAuthHealth } from "../funcs/authenticationGetOAuthHealth.js";
 import { authenticationHandleOAuthCallback } from "../funcs/authenticationHandleOAuthCallback.js";
+import { authenticationRefreshOAuthTokens } from "../funcs/authenticationRefreshOAuthTokens.js";
 import { authenticationStartOAuthFlow } from "../funcs/authenticationStartOAuthFlow.js";
 import { authenticationStoreApiKey } from "../funcs/authenticationStoreApiKey.js";
 import { authenticationValidatePreferredProvider } from "../funcs/authenticationValidatePreferredProvider.js";
@@ -107,6 +109,36 @@ export class Authentication extends ClientSDK {
     return unwrapAsync(authenticationDeleteCredentials(
       this,
       request,
+      options,
+    ));
+  }
+
+  /**
+   * Get OAuth authentication health
+   *
+   * @remarks
+   * Get health status of all OAuth credentials. Background service refreshes tokens 35 minutes before expiry. API calls mark tokens expired 5 minutes before expiry. Health statuses: 'healthy' (tokens valid, >5min remaining), 'degraded' (some tokens within 5min of expiry but refreshable), 'unhealthy' (tokens expired without refresh capability)
+   */
+  async getOAuthHealth(
+    options?: RequestOptions,
+  ): Promise<operations.GetOAuthHealthResponse> {
+    return unwrapAsync(authenticationGetOAuthHealth(
+      this,
+      options,
+    ));
+  }
+
+  /**
+   * Manually refresh OAuth tokens
+   *
+   * @remarks
+   * Manually trigger OAuth token refresh for all expired tokens. Normally tokens are refreshed automatically by the background service every 30 minutes.
+   */
+  async refreshOAuthTokens(
+    options?: RequestOptions,
+  ): Promise<operations.RefreshOAuthTokensResponse> {
+    return unwrapAsync(authenticationRefreshOAuthTokens(
+      this,
       options,
     ));
   }
