@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:105773ea861cd2c55fdc57ab73a4d76c6e3312e269848bb764c8565ef656e6d2
         sourceBlobDigest: sha256:16725bd74856e0b1dae4a5b5d80df02740d7294a7cdce6d0e4d614341ed52101
         codeSamplesNamespace: mix-rest-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:66a89a1f66aa9878be18dcba0967bd7f610a89dba688c55552b22fe83e1176fa
+        codeSamplesRevisionDigest: sha256:cd0e57c139d87f0f75807f4a830074a1c2df007fb00df679deb196b9c4a70d47
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
