@@ -72,6 +72,10 @@ export type SessionData = {
    */
   parentSessionId?: string | undefined;
   /**
+   * ID of the tool call that spawned this subagent session (null for non-subagent sessions)
+   */
+  parentToolCallId?: string | undefined;
+  /**
    * Total prompt tokens used
    */
   promptTokens: number;
@@ -153,6 +157,7 @@ export const SessionData$inboundSchema: z.ZodType<
   firstUserMessage: z.string().optional(),
   id: z.string(),
   parentSessionId: z.string().optional(),
+  parentToolCallId: z.string().optional(),
   promptTokens: z.number().int(),
   sessionType: SessionType$inboundSchema,
   subagentType: SubagentType$inboundSchema.optional(),
@@ -170,6 +175,7 @@ export type SessionData$Outbound = {
   firstUserMessage?: string | undefined;
   id: string;
   parentSessionId?: string | undefined;
+  parentToolCallId?: string | undefined;
   promptTokens: number;
   sessionType: string;
   subagentType?: string | undefined;
@@ -191,6 +197,7 @@ export const SessionData$outboundSchema: z.ZodType<
   firstUserMessage: z.string().optional(),
   id: z.string(),
   parentSessionId: z.string().optional(),
+  parentToolCallId: z.string().optional(),
   promptTokens: z.number().int(),
   sessionType: SessionType$outboundSchema,
   subagentType: SubagentType$outboundSchema.optional(),

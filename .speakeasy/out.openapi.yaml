@@ -2192,6 +2192,9 @@ components:
         "parentSessionId":
           description: "Parent session ID for forked and subagent sessions (null for main sessions)"
           type: "string"
+        "parentToolCallId":
+          description: "ID of the tool call that spawned this subagent session (null for non-subagent sessions)"
+          type: "string"
         "promptTokens":
           description: "Total prompt tokens used"
           type: "integer"
