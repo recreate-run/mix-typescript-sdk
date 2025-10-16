@@ -1684,6 +1684,10 @@ components:
           default: false
           description: "Include full conversation history in sub-agent context (not yet implemented)"
           type: "boolean"
+        "messageContent":
+          description: "Message content to inject into the conversation (required for send_message type). Will be sent as a User message."
+          example: "Please review the changes and run tests"
+          type: "string"
         "name":
           description: "Human-readable name for this callback (optional, defaults to 'Callback #XXXX')"
           example: "Log Output"
@@ -1704,10 +1708,11 @@ components:
           example: "*"
           type: "string"
         "type":
-          description: "Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents"
+          description: "Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents, 'send_message' for injecting messages"
           enum:
             - "bash_script"
             - "sub_agent"
+            - "send_message"
           type: "string"
       required:
         - "toolName"
@@ -1724,6 +1729,7 @@ components:
           enum:
             - "bash_script"
             - "sub_agent"
+            - "send_message"
           type: "string"
         "error":
           description: "Error message if callback failed (optional)"

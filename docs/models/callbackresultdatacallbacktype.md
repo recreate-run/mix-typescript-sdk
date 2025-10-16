@@ -13,5 +13,5 @@ let value: CallbackResultDataCallbackType = "bash_script";
 ## Values
 
 ```typescript
-"bash_script" | "sub_agent"
+"bash_script" | "sub_agent" | "send_message"
 ```

@@ -8,7 +8,7 @@ Callback execution result information
 import { CallbackResultData } from "mix-typescript-sdk/models";
 
 let value: CallbackResultData = {
-  callbackType: "bash_script",
+  callbackType: "sub_agent",
   nonBlocking: true,
   success: false,
   toolCallId: "<id>",

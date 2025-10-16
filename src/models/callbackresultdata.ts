@@ -15,6 +15,7 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 export const CallbackResultDataCallbackType = {
   BashScript: "bash_script",
   SubAgent: "sub_agent",
+  SendMessage: "send_message",
 } as const;
 /**
  * Type of callback executed

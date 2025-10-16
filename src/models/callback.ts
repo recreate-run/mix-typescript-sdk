@@ -9,14 +9,15 @@ import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
- * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents
+ * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents, 'send_message' for injecting messages
  */
 export const CallbackType = {
   BashScript: "bash_script",
   SubAgent: "sub_agent",
+  SendMessage: "send_message",
 } as const;
 /**
- * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents
+ * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents, 'send_message' for injecting messages
  */
 export type CallbackType = ClosedEnum<typeof CallbackType>;
 
@@ -36,6 +37,10 @@ export type Callback = {
    * Include full conversation history in sub-agent context (not yet implemented)
    */
   includeFullHistory?: boolean | undefined;
+  /**
+   * Message content to inject into the conversation (required for send_message type). Will be sent as a User message.
+   */
+  messageContent?: string | undefined;
   /**
    * Human-readable name for this callback (optional, defaults to 'Callback #XXXX')
    */
@@ -57,7 +62,7 @@ export type Callback = {
    */
   toolName: string;
   /**
-   * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents
+   * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents, 'send_message' for injecting messages
    */
   type: CallbackType;
 };
@@ -90,6 +95,7 @@ export const Callback$inboundSchema: z.ZodType<
   bashCommand: z.string().optional(),
   bashTimeout: z.number().int().default(120000),
   includeFullHistory: z.boolean().default(false),
+  messageContent: z.string().optional(),
   name: z.string().optional(),
   nonBlocking: z.boolean().default(false),
   subAgentPrompt: z.string().optional(),
@@ -103,6 +109,7 @@ export type Callback$Outbound = {
   bashCommand?: string | undefined;
   bashTimeout: number;
   includeFullHistory: boolean;
+  messageContent?: string | undefined;
   name?: string | undefined;
   nonBlocking: boolean;
   subAgentPrompt?: string | undefined;
@@ -120,6 +127,7 @@ export const Callback$outboundSchema: z.ZodType<
   bashCommand: z.string().optional(),
   bashTimeout: z.number().int().default(120000),
   includeFullHistory: z.boolean().default(false),
+  messageContent: z.string().optional(),
   name: z.string().optional(),
   nonBlocking: z.boolean().default(false),
   subAgentPrompt: z.string().optional(),
