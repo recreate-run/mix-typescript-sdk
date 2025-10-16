@@ -1684,6 +1684,10 @@ components:
           default: false
           description: "Include full conversation history in sub-agent context (not yet implemented)"
           type: "boolean"
+        "name":
+          description: "Human-readable name for this callback (optional, defaults to 'Callback #XXXX')"
+          example: "Log Output"
+          type: "string"
         "nonBlocking":
           default: false
           description: "Run callback asynchronously without waiting for completion"
@@ -1712,6 +1716,9 @@ components:
     "CallbackResultData":
       description: "Callback execution result information"
       properties:
+        "callback_name":
+          description: "Human-readable name of the callback (optional)"
+          type: "string"
         "callback_type":
           description: "Type of callback executed"
           enum:

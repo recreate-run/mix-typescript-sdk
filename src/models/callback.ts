@@ -37,6 +37,10 @@ export type Callback = {
    */
   includeFullHistory?: boolean | undefined;
   /**
+   * Human-readable name for this callback (optional, defaults to 'Callback #XXXX')
+   */
+  name?: string | undefined;
+  /**
    * Run callback asynchronously without waiting for completion
    */
   nonBlocking?: boolean | undefined;
@@ -86,6 +90,7 @@ export const Callback$inboundSchema: z.ZodType<
   bashCommand: z.string().optional(),
   bashTimeout: z.number().int().default(120000),
   includeFullHistory: z.boolean().default(false),
+  name: z.string().optional(),
   nonBlocking: z.boolean().default(false),
   subAgentPrompt: z.string().optional(),
   subAgentType: z.string().default("general-purpose"),
@@ -98,6 +103,7 @@ export type Callback$Outbound = {
   bashCommand?: string | undefined;
   bashTimeout: number;
   includeFullHistory: boolean;
+  name?: string | undefined;
   nonBlocking: boolean;
   subAgentPrompt?: string | undefined;
   subAgentType: string;
@@ -114,6 +120,7 @@ export const Callback$outboundSchema: z.ZodType<
   bashCommand: z.string().optional(),
   bashTimeout: z.number().int().default(120000),
   includeFullHistory: z.boolean().default(false),
+  name: z.string().optional(),
   nonBlocking: z.boolean().default(false),
   subAgentPrompt: z.string().optional(),
   subAgentType: z.string().default("general-purpose"),

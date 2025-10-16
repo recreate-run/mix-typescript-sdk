@@ -9,6 +9,7 @@ let value: SessionData = {
   assistantMessageCount: 73841,
   callbacks: [
     {
+      name: "Log Output",
       toolName: "*",
       type: "bash_script",
     },

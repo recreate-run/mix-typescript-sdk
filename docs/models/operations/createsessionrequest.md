@@ -8,6 +8,7 @@ import { CreateSessionRequest } from "mix-typescript-sdk/models/operations";
 let value: CreateSessionRequest = {
   callbacks: [
     {
+      name: "Log Output",
       toolName: "*",
       type: "bash_script",
     },

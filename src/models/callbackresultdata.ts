@@ -28,6 +28,10 @@ export type CallbackResultDataCallbackType = ClosedEnum<
  */
 export type CallbackResultData = {
   /**
+   * Human-readable name of the callback (optional)
+   */
+  callbackName?: string | undefined;
+  /**
    * Type of callback executed
    */
   callbackType: CallbackResultDataCallbackType;
@@ -100,6 +104,7 @@ export const CallbackResultData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  callback_name: z.string().optional(),
   callback_type: CallbackResultDataCallbackType$inboundSchema,
   error: z.string().optional(),
   exit_code: z.number().int().optional(),
@@ -113,6 +118,7 @@ export const CallbackResultData$inboundSchema: z.ZodType<
   tool_name: z.string(),
 }).transform((v) => {
   return remap$(v, {
+    "callback_name": "callbackName",
     "callback_type": "callbackType",
     "exit_code": "exitCode",
     "non_blocking": "nonBlocking",
@@ -125,6 +131,7 @@ export const CallbackResultData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CallbackResultData$Outbound = {
+  callback_name?: string | undefined;
   callback_type: string;
   error?: string | undefined;
   exit_code?: number | undefined;
@@ -144,6 +151,7 @@ export const CallbackResultData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CallbackResultData
 > = z.object({
+  callbackName: z.string().optional(),
   callbackType: CallbackResultDataCallbackType$outboundSchema,
   error: z.string().optional(),
   exitCode: z.number().int().optional(),
@@ -157,6 +165,7 @@ export const CallbackResultData$outboundSchema: z.ZodType<
   toolName: z.string(),
 }).transform((v) => {
   return remap$(v, {
+    callbackName: "callback_name",
     callbackType: "callback_type",
     exitCode: "exit_code",
     nonBlocking: "non_blocking",

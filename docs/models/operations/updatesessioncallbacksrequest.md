@@ -10,6 +10,7 @@ let value: UpdateSessionCallbacksRequest = {
   requestBody: {
     callbacks: [
       {
+        name: "Log Output",
         toolName: "*",
         type: "bash_script",
       },
