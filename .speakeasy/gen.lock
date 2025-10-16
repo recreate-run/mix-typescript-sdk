@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 37ec9a1001717a7aea83bb0fea73e236
+  docChecksum: 355698dcf34fe273ad6ee1309368dbb4
   docVersion: 1.0.0
   speakeasyVersion: 1.636.3
   generationVersion: 2.723.11
-  releaseVersion: 0.7.15
-  configChecksum: 4ff016b2a61d3547076fc4b5c3940669
+  releaseVersion: 0.7.16
+  configChecksum: 8d89effd4f489c066bd490fca5f34698
   published: true
 features:
   typescript:
@@ -41,6 +41,8 @@ generatedFiles:
   - docs/lib/utils/retryconfig.md
   - docs/models/backendmessage.md
   - docs/models/callback.md
+  - docs/models/callbackresultdata.md
+  - docs/models/callbackresultdatacallbacktype.md
   - docs/models/callbacktype.md
   - docs/models/coretoolname.md
   - docs/models/errors/errorresponse.md
@@ -248,6 +250,7 @@ generatedFiles:
   - src/lib/url.ts
   - src/models/backendmessage.ts
   - src/models/callback.ts
+  - src/models/callbackresultdata.ts
   - src/models/coretoolname.ts
   - src/models/errors/errorresponse.ts
   - src/models/errors/httpclienterrors.ts
