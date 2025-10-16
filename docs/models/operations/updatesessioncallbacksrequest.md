@@ -10,10 +10,7 @@ let value: UpdateSessionCallbacksRequest = {
   requestBody: {
     callbacks: [
       {
-        bashCommand:
-          "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log",
-        subAgentPrompt: "Analyze the tool output and suggest improvements",
-        toolName: "show_media",
+        toolName: "*",
         type: "bash_script",
       },
     ],

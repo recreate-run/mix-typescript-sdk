@@ -5,64 +5,15 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents
- */
-export const UpdateSessionCallbacksType = {
-  BashScript: "bash_script",
-  SubAgent: "sub_agent",
-} as const;
-/**
- * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents
- */
-export type UpdateSessionCallbacksType = ClosedEnum<
-  typeof UpdateSessionCallbacksType
->;
-
-export type UpdateSessionCallbacksCallback = {
-  /**
-   * Bash command to execute (required for bash_script type). Has access to environment variables.
-   */
-  bashCommand?: string | undefined;
-  /**
-   * Timeout in milliseconds for bash execution (default: 120000)
-   */
-  bashTimeout?: number | undefined;
-  /**
-   * Include full conversation history in sub-agent context (not yet implemented)
-   */
-  includeFullHistory?: boolean | undefined;
-  /**
-   * Run callback asynchronously without waiting for completion
-   */
-  nonBlocking?: boolean | undefined;
-  /**
-   * Prompt for the sub-agent (required for sub_agent type). Tool execution context is automatically appended.
-   */
-  subAgentPrompt?: string | undefined;
-  /**
-   * Type of sub-agent to spawn (default: 'general-purpose')
-   */
-  subAgentType?: string | undefined;
-  /**
-   * Tool to attach callback to (e.g., 'show_media', 'bash', '*' for all tools)
-   */
-  toolName: string;
-  /**
-   * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents
-   */
-  type: UpdateSessionCallbacksType;
-};
+import * as models from "../index.js";
 
 export type UpdateSessionCallbacksRequestBody = {
   /**
    * Session-level callbacks that execute after tool completion. Environment variables available: CALLBACK_TOOL_RESULT, CALLBACK_TOOL_NAME, CALLBACK_TOOL_ID, CALLBACK_SESSION_ID
    */
-  callbacks: Array<UpdateSessionCallbacksCallback>;
+  callbacks: Array<models.Callback>;
 };
 
 export type UpdateSessionCallbacksRequest = {
@@ -74,117 +25,17 @@ export type UpdateSessionCallbacksRequest = {
 };
 
 /** @internal */
-export const UpdateSessionCallbacksType$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateSessionCallbacksType
-> = z.nativeEnum(UpdateSessionCallbacksType);
-
-/** @internal */
-export const UpdateSessionCallbacksType$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateSessionCallbacksType
-> = UpdateSessionCallbacksType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateSessionCallbacksType$ {
-  /** @deprecated use `UpdateSessionCallbacksType$inboundSchema` instead. */
-  export const inboundSchema = UpdateSessionCallbacksType$inboundSchema;
-  /** @deprecated use `UpdateSessionCallbacksType$outboundSchema` instead. */
-  export const outboundSchema = UpdateSessionCallbacksType$outboundSchema;
-}
-
-/** @internal */
-export const UpdateSessionCallbacksCallback$inboundSchema: z.ZodType<
-  UpdateSessionCallbacksCallback,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  bashCommand: z.string().optional(),
-  bashTimeout: z.number().int().default(120000),
-  includeFullHistory: z.boolean().default(false),
-  nonBlocking: z.boolean().default(false),
-  subAgentPrompt: z.string().optional(),
-  subAgentType: z.string().default("general-purpose"),
-  toolName: z.string(),
-  type: UpdateSessionCallbacksType$inboundSchema,
-});
-
-/** @internal */
-export type UpdateSessionCallbacksCallback$Outbound = {
-  bashCommand?: string | undefined;
-  bashTimeout: number;
-  includeFullHistory: boolean;
-  nonBlocking: boolean;
-  subAgentPrompt?: string | undefined;
-  subAgentType: string;
-  toolName: string;
-  type: string;
-};
-
-/** @internal */
-export const UpdateSessionCallbacksCallback$outboundSchema: z.ZodType<
-  UpdateSessionCallbacksCallback$Outbound,
-  z.ZodTypeDef,
-  UpdateSessionCallbacksCallback
-> = z.object({
-  bashCommand: z.string().optional(),
-  bashTimeout: z.number().int().default(120000),
-  includeFullHistory: z.boolean().default(false),
-  nonBlocking: z.boolean().default(false),
-  subAgentPrompt: z.string().optional(),
-  subAgentType: z.string().default("general-purpose"),
-  toolName: z.string(),
-  type: UpdateSessionCallbacksType$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateSessionCallbacksCallback$ {
-  /** @deprecated use `UpdateSessionCallbacksCallback$inboundSchema` instead. */
-  export const inboundSchema = UpdateSessionCallbacksCallback$inboundSchema;
-  /** @deprecated use `UpdateSessionCallbacksCallback$outboundSchema` instead. */
-  export const outboundSchema = UpdateSessionCallbacksCallback$outboundSchema;
-  /** @deprecated use `UpdateSessionCallbacksCallback$Outbound` instead. */
-  export type Outbound = UpdateSessionCallbacksCallback$Outbound;
-}
-
-export function updateSessionCallbacksCallbackToJSON(
-  updateSessionCallbacksCallback: UpdateSessionCallbacksCallback,
-): string {
-  return JSON.stringify(
-    UpdateSessionCallbacksCallback$outboundSchema.parse(
-      updateSessionCallbacksCallback,
-    ),
-  );
-}
-
-export function updateSessionCallbacksCallbackFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateSessionCallbacksCallback, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateSessionCallbacksCallback$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateSessionCallbacksCallback' from JSON`,
-  );
-}
-
-/** @internal */
 export const UpdateSessionCallbacksRequestBody$inboundSchema: z.ZodType<
   UpdateSessionCallbacksRequestBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  callbacks: z.array(
-    z.lazy(() => UpdateSessionCallbacksCallback$inboundSchema),
-  ),
+  callbacks: z.array(models.Callback$inboundSchema),
 });
 
 /** @internal */
 export type UpdateSessionCallbacksRequestBody$Outbound = {
-  callbacks: Array<UpdateSessionCallbacksCallback$Outbound>;
+  callbacks: Array<models.Callback$Outbound>;
 };
 
 /** @internal */
@@ -193,9 +44,7 @@ export const UpdateSessionCallbacksRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateSessionCallbacksRequestBody
 > = z.object({
-  callbacks: z.array(
-    z.lazy(() => UpdateSessionCallbacksCallback$outboundSchema),
-  ),
+  callbacks: z.array(models.Callback$outboundSchema),
 });
 
 /**

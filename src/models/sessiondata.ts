@@ -6,42 +6,13 @@ import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
+import {
+  Callback,
+  Callback$inboundSchema,
+  Callback$Outbound,
+  Callback$outboundSchema,
+} from "./callback.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-
-/**
- * Callback type
- */
-export const SessionDataType = {
-  BashScript: "bash_script",
-  SubAgent: "sub_agent",
-} as const;
-/**
- * Callback type
- */
-export type SessionDataType = ClosedEnum<typeof SessionDataType>;
-
-export type Callback = {
-  /**
-   * Bash command to execute (for bash_script type)
-   */
-  bashCommand?: string | undefined;
-  /**
-   * Timeout in milliseconds for bash execution
-   */
-  bashTimeout?: number | undefined;
-  /**
-   * Run callback asynchronously
-   */
-  nonBlocking?: boolean | undefined;
-  /**
-   * Tool to attach callback to
-   */
-  toolName?: string | undefined;
-  /**
-   * Callback type
-   */
-  type?: SessionDataType | undefined;
-};
 
 /**
  * Session type:
@@ -146,89 +117,6 @@ export type SessionData = {
 };
 
 /** @internal */
-export const SessionDataType$inboundSchema: z.ZodNativeEnum<
-  typeof SessionDataType
-> = z.nativeEnum(SessionDataType);
-
-/** @internal */
-export const SessionDataType$outboundSchema: z.ZodNativeEnum<
-  typeof SessionDataType
-> = SessionDataType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SessionDataType$ {
-  /** @deprecated use `SessionDataType$inboundSchema` instead. */
-  export const inboundSchema = SessionDataType$inboundSchema;
-  /** @deprecated use `SessionDataType$outboundSchema` instead. */
-  export const outboundSchema = SessionDataType$outboundSchema;
-}
-
-/** @internal */
-export const Callback$inboundSchema: z.ZodType<
-  Callback,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  bashCommand: z.string().optional(),
-  bashTimeout: z.number().int().optional(),
-  nonBlocking: z.boolean().optional(),
-  toolName: z.string().optional(),
-  type: SessionDataType$inboundSchema.optional(),
-});
-
-/** @internal */
-export type Callback$Outbound = {
-  bashCommand?: string | undefined;
-  bashTimeout?: number | undefined;
-  nonBlocking?: boolean | undefined;
-  toolName?: string | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const Callback$outboundSchema: z.ZodType<
-  Callback$Outbound,
-  z.ZodTypeDef,
-  Callback
-> = z.object({
-  bashCommand: z.string().optional(),
-  bashTimeout: z.number().int().optional(),
-  nonBlocking: z.boolean().optional(),
-  toolName: z.string().optional(),
-  type: SessionDataType$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Callback$ {
-  /** @deprecated use `Callback$inboundSchema` instead. */
-  export const inboundSchema = Callback$inboundSchema;
-  /** @deprecated use `Callback$outboundSchema` instead. */
-  export const outboundSchema = Callback$outboundSchema;
-  /** @deprecated use `Callback$Outbound` instead. */
-  export type Outbound = Callback$Outbound;
-}
-
-export function callbackToJSON(callback: Callback): string {
-  return JSON.stringify(Callback$outboundSchema.parse(callback));
-}
-
-export function callbackFromJSON(
-  jsonString: string,
-): SafeParseResult<Callback, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Callback$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Callback' from JSON`,
-  );
-}
-
-/** @internal */
 export const SessionType$inboundSchema: z.ZodNativeEnum<typeof SessionType> = z
   .nativeEnum(SessionType);
 
@@ -273,7 +161,7 @@ export const SessionData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   assistantMessageCount: z.number().int(),
-  callbacks: z.array(z.lazy(() => Callback$inboundSchema)).optional(),
+  callbacks: z.array(Callback$inboundSchema).optional(),
   completionTokens: z.number().int(),
   cost: z.number(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -315,7 +203,7 @@ export const SessionData$outboundSchema: z.ZodType<
   SessionData
 > = z.object({
   assistantMessageCount: z.number().int(),
-  callbacks: z.array(z.lazy(() => Callback$outboundSchema)).optional(),
+  callbacks: z.array(Callback$outboundSchema).optional(),
   completionTokens: z.number().int(),
   cost: z.number(),
   createdAt: z.date().transform(v => v.toISOString()),

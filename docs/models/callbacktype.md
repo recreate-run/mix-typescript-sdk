@@ -1,13 +1,13 @@
-# UpdateSessionCallbacksType
+# CallbackType
 
 Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents
 
 ## Example Usage
 
 ```typescript
-import { UpdateSessionCallbacksType } from "mix-typescript-sdk/models/operations";
+import { CallbackType } from "mix-typescript-sdk/models";
 
-let value: UpdateSessionCallbacksType = "bash_script";
+let value: CallbackType = "sub_agent";
 ```
 
 ## Values

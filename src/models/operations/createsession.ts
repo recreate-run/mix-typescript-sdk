@@ -7,41 +7,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents (not yet implemented)
- */
-export const CreateSessionType = {
-  BashScript: "bash_script",
-  SubAgent: "sub_agent",
-} as const;
-/**
- * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents (not yet implemented)
- */
-export type CreateSessionType = ClosedEnum<typeof CreateSessionType>;
-
-export type CreateSessionCallback = {
-  /**
-   * Bash command to execute (for bash_script type). Has access to environment variables.
-   */
-  bashCommand?: string | undefined;
-  /**
-   * Timeout in milliseconds for bash execution (default: 120000)
-   */
-  bashTimeout?: number | undefined;
-  /**
-   * Run callback asynchronously without waiting for completion
-   */
-  nonBlocking?: boolean | undefined;
-  /**
-   * Tool to attach callback to (e.g., 'show_media', 'bash', '*' for all tools)
-   */
-  toolName: string;
-  /**
-   * Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents (not yet implemented)
-   */
-  type: CreateSessionType;
-};
+import * as models from "../index.js";
 
 /**
  * Custom prompt handling mode:
@@ -81,7 +47,7 @@ export type CreateSessionRequest = {
   /**
    * Session-level callbacks that execute after tool completion. Environment variables available: CALLBACK_TOOL_RESULT, CALLBACK_TOOL_NAME, CALLBACK_TOOL_ID, CALLBACK_SESSION_ID
    */
-  callbacks?: Array<CreateSessionCallback> | undefined;
+  callbacks?: Array<models.Callback> | undefined;
   /**
    * Custom system prompt content. Size limits apply based on promptMode: 100KB (102,400 bytes) for replace mode, 50KB (51,200 bytes) for append mode. Ignored in default mode. Supports environment variable substitution with $<variable> syntax.
    */
@@ -108,93 +74,6 @@ export type CreateSessionRequest = {
    */
   title: string;
 };
-
-/** @internal */
-export const CreateSessionType$inboundSchema: z.ZodNativeEnum<
-  typeof CreateSessionType
-> = z.nativeEnum(CreateSessionType);
-
-/** @internal */
-export const CreateSessionType$outboundSchema: z.ZodNativeEnum<
-  typeof CreateSessionType
-> = CreateSessionType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateSessionType$ {
-  /** @deprecated use `CreateSessionType$inboundSchema` instead. */
-  export const inboundSchema = CreateSessionType$inboundSchema;
-  /** @deprecated use `CreateSessionType$outboundSchema` instead. */
-  export const outboundSchema = CreateSessionType$outboundSchema;
-}
-
-/** @internal */
-export const CreateSessionCallback$inboundSchema: z.ZodType<
-  CreateSessionCallback,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  bashCommand: z.string().optional(),
-  bashTimeout: z.number().int().default(120000),
-  nonBlocking: z.boolean().default(true),
-  toolName: z.string(),
-  type: CreateSessionType$inboundSchema,
-});
-
-/** @internal */
-export type CreateSessionCallback$Outbound = {
-  bashCommand?: string | undefined;
-  bashTimeout: number;
-  nonBlocking: boolean;
-  toolName: string;
-  type: string;
-};
-
-/** @internal */
-export const CreateSessionCallback$outboundSchema: z.ZodType<
-  CreateSessionCallback$Outbound,
-  z.ZodTypeDef,
-  CreateSessionCallback
-> = z.object({
-  bashCommand: z.string().optional(),
-  bashTimeout: z.number().int().default(120000),
-  nonBlocking: z.boolean().default(true),
-  toolName: z.string(),
-  type: CreateSessionType$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateSessionCallback$ {
-  /** @deprecated use `CreateSessionCallback$inboundSchema` instead. */
-  export const inboundSchema = CreateSessionCallback$inboundSchema;
-  /** @deprecated use `CreateSessionCallback$outboundSchema` instead. */
-  export const outboundSchema = CreateSessionCallback$outboundSchema;
-  /** @deprecated use `CreateSessionCallback$Outbound` instead. */
-  export type Outbound = CreateSessionCallback$Outbound;
-}
-
-export function createSessionCallbackToJSON(
-  createSessionCallback: CreateSessionCallback,
-): string {
-  return JSON.stringify(
-    CreateSessionCallback$outboundSchema.parse(createSessionCallback),
-  );
-}
-
-export function createSessionCallbackFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateSessionCallback, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateSessionCallback$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateSessionCallback' from JSON`,
-  );
-}
 
 /** @internal */
 export const PromptMode$inboundSchema: z.ZodNativeEnum<typeof PromptMode> = z
@@ -240,8 +119,7 @@ export const CreateSessionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  callbacks: z.array(z.lazy(() => CreateSessionCallback$inboundSchema))
-    .optional(),
+  callbacks: z.array(models.Callback$inboundSchema).optional(),
   customSystemPrompt: z.string().optional(),
   promptMode: PromptMode$inboundSchema.default("default"),
   sessionType: SessionType$inboundSchema.default("main"),
@@ -251,7 +129,7 @@ export const CreateSessionRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateSessionRequest$Outbound = {
-  callbacks?: Array<CreateSessionCallback$Outbound> | undefined;
+  callbacks?: Array<models.Callback$Outbound> | undefined;
   customSystemPrompt?: string | undefined;
   promptMode: string;
   sessionType: string;
@@ -265,8 +143,7 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSessionRequest
 > = z.object({
-  callbacks: z.array(z.lazy(() => CreateSessionCallback$outboundSchema))
-    .optional(),
+  callbacks: z.array(models.Callback$outboundSchema).optional(),
   customSystemPrompt: z.string().optional(),
   promptMode: PromptMode$outboundSchema.default("default"),
   sessionType: SessionType$outboundSchema.default("main"),

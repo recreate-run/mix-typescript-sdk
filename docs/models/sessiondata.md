@@ -7,6 +7,12 @@ import { SessionData } from "mix-typescript-sdk/models";
 
 let value: SessionData = {
   assistantMessageCount: 73841,
+  callbacks: [
+    {
+      toolName: "*",
+      type: "bash_script",
+    },
+  ],
   completionTokens: 243814,
   cost: 57.23,
   createdAt: new Date("2023-05-08T01:04:20.218Z"),
