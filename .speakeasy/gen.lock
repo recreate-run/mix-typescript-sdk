@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: f5d6e83e56053a31a6d47f57f3467c28
+  docChecksum: 4fc0ea8a9f99d2db77fb9c55dddbe480
   docVersion: 1.0.0
-  speakeasyVersion: 1.636.3
-  generationVersion: 2.723.11
-  releaseVersion: 0.7.19
-  configChecksum: c54880defab8a04279519b06d8fb5bc2
+  speakeasyVersion: 1.637.0
+  generationVersion: 2.727.4
+  releaseVersion: 0.8.0
+  configChecksum: 6a196a45ab4f13c189f0c76e00f85c30
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.26
+    core: 3.22.0
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -480,37 +480,37 @@ examples:
           application/json: {"error": {"code": 481369, "message": "<value>", "type": "validation_error"}}
     invalid_prompt_mode:
       requestBody:
-        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": true, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "promptMode must be 'default', 'append', or 'replace'", "type": "validation_error"}}
     missing_title:
       requestBody:
-        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": true, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "title is required", "type": "validation_error"}}
     prompt_size_exceeded_append:
       requestBody:
-        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": true, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "Custom prompt size (75KB) exceeds append mode limit of 50KB", "type": "validation_error"}}
     prompt_size_exceeded_replace:
       requestBody:
-        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": true, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "Custom prompt size (150KB) exceeds replace mode limit of 100KB", "type": "validation_error"}}
     invalid_session_type:
       requestBody:
-        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": true, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "API can only create main sessions. Use /fork endpoint for forked sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
     subagent_type_not_allowed:
       requestBody:
-        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": true, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"callbacks": [{"bashCommand": "echo \"Media created: $CALLBACK_TOOL_RESULT\" >> /tmp/media.log", "bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "show_media", "type": "sub_agent"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system.", "type": "validation_error"}}
@@ -529,7 +529,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "sessionType": "forked", "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
+          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "sessionType": "forked", "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
         "404":
           application/json: {"error": {"code": 125836, "message": "<value>", "type": "validation_error"}}
   forkSession:
@@ -541,7 +541,7 @@ examples:
         application/json: {"messageIndex": 385832}
       responses:
         "201":
-          application/json: {"assistantMessageCount": 385832, "callbacks": [{"bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 551389, "cost": 5945.98, "createdAt": "2025-08-26T03:33:17.824Z", "id": "<id>", "promptTokens": 770117, "sessionType": "forked", "title": "<value>", "toolCallCount": 905266, "userMessageCount": 239157}
+          application/json: {"assistantMessageCount": 385832, "callbacks": [{"bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 551389, "cost": 5945.98, "createdAt": "2025-08-26T03:33:17.824Z", "id": "<id>", "promptTokens": 770117, "sessionType": "forked", "title": "<value>", "toolCallCount": 905266, "userMessageCount": 239157}
         "404":
           application/json: {}
         "400":
@@ -748,7 +748,7 @@ examples:
         application/json: {"cleanupMedia": true, "messageId": "<id>"}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": false, "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 18242, "cost": 1903.72, "createdAt": "2024-09-02T07:59:03.378Z", "id": "<id>", "promptTokens": 505203, "sessionType": "subagent", "title": "<value>", "toolCallCount": 938253, "userMessageCount": 629623}
+          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 18242, "cost": 1903.72, "createdAt": "2024-09-02T07:59:03.378Z", "id": "<id>", "promptTokens": 505203, "sessionType": "subagent", "title": "<value>", "toolCallCount": 938253, "userMessageCount": 629623}
         "400":
           application/json: {"error": {"code": 877894, "message": "<value>", "type": "bad_request"}}
   exportSession:
@@ -793,7 +793,7 @@ examples:
         application/json: {"callbacks": []}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "includeFullHistory": false, "nonBlocking": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 153449, "cost": 7326.83, "createdAt": "2025-06-03T08:16:16.107Z", "id": "<id>", "promptTokens": 141234, "sessionType": "forked", "title": "<value>", "toolCallCount": 169864, "userMessageCount": 805406}
+          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 153449, "cost": 7326.83, "createdAt": "2025-06-03T08:16:16.107Z", "id": "<id>", "promptTokens": 141234, "sessionType": "forked", "title": "<value>", "toolCallCount": 169864, "userMessageCount": 805406}
         "400":
           application/json: {"error": {"code": 971135, "message": "<value>", "type": "internal_error"}}
 examplesVersion: 1.0.2

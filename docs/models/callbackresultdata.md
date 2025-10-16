@@ -9,8 +9,7 @@ import { CallbackResultData } from "mix-typescript-sdk/models";
 
 let value: CallbackResultData = {
   callbackType: "sub_agent",
-  nonBlocking: true,
-  success: false,
+  success: true,
   toolCallId: "<id>",
   toolName: "<value>",
 };
@@ -24,7 +23,6 @@ let value: CallbackResultData = {
 | `callbackType`                                                                       | [models.CallbackResultDataCallbackType](../models/callbackresultdatacallbacktype.md) | :heavy_check_mark:                                                                   | Type of callback executed                                                            |
 | `error`                                                                              | *string*                                                                             | :heavy_minus_sign:                                                                   | Error message if callback failed (optional)                                          |
 | `exitCode`                                                                           | *number*                                                                             | :heavy_minus_sign:                                                                   | Exit code from bash callback (optional)                                              |
-| `nonBlocking`                                                                        | *boolean*                                                                            | :heavy_check_mark:                                                                   | Whether callback ran asynchronously                                                  |
 | `stderr`                                                                             | *string*                                                                             | :heavy_minus_sign:                                                                   | Standard error from bash callback (optional)                                         |
 | `stdout`                                                                             | *string*                                                                             | :heavy_minus_sign:                                                                   | Standard output from bash callback (optional)                                        |
 | `subagentId`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | ID of spawned sub-agent session (optional)                                           |

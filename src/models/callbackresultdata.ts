@@ -45,10 +45,6 @@ export type CallbackResultData = {
    */
   exitCode?: number | undefined;
   /**
-   * Whether callback ran asynchronously
-   */
-  nonBlocking: boolean;
-  /**
    * Standard error from bash callback (optional)
    */
   stderr?: string | undefined;
@@ -109,7 +105,6 @@ export const CallbackResultData$inboundSchema: z.ZodType<
   callback_type: CallbackResultDataCallbackType$inboundSchema,
   error: z.string().optional(),
   exit_code: z.number().int().optional(),
-  non_blocking: z.boolean(),
   stderr: z.string().optional(),
   stdout: z.string().optional(),
   subagent_id: z.string().optional(),
@@ -122,7 +117,6 @@ export const CallbackResultData$inboundSchema: z.ZodType<
     "callback_name": "callbackName",
     "callback_type": "callbackType",
     "exit_code": "exitCode",
-    "non_blocking": "nonBlocking",
     "subagent_id": "subagentId",
     "subagent_result": "subagentResult",
     "tool_call_id": "toolCallId",
@@ -136,7 +130,6 @@ export type CallbackResultData$Outbound = {
   callback_type: string;
   error?: string | undefined;
   exit_code?: number | undefined;
-  non_blocking: boolean;
   stderr?: string | undefined;
   stdout?: string | undefined;
   subagent_id?: string | undefined;
@@ -156,7 +149,6 @@ export const CallbackResultData$outboundSchema: z.ZodType<
   callbackType: CallbackResultDataCallbackType$outboundSchema,
   error: z.string().optional(),
   exitCode: z.number().int().optional(),
-  nonBlocking: z.boolean(),
   stderr: z.string().optional(),
   stdout: z.string().optional(),
   subagentId: z.string().optional(),
@@ -169,7 +161,6 @@ export const CallbackResultData$outboundSchema: z.ZodType<
     callbackName: "callback_name",
     callbackType: "callback_type",
     exitCode: "exit_code",
-    nonBlocking: "non_blocking",
     subagentId: "subagent_id",
     subagentResult: "subagent_result",
     toolCallId: "tool_call_id",

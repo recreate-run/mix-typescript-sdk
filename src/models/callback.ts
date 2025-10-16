@@ -46,10 +46,6 @@ export type Callback = {
    */
   name?: string | undefined;
   /**
-   * Run callback asynchronously without waiting for completion
-   */
-  nonBlocking?: boolean | undefined;
-  /**
    * Prompt for the sub-agent (required for sub_agent type). Tool execution context is automatically appended.
    */
   subAgentPrompt?: string | undefined;
@@ -97,7 +93,6 @@ export const Callback$inboundSchema: z.ZodType<
   includeFullHistory: z.boolean().default(false),
   messageContent: z.string().optional(),
   name: z.string().optional(),
-  nonBlocking: z.boolean().default(false),
   subAgentPrompt: z.string().optional(),
   subAgentType: z.string().default("general-purpose"),
   toolName: z.string(),
@@ -111,7 +106,6 @@ export type Callback$Outbound = {
   includeFullHistory: boolean;
   messageContent?: string | undefined;
   name?: string | undefined;
-  nonBlocking: boolean;
   subAgentPrompt?: string | undefined;
   subAgentType: string;
   toolName: string;
@@ -129,7 +123,6 @@ export const Callback$outboundSchema: z.ZodType<
   includeFullHistory: z.boolean().default(false),
   messageContent: z.string().optional(),
   name: z.string().optional(),
-  nonBlocking: z.boolean().default(false),
   subAgentPrompt: z.string().optional(),
   subAgentType: z.string().default("general-purpose"),
   toolName: z.string(),
