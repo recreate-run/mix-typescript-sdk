@@ -14,7 +14,7 @@ export class Tools extends ClientSDK {
    * List LLM tools
    *
    * @remarks
-   * Returns the list of all LLM tools that Claude can invoke (Bash, Edit, Read, Write, Grep, Glob, WebFetch, WebSearch, ReadMedia, TodoWrite, ExitPlanMode, Task). This is useful for creating tool callbacks or understanding available agent capabilities.
+   * Returns the list of all LLM tools that Claude can invoke. The list is dynamically extracted from the actual tools registered in CoderAgentTools() (agent/tools.go), ensuring it always reflects the current tool availability. Typical tools include: Bash, Edit, Read, Write, Grep, Glob, WebFetch, WebSearch, ReadMedia, TodoWrite, ExitPlanMode, and Task. This endpoint is useful for creating tool callbacks or understanding available agent capabilities.
    */
   async listLLMTools(
     options?: RequestOptions,
