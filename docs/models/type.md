@@ -1,13 +1,13 @@
-# RESTErrorType
+# Type
 
 Error type
 
 ## Example Usage
 
 ```typescript
-import { RESTErrorType } from "mix-typescript-sdk/models";
+import { Type } from "mix-typescript-sdk/models";
 
-let value: RESTErrorType = "bad_request";
+let value: Type = "bad_request";
 ```
 
 ## Values

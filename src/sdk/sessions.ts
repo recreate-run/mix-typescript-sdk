@@ -9,7 +9,6 @@ import { sessionsFork } from "../funcs/sessionsFork.js";
 import { sessionsGet } from "../funcs/sessionsGet.js";
 import { sessionsList } from "../funcs/sessionsList.js";
 import { sessionsRewindSession } from "../funcs/sessionsRewindSession.js";
-import { sessionsUpdateSessionCallbacks } from "../funcs/sessionsUpdateSessionCallbacks.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
@@ -37,7 +36,7 @@ export class Sessions extends ClientSDK {
    * Create a new session
    *
    * @remarks
-   * Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory. Supports session-level callbacks for automated actions after tool execution.
+   * Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory.
    */
   async create(
     request: operations.CreateSessionRequest,
@@ -78,23 +77,6 @@ export class Sessions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<models.SessionData> {
     return unwrapAsync(sessionsGet(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Update session callbacks
-   *
-   * @remarks
-   * Update the callback configurations for a session. Callbacks execute automatically after tool completion. Pass an empty array to clear all callbacks.
-   */
-  async updateSessionCallbacks(
-    request: operations.UpdateSessionCallbacksRequest,
-    options?: RequestOptions,
-  ): Promise<models.SessionData> {
-    return unwrapAsync(sessionsUpdateSessionCallbacks(
       this,
       request,
       options,

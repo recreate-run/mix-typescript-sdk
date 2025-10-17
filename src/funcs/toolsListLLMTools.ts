@@ -3,10 +3,8 @@
  */
 
 import { MixCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -20,24 +18,22 @@ import * as errors from "../models/errors/index.js";
 import { MixError } from "../models/errors/mixerror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update session callbacks
+ * List LLM tools
  *
  * @remarks
- * Update the callback configurations for a session. Callbacks execute automatically after tool completion. Pass an empty array to clear all callbacks.
+ * Returns the list of all LLM tools that Claude can invoke (Bash, Edit, Read, Write, Grep, Glob, WebFetch, WebSearch, ReadMedia, TodoWrite, ExitPlanMode, Task). This is useful for creating tool callbacks or understanding available agent capabilities.
  */
-export function sessionsUpdateSessionCallbacks(
+export function toolsListLLMTools(
   client: MixCore,
-  request: operations.UpdateSessionCallbacksRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    models.SessionData,
+    operations.ListLLMToolsResponse,
     | errors.ErrorResponse
     | MixError
     | ResponseValidationError
@@ -51,19 +47,17 @@ export function sessionsUpdateSessionCallbacks(
 > {
   return new APIPromise($do(
     client,
-    request,
     options,
   ));
 }
 
 async function $do(
   client: MixCore,
-  request: operations.UpdateSessionCallbacksRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      models.SessionData,
+      operations.ListLLMToolsResponse,
       | errors.ErrorResponse
       | MixError
       | ResponseValidationError
@@ -77,36 +71,16 @@ async function $do(
     APICall,
   ]
 > {
-  const parsed = safeParse(
-    request,
-    (value) =>
-      operations.UpdateSessionCallbacksRequest$outboundSchema.parse(value),
-    "Input validation failed",
-  );
-  if (!parsed.ok) {
-    return [parsed, { status: "invalid" }];
-  }
-  const payload = parsed.value;
-  const body = encodeJSON("body", payload.RequestBody, { explode: true });
-
-  const pathParams = {
-    id: encodeSimple("id", payload.id, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
-
-  const path = pathToFunc("/api/sessions/{id}/callbacks")(pathParams);
+  const path = pathToFunc("/api/tools")();
 
   const headers = new Headers(compactMap({
-    "Content-Type": "application/json",
     Accept: "application/json",
   }));
 
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "updateSessionCallbacks",
+    operationID: "listLLMTools",
     oAuth2Scopes: null,
 
     resolvedSecurity: null,
@@ -129,11 +103,10 @@ async function $do(
   };
 
   const requestRes = client._createRequest(context, {
-    method: "PATCH",
+    method: "GET",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -144,7 +117,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "404", "4XX", "5XX"],
+    errorCodes: ["4XX", "500", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -158,7 +131,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    models.SessionData,
+    operations.ListLLMToolsResponse,
     | errors.ErrorResponse
     | MixError
     | ResponseValidationError
@@ -169,8 +142,8 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, models.SessionData$inboundSchema),
-    M.jsonErr([400, 404], errors.ErrorResponse$inboundSchema),
+    M.json(200, operations.ListLLMToolsResponse$inboundSchema),
+    M.jsonErr(500, errors.ErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

@@ -159,7 +159,6 @@ run();
 * [create](docs/sdks/sessions/README.md#create) - Create a new session
 * [delete](docs/sdks/sessions/README.md#delete) - Delete a session
 * [get](docs/sdks/sessions/README.md#get) - Get a specific session
-* [updateSessionCallbacks](docs/sdks/sessions/README.md#updatesessioncallbacks) - Update session callbacks
 * [exportSession](docs/sdks/sessions/README.md#exportsession) - Export session transcript
 * [fork](docs/sdks/sessions/README.md#fork) - Fork a session
 * [rewindSession](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
@@ -178,6 +177,8 @@ run();
 
 ### [tools](docs/sdks/tools/README.md)
 
+* [listLLMTools](docs/sdks/tools/README.md#listllmtools) - List LLM tools
+* [getToolCredentialsStatus](docs/sdks/tools/README.md#gettoolcredentialsstatus) - Get tool credentials status
 * [getToolsStatus](docs/sdks/tools/README.md#gettoolsstatus) - Get tools status
 
 </details>
@@ -229,14 +230,15 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
 - [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions
 - [`sessionsRewindSession`](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
-- [`sessionsUpdateSessionCallbacks`](docs/sdks/sessions/README.md#updatesessioncallbacks) - Update session callbacks
 - [`streamingStreamEvents`](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
 - [`systemGetCommand`](docs/sdks/system/README.md#getcommand) - Get specific command
 - [`systemGetSystemInfo`](docs/sdks/system/README.md#getsysteminfo) - Get system information
 - [`systemHealthCheck`](docs/sdks/system/README.md#healthcheck) - Health check
 - [`systemListCommands`](docs/sdks/system/README.md#listcommands) - List available commands
 - [`systemListMcpServers`](docs/sdks/system/README.md#listmcpservers) - List MCP servers
+- [`toolsGetToolCredentialsStatus`](docs/sdks/tools/README.md#gettoolcredentialsstatus) - Get tool credentials status
 - [`toolsGetToolsStatus`](docs/sdks/tools/README.md#gettoolsstatus) - Get tools status
+- [`toolsListLLMTools`](docs/sdks/tools/README.md#listllmtools) - List LLM tools
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

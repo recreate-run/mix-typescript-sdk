@@ -31,7 +31,7 @@ export type GetToolsStatusTool = {
   provider?: string | undefined;
 };
 
-export type Categories = {
+export type GetToolsStatusCategories = {
   /**
    * User-friendly category name
    */
@@ -49,7 +49,7 @@ export type GetToolsStatusResponse = {
   /**
    * Map of tool categories and their tools
    */
-  categories?: { [k: string]: Categories } | undefined;
+  categories?: { [k: string]: GetToolsStatusCategories } | undefined;
 };
 
 /** @internal */
@@ -129,8 +129,8 @@ export function getToolsStatusToolFromJSON(
 }
 
 /** @internal */
-export const Categories$inboundSchema: z.ZodType<
-  Categories,
+export const GetToolsStatusCategories$inboundSchema: z.ZodType<
+  GetToolsStatusCategories,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -143,16 +143,16 @@ export const Categories$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Categories$Outbound = {
+export type GetToolsStatusCategories$Outbound = {
   display_name?: string | undefined;
   tools?: Array<GetToolsStatusTool$Outbound> | undefined;
 };
 
 /** @internal */
-export const Categories$outboundSchema: z.ZodType<
-  Categories$Outbound,
+export const GetToolsStatusCategories$outboundSchema: z.ZodType<
+  GetToolsStatusCategories$Outbound,
   z.ZodTypeDef,
-  Categories
+  GetToolsStatusCategories
 > = z.object({
   displayName: z.string().optional(),
   tools: z.array(z.lazy(() => GetToolsStatusTool$outboundSchema)).optional(),
@@ -166,26 +166,30 @@ export const Categories$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Categories$ {
-  /** @deprecated use `Categories$inboundSchema` instead. */
-  export const inboundSchema = Categories$inboundSchema;
-  /** @deprecated use `Categories$outboundSchema` instead. */
-  export const outboundSchema = Categories$outboundSchema;
-  /** @deprecated use `Categories$Outbound` instead. */
-  export type Outbound = Categories$Outbound;
+export namespace GetToolsStatusCategories$ {
+  /** @deprecated use `GetToolsStatusCategories$inboundSchema` instead. */
+  export const inboundSchema = GetToolsStatusCategories$inboundSchema;
+  /** @deprecated use `GetToolsStatusCategories$outboundSchema` instead. */
+  export const outboundSchema = GetToolsStatusCategories$outboundSchema;
+  /** @deprecated use `GetToolsStatusCategories$Outbound` instead. */
+  export type Outbound = GetToolsStatusCategories$Outbound;
 }
 
-export function categoriesToJSON(categories: Categories): string {
-  return JSON.stringify(Categories$outboundSchema.parse(categories));
+export function getToolsStatusCategoriesToJSON(
+  getToolsStatusCategories: GetToolsStatusCategories,
+): string {
+  return JSON.stringify(
+    GetToolsStatusCategories$outboundSchema.parse(getToolsStatusCategories),
+  );
 }
 
-export function categoriesFromJSON(
+export function getToolsStatusCategoriesFromJSON(
   jsonString: string,
-): SafeParseResult<Categories, SDKValidationError> {
+): SafeParseResult<GetToolsStatusCategories, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Categories$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Categories' from JSON`,
+    (x) => GetToolsStatusCategories$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetToolsStatusCategories' from JSON`,
   );
 }
 
@@ -195,12 +199,13 @@ export const GetToolsStatusResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  categories: z.record(z.lazy(() => Categories$inboundSchema)).optional(),
+  categories: z.record(z.lazy(() => GetToolsStatusCategories$inboundSchema))
+    .optional(),
 });
 
 /** @internal */
 export type GetToolsStatusResponse$Outbound = {
-  categories?: { [k: string]: Categories$Outbound } | undefined;
+  categories?: { [k: string]: GetToolsStatusCategories$Outbound } | undefined;
 };
 
 /** @internal */
@@ -209,7 +214,8 @@ export const GetToolsStatusResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetToolsStatusResponse
 > = z.object({
-  categories: z.record(z.lazy(() => Categories$outboundSchema)).optional(),
+  categories: z.record(z.lazy(() => GetToolsStatusCategories$outboundSchema))
+    .optional(),
 });
 
 /**

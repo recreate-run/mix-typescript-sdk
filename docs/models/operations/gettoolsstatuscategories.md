@@ -1,11 +1,11 @@
-# Categories
+# GetToolsStatusCategories
 
 ## Example Usage
 
 ```typescript
-import { Categories } from "mix-typescript-sdk/models/operations";
+import { GetToolsStatusCategories } from "mix-typescript-sdk/models/operations";
 
-let value: Categories = {};
+let value: GetToolsStatusCategories = {};
 ```
 
 ## Fields

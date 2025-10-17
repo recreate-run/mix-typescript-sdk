@@ -14,8 +14,8 @@ let value: RESTError = {
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `code`                                             | *number*                                           | :heavy_check_mark:                                 | HTTP status code                                   |
-| `message`                                          | *string*                                           | :heavy_check_mark:                                 | Error message                                      |
-| `type`                                             | [models.RESTErrorType](../models/resterrortype.md) | :heavy_check_mark:                                 | Error type                                         |
+| Field                            | Type                             | Required                         | Description                      |
+| -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- |
+| `code`                           | *number*                         | :heavy_check_mark:               | HTTP status code                 |
+| `message`                        | *string*                         | :heavy_check_mark:               | Error message                    |
+| `type`                           | [models.Type](../models/type.md) | :heavy_check_mark:               | Error type                       |

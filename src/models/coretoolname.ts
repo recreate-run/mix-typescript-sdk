@@ -9,19 +9,19 @@ import { ClosedEnum } from "../types/enums.js";
  * Core built-in tool names
  */
 export const CoreToolName = {
-  Bash: "Bash",
+  Bash: "bash",
   ReadText: "ReadText",
-  Glob: "Glob",
+  Glob: "glob",
   ReadMedia: "ReadMedia",
-  Grep: "Grep",
-  Write: "Write",
-  Edit: "Edit",
+  Grep: "grep",
+  Write: "write",
+  Edit: "edit",
   PythonExecution: "python_execution",
-  Search: "Search",
-  TodoWrite: "TodoWrite",
-  ExitPlanMode: "ExitPlanMode",
-  ShowMedia: "ShowMedia",
-  Task: "Task",
+  Search: "search",
+  TodoWrite: "todo_write",
+  ExitPlanMode: "exit_plan_mode",
+  ShowMedia: "show_media",
+  Task: "task",
 } as const;
 /**
  * Core built-in tool names

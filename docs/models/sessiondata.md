@@ -7,14 +7,6 @@ import { SessionData } from "mix-typescript-sdk/models";
 
 let value: SessionData = {
   assistantMessageCount: 73841,
-  callbacks: [
-    {
-      messageContent: "Please review the changes and run tests",
-      name: "Log Output",
-      toolName: "*",
-      type: "bash_script",
-    },
-  ],
   completionTokens: 243814,
   cost: 57.23,
   createdAt: new Date("2023-05-08T01:04:20.218Z"),
@@ -32,7 +24,6 @@ let value: SessionData = {
 | Field                                                                                                                                    | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `assistantMessageCount`                                                                                                                  | *number*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Number of assistant messages in session                                                                                                  |
-| `callbacks`                                                                                                                              | [models.Callback](../models/callback.md)[]                                                                                               | :heavy_minus_sign:                                                                                                                       | Session-level callback configurations (optional)                                                                                         |
 | `completionTokens`                                                                                                                       | *number*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Total completion tokens used                                                                                                             |
 | `cost`                                                                                                                                   | *number*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Total cost of session (for subagent sessions, costs are also accumulated in parent session)                                              |
 | `createdAt`                                                                                                                              | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                            | :heavy_check_mark:                                                                                                                       | Session creation timestamp                                                                                                               |
