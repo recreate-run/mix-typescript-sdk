@@ -5,6 +5,12 @@
 import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
+import {
+  CallbackResultData,
+  CallbackResultData$inboundSchema,
+  CallbackResultData$Outbound,
+  CallbackResultData$outboundSchema,
+} from "./callbackresultdata.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   ToolCallData,
@@ -21,6 +27,10 @@ export type BackendMessage = {
    * Assistant's response message (optional)
    */
   assistantResponse?: string | undefined;
+  /**
+   * Callback execution results (optional)
+   */
+  callbackResults?: Array<CallbackResultData> | undefined;
   /**
    * Unique message identifier
    */
@@ -58,6 +68,7 @@ export const BackendMessage$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   assistantResponse: z.string().optional(),
+  callbackResults: z.array(CallbackResultData$inboundSchema).optional(),
   id: z.string(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),
@@ -70,6 +81,7 @@ export const BackendMessage$inboundSchema: z.ZodType<
 /** @internal */
 export type BackendMessage$Outbound = {
   assistantResponse?: string | undefined;
+  callbackResults?: Array<CallbackResultData$Outbound> | undefined;
   id: string;
   reasoning?: string | undefined;
   reasoningDuration?: number | undefined;
@@ -86,6 +98,7 @@ export const BackendMessage$outboundSchema: z.ZodType<
   BackendMessage
 > = z.object({
   assistantResponse: z.string().optional(),
+  callbackResults: z.array(CallbackResultData$outboundSchema).optional(),
   id: z.string(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),

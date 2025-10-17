@@ -11,7 +11,7 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 /**
  * Error type
  */
-export const Type = {
+export const RESTErrorType = {
   BadRequest: "bad_request",
   NotFound: "not_found",
   InternalError: "internal_error",
@@ -21,7 +21,7 @@ export const Type = {
 /**
  * Error type
  */
-export type Type = ClosedEnum<typeof Type>;
+export type RESTErrorType = ClosedEnum<typeof RESTErrorType>;
 
 export type RESTError = {
   /**
@@ -35,27 +35,28 @@ export type RESTError = {
   /**
    * Error type
    */
-  type: Type;
+  type: RESTErrorType;
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const RESTErrorType$inboundSchema: z.ZodNativeEnum<
+  typeof RESTErrorType
+> = z.nativeEnum(RESTErrorType);
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
+export const RESTErrorType$outboundSchema: z.ZodNativeEnum<
+  typeof RESTErrorType
+> = RESTErrorType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
+export namespace RESTErrorType$ {
+  /** @deprecated use `RESTErrorType$inboundSchema` instead. */
+  export const inboundSchema = RESTErrorType$inboundSchema;
+  /** @deprecated use `RESTErrorType$outboundSchema` instead. */
+  export const outboundSchema = RESTErrorType$outboundSchema;
 }
 
 /** @internal */
@@ -66,7 +67,7 @@ export const RESTError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.number().int(),
   message: z.string(),
-  type: Type$inboundSchema,
+  type: RESTErrorType$inboundSchema,
 });
 
 /** @internal */
@@ -84,7 +85,7 @@ export const RESTError$outboundSchema: z.ZodType<
 > = z.object({
   code: z.number().int(),
   message: z.string(),
-  type: Type$outboundSchema,
+  type: RESTErrorType$outboundSchema,
 });
 
 /**

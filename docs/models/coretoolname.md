@@ -7,11 +7,11 @@ Core built-in tool names
 ```typescript
 import { CoreToolName } from "mix-typescript-sdk/models";
 
-let value: CoreToolName = "exit_plan_mode";
+let value: CoreToolName = "ExitPlanMode";
 ```
 
 ## Values
 
 ```typescript
-"bash" | "ReadText" | "glob" | "ReadMedia" | "grep" | "write" | "edit" | "python_execution" | "search" | "todo_write" | "exit_plan_mode" | "show_media" | "task"
+"Bash" | "ReadText" | "Glob" | "ReadMedia" | "Grep" | "Write" | "Edit" | "python_execution" | "Search" | "TodoWrite" | "ExitPlanMode" | "ShowMedia" | "Task"
 ```

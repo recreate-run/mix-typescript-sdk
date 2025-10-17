@@ -8,7 +8,7 @@ Base SSE event with standard fields
 import { SSESessionDeletedEvent } from "mix-typescript-sdk/models";
 
 let value: SSESessionDeletedEvent = {
-  event: "session_created",
+  event: "session_deleted",
   id: "1234567890",
   retry: 30000,
   data: {
