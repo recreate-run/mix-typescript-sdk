@@ -7,7 +7,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as models from "../index.js";
 
 /**
  * Custom prompt handling mode:
@@ -44,10 +43,6 @@ export const SessionType = {
 export type SessionType = ClosedEnum<typeof SessionType>;
 
 export type CreateSessionRequest = {
-  /**
-   * Session-level callbacks that execute after tool completion. Environment variables available: CALLBACK_TOOL_RESULT, CALLBACK_TOOL_NAME, CALLBACK_TOOL_ID, CALLBACK_SESSION_ID
-   */
-  callbacks?: Array<models.Callback> | undefined;
   /**
    * Custom system prompt content. Size limits apply based on promptMode: 100KB (102,400 bytes) for replace mode, 50KB (51,200 bytes) for append mode. Ignored in default mode. Supports environment variable substitution with $<variable> syntax.
    */
@@ -119,7 +114,6 @@ export const CreateSessionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  callbacks: z.array(models.Callback$inboundSchema).optional(),
   customSystemPrompt: z.string().optional(),
   promptMode: PromptMode$inboundSchema.default("default"),
   sessionType: SessionType$inboundSchema.default("main"),
@@ -129,7 +123,6 @@ export const CreateSessionRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateSessionRequest$Outbound = {
-  callbacks?: Array<models.Callback$Outbound> | undefined;
   customSystemPrompt?: string | undefined;
   promptMode: string;
   sessionType: string;
@@ -143,7 +136,6 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSessionRequest
 > = z.object({
-  callbacks: z.array(models.Callback$outboundSchema).optional(),
   customSystemPrompt: z.string().optional(),
   promptMode: PromptMode$outboundSchema.default("default"),
   sessionType: SessionType$outboundSchema.default("main"),

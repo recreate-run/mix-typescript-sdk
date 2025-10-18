@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create a new session
  *
  * @remarks
- * Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory. Supports session-level callbacks for automated actions after tool execution.
+ * Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory.
  */
 export function sessionsCreate(
   client: MixCore,

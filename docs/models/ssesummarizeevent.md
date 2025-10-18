@@ -1,18 +1,20 @@
-# SSEHeartbeatEvent
+# SSESummarizeEvent
 
 Base SSE event with standard fields
 
 ## Example Usage
 
 ```typescript
-import { SSEHeartbeatEvent } from "mix-typescript-sdk/models";
+import { SSESummarizeEvent } from "mix-typescript-sdk/models";
 
-let value: SSEHeartbeatEvent = {
-  event: "summarize",
+let value: SSESummarizeEvent = {
+  event: "error",
   id: "1234567890",
   retry: 30000,
   data: {
-    type: "ping",
+    done: true,
+    progress: "<value>",
+    type: "<value>",
   },
 };
 ```
@@ -21,7 +23,7 @@ let value: SSEHeartbeatEvent = {
 
 | Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `event`                                                              | [models.SSEHeartbeatEventEvent](../models/sseheartbeateventevent.md) | :heavy_check_mark:                                                   | Event type identifier                                                |                                                                      |
+| `event`                                                              | [models.SSESummarizeEventEvent](../models/ssesummarizeeventevent.md) | :heavy_check_mark:                                                   | Event type identifier                                                |                                                                      |
 | `id`                                                                 | *string*                                                             | :heavy_check_mark:                                                   | Unique sequential event identifier for ordering and reconnection     | 1234567890                                                           |
 | `retry`                                                              | *number*                                                             | :heavy_minus_sign:                                                   | Client retry interval in milliseconds                                | 30000                                                                |
-| `data`                                                               | [models.SSEHeartbeatEventData](../models/sseheartbeateventdata.md)   | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
+| `data`                                                               | [models.SSESummarizeEventData](../models/ssesummarizeeventdata.md)   | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |

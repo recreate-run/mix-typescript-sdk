@@ -50,7 +50,7 @@ const value: models.SSEContentEvent = {
 
 ```typescript
 const value: models.SSEErrorEvent = {
-  event: "tool_execution_start",
+  event: "tool_execution_complete",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -63,7 +63,7 @@ const value: models.SSEErrorEvent = {
 
 ```typescript
 const value: models.SSEHeartbeatEvent = {
-  event: "permission",
+  event: "summarize",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -110,12 +110,27 @@ const value: models.SSESessionCreatedEvent = {
 
 ```typescript
 const value: models.SSESessionDeletedEvent = {
-  event: "session_deleted",
+  event: "session_created",
   id: "1234567890",
   retry: 30000,
   data: {
     sessionId: "<id>",
     type: "session_deleted",
+  },
+};
+```
+
+### `models.SSESummarizeEvent`
+
+```typescript
+const value: models.SSESummarizeEvent = {
+  event: "error",
+  id: "1234567890",
+  retry: 30000,
+  data: {
+    done: true,
+    progress: "<value>",
+    type: "<value>",
   },
 };
 ```
@@ -172,7 +187,7 @@ const value: models.SSEToolExecutionCompleteEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionStartEvent = {
-  event: "permission",
+  event: "summarize",
   id: "1234567890",
   retry: 30000,
   data: {

@@ -9,7 +9,6 @@
 * [create](#create) - Create a new session
 * [delete](#delete) - Delete a session
 * [get](#get) - Get a specific session
-* [updateSessionCallbacks](#updatesessioncallbacks) - Update session callbacks
 * [exportSession](#exportsession) - Export session transcript
 * [fork](#fork) - Fork a session
 * [rewindSession](#rewindsession) - Rewind a session
@@ -83,7 +82,7 @@ run();
 
 ## create
 
-Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory. Supports session-level callbacks for automated actions after tool execution.
+Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory.
 
 ### Example Usage
 
@@ -289,82 +288,6 @@ run();
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.ErrorResponse   | 404                    | application/json       |
-| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
-
-## updateSessionCallbacks
-
-Update the callback configurations for a session. Callbacks execute automatically after tool completion. Pass an empty array to clear all callbacks.
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="updateSessionCallbacks" method="patch" path="/api/sessions/{id}/callbacks" -->
-```typescript
-import { Mix } from "mix-typescript-sdk";
-
-const mix = new Mix();
-
-async function run() {
-  const result = await mix.sessions.updateSessionCallbacks({
-    id: "<id>",
-    requestBody: {
-      callbacks: [],
-    },
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { MixCore } from "mix-typescript-sdk/core.js";
-import { sessionsUpdateSessionCallbacks } from "mix-typescript-sdk/funcs/sessionsUpdateSessionCallbacks.js";
-
-// Use `MixCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const mix = new MixCore();
-
-async function run() {
-  const res = await sessionsUpdateSessionCallbacks(mix, {
-    id: "<id>",
-    requestBody: {
-      callbacks: [],
-    },
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("sessionsUpdateSessionCallbacks failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.UpdateSessionCallbacksRequest](../../models/operations/updatesessioncallbacksrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[models.SessionData](../../models/sessiondata.md)\>**
-
-### Errors
-
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.ErrorResponse   | 400, 404               | application/json       |
 | errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
 ## exportSession
