@@ -13,6 +13,21 @@ let value: SSECompleteEvent = {
   retry: 30000,
   data: {
     done: false,
+    message: {
+      id: "<id>",
+      role: "<value>",
+      sessionId: "<id>",
+      toolCalls: [
+        {
+          finished: false,
+          id: "<id>",
+          input: "<value>",
+          name: "brave_search",
+          type: "<value>",
+        },
+      ],
+      userInput: "<value>",
+    },
     type: "<value>",
   },
 };

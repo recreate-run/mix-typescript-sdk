@@ -2022,7 +2022,7 @@ components:
                 "done":
                   description: "Indicates message processing completion"
                   type: "boolean"
-                "message": {"$ref": "#/components/schemas/MessageData", "description": "Full message object for cache update (optional)"}
+                "message": {"$ref": "#/components/schemas/BackendMessage", "description": "Full message object for cache update (optional)"}
                 "messageId":
                   description: "Completed message identifier"
                   type: "string"

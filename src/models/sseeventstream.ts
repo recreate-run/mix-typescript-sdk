@@ -6,13 +6,13 @@ import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
-  MessageData,
-  MessageData$inboundSchema,
-  MessageData$Outbound,
-  MessageData$outboundSchema,
-} from "./messagedata.js";
+  BackendMessage,
+  BackendMessage$inboundSchema,
+  BackendMessage$Outbound,
+  BackendMessage$outboundSchema,
+} from "./backendmessage.js";
+import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   ToolName,
   ToolName$inboundSchema,
@@ -715,9 +715,9 @@ export type SSECompleteEventData = {
    */
   done: boolean;
   /**
-   * Message data structure for user input
+   * Backend message structure representing a complete message exchange
    */
-  message?: MessageData | undefined;
+  message?: BackendMessage | undefined;
   /**
    * Completed message identifier
    */
@@ -2610,7 +2610,7 @@ export const SSECompleteEventData$inboundSchema: z.ZodType<
 > = z.object({
   content: z.string().optional(),
   done: z.boolean(),
-  message: MessageData$inboundSchema.optional(),
+  message: BackendMessage$inboundSchema.optional(),
   messageId: z.string().optional(),
   parentToolCallId: z.string().optional(),
   reasoning: z.string().optional(),
@@ -2622,7 +2622,7 @@ export const SSECompleteEventData$inboundSchema: z.ZodType<
 export type SSECompleteEventData$Outbound = {
   content?: string | undefined;
   done: boolean;
-  message?: MessageData$Outbound | undefined;
+  message?: BackendMessage$Outbound | undefined;
   messageId?: string | undefined;
   parentToolCallId?: string | undefined;
   reasoning?: string | undefined;
@@ -2638,7 +2638,7 @@ export const SSECompleteEventData$outboundSchema: z.ZodType<
 > = z.object({
   content: z.string().optional(),
   done: z.boolean(),
-  message: MessageData$outboundSchema.optional(),
+  message: BackendMessage$outboundSchema.optional(),
   messageId: z.string().optional(),
   parentToolCallId: z.string().optional(),
   reasoning: z.string().optional(),

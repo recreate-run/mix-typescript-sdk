@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 7e7fac8079b4c8edd8ef26b494fe39e3
+  docChecksum: f78a012613acbda0747bd6c274e942dd
   docVersion: 1.0.0
   speakeasyVersion: 1.637.0
   generationVersion: 2.727.4
-  releaseVersion: 0.8.5
-  configChecksum: ef3682b228472fa823a0a60864271360
+  releaseVersion: 0.8.6
+  configChecksum: b438cab4fdbac7890b108ad8a05241d6
   published: true
 features:
   typescript:
@@ -49,7 +49,6 @@ generatedFiles:
   - docs/models/fileinfo.md
   - docs/models/inputjson.md
   - docs/models/mediaoutputdata.md
-  - docs/models/messagedata.md
   - docs/models/operations/availableproviders.md
   - docs/models/operations/cancelsessionprocessingrequest.md
   - docs/models/operations/cancelsessionprocessingresponse.md
@@ -267,7 +266,6 @@ generatedFiles:
   - src/models/fileinfo.ts
   - src/models/index.ts
   - src/models/mediaoutputdata.ts
-  - src/models/messagedata.ts
   - src/models/operations/cancelsessionprocessing.ts
   - src/models/operations/createsession.ts
   - src/models/operations/deletecredentials.ts
