@@ -525,6 +525,10 @@ export type SSEToolParameterDeltaEventEvent = ClosedEnum<
 
 export type SSEToolParameterDeltaEventData = {
   /**
+   * ID of the assistant message this tool parameter delta belongs to
+   */
+  assistantMessageId?: string | undefined;
+  /**
    * Partial JSON parameter delta - may not be parseable until complete
    */
   input: string;
@@ -587,6 +591,10 @@ export const SSEToolEventEvent = {
 export type SSEToolEventEvent = ClosedEnum<typeof SSEToolEventEvent>;
 
 export type SSEToolEventData = {
+  /**
+   * ID of the assistant message this tool belongs to
+   */
+  assistantMessageId?: string | undefined;
   /**
    * Tool execution identifier
    */
@@ -659,6 +667,10 @@ export type SSEContentEventEvent = ClosedEnum<typeof SSEContentEventEvent>;
 
 export type SSEContentEventData = {
   /**
+   * ID of the assistant message this content belongs to
+   */
+  assistantMessageId?: string | undefined;
+  /**
    * Streaming content delta
    */
   content: string;
@@ -717,6 +729,10 @@ export const SSEThinkingEventEvent = {
 export type SSEThinkingEventEvent = ClosedEnum<typeof SSEThinkingEventEvent>;
 
 export type SSEThinkingEventData = {
+  /**
+   * ID of the assistant message this thinking belongs to
+   */
+  assistantMessageId?: string | undefined;
   /**
    * Thinking or reasoning content
    */
@@ -2213,6 +2229,7 @@ export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  assistantMessageId: z.string().optional(),
   input: z.string(),
   parentToolCallId: z.string().optional(),
   toolCallId: z.string(),
@@ -2221,6 +2238,7 @@ export const SSEToolParameterDeltaEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEToolParameterDeltaEventData$Outbound = {
+  assistantMessageId?: string | undefined;
   input: string;
   parentToolCallId?: string | undefined;
   toolCallId: string;
@@ -2233,6 +2251,7 @@ export const SSEToolParameterDeltaEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEToolParameterDeltaEventData
 > = z.object({
+  assistantMessageId: z.string().optional(),
   input: z.string(),
   parentToolCallId: z.string().optional(),
   toolCallId: z.string(),
@@ -2372,6 +2391,7 @@ export const SSEToolEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  assistantMessageId: z.string().optional(),
   id: z.string(),
   input: z.string(),
   name: ToolName$inboundSchema,
@@ -2382,6 +2402,7 @@ export const SSEToolEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEToolEventData$Outbound = {
+  assistantMessageId?: string | undefined;
   id: string;
   input: string;
   name: ToolName$Outbound;
@@ -2396,6 +2417,7 @@ export const SSEToolEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEToolEventData
 > = z.object({
+  assistantMessageId: z.string().optional(),
   id: z.string(),
   input: z.string(),
   name: ToolName$outboundSchema,
@@ -2531,6 +2553,7 @@ export const SSEContentEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  assistantMessageId: z.string().optional(),
   content: z.string(),
   parentToolCallId: z.string().optional(),
   type: z.string(),
@@ -2538,6 +2561,7 @@ export const SSEContentEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEContentEventData$Outbound = {
+  assistantMessageId?: string | undefined;
   content: string;
   parentToolCallId?: string | undefined;
   type: string;
@@ -2549,6 +2573,7 @@ export const SSEContentEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEContentEventData
 > = z.object({
+  assistantMessageId: z.string().optional(),
   content: z.string(),
   parentToolCallId: z.string().optional(),
   type: z.string(),
@@ -2683,6 +2708,7 @@ export const SSEThinkingEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  assistantMessageId: z.string().optional(),
   content: z.string(),
   parentToolCallId: z.string().optional(),
   type: z.string(),
@@ -2690,6 +2716,7 @@ export const SSEThinkingEventData$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SSEThinkingEventData$Outbound = {
+  assistantMessageId?: string | undefined;
   content: string;
   parentToolCallId?: string | undefined;
   type: string;
@@ -2701,6 +2728,7 @@ export const SSEThinkingEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SSEThinkingEventData
 > = z.object({
+  assistantMessageId: z.string().optional(),
   content: z.string(),
   parentToolCallId: z.string().optional(),
   type: z.string(),
