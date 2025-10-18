@@ -8,7 +8,7 @@ Base SSE event with standard fields
 import { SSEErrorEvent } from "mix-typescript-sdk/models";
 
 let value: SSEErrorEvent = {
-  event: "tool_execution_complete",
+  event: "permission",
   id: "1234567890",
   retry: 30000,
   data: {

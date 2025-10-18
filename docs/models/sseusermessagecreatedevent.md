@@ -1,21 +1,20 @@
-# SSEToolExecutionStartEvent
+# SSEUserMessageCreatedEvent
 
 Base SSE event with standard fields
 
 ## Example Usage
 
 ```typescript
-import { SSEToolExecutionStartEvent } from "mix-typescript-sdk/models";
+import { SSEUserMessageCreatedEvent } from "mix-typescript-sdk/models";
 
-let value: SSEToolExecutionStartEvent = {
-  event: "user_message_created",
+let value: SSEUserMessageCreatedEvent = {
+  event: "thinking",
   id: "1234567890",
   retry: 30000,
   data: {
-    progress: "<value>",
-    toolCallId: "<id>",
-    toolName: "brave_search",
-    type: "<value>",
+    content: "<value>",
+    messageId: "<id>",
+    type: "user_message_created",
   },
 };
 ```
@@ -24,7 +23,7 @@ let value: SSEToolExecutionStartEvent = {
 
 | Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `event`                                                                                | [models.SSEToolExecutionStartEventEvent](../models/ssetoolexecutionstarteventevent.md) | :heavy_check_mark:                                                                     | Event type identifier                                                                  |                                                                                        |
+| `event`                                                                                | [models.SSEUserMessageCreatedEventEvent](../models/sseusermessagecreatedeventevent.md) | :heavy_check_mark:                                                                     | Event type identifier                                                                  |                                                                                        |
 | `id`                                                                                   | *string*                                                                               | :heavy_check_mark:                                                                     | Unique sequential event identifier for ordering and reconnection                       | 1234567890                                                                             |
 | `retry`                                                                                | *number*                                                                               | :heavy_minus_sign:                                                                     | Client retry interval in milliseconds                                                  | 30000                                                                                  |
-| `data`                                                                                 | [models.SSEToolExecutionStartEventData](../models/ssetoolexecutionstarteventdata.md)   | :heavy_check_mark:                                                                     | N/A                                                                                    |                                                                                        |
+| `data`                                                                                 | [models.SSEUserMessageCreatedEventData](../models/sseusermessagecreatedeventdata.md)   | :heavy_check_mark:                                                                     | N/A                                                                                    |                                                                                        |

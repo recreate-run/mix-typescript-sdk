@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: f78a012613acbda0747bd6c274e942dd
+  docChecksum: 1b95292d879d8f772abd55710bc4578e
   docVersion: 1.0.0
   speakeasyVersion: 1.637.0
   generationVersion: 2.727.4
-  releaseVersion: 0.8.6
-  configChecksum: b438cab4fdbac7890b108ad8a05241d6
+  releaseVersion: 0.8.7
+  configChecksum: 345c73cb74972d5e10c77d5fd62317f7
   published: true
 features:
   typescript:
@@ -40,7 +40,6 @@ generatedFiles:
   - USAGE.md
   - docs/lib/utils/retryconfig.md
   - docs/models/backendmessage.md
-  - docs/models/config.md
   - docs/models/coretoolname.md
   - docs/models/errors/errorresponse.md
   - docs/models/exportmessage.md
@@ -48,7 +47,6 @@ generatedFiles:
   - docs/models/exporttoolcall.md
   - docs/models/fileinfo.md
   - docs/models/inputjson.md
-  - docs/models/mediaoutputdata.md
   - docs/models/operations/availableproviders.md
   - docs/models/operations/cancelsessionprocessingrequest.md
   - docs/models/operations/cancelsessionprocessingresponse.md
@@ -169,6 +167,9 @@ generatedFiles:
   - docs/models/ssetoolparameterdeltaevent.md
   - docs/models/ssetoolparameterdeltaeventdata.md
   - docs/models/ssetoolparameterdeltaeventevent.md
+  - docs/models/sseusermessagecreatedevent.md
+  - docs/models/sseusermessagecreatedeventdata.md
+  - docs/models/sseusermessagecreatedeventevent.md
   - docs/models/subagenttype.md
   - docs/models/toolcalldata.md
   - docs/models/toolname.md
@@ -265,7 +266,6 @@ generatedFiles:
   - src/models/exporttoolcall.ts
   - src/models/fileinfo.ts
   - src/models/index.ts
-  - src/models/mediaoutputdata.ts
   - src/models/operations/cancelsessionprocessing.ts
   - src/models/operations/createsession.ts
   - src/models/operations/deletecredentials.ts

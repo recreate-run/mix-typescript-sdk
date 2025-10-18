@@ -1,13 +1,13 @@
-# SSESessionDeletedEventEvent
+# SSEUserMessageCreatedEventEvent
 
 Event type identifier
 
 ## Example Usage
 
 ```typescript
-import { SSESessionDeletedEventEvent } from "mix-typescript-sdk/models";
+import { SSEUserMessageCreatedEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSESessionDeletedEventEvent = "connected";
+let value: SSEUserMessageCreatedEventEvent = "session_created";
 ```
 
 ## Values

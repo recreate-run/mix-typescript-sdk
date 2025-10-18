@@ -14,21 +14,6 @@ const value: models.SSECompleteEvent = {
   retry: 30000,
   data: {
     done: false,
-    message: {
-      id: "<id>",
-      role: "<value>",
-      sessionId: "<id>",
-      toolCalls: [
-        {
-          finished: false,
-          id: "<id>",
-          input: "<value>",
-          name: "brave_search",
-          type: "<value>",
-        },
-      ],
-      userInput: "<value>",
-    },
     type: "<value>",
   },
 };
@@ -65,7 +50,7 @@ const value: models.SSEContentEvent = {
 
 ```typescript
 const value: models.SSEErrorEvent = {
-  event: "tool_execution_complete",
+  event: "permission",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -78,7 +63,7 @@ const value: models.SSEErrorEvent = {
 
 ```typescript
 const value: models.SSEHeartbeatEvent = {
-  event: "summarize",
+  event: "user_message_created",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -168,7 +153,7 @@ const value: models.SSEThinkingEvent = {
 
 ```typescript
 const value: models.SSEToolEvent = {
-  event: "tool_execution_start",
+  event: "tool_execution_complete",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -185,7 +170,7 @@ const value: models.SSEToolEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionCompleteEvent = {
-  event: "thinking",
+  event: "content",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -202,7 +187,7 @@ const value: models.SSEToolExecutionCompleteEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionStartEvent = {
-  event: "summarize",
+  event: "user_message_created",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -225,6 +210,21 @@ const value: models.SSEToolParameterDeltaEvent = {
     input: "<value>",
     toolCallId: "<id>",
     type: "<value>",
+  },
+};
+```
+
+### `models.SSEUserMessageCreatedEvent`
+
+```typescript
+const value: models.SSEUserMessageCreatedEvent = {
+  event: "thinking",
+  id: "1234567890",
+  retry: 30000,
+  data: {
+    content: "<value>",
+    messageId: "<id>",
+    type: "user_message_created",
   },
 };
 ```

@@ -1703,10 +1703,6 @@ components:
         "id":
           description: "Unique message identifier"
           type: "string"
-        "mediaOutputs":
-          description: "Media outputs from show_media tool calls"
-          items: {"$ref": "#/components/schemas/MediaOutputData"}
-          type: "array"
         "reasoning":
           description: "Reasoning process (optional)"
           type: "string"
@@ -1906,35 +1902,6 @@ components:
         - "isDir"
         - "url"
       type: "object"
-    "MediaOutputData":
-      description: "Media output information from show_media tool calls"
-      properties:
-        "config":
-          description: "Media configuration (optional)"
-          type: "object"
-        "description":
-          description: "Media description (optional)"
-          type: "string"
-        "duration":
-          description: "Duration in milliseconds for video/audio (optional)"
-          type: "integer"
-        "path":
-          description: "Path to the media file"
-          type: "string"
-        "startTime":
-          description: "Start time in milliseconds for video/audio (optional)"
-          type: "integer"
-        "title":
-          description: "Media title"
-          type: "string"
-        "type":
-          description: "Media type (image, video, audio, gsap_animation, pdf, csv)"
-          type: "string"
-      required:
-        - "path"
-        - "type"
-        - "title"
-      type: "object"
     "MessageData":
       description: "Message data structure for user input"
       properties:
@@ -1995,6 +1962,7 @@ components:
             - "tool_execution_complete"
             - "permission"
             - "summarize"
+            - "user_message_created"
             - "session_created"
             - "session_deleted"
           type: "string"
@@ -2022,7 +1990,6 @@ components:
                 "done":
                   description: "Indicates message processing completion"
                   type: "boolean"
-                "message": {"$ref": "#/components/schemas/BackendMessage", "description": "Full message object for cache update (optional)"}
                 "messageId":
                   description: "Completed message identifier"
                   type: "string"
@@ -2130,6 +2097,7 @@ components:
           "tool_execution_complete": "#/components/schemas/SSEToolExecutionCompleteEvent"
           "tool_execution_start": "#/components/schemas/SSEToolExecutionStartEvent"
           "tool_parameter_delta": "#/components/schemas/SSEToolParameterDeltaEvent"
+          "user_message_created": "#/components/schemas/SSEUserMessageCreatedEvent"
         propertyName: "event"
       oneOf:
         - {"$ref": "#/components/schemas/SSEConnectedEvent"}
@@ -2144,6 +2112,7 @@ components:
         - {"$ref": "#/components/schemas/SSEToolExecutionCompleteEvent"}
         - {"$ref": "#/components/schemas/SSEPermissionEvent"}
         - {"$ref": "#/components/schemas/SSESummarizeEvent"}
+        - {"$ref": "#/components/schemas/SSEUserMessageCreatedEvent"}
         - {"$ref": "#/components/schemas/SSESessionCreatedEvent"}
         - {"$ref": "#/components/schemas/SSESessionDeletedEvent"}
       type: "object"
@@ -2416,6 +2385,33 @@ components:
                 - "type"
                 - "toolCallId"
                 - "input"
+              type: "object"
+          required:
+            - "data"
+          type: "object"
+    "SSEUserMessageCreatedEvent":
+      allOf:
+        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - properties:
+            "data":
+              properties:
+                "content":
+                  description: "Content of the user message"
+                  type: "string"
+                "messageId":
+                  description: "ID of the created user message"
+                  type: "string"
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
+                "type":
+                  description: "User message created event type"
+                  example: "user_message_created"
+                  type: "string"
+              required:
+                - "type"
+                - "messageId"
+                - "content"
               type: "object"
           required:
             - "data"

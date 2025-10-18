@@ -6,12 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import {
-  BackendMessage,
-  BackendMessage$inboundSchema,
-  BackendMessage$Outbound,
-  BackendMessage$outboundSchema,
-} from "./backendmessage.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   ToolName,
@@ -36,6 +30,7 @@ export const SSESessionDeletedEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -92,6 +87,7 @@ export const SSESessionCreatedEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -143,6 +139,71 @@ export type SSESessionCreatedEvent = {
 /**
  * Event type identifier
  */
+export const SSEUserMessageCreatedEventEvent = {
+  Connected: "connected",
+  Heartbeat: "heartbeat",
+  Error: "error",
+  Complete: "complete",
+  Thinking: "thinking",
+  Content: "content",
+  Tool: "tool",
+  ToolParameterDelta: "tool_parameter_delta",
+  ToolExecutionStart: "tool_execution_start",
+  ToolExecutionComplete: "tool_execution_complete",
+  Permission: "permission",
+  Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
+  SessionCreated: "session_created",
+  SessionDeleted: "session_deleted",
+} as const;
+/**
+ * Event type identifier
+ */
+export type SSEUserMessageCreatedEventEvent = ClosedEnum<
+  typeof SSEUserMessageCreatedEventEvent
+>;
+
+export type SSEUserMessageCreatedEventData = {
+  /**
+   * Content of the user message
+   */
+  content: string;
+  /**
+   * ID of the created user message
+   */
+  messageId: string;
+  /**
+   * ID of the parent tool call that spawned this subagent (for nested events)
+   */
+  parentToolCallId?: string | undefined;
+  /**
+   * User message created event type
+   */
+  type: string;
+};
+
+/**
+ * Base SSE event with standard fields
+ */
+export type SSEUserMessageCreatedEvent = {
+  /**
+   * Event type identifier
+   */
+  event: SSEUserMessageCreatedEventEvent;
+  /**
+   * Unique sequential event identifier for ordering and reconnection
+   */
+  id: string;
+  /**
+   * Client retry interval in milliseconds
+   */
+  retry?: number | undefined;
+  data: SSEUserMessageCreatedEventData;
+};
+
+/**
+ * Event type identifier
+ */
 export const SSESummarizeEventEvent = {
   Connected: "connected",
   Heartbeat: "heartbeat",
@@ -156,6 +217,7 @@ export const SSESummarizeEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -218,6 +280,7 @@ export const SSEPermissionEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -307,6 +370,7 @@ export const SSEToolExecutionCompleteEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -379,6 +443,7 @@ export const SSEToolExecutionStartEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -447,6 +512,7 @@ export const SSEToolParameterDeltaEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -511,6 +577,7 @@ export const SSEToolEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -581,6 +648,7 @@ export const SSEContentEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -639,6 +707,7 @@ export const SSEThinkingEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -697,6 +766,7 @@ export const SSECompleteEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -714,10 +784,6 @@ export type SSECompleteEventData = {
    * Indicates message processing completion
    */
   done: boolean;
-  /**
-   * Backend message structure representing a complete message exchange
-   */
-  message?: BackendMessage | undefined;
   /**
    * Completed message identifier
    */
@@ -775,6 +841,7 @@ export const SSEErrorEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -845,6 +912,7 @@ export const SSEHeartbeatEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -895,6 +963,7 @@ export const SSEConnectedEventEvent = {
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
   Summarize: "summarize",
+  UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
 } as const;
@@ -946,7 +1015,8 @@ export type SSEEventStream =
   | (SSEToolEvent & { event: "tool" })
   | (SSEToolExecutionCompleteEvent & { event: "tool_execution_complete" })
   | (SSEToolExecutionStartEvent & { event: "tool_execution_start" })
-  | (SSEToolParameterDeltaEvent & { event: "tool_parameter_delta" });
+  | (SSEToolParameterDeltaEvent & { event: "tool_parameter_delta" })
+  | (SSEUserMessageCreatedEvent & { event: "user_message_created" });
 
 /** @internal */
 export const SSESessionDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
@@ -1253,6 +1323,165 @@ export function sseSessionCreatedEventFromJSON(
     jsonString,
     (x) => SSESessionCreatedEvent$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SSESessionCreatedEvent' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSEUserMessageCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
+  typeof SSEUserMessageCreatedEventEvent
+> = z.nativeEnum(SSEUserMessageCreatedEventEvent);
+
+/** @internal */
+export const SSEUserMessageCreatedEventEvent$outboundSchema: z.ZodNativeEnum<
+  typeof SSEUserMessageCreatedEventEvent
+> = SSEUserMessageCreatedEventEvent$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSEUserMessageCreatedEventEvent$ {
+  /** @deprecated use `SSEUserMessageCreatedEventEvent$inboundSchema` instead. */
+  export const inboundSchema = SSEUserMessageCreatedEventEvent$inboundSchema;
+  /** @deprecated use `SSEUserMessageCreatedEventEvent$outboundSchema` instead. */
+  export const outboundSchema = SSEUserMessageCreatedEventEvent$outboundSchema;
+}
+
+/** @internal */
+export const SSEUserMessageCreatedEventData$inboundSchema: z.ZodType<
+  SSEUserMessageCreatedEventData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  content: z.string(),
+  messageId: z.string(),
+  parentToolCallId: z.string().optional(),
+  type: z.string(),
+});
+
+/** @internal */
+export type SSEUserMessageCreatedEventData$Outbound = {
+  content: string;
+  messageId: string;
+  parentToolCallId?: string | undefined;
+  type: string;
+};
+
+/** @internal */
+export const SSEUserMessageCreatedEventData$outboundSchema: z.ZodType<
+  SSEUserMessageCreatedEventData$Outbound,
+  z.ZodTypeDef,
+  SSEUserMessageCreatedEventData
+> = z.object({
+  content: z.string(),
+  messageId: z.string(),
+  parentToolCallId: z.string().optional(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSEUserMessageCreatedEventData$ {
+  /** @deprecated use `SSEUserMessageCreatedEventData$inboundSchema` instead. */
+  export const inboundSchema = SSEUserMessageCreatedEventData$inboundSchema;
+  /** @deprecated use `SSEUserMessageCreatedEventData$outboundSchema` instead. */
+  export const outboundSchema = SSEUserMessageCreatedEventData$outboundSchema;
+  /** @deprecated use `SSEUserMessageCreatedEventData$Outbound` instead. */
+  export type Outbound = SSEUserMessageCreatedEventData$Outbound;
+}
+
+export function sseUserMessageCreatedEventDataToJSON(
+  sseUserMessageCreatedEventData: SSEUserMessageCreatedEventData,
+): string {
+  return JSON.stringify(
+    SSEUserMessageCreatedEventData$outboundSchema.parse(
+      sseUserMessageCreatedEventData,
+    ),
+  );
+}
+
+export function sseUserMessageCreatedEventDataFromJSON(
+  jsonString: string,
+): SafeParseResult<SSEUserMessageCreatedEventData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSEUserMessageCreatedEventData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSEUserMessageCreatedEventData' from JSON`,
+  );
+}
+
+/** @internal */
+export const SSEUserMessageCreatedEvent$inboundSchema: z.ZodType<
+  SSEUserMessageCreatedEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  event: SSEUserMessageCreatedEventEvent$inboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.string().transform((v, ctx) => {
+    try {
+      return JSON.parse(v);
+    } catch (err) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `malformed json: ${err}`,
+      });
+      return z.NEVER;
+    }
+  }).pipe(z.lazy(() => SSEUserMessageCreatedEventData$inboundSchema)),
+});
+
+/** @internal */
+export type SSEUserMessageCreatedEvent$Outbound = {
+  event: string;
+  id: string;
+  retry?: number | undefined;
+  data: SSEUserMessageCreatedEventData$Outbound;
+};
+
+/** @internal */
+export const SSEUserMessageCreatedEvent$outboundSchema: z.ZodType<
+  SSEUserMessageCreatedEvent$Outbound,
+  z.ZodTypeDef,
+  SSEUserMessageCreatedEvent
+> = z.object({
+  event: SSEUserMessageCreatedEventEvent$outboundSchema,
+  id: z.string(),
+  retry: z.number().int().optional(),
+  data: z.lazy(() => SSEUserMessageCreatedEventData$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SSEUserMessageCreatedEvent$ {
+  /** @deprecated use `SSEUserMessageCreatedEvent$inboundSchema` instead. */
+  export const inboundSchema = SSEUserMessageCreatedEvent$inboundSchema;
+  /** @deprecated use `SSEUserMessageCreatedEvent$outboundSchema` instead. */
+  export const outboundSchema = SSEUserMessageCreatedEvent$outboundSchema;
+  /** @deprecated use `SSEUserMessageCreatedEvent$Outbound` instead. */
+  export type Outbound = SSEUserMessageCreatedEvent$Outbound;
+}
+
+export function sseUserMessageCreatedEventToJSON(
+  sseUserMessageCreatedEvent: SSEUserMessageCreatedEvent,
+): string {
+  return JSON.stringify(
+    SSEUserMessageCreatedEvent$outboundSchema.parse(sseUserMessageCreatedEvent),
+  );
+}
+
+export function sseUserMessageCreatedEventFromJSON(
+  jsonString: string,
+): SafeParseResult<SSEUserMessageCreatedEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SSEUserMessageCreatedEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SSEUserMessageCreatedEvent' from JSON`,
   );
 }
 
@@ -2610,7 +2839,6 @@ export const SSECompleteEventData$inboundSchema: z.ZodType<
 > = z.object({
   content: z.string().optional(),
   done: z.boolean(),
-  message: BackendMessage$inboundSchema.optional(),
   messageId: z.string().optional(),
   parentToolCallId: z.string().optional(),
   reasoning: z.string().optional(),
@@ -2622,7 +2850,6 @@ export const SSECompleteEventData$inboundSchema: z.ZodType<
 export type SSECompleteEventData$Outbound = {
   content?: string | undefined;
   done: boolean;
-  message?: BackendMessage$Outbound | undefined;
   messageId?: string | undefined;
   parentToolCallId?: string | undefined;
   reasoning?: string | undefined;
@@ -2638,7 +2865,6 @@ export const SSECompleteEventData$outboundSchema: z.ZodType<
 > = z.object({
   content: z.string().optional(),
   done: z.boolean(),
-  message: BackendMessage$outboundSchema.optional(),
   messageId: z.string().optional(),
   parentToolCallId: z.string().optional(),
   reasoning: z.string().optional(),
@@ -3281,6 +3507,11 @@ export const SSEEventStream$inboundSchema: z.ZodType<
       event: v.event,
     })),
   ),
+  z.lazy(() => SSEUserMessageCreatedEvent$inboundSchema).and(
+    z.object({ event: z.literal("user_message_created") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
 ]);
 
 /** @internal */
@@ -3300,7 +3531,8 @@ export type SSEEventStream$Outbound =
     event: "tool_execution_complete";
   })
   | (SSEToolExecutionStartEvent$Outbound & { event: "tool_execution_start" })
-  | (SSEToolParameterDeltaEvent$Outbound & { event: "tool_parameter_delta" });
+  | (SSEToolParameterDeltaEvent$Outbound & { event: "tool_parameter_delta" })
+  | (SSEUserMessageCreatedEvent$Outbound & { event: "user_message_created" });
 
 /** @internal */
 export const SSEEventStream$outboundSchema: z.ZodType<
@@ -3375,6 +3607,11 @@ export const SSEEventStream$outboundSchema: z.ZodType<
   ),
   z.lazy(() => SSEToolParameterDeltaEvent$outboundSchema).and(
     z.object({ event: z.literal("tool_parameter_delta") }).transform((v) => ({
+      event: v.event,
+    })),
+  ),
+  z.lazy(() => SSEUserMessageCreatedEvent$outboundSchema).and(
+    z.object({ event: z.literal("user_message_created") }).transform((v) => ({
       event: v.event,
     })),
   ),
