@@ -7,6 +7,12 @@ import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
+  MediaOutputData,
+  MediaOutputData$inboundSchema,
+  MediaOutputData$Outbound,
+  MediaOutputData$outboundSchema,
+} from "./mediaoutputdata.js";
+import {
   ToolCallData,
   ToolCallData$inboundSchema,
   ToolCallData$Outbound,
@@ -25,6 +31,10 @@ export type BackendMessage = {
    * Unique message identifier
    */
   id: string;
+  /**
+   * Media outputs from show_media tool calls
+   */
+  mediaOutputs?: Array<MediaOutputData> | undefined;
   /**
    * Reasoning process (optional)
    */
@@ -59,6 +69,7 @@ export const BackendMessage$inboundSchema: z.ZodType<
 > = z.object({
   assistantResponse: z.string().optional(),
   id: z.string(),
+  mediaOutputs: z.array(MediaOutputData$inboundSchema).optional(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),
   role: z.string(),
@@ -71,6 +82,7 @@ export const BackendMessage$inboundSchema: z.ZodType<
 export type BackendMessage$Outbound = {
   assistantResponse?: string | undefined;
   id: string;
+  mediaOutputs?: Array<MediaOutputData$Outbound> | undefined;
   reasoning?: string | undefined;
   reasoningDuration?: number | undefined;
   role: string;
@@ -87,6 +99,7 @@ export const BackendMessage$outboundSchema: z.ZodType<
 > = z.object({
   assistantResponse: z.string().optional(),
   id: z.string(),
+  mediaOutputs: z.array(MediaOutputData$outboundSchema).optional(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),
   role: z.string(),

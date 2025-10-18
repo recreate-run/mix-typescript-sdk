@@ -26,13 +26,14 @@ let value: BackendMessage = {
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `assistantResponse`                                | *string*                                           | :heavy_minus_sign:                                 | Assistant's response message (optional)            |
-| `id`                                               | *string*                                           | :heavy_check_mark:                                 | Unique message identifier                          |
-| `reasoning`                                        | *string*                                           | :heavy_minus_sign:                                 | Reasoning process (optional)                       |
-| `reasoningDuration`                                | *number*                                           | :heavy_minus_sign:                                 | Reasoning duration in milliseconds (optional)      |
-| `role`                                             | *string*                                           | :heavy_check_mark:                                 | Message role (user, assistant, tool)               |
-| `sessionId`                                        | *string*                                           | :heavy_check_mark:                                 | Session identifier                                 |
-| `toolCalls`                                        | [models.ToolCallData](../models/toolcalldata.md)[] | :heavy_minus_sign:                                 | Tool calls made during message processing          |
-| `userInput`                                        | *string*                                           | :heavy_check_mark:                                 | User's input message                               |
+| Field                                                    | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `assistantResponse`                                      | *string*                                                 | :heavy_minus_sign:                                       | Assistant's response message (optional)                  |
+| `id`                                                     | *string*                                                 | :heavy_check_mark:                                       | Unique message identifier                                |
+| `mediaOutputs`                                           | [models.MediaOutputData](../models/mediaoutputdata.md)[] | :heavy_minus_sign:                                       | Media outputs from show_media tool calls                 |
+| `reasoning`                                              | *string*                                                 | :heavy_minus_sign:                                       | Reasoning process (optional)                             |
+| `reasoningDuration`                                      | *number*                                                 | :heavy_minus_sign:                                       | Reasoning duration in milliseconds (optional)            |
+| `role`                                                   | *string*                                                 | :heavy_check_mark:                                       | Message role (user, assistant, tool)                     |
+| `sessionId`                                              | *string*                                                 | :heavy_check_mark:                                       | Session identifier                                       |
+| `toolCalls`                                              | [models.ToolCallData](../models/toolcalldata.md)[]       | :heavy_minus_sign:                                       | Tool calls made during message processing                |
+| `userInput`                                              | *string*                                                 | :heavy_check_mark:                                       | User's input message                                     |

@@ -1703,6 +1703,10 @@ components:
         "id":
           description: "Unique message identifier"
           type: "string"
+        "mediaOutputs":
+          description: "Media outputs from show_media tool calls"
+          items: {"$ref": "#/components/schemas/MediaOutputData"}
+          type: "array"
         "reasoning":
           description: "Reasoning process (optional)"
           type: "string"
@@ -1901,6 +1905,35 @@ components:
         - "modified"
         - "isDir"
         - "url"
+      type: "object"
+    "MediaOutputData":
+      description: "Media output information from show_media tool calls"
+      properties:
+        "config":
+          description: "Media configuration (optional)"
+          type: "object"
+        "description":
+          description: "Media description (optional)"
+          type: "string"
+        "duration":
+          description: "Duration in milliseconds for video/audio (optional)"
+          type: "integer"
+        "path":
+          description: "Path to the media file"
+          type: "string"
+        "startTime":
+          description: "Start time in milliseconds for video/audio (optional)"
+          type: "integer"
+        "title":
+          description: "Media title"
+          type: "string"
+        "type":
+          description: "Media type (image, video, audio, gsap_animation, pdf, csv)"
+          type: "string"
+      required:
+        - "path"
+        - "type"
+        - "title"
       type: "object"
     "MessageData":
       description: "Message data structure for user input"

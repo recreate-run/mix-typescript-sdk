@@ -8,6 +8,7 @@ export * from "./exportmessage.js";
 export * from "./exportsession.js";
 export * from "./exporttoolcall.js";
 export * from "./fileinfo.js";
+export * from "./mediaoutputdata.js";
 export * from "./messagedata.js";
 export * from "./resterror.js";
 export * from "./sessiondata.js";

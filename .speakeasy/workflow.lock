@@ -2,8 +2,8 @@ speakeasyVersion: 1.637.0
 sources:
     Mix REST API:
         sourceNamespace: mix-rest-api
-        sourceRevisionDigest: sha256:77d1d18ff5fc3838eb043ad3dea75e7db99120fef801d67b0b8ba75fc80a405f
-        sourceBlobDigest: sha256:1ac1773a4913f4fc8ac37741ac2b9884f39af1b8dacae3017c7d4e8c4f938823
+        sourceRevisionDigest: sha256:6ff3029eeceb38826c6f0d9a0829c25fe8599b0cf8583619d9e2f3907d769af3
+        sourceBlobDigest: sha256:7a989fadeb4bb8f4f15db71fc12fb8383ee99f73e9ab61e5a04d8a1280a8a9e0
         tags:
             - latest
             - 1.0.0
@@ -11,10 +11,10 @@ targets:
     mix-ts-target:
         source: Mix REST API
         sourceNamespace: mix-rest-api
-        sourceRevisionDigest: sha256:77d1d18ff5fc3838eb043ad3dea75e7db99120fef801d67b0b8ba75fc80a405f
-        sourceBlobDigest: sha256:1ac1773a4913f4fc8ac37741ac2b9884f39af1b8dacae3017c7d4e8c4f938823
+        sourceRevisionDigest: sha256:6ff3029eeceb38826c6f0d9a0829c25fe8599b0cf8583619d9e2f3907d769af3
+        sourceBlobDigest: sha256:7a989fadeb4bb8f4f15db71fc12fb8383ee99f73e9ab61e5a04d8a1280a8a9e0
         codeSamplesNamespace: mix-rest-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:892e6d3e55ee352702274d4e4f53f3337dd6cf25bbca6d5ef5b8c14a7b781040
+        codeSamplesRevisionDigest: sha256:977701e579e94c161fb42e866ae54196e67697417f4f4d9c5b8dfa675f40d701
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

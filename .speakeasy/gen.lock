@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 532a5272630b85158bf78c6e5a3a5c73
+  docChecksum: 7e7fac8079b4c8edd8ef26b494fe39e3
   docVersion: 1.0.0
   speakeasyVersion: 1.637.0
   generationVersion: 2.727.4
-  releaseVersion: 0.8.4
-  configChecksum: 95563432ee2baf8542f289ef4b624f5e
+  releaseVersion: 0.8.5
+  configChecksum: ef3682b228472fa823a0a60864271360
   published: true
 features:
   typescript:
@@ -40,6 +40,7 @@ generatedFiles:
   - USAGE.md
   - docs/lib/utils/retryconfig.md
   - docs/models/backendmessage.md
+  - docs/models/config.md
   - docs/models/coretoolname.md
   - docs/models/errors/errorresponse.md
   - docs/models/exportmessage.md
@@ -47,6 +48,7 @@ generatedFiles:
   - docs/models/exporttoolcall.md
   - docs/models/fileinfo.md
   - docs/models/inputjson.md
+  - docs/models/mediaoutputdata.md
   - docs/models/messagedata.md
   - docs/models/operations/availableproviders.md
   - docs/models/operations/cancelsessionprocessingrequest.md
@@ -264,6 +266,7 @@ generatedFiles:
   - src/models/exporttoolcall.ts
   - src/models/fileinfo.ts
   - src/models/index.ts
+  - src/models/mediaoutputdata.ts
   - src/models/messagedata.ts
   - src/models/operations/cancelsessionprocessing.ts
   - src/models/operations/createsession.ts
