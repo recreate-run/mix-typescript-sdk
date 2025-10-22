@@ -7,11 +7,11 @@ Event type identifier
 ```typescript
 import { SSEHeartbeatEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSEHeartbeatEventEvent = "tool";
+let value: SSEHeartbeatEventEvent = "content";
 ```
 
 ## Values
 
 ```typescript
-"connected" | "heartbeat" | "error" | "complete" | "thinking" | "content" | "tool" | "tool_parameter_delta" | "tool_execution_start" | "tool_execution_complete" | "permission" | "summarize" | "user_message_created" | "session_created" | "session_deleted"
+"connected" | "heartbeat" | "error" | "complete" | "thinking" | "content" | "tool" | "tool_parameter_delta" | "tool_execution_start" | "tool_execution_complete" | "permission" | "user_message_created" | "session_created" | "session_deleted"
 ```

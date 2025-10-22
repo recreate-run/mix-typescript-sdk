@@ -6,6 +6,12 @@ import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
+import {
+  Callback,
+  Callback$inboundSchema,
+  Callback$Outbound,
+  Callback$outboundSchema,
+} from "./callback.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
@@ -47,6 +53,10 @@ export type SessionData = {
    * Number of assistant messages in session
    */
   assistantMessageCount: number;
+  /**
+   * Session-level callback configurations (optional)
+   */
+  callbacks?: Array<Callback> | undefined;
   /**
    * Total completion tokens used
    */
@@ -151,6 +161,7 @@ export const SessionData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   assistantMessageCount: z.number().int(),
+  callbacks: z.array(Callback$inboundSchema).optional(),
   completionTokens: z.number().int(),
   cost: z.number(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -169,6 +180,7 @@ export const SessionData$inboundSchema: z.ZodType<
 /** @internal */
 export type SessionData$Outbound = {
   assistantMessageCount: number;
+  callbacks?: Array<Callback$Outbound> | undefined;
   completionTokens: number;
   cost: number;
   createdAt: string;
@@ -191,6 +203,7 @@ export const SessionData$outboundSchema: z.ZodType<
   SessionData
 > = z.object({
   assistantMessageCount: z.number().int(),
+  callbacks: z.array(Callback$outboundSchema).optional(),
   completionTokens: z.number().int(),
   cost: z.number(),
   createdAt: z.date().transform(v => v.toISOString()),

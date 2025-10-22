@@ -50,7 +50,7 @@ const value: models.SSEContentEvent = {
 
 ```typescript
 const value: models.SSEErrorEvent = {
-  event: "permission",
+  event: "tool_execution_complete",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -120,21 +120,6 @@ const value: models.SSESessionDeletedEvent = {
 };
 ```
 
-### `models.SSESummarizeEvent`
-
-```typescript
-const value: models.SSESummarizeEvent = {
-  event: "error",
-  id: "1234567890",
-  retry: 30000,
-  data: {
-    done: true,
-    progress: "<value>",
-    type: "<value>",
-  },
-};
-```
-
 ### `models.SSEThinkingEvent`
 
 ```typescript
@@ -153,7 +138,7 @@ const value: models.SSEThinkingEvent = {
 
 ```typescript
 const value: models.SSEToolEvent = {
-  event: "tool_execution_complete",
+  event: "tool_execution_start",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -170,7 +155,7 @@ const value: models.SSEToolEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionCompleteEvent = {
-  event: "content",
+  event: "thinking",
   id: "1234567890",
   retry: 30000,
   data: {

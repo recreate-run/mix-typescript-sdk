@@ -29,7 +29,6 @@ export const SSESessionDeletedEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -86,7 +85,6 @@ export const SSESessionCreatedEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -151,7 +149,6 @@ export const SSEUserMessageCreatedEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -204,69 +201,6 @@ export type SSEUserMessageCreatedEvent = {
 /**
  * Event type identifier
  */
-export const SSESummarizeEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  Tool: "tool",
-  ToolParameterDelta: "tool_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  Summarize: "summarize",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSESummarizeEventEvent = ClosedEnum<typeof SSESummarizeEventEvent>;
-
-export type SSESummarizeEventData = {
-  /**
-   * Indicates if summarization is complete
-   */
-  done: boolean;
-  /**
-   * ID of the parent tool call that spawned this subagent (for nested events)
-   */
-  parentToolCallId?: string | undefined;
-  /**
-   * Summarization progress description
-   */
-  progress: string;
-  /**
-   * Summarization event type
-   */
-  type: string;
-};
-
-/**
- * Base SSE event with standard fields
- */
-export type SSESummarizeEvent = {
-  /**
-   * Event type identifier
-   */
-  event: SSESummarizeEventEvent;
-  /**
-   * Unique sequential event identifier for ordering and reconnection
-   */
-  id: string;
-  /**
-   * Client retry interval in milliseconds
-   */
-  retry?: number | undefined;
-  data: SSESummarizeEventData;
-};
-
-/**
- * Event type identifier
- */
 export const SSEPermissionEventEvent = {
   Connected: "connected",
   Heartbeat: "heartbeat",
@@ -279,7 +213,6 @@ export const SSEPermissionEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -369,7 +302,6 @@ export const SSEToolExecutionCompleteEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -442,7 +374,6 @@ export const SSEToolExecutionStartEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -511,7 +442,6 @@ export const SSEToolParameterDeltaEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -580,7 +510,6 @@ export const SSEToolEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -655,7 +584,6 @@ export const SSEContentEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -718,7 +646,6 @@ export const SSEThinkingEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -781,7 +708,6 @@ export const SSECompleteEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -856,7 +782,6 @@ export const SSEErrorEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -927,7 +852,6 @@ export const SSEHeartbeatEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -978,7 +902,6 @@ export const SSEConnectedEventEvent = {
   ToolExecutionStart: "tool_execution_start",
   ToolExecutionComplete: "tool_execution_complete",
   Permission: "permission",
-  Summarize: "summarize",
   UserMessageCreated: "user_message_created",
   SessionCreated: "session_created",
   SessionDeleted: "session_deleted",
@@ -1026,7 +949,6 @@ export type SSEEventStream =
   | (SSEPermissionEvent & { event: "permission" })
   | (SSESessionCreatedEvent & { event: "session_created" })
   | (SSESessionDeletedEvent & { event: "session_deleted" })
-  | (SSESummarizeEvent & { event: "summarize" })
   | (SSEThinkingEvent & { event: "thinking" })
   | (SSEToolEvent & { event: "tool" })
   | (SSEToolExecutionCompleteEvent & { event: "tool_execution_complete" })
@@ -1498,163 +1420,6 @@ export function sseUserMessageCreatedEventFromJSON(
     jsonString,
     (x) => SSEUserMessageCreatedEvent$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SSEUserMessageCreatedEvent' from JSON`,
-  );
-}
-
-/** @internal */
-export const SSESummarizeEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSESummarizeEventEvent
-> = z.nativeEnum(SSESummarizeEventEvent);
-
-/** @internal */
-export const SSESummarizeEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSESummarizeEventEvent
-> = SSESummarizeEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESummarizeEventEvent$ {
-  /** @deprecated use `SSESummarizeEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSESummarizeEventEvent$inboundSchema;
-  /** @deprecated use `SSESummarizeEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSESummarizeEventEvent$outboundSchema;
-}
-
-/** @internal */
-export const SSESummarizeEventData$inboundSchema: z.ZodType<
-  SSESummarizeEventData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  done: z.boolean(),
-  parentToolCallId: z.string().optional(),
-  progress: z.string(),
-  type: z.string(),
-});
-
-/** @internal */
-export type SSESummarizeEventData$Outbound = {
-  done: boolean;
-  parentToolCallId?: string | undefined;
-  progress: string;
-  type: string;
-};
-
-/** @internal */
-export const SSESummarizeEventData$outboundSchema: z.ZodType<
-  SSESummarizeEventData$Outbound,
-  z.ZodTypeDef,
-  SSESummarizeEventData
-> = z.object({
-  done: z.boolean(),
-  parentToolCallId: z.string().optional(),
-  progress: z.string(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESummarizeEventData$ {
-  /** @deprecated use `SSESummarizeEventData$inboundSchema` instead. */
-  export const inboundSchema = SSESummarizeEventData$inboundSchema;
-  /** @deprecated use `SSESummarizeEventData$outboundSchema` instead. */
-  export const outboundSchema = SSESummarizeEventData$outboundSchema;
-  /** @deprecated use `SSESummarizeEventData$Outbound` instead. */
-  export type Outbound = SSESummarizeEventData$Outbound;
-}
-
-export function sseSummarizeEventDataToJSON(
-  sseSummarizeEventData: SSESummarizeEventData,
-): string {
-  return JSON.stringify(
-    SSESummarizeEventData$outboundSchema.parse(sseSummarizeEventData),
-  );
-}
-
-export function sseSummarizeEventDataFromJSON(
-  jsonString: string,
-): SafeParseResult<SSESummarizeEventData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SSESummarizeEventData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SSESummarizeEventData' from JSON`,
-  );
-}
-
-/** @internal */
-export const SSESummarizeEvent$inboundSchema: z.ZodType<
-  SSESummarizeEvent,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  event: SSESummarizeEventEvent$inboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.string().transform((v, ctx) => {
-    try {
-      return JSON.parse(v);
-    } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
-      return z.NEVER;
-    }
-  }).pipe(z.lazy(() => SSESummarizeEventData$inboundSchema)),
-});
-
-/** @internal */
-export type SSESummarizeEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSESummarizeEventData$Outbound;
-};
-
-/** @internal */
-export const SSESummarizeEvent$outboundSchema: z.ZodType<
-  SSESummarizeEvent$Outbound,
-  z.ZodTypeDef,
-  SSESummarizeEvent
-> = z.object({
-  event: SSESummarizeEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSESummarizeEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESummarizeEvent$ {
-  /** @deprecated use `SSESummarizeEvent$inboundSchema` instead. */
-  export const inboundSchema = SSESummarizeEvent$inboundSchema;
-  /** @deprecated use `SSESummarizeEvent$outboundSchema` instead. */
-  export const outboundSchema = SSESummarizeEvent$outboundSchema;
-  /** @deprecated use `SSESummarizeEvent$Outbound` instead. */
-  export type Outbound = SSESummarizeEvent$Outbound;
-}
-
-export function sseSummarizeEventToJSON(
-  sseSummarizeEvent: SSESummarizeEvent,
-): string {
-  return JSON.stringify(
-    SSESummarizeEvent$outboundSchema.parse(sseSummarizeEvent),
-  );
-}
-
-export function sseSummarizeEventFromJSON(
-  jsonString: string,
-): SafeParseResult<SSESummarizeEvent, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SSESummarizeEvent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SSESummarizeEvent' from JSON`,
   );
 }
 
@@ -3505,11 +3270,6 @@ export const SSEEventStream$inboundSchema: z.ZodType<
       event: v.event,
     })),
   ),
-  z.lazy(() => SSESummarizeEvent$inboundSchema).and(
-    z.object({ event: z.literal("summarize") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
   z.lazy(() => SSEThinkingEvent$inboundSchema).and(
     z.object({ event: z.literal("thinking") }).transform((v) => ({
       event: v.event,
@@ -3552,7 +3312,6 @@ export type SSEEventStream$Outbound =
   | (SSEPermissionEvent$Outbound & { event: "permission" })
   | (SSESessionCreatedEvent$Outbound & { event: "session_created" })
   | (SSESessionDeletedEvent$Outbound & { event: "session_deleted" })
-  | (SSESummarizeEvent$Outbound & { event: "summarize" })
   | (SSEThinkingEvent$Outbound & { event: "thinking" })
   | (SSEToolEvent$Outbound & { event: "tool" })
   | (SSEToolExecutionCompleteEvent$Outbound & {
@@ -3605,11 +3364,6 @@ export const SSEEventStream$outboundSchema: z.ZodType<
   ),
   z.lazy(() => SSESessionDeletedEvent$outboundSchema).and(
     z.object({ event: z.literal("session_deleted") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSESummarizeEvent$outboundSchema).and(
-    z.object({ event: z.literal("summarize") }).transform((v) => ({
       event: v.event,
     })),
   ),
