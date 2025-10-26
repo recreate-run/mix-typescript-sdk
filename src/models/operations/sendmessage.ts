@@ -5,8 +5,23 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+/**
+ * Thinking level: off (disabled), basic (4k tokens), medium (10k tokens), maximum (32k tokens). If not provided, determined by keywords in message.
+ */
+export const ThinkingLevel = {
+  Off: "off",
+  Basic: "basic",
+  Medium: "medium",
+  Maximum: "maximum",
+} as const;
+/**
+ * Thinking level: off (disabled), basic (4k tokens), medium (10k tokens), maximum (32k tokens). If not provided, determined by keywords in message.
+ */
+export type ThinkingLevel = ClosedEnum<typeof ThinkingLevel>;
 
 export type SendMessageRequestBody = {
   /**
@@ -18,9 +33,9 @@ export type SendMessageRequestBody = {
    */
   text: string;
   /**
-   * Thinking budget in tokens (0=disabled, 1024-31999=enabled). If not provided, determined by keywords in message.
+   * Thinking level: off (disabled), basic (4k tokens), medium (10k tokens), maximum (32k tokens). If not provided, determined by keywords in message.
    */
-  thinkingBudget?: number | null | undefined;
+  thinkingLevel?: ThinkingLevel | null | undefined;
 };
 
 export type SendMessageRequest = {
@@ -46,6 +61,27 @@ export type SendMessageResponse = {
 };
 
 /** @internal */
+export const ThinkingLevel$inboundSchema: z.ZodNativeEnum<
+  typeof ThinkingLevel
+> = z.nativeEnum(ThinkingLevel);
+
+/** @internal */
+export const ThinkingLevel$outboundSchema: z.ZodNativeEnum<
+  typeof ThinkingLevel
+> = ThinkingLevel$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ThinkingLevel$ {
+  /** @deprecated use `ThinkingLevel$inboundSchema` instead. */
+  export const inboundSchema = ThinkingLevel$inboundSchema;
+  /** @deprecated use `ThinkingLevel$outboundSchema` instead. */
+  export const outboundSchema = ThinkingLevel$outboundSchema;
+}
+
+/** @internal */
 export const SendMessageRequestBody$inboundSchema: z.ZodType<
   SendMessageRequestBody,
   z.ZodTypeDef,
@@ -53,11 +89,11 @@ export const SendMessageRequestBody$inboundSchema: z.ZodType<
 > = z.object({
   plan_mode: z.boolean().default(false),
   text: z.string(),
-  thinking_budget: z.nullable(z.number().int()).optional(),
+  thinking_level: z.nullable(ThinkingLevel$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "plan_mode": "planMode",
-    "thinking_budget": "thinkingBudget",
+    "thinking_level": "thinkingLevel",
   });
 });
 
@@ -65,7 +101,7 @@ export const SendMessageRequestBody$inboundSchema: z.ZodType<
 export type SendMessageRequestBody$Outbound = {
   plan_mode: boolean;
   text: string;
-  thinking_budget?: number | null | undefined;
+  thinking_level?: string | null | undefined;
 };
 
 /** @internal */
@@ -76,11 +112,11 @@ export const SendMessageRequestBody$outboundSchema: z.ZodType<
 > = z.object({
   planMode: z.boolean().default(false),
   text: z.string(),
-  thinkingBudget: z.nullable(z.number().int()).optional(),
+  thinkingLevel: z.nullable(ThinkingLevel$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     planMode: "plan_mode",
-    thinkingBudget: "thinking_budget",
+    thinkingLevel: "thinking_level",
   });
 });
 

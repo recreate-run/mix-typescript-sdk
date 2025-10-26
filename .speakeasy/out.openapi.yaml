@@ -1287,13 +1287,16 @@ paths:
                 "text":
                   description: "The text content of the message"
                   type: "string"
-                "thinking_budget":
-                  description: "Thinking budget in tokens (0=disabled, 1024-31999=enabled). If not provided, determined by keywords in message."
-                  example: 10000
-                  maximum: 31999
-                  minimum: 0
+                "thinking_level":
+                  description: "Thinking level: off (disabled), basic (4k tokens), medium (10k tokens), maximum (32k tokens). If not provided, determined by keywords in message."
+                  enum:
+                    - "off"
+                    - "basic"
+                    - "medium"
+                    - "maximum"
+                  example: "medium"
                   nullable: true
-                  type: "integer"
+                  type: "string"
               required:
                 - "text"
               type: "object"

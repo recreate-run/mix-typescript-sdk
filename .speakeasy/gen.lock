@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 56e94d79dd996051f008e61e9ac23bd2
+  docChecksum: e900d9f56c905513160b863e68b3100c
   docVersion: 1.0.0
   speakeasyVersion: 1.639.3
   generationVersion: 2.730.5
-  releaseVersion: 0.9.0
-  configChecksum: b0496f97769575fba6f4d5777db030dd
+  releaseVersion: 0.9.1
+  configChecksum: 2aebaa059f970ea3c7be6e191e2e81da
   published: true
 features:
   typescript:
@@ -118,6 +118,7 @@ generatedFiles:
   - docs/models/operations/storeapikeyresponse.md
   - docs/models/operations/streameventsrequest.md
   - docs/models/operations/streameventsresponse.md
+  - docs/models/operations/thinkinglevel.md
   - docs/models/operations/updatepreferencesrequest.md
   - docs/models/operations/updatepreferencesresponse.md
   - docs/models/operations/updatesessioncallbacksrequest.md
@@ -435,7 +436,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"plan_mode": false, "text": "<value>", "thinking_budget": 10000}
+        application/json: {"plan_mode": false, "text": "<value>", "thinking_level": "medium"}
       responses:
         "200":
           application/json: {"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}
