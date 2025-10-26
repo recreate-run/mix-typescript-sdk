@@ -1287,6 +1287,13 @@ paths:
                 "text":
                   description: "The text content of the message"
                   type: "string"
+                "thinking_budget":
+                  description: "Thinking budget in tokens (0=disabled, 1024-31999=enabled). If not provided, determined by keywords in message."
+                  example: 10000
+                  maximum: 31999
+                  minimum: 0
+                  nullable: true
+                  type: "integer"
               required:
                 - "text"
               type: "object"

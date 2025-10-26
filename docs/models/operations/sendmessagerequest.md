@@ -9,6 +9,7 @@ let value: SendMessageRequest = {
   id: "<id>",
   requestBody: {
     text: "<value>",
+    thinkingBudget: 10000,
   },
 };
 ```

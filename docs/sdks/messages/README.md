@@ -234,6 +234,7 @@ async function run() {
     id: "<id>",
     requestBody: {
       text: "<value>",
+      thinkingBudget: 10000,
     },
   });
 
@@ -260,6 +261,7 @@ async function run() {
     id: "<id>",
     requestBody: {
       text: "<value>",
+      thinkingBudget: 10000,
     },
   });
   if (res.ok) {
