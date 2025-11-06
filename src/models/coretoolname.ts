@@ -20,7 +20,7 @@ export const CoreToolName = {
   Search: "Search",
   TodoWrite: "TodoWrite",
   ExitPlanMode: "ExitPlanMode",
-  ShowMedia: "ShowMedia",
+  Show: "Show",
   Task: "Task",
 } as const;
 /**
@@ -31,18 +31,3 @@ export type CoreToolName = ClosedEnum<typeof CoreToolName>;
 /** @internal */
 export const CoreToolName$inboundSchema: z.ZodNativeEnum<typeof CoreToolName> =
   z.nativeEnum(CoreToolName);
-
-/** @internal */
-export const CoreToolName$outboundSchema: z.ZodNativeEnum<typeof CoreToolName> =
-  CoreToolName$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CoreToolName$ {
-  /** @deprecated use `CoreToolName$inboundSchema` instead. */
-  export const inboundSchema = CoreToolName$inboundSchema;
-  /** @deprecated use `CoreToolName$outboundSchema` instead. */
-  export const outboundSchema = CoreToolName$outboundSchema;
-}

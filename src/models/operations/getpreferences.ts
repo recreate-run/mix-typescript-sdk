@@ -89,47 +89,6 @@ export const AvailableProviders$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AvailableProviders$Outbound = {
-  display_name?: string | undefined;
-  models?: Array<string> | undefined;
-};
-
-/** @internal */
-export const AvailableProviders$outboundSchema: z.ZodType<
-  AvailableProviders$Outbound,
-  z.ZodTypeDef,
-  AvailableProviders
-> = z.object({
-  displayName: z.string().optional(),
-  models: z.array(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AvailableProviders$ {
-  /** @deprecated use `AvailableProviders$inboundSchema` instead. */
-  export const inboundSchema = AvailableProviders$inboundSchema;
-  /** @deprecated use `AvailableProviders$outboundSchema` instead. */
-  export const outboundSchema = AvailableProviders$outboundSchema;
-  /** @deprecated use `AvailableProviders$Outbound` instead. */
-  export type Outbound = AvailableProviders$Outbound;
-}
-
-export function availableProvidersToJSON(
-  availableProviders: AvailableProviders,
-): string {
-  return JSON.stringify(
-    AvailableProviders$outboundSchema.parse(availableProviders),
-  );
-}
-
 export function availableProvidersFromJSON(
   jsonString: string,
 ): SafeParseResult<AvailableProviders, SDKValidationError> {
@@ -169,65 +128,6 @@ export const Preferences$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Preferences$Outbound = {
-  created_at?: number | undefined;
-  main_agent_max_tokens?: number | undefined;
-  main_agent_model?: string | undefined;
-  main_agent_reasoning_effort?: string | undefined;
-  preferred_provider?: string | undefined;
-  sub_agent_max_tokens?: number | undefined;
-  sub_agent_model?: string | undefined;
-  sub_agent_reasoning_effort?: string | undefined;
-  updated_at?: number | undefined;
-};
-
-/** @internal */
-export const Preferences$outboundSchema: z.ZodType<
-  Preferences$Outbound,
-  z.ZodTypeDef,
-  Preferences
-> = z.object({
-  createdAt: z.number().int().optional(),
-  mainAgentMaxTokens: z.number().int().optional(),
-  mainAgentModel: z.string().optional(),
-  mainAgentReasoningEffort: z.string().optional(),
-  preferredProvider: z.string().optional(),
-  subAgentMaxTokens: z.number().int().optional(),
-  subAgentModel: z.string().optional(),
-  subAgentReasoningEffort: z.string().optional(),
-  updatedAt: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    createdAt: "created_at",
-    mainAgentMaxTokens: "main_agent_max_tokens",
-    mainAgentModel: "main_agent_model",
-    mainAgentReasoningEffort: "main_agent_reasoning_effort",
-    preferredProvider: "preferred_provider",
-    subAgentMaxTokens: "sub_agent_max_tokens",
-    subAgentModel: "sub_agent_model",
-    subAgentReasoningEffort: "sub_agent_reasoning_effort",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Preferences$ {
-  /** @deprecated use `Preferences$inboundSchema` instead. */
-  export const inboundSchema = Preferences$inboundSchema;
-  /** @deprecated use `Preferences$outboundSchema` instead. */
-  export const outboundSchema = Preferences$outboundSchema;
-  /** @deprecated use `Preferences$Outbound` instead. */
-  export type Outbound = Preferences$Outbound;
-}
-
-export function preferencesToJSON(preferences: Preferences): string {
-  return JSON.stringify(Preferences$outboundSchema.parse(preferences));
-}
-
 export function preferencesFromJSON(
   jsonString: string,
 ): SafeParseResult<Preferences, SDKValidationError> {
@@ -251,47 +151,6 @@ export const GetPreferencesResponse$inboundSchema: z.ZodType<
     "available_providers": "availableProviders",
   });
 });
-
-/** @internal */
-export type GetPreferencesResponse$Outbound = {
-  available_providers: { [k: string]: AvailableProviders$Outbound };
-  preferences?: Preferences$Outbound | null | undefined;
-};
-
-/** @internal */
-export const GetPreferencesResponse$outboundSchema: z.ZodType<
-  GetPreferencesResponse$Outbound,
-  z.ZodTypeDef,
-  GetPreferencesResponse
-> = z.object({
-  availableProviders: z.record(z.lazy(() => AvailableProviders$outboundSchema)),
-  preferences: z.nullable(z.lazy(() => Preferences$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    availableProviders: "available_providers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPreferencesResponse$ {
-  /** @deprecated use `GetPreferencesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetPreferencesResponse$inboundSchema;
-  /** @deprecated use `GetPreferencesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetPreferencesResponse$outboundSchema;
-  /** @deprecated use `GetPreferencesResponse$Outbound` instead. */
-  export type Outbound = GetPreferencesResponse$Outbound;
-}
-
-export function getPreferencesResponseToJSON(
-  getPreferencesResponse: GetPreferencesResponse,
-): string {
-  return JSON.stringify(
-    GetPreferencesResponse$outboundSchema.parse(getPreferencesResponse),
-  );
-}
 
 export function getPreferencesResponseFromJSON(
   jsonString: string,

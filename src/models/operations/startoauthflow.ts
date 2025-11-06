@@ -34,15 +34,6 @@ export type StartOAuthFlowResponse = {
 };
 
 /** @internal */
-export const StartOAuthFlowRequest$inboundSchema: z.ZodType<
-  StartOAuthFlowRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  provider: z.string(),
-});
-
-/** @internal */
 export type StartOAuthFlowRequest$Outbound = {
   provider: string;
 };
@@ -56,34 +47,11 @@ export const StartOAuthFlowRequest$outboundSchema: z.ZodType<
   provider: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StartOAuthFlowRequest$ {
-  /** @deprecated use `StartOAuthFlowRequest$inboundSchema` instead. */
-  export const inboundSchema = StartOAuthFlowRequest$inboundSchema;
-  /** @deprecated use `StartOAuthFlowRequest$outboundSchema` instead. */
-  export const outboundSchema = StartOAuthFlowRequest$outboundSchema;
-  /** @deprecated use `StartOAuthFlowRequest$Outbound` instead. */
-  export type Outbound = StartOAuthFlowRequest$Outbound;
-}
-
 export function startOAuthFlowRequestToJSON(
   startOAuthFlowRequest: StartOAuthFlowRequest,
 ): string {
   return JSON.stringify(
     StartOAuthFlowRequest$outboundSchema.parse(startOAuthFlowRequest),
-  );
-}
-
-export function startOAuthFlowRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<StartOAuthFlowRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => StartOAuthFlowRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'StartOAuthFlowRequest' from JSON`,
   );
 }
 
@@ -101,49 +69,6 @@ export const StartOAuthFlowResponse$inboundSchema: z.ZodType<
     "auth_url": "authUrl",
   });
 });
-
-/** @internal */
-export type StartOAuthFlowResponse$Outbound = {
-  auth_url?: string | undefined;
-  message?: string | undefined;
-  state?: string | undefined;
-};
-
-/** @internal */
-export const StartOAuthFlowResponse$outboundSchema: z.ZodType<
-  StartOAuthFlowResponse$Outbound,
-  z.ZodTypeDef,
-  StartOAuthFlowResponse
-> = z.object({
-  authUrl: z.string().optional(),
-  message: z.string().optional(),
-  state: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authUrl: "auth_url",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StartOAuthFlowResponse$ {
-  /** @deprecated use `StartOAuthFlowResponse$inboundSchema` instead. */
-  export const inboundSchema = StartOAuthFlowResponse$inboundSchema;
-  /** @deprecated use `StartOAuthFlowResponse$outboundSchema` instead. */
-  export const outboundSchema = StartOAuthFlowResponse$outboundSchema;
-  /** @deprecated use `StartOAuthFlowResponse$Outbound` instead. */
-  export type Outbound = StartOAuthFlowResponse$Outbound;
-}
-
-export function startOAuthFlowResponseToJSON(
-  startOAuthFlowResponse: StartOAuthFlowResponse,
-): string {
-  return JSON.stringify(
-    StartOAuthFlowResponse$outboundSchema.parse(startOAuthFlowResponse),
-  );
-}
 
 export function startOAuthFlowResponseFromJSON(
   jsonString: string,

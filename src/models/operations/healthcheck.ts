@@ -36,45 +36,6 @@ export const HealthCheckResponse$inboundSchema: z.ZodType<
   version: z.string().optional(),
 });
 
-/** @internal */
-export type HealthCheckResponse$Outbound = {
-  status?: string | undefined;
-  timestamp?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const HealthCheckResponse$outboundSchema: z.ZodType<
-  HealthCheckResponse$Outbound,
-  z.ZodTypeDef,
-  HealthCheckResponse
-> = z.object({
-  status: z.string().optional(),
-  timestamp: z.string().optional(),
-  version: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HealthCheckResponse$ {
-  /** @deprecated use `HealthCheckResponse$inboundSchema` instead. */
-  export const inboundSchema = HealthCheckResponse$inboundSchema;
-  /** @deprecated use `HealthCheckResponse$outboundSchema` instead. */
-  export const outboundSchema = HealthCheckResponse$outboundSchema;
-  /** @deprecated use `HealthCheckResponse$Outbound` instead. */
-  export type Outbound = HealthCheckResponse$Outbound;
-}
-
-export function healthCheckResponseToJSON(
-  healthCheckResponse: HealthCheckResponse,
-): string {
-  return JSON.stringify(
-    HealthCheckResponse$outboundSchema.parse(healthCheckResponse),
-  );
-}
-
 export function healthCheckResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<HealthCheckResponse, SDKValidationError> {

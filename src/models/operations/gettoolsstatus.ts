@@ -70,54 +70,6 @@ export const GetToolsStatusTool$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type GetToolsStatusTool$Outbound = {
-  api_key_required?: boolean | undefined;
-  authenticated?: boolean | undefined;
-  description?: string | undefined;
-  display_name?: string | undefined;
-  provider?: string | undefined;
-};
-
-/** @internal */
-export const GetToolsStatusTool$outboundSchema: z.ZodType<
-  GetToolsStatusTool$Outbound,
-  z.ZodTypeDef,
-  GetToolsStatusTool
-> = z.object({
-  apiKeyRequired: z.boolean().optional(),
-  authenticated: z.boolean().optional(),
-  description: z.string().optional(),
-  displayName: z.string().optional(),
-  provider: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    apiKeyRequired: "api_key_required",
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetToolsStatusTool$ {
-  /** @deprecated use `GetToolsStatusTool$inboundSchema` instead. */
-  export const inboundSchema = GetToolsStatusTool$inboundSchema;
-  /** @deprecated use `GetToolsStatusTool$outboundSchema` instead. */
-  export const outboundSchema = GetToolsStatusTool$outboundSchema;
-  /** @deprecated use `GetToolsStatusTool$Outbound` instead. */
-  export type Outbound = GetToolsStatusTool$Outbound;
-}
-
-export function getToolsStatusToolToJSON(
-  getToolsStatusTool: GetToolsStatusTool,
-): string {
-  return JSON.stringify(
-    GetToolsStatusTool$outboundSchema.parse(getToolsStatusTool),
-  );
-}
-
 export function getToolsStatusToolFromJSON(
   jsonString: string,
 ): SafeParseResult<GetToolsStatusTool, SDKValidationError> {
@@ -142,47 +94,6 @@ export const GetToolsStatusCategories$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type GetToolsStatusCategories$Outbound = {
-  display_name?: string | undefined;
-  tools?: Array<GetToolsStatusTool$Outbound> | undefined;
-};
-
-/** @internal */
-export const GetToolsStatusCategories$outboundSchema: z.ZodType<
-  GetToolsStatusCategories$Outbound,
-  z.ZodTypeDef,
-  GetToolsStatusCategories
-> = z.object({
-  displayName: z.string().optional(),
-  tools: z.array(z.lazy(() => GetToolsStatusTool$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetToolsStatusCategories$ {
-  /** @deprecated use `GetToolsStatusCategories$inboundSchema` instead. */
-  export const inboundSchema = GetToolsStatusCategories$inboundSchema;
-  /** @deprecated use `GetToolsStatusCategories$outboundSchema` instead. */
-  export const outboundSchema = GetToolsStatusCategories$outboundSchema;
-  /** @deprecated use `GetToolsStatusCategories$Outbound` instead. */
-  export type Outbound = GetToolsStatusCategories$Outbound;
-}
-
-export function getToolsStatusCategoriesToJSON(
-  getToolsStatusCategories: GetToolsStatusCategories,
-): string {
-  return JSON.stringify(
-    GetToolsStatusCategories$outboundSchema.parse(getToolsStatusCategories),
-  );
-}
-
 export function getToolsStatusCategoriesFromJSON(
   jsonString: string,
 ): SafeParseResult<GetToolsStatusCategories, SDKValidationError> {
@@ -202,42 +113,6 @@ export const GetToolsStatusResponse$inboundSchema: z.ZodType<
   categories: z.record(z.lazy(() => GetToolsStatusCategories$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type GetToolsStatusResponse$Outbound = {
-  categories?: { [k: string]: GetToolsStatusCategories$Outbound } | undefined;
-};
-
-/** @internal */
-export const GetToolsStatusResponse$outboundSchema: z.ZodType<
-  GetToolsStatusResponse$Outbound,
-  z.ZodTypeDef,
-  GetToolsStatusResponse
-> = z.object({
-  categories: z.record(z.lazy(() => GetToolsStatusCategories$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetToolsStatusResponse$ {
-  /** @deprecated use `GetToolsStatusResponse$inboundSchema` instead. */
-  export const inboundSchema = GetToolsStatusResponse$inboundSchema;
-  /** @deprecated use `GetToolsStatusResponse$outboundSchema` instead. */
-  export const outboundSchema = GetToolsStatusResponse$outboundSchema;
-  /** @deprecated use `GetToolsStatusResponse$Outbound` instead. */
-  export type Outbound = GetToolsStatusResponse$Outbound;
-}
-
-export function getToolsStatusResponseToJSON(
-  getToolsStatusResponse: GetToolsStatusResponse,
-): string {
-  return JSON.stringify(
-    GetToolsStatusResponse$outboundSchema.parse(getToolsStatusResponse),
-  );
-}
 
 export function getToolsStatusResponseFromJSON(
   jsonString: string,

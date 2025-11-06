@@ -33,49 +33,6 @@ export const GetAvailableProvidersResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type GetAvailableProvidersResponse$Outbound = {
-  display_name?: string | undefined;
-  models?: Array<string> | undefined;
-};
-
-/** @internal */
-export const GetAvailableProvidersResponse$outboundSchema: z.ZodType<
-  GetAvailableProvidersResponse$Outbound,
-  z.ZodTypeDef,
-  GetAvailableProvidersResponse
-> = z.object({
-  displayName: z.string().optional(),
-  models: z.array(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAvailableProvidersResponse$ {
-  /** @deprecated use `GetAvailableProvidersResponse$inboundSchema` instead. */
-  export const inboundSchema = GetAvailableProvidersResponse$inboundSchema;
-  /** @deprecated use `GetAvailableProvidersResponse$outboundSchema` instead. */
-  export const outboundSchema = GetAvailableProvidersResponse$outboundSchema;
-  /** @deprecated use `GetAvailableProvidersResponse$Outbound` instead. */
-  export type Outbound = GetAvailableProvidersResponse$Outbound;
-}
-
-export function getAvailableProvidersResponseToJSON(
-  getAvailableProvidersResponse: GetAvailableProvidersResponse,
-): string {
-  return JSON.stringify(
-    GetAvailableProvidersResponse$outboundSchema.parse(
-      getAvailableProvidersResponse,
-    ),
-  );
-}
-
 export function getAvailableProvidersResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<GetAvailableProvidersResponse, SDKValidationError> {

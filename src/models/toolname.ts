@@ -5,11 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import {
-  CoreToolName,
-  CoreToolName$inboundSchema,
-  CoreToolName$outboundSchema,
-} from "./coretoolname.js";
+import { CoreToolName, CoreToolName$inboundSchema } from "./coretoolname.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
@@ -23,33 +19,6 @@ export const ToolName$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([CoreToolName$inboundSchema, z.string()]);
-
-/** @internal */
-export type ToolName$Outbound = string | string;
-
-/** @internal */
-export const ToolName$outboundSchema: z.ZodType<
-  ToolName$Outbound,
-  z.ZodTypeDef,
-  ToolName
-> = z.union([CoreToolName$outboundSchema, z.string()]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ToolName$ {
-  /** @deprecated use `ToolName$inboundSchema` instead. */
-  export const inboundSchema = ToolName$inboundSchema;
-  /** @deprecated use `ToolName$outboundSchema` instead. */
-  export const outboundSchema = ToolName$outboundSchema;
-  /** @deprecated use `ToolName$Outbound` instead. */
-  export type Outbound = ToolName$Outbound;
-}
-
-export function toolNameToJSON(toolName: ToolName): string {
-  return JSON.stringify(ToolName$outboundSchema.parse(toolName));
-}
 
 export function toolNameFromJSON(
   jsonString: string,

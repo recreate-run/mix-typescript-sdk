@@ -61,33 +61,6 @@ export const InputJson$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type InputJson$Outbound = {};
-
-/** @internal */
-export const InputJson$outboundSchema: z.ZodType<
-  InputJson$Outbound,
-  z.ZodTypeDef,
-  InputJson
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InputJson$ {
-  /** @deprecated use `InputJson$inboundSchema` instead. */
-  export const inboundSchema = InputJson$inboundSchema;
-  /** @deprecated use `InputJson$outboundSchema` instead. */
-  export const outboundSchema = InputJson$outboundSchema;
-  /** @deprecated use `InputJson$Outbound` instead. */
-  export type Outbound = InputJson$Outbound;
-}
-
-export function inputJsonToJSON(inputJson: InputJson): string {
-  return JSON.stringify(InputJson$outboundSchema.parse(inputJson));
-}
-
 export function inputJsonFromJSON(
   jsonString: string,
 ): SafeParseResult<InputJson, SDKValidationError> {
@@ -114,53 +87,6 @@ export const ExportToolCall$inboundSchema: z.ZodType<
   result: z.string().optional(),
   type: z.string(),
 });
-
-/** @internal */
-export type ExportToolCall$Outbound = {
-  finished: boolean;
-  id: string;
-  input: string;
-  inputJson?: InputJson$Outbound | undefined;
-  isError?: boolean | undefined;
-  metadata?: string | undefined;
-  name: string;
-  result?: string | undefined;
-  type: string;
-};
-
-/** @internal */
-export const ExportToolCall$outboundSchema: z.ZodType<
-  ExportToolCall$Outbound,
-  z.ZodTypeDef,
-  ExportToolCall
-> = z.object({
-  finished: z.boolean(),
-  id: z.string(),
-  input: z.string(),
-  inputJson: z.lazy(() => InputJson$outboundSchema).optional(),
-  isError: z.boolean().optional(),
-  metadata: z.string().optional(),
-  name: z.string(),
-  result: z.string().optional(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExportToolCall$ {
-  /** @deprecated use `ExportToolCall$inboundSchema` instead. */
-  export const inboundSchema = ExportToolCall$inboundSchema;
-  /** @deprecated use `ExportToolCall$outboundSchema` instead. */
-  export const outboundSchema = ExportToolCall$outboundSchema;
-  /** @deprecated use `ExportToolCall$Outbound` instead. */
-  export type Outbound = ExportToolCall$Outbound;
-}
-
-export function exportToolCallToJSON(exportToolCall: ExportToolCall): string {
-  return JSON.stringify(ExportToolCall$outboundSchema.parse(exportToolCall));
-}
 
 export function exportToolCallFromJSON(
   jsonString: string,

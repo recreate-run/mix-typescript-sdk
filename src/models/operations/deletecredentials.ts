@@ -33,15 +33,6 @@ export type DeleteCredentialsResponse = {
 };
 
 /** @internal */
-export const DeleteCredentialsRequest$inboundSchema: z.ZodType<
-  DeleteCredentialsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  provider: z.string(),
-});
-
-/** @internal */
 export type DeleteCredentialsRequest$Outbound = {
   provider: string;
 };
@@ -55,34 +46,11 @@ export const DeleteCredentialsRequest$outboundSchema: z.ZodType<
   provider: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteCredentialsRequest$ {
-  /** @deprecated use `DeleteCredentialsRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteCredentialsRequest$inboundSchema;
-  /** @deprecated use `DeleteCredentialsRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteCredentialsRequest$outboundSchema;
-  /** @deprecated use `DeleteCredentialsRequest$Outbound` instead. */
-  export type Outbound = DeleteCredentialsRequest$Outbound;
-}
-
 export function deleteCredentialsRequestToJSON(
   deleteCredentialsRequest: DeleteCredentialsRequest,
 ): string {
   return JSON.stringify(
     DeleteCredentialsRequest$outboundSchema.parse(deleteCredentialsRequest),
-  );
-}
-
-export function deleteCredentialsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DeleteCredentialsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeleteCredentialsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteCredentialsRequest' from JSON`,
   );
 }
 
@@ -96,45 +64,6 @@ export const DeleteCredentialsResponse$inboundSchema: z.ZodType<
   provider: z.string().optional(),
   status: z.string().optional(),
 });
-
-/** @internal */
-export type DeleteCredentialsResponse$Outbound = {
-  message?: string | undefined;
-  provider?: string | undefined;
-  status?: string | undefined;
-};
-
-/** @internal */
-export const DeleteCredentialsResponse$outboundSchema: z.ZodType<
-  DeleteCredentialsResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteCredentialsResponse
-> = z.object({
-  message: z.string().optional(),
-  provider: z.string().optional(),
-  status: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteCredentialsResponse$ {
-  /** @deprecated use `DeleteCredentialsResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteCredentialsResponse$inboundSchema;
-  /** @deprecated use `DeleteCredentialsResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteCredentialsResponse$outboundSchema;
-  /** @deprecated use `DeleteCredentialsResponse$Outbound` instead. */
-  export type Outbound = DeleteCredentialsResponse$Outbound;
-}
-
-export function deleteCredentialsResponseToJSON(
-  deleteCredentialsResponse: DeleteCredentialsResponse,
-): string {
-  return JSON.stringify(
-    DeleteCredentialsResponse$outboundSchema.parse(deleteCredentialsResponse),
-  );
-}
 
 export function deleteCredentialsResponseFromJSON(
   jsonString: string,

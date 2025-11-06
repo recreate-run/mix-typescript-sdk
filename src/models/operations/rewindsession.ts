@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RewindSessionRequestBody = {
   /**
@@ -28,16 +25,6 @@ export type RewindSessionRequest = {
 };
 
 /** @internal */
-export const RewindSessionRequestBody$inboundSchema: z.ZodType<
-  RewindSessionRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cleanupMedia: z.boolean().default(true),
-  messageId: z.string(),
-});
-
-/** @internal */
 export type RewindSessionRequestBody$Outbound = {
   cleanupMedia: boolean;
   messageId: string;
@@ -53,19 +40,6 @@ export const RewindSessionRequestBody$outboundSchema: z.ZodType<
   messageId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RewindSessionRequestBody$ {
-  /** @deprecated use `RewindSessionRequestBody$inboundSchema` instead. */
-  export const inboundSchema = RewindSessionRequestBody$inboundSchema;
-  /** @deprecated use `RewindSessionRequestBody$outboundSchema` instead. */
-  export const outboundSchema = RewindSessionRequestBody$outboundSchema;
-  /** @deprecated use `RewindSessionRequestBody$Outbound` instead. */
-  export type Outbound = RewindSessionRequestBody$Outbound;
-}
-
 export function rewindSessionRequestBodyToJSON(
   rewindSessionRequestBody: RewindSessionRequestBody,
 ): string {
@@ -73,30 +47,6 @@ export function rewindSessionRequestBodyToJSON(
     RewindSessionRequestBody$outboundSchema.parse(rewindSessionRequestBody),
   );
 }
-
-export function rewindSessionRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<RewindSessionRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RewindSessionRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RewindSessionRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const RewindSessionRequest$inboundSchema: z.ZodType<
-  RewindSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => RewindSessionRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type RewindSessionRequest$Outbound = {
@@ -118,33 +68,10 @@ export const RewindSessionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RewindSessionRequest$ {
-  /** @deprecated use `RewindSessionRequest$inboundSchema` instead. */
-  export const inboundSchema = RewindSessionRequest$inboundSchema;
-  /** @deprecated use `RewindSessionRequest$outboundSchema` instead. */
-  export const outboundSchema = RewindSessionRequest$outboundSchema;
-  /** @deprecated use `RewindSessionRequest$Outbound` instead. */
-  export type Outbound = RewindSessionRequest$Outbound;
-}
-
 export function rewindSessionRequestToJSON(
   rewindSessionRequest: RewindSessionRequest,
 ): string {
   return JSON.stringify(
     RewindSessionRequest$outboundSchema.parse(rewindSessionRequest),
-  );
-}
-
-export function rewindSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RewindSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RewindSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RewindSessionRequest' from JSON`,
   );
 }

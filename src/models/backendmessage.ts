@@ -8,16 +8,9 @@ import { Result as SafeParseResult } from "../types/fp.js";
 import {
   CallbackResultData,
   CallbackResultData$inboundSchema,
-  CallbackResultData$Outbound,
-  CallbackResultData$outboundSchema,
 } from "./callbackresultdata.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  ToolCallData,
-  ToolCallData$inboundSchema,
-  ToolCallData$Outbound,
-  ToolCallData$outboundSchema,
-} from "./toolcalldata.js";
+import { ToolCallData, ToolCallData$inboundSchema } from "./toolcalldata.js";
 
 /**
  * Backend message structure representing a complete message exchange
@@ -77,53 +70,6 @@ export const BackendMessage$inboundSchema: z.ZodType<
   toolCalls: z.array(ToolCallData$inboundSchema).optional(),
   userInput: z.string(),
 });
-
-/** @internal */
-export type BackendMessage$Outbound = {
-  assistantResponse?: string | undefined;
-  callbackResults?: Array<CallbackResultData$Outbound> | undefined;
-  id: string;
-  reasoning?: string | undefined;
-  reasoningDuration?: number | undefined;
-  role: string;
-  sessionId: string;
-  toolCalls?: Array<ToolCallData$Outbound> | undefined;
-  userInput: string;
-};
-
-/** @internal */
-export const BackendMessage$outboundSchema: z.ZodType<
-  BackendMessage$Outbound,
-  z.ZodTypeDef,
-  BackendMessage
-> = z.object({
-  assistantResponse: z.string().optional(),
-  callbackResults: z.array(CallbackResultData$outboundSchema).optional(),
-  id: z.string(),
-  reasoning: z.string().optional(),
-  reasoningDuration: z.number().int().optional(),
-  role: z.string(),
-  sessionId: z.string(),
-  toolCalls: z.array(ToolCallData$outboundSchema).optional(),
-  userInput: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BackendMessage$ {
-  /** @deprecated use `BackendMessage$inboundSchema` instead. */
-  export const inboundSchema = BackendMessage$inboundSchema;
-  /** @deprecated use `BackendMessage$outboundSchema` instead. */
-  export const outboundSchema = BackendMessage$outboundSchema;
-  /** @deprecated use `BackendMessage$Outbound` instead. */
-  export type Outbound = BackendMessage$Outbound;
-}
-
-export function backendMessageToJSON(backendMessage: BackendMessage): string {
-  return JSON.stringify(BackendMessage$outboundSchema.parse(backendMessage));
-}
 
 export function backendMessageFromJSON(
   jsonString: string,

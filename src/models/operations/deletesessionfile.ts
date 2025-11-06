@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteSessionFileRequest = {
   /**
@@ -17,16 +14,6 @@ export type DeleteSessionFileRequest = {
    */
   filename: string;
 };
-
-/** @internal */
-export const DeleteSessionFileRequest$inboundSchema: z.ZodType<
-  DeleteSessionFileRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  filename: z.string(),
-});
 
 /** @internal */
 export type DeleteSessionFileRequest$Outbound = {
@@ -44,33 +31,10 @@ export const DeleteSessionFileRequest$outboundSchema: z.ZodType<
   filename: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteSessionFileRequest$ {
-  /** @deprecated use `DeleteSessionFileRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteSessionFileRequest$inboundSchema;
-  /** @deprecated use `DeleteSessionFileRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteSessionFileRequest$outboundSchema;
-  /** @deprecated use `DeleteSessionFileRequest$Outbound` instead. */
-  export type Outbound = DeleteSessionFileRequest$Outbound;
-}
-
 export function deleteSessionFileRequestToJSON(
   deleteSessionFileRequest: DeleteSessionFileRequest,
 ): string {
   return JSON.stringify(
     DeleteSessionFileRequest$outboundSchema.parse(deleteSessionFileRequest),
-  );
-}
-
-export function deleteSessionFileRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DeleteSessionFileRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeleteSessionFileRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteSessionFileRequest' from JSON`,
   );
 }

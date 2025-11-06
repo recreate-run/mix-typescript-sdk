@@ -27,20 +27,6 @@ export type StreamEventsResponse = {
 };
 
 /** @internal */
-export const StreamEventsRequest$inboundSchema: z.ZodType<
-  StreamEventsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  sessionId: z.string(),
-  "Last-Event-ID": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "Last-Event-ID": "lastEventID",
-  });
-});
-
-/** @internal */
 export type StreamEventsRequest$Outbound = {
   sessionId: string;
   "Last-Event-ID"?: string | undefined;
@@ -60,34 +46,11 @@ export const StreamEventsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StreamEventsRequest$ {
-  /** @deprecated use `StreamEventsRequest$inboundSchema` instead. */
-  export const inboundSchema = StreamEventsRequest$inboundSchema;
-  /** @deprecated use `StreamEventsRequest$outboundSchema` instead. */
-  export const outboundSchema = StreamEventsRequest$outboundSchema;
-  /** @deprecated use `StreamEventsRequest$Outbound` instead. */
-  export type Outbound = StreamEventsRequest$Outbound;
-}
-
 export function streamEventsRequestToJSON(
   streamEventsRequest: StreamEventsRequest,
 ): string {
   return JSON.stringify(
     StreamEventsRequest$outboundSchema.parse(streamEventsRequest),
-  );
-}
-
-export function streamEventsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<StreamEventsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => StreamEventsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'StreamEventsRequest' from JSON`,
   );
 }
 
@@ -110,48 +73,6 @@ export const StreamEventsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type StreamEventsResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: never;
-};
-
-/** @internal */
-export const StreamEventsResponse$outboundSchema: z.ZodType<
-  StreamEventsResponse$Outbound,
-  z.ZodTypeDef,
-  StreamEventsResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: z.never(),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StreamEventsResponse$ {
-  /** @deprecated use `StreamEventsResponse$inboundSchema` instead. */
-  export const inboundSchema = StreamEventsResponse$inboundSchema;
-  /** @deprecated use `StreamEventsResponse$outboundSchema` instead. */
-  export const outboundSchema = StreamEventsResponse$outboundSchema;
-  /** @deprecated use `StreamEventsResponse$Outbound` instead. */
-  export type Outbound = StreamEventsResponse$Outbound;
-}
-
-export function streamEventsResponseToJSON(
-  streamEventsResponse: StreamEventsResponse,
-): string {
-  return JSON.stringify(
-    StreamEventsResponse$outboundSchema.parse(streamEventsResponse),
-  );
-}
 
 export function streamEventsResponseFromJSON(
   jsonString: string,

@@ -46,17 +46,6 @@ export type HandleOAuthCallbackResponse = {
 };
 
 /** @internal */
-export const HandleOAuthCallbackRequest$inboundSchema: z.ZodType<
-  HandleOAuthCallbackRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  provider: z.string(),
-  state: z.string(),
-});
-
-/** @internal */
 export type HandleOAuthCallbackRequest$Outbound = {
   code: string;
   provider: string;
@@ -74,34 +63,11 @@ export const HandleOAuthCallbackRequest$outboundSchema: z.ZodType<
   state: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HandleOAuthCallbackRequest$ {
-  /** @deprecated use `HandleOAuthCallbackRequest$inboundSchema` instead. */
-  export const inboundSchema = HandleOAuthCallbackRequest$inboundSchema;
-  /** @deprecated use `HandleOAuthCallbackRequest$outboundSchema` instead. */
-  export const outboundSchema = HandleOAuthCallbackRequest$outboundSchema;
-  /** @deprecated use `HandleOAuthCallbackRequest$Outbound` instead. */
-  export type Outbound = HandleOAuthCallbackRequest$Outbound;
-}
-
 export function handleOAuthCallbackRequestToJSON(
   handleOAuthCallbackRequest: HandleOAuthCallbackRequest,
 ): string {
   return JSON.stringify(
     HandleOAuthCallbackRequest$outboundSchema.parse(handleOAuthCallbackRequest),
-  );
-}
-
-export function handleOAuthCallbackRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HandleOAuthCallbackRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HandleOAuthCallbackRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HandleOAuthCallbackRequest' from JSON`,
   );
 }
 
@@ -120,53 +86,6 @@ export const HandleOAuthCallbackResponse$inboundSchema: z.ZodType<
     "expires_in": "expiresIn",
   });
 });
-
-/** @internal */
-export type HandleOAuthCallbackResponse$Outbound = {
-  expires_in?: number | undefined;
-  message?: string | undefined;
-  provider?: string | undefined;
-  status?: string | undefined;
-};
-
-/** @internal */
-export const HandleOAuthCallbackResponse$outboundSchema: z.ZodType<
-  HandleOAuthCallbackResponse$Outbound,
-  z.ZodTypeDef,
-  HandleOAuthCallbackResponse
-> = z.object({
-  expiresIn: z.number().int().optional(),
-  message: z.string().optional(),
-  provider: z.string().optional(),
-  status: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expiresIn: "expires_in",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HandleOAuthCallbackResponse$ {
-  /** @deprecated use `HandleOAuthCallbackResponse$inboundSchema` instead. */
-  export const inboundSchema = HandleOAuthCallbackResponse$inboundSchema;
-  /** @deprecated use `HandleOAuthCallbackResponse$outboundSchema` instead. */
-  export const outboundSchema = HandleOAuthCallbackResponse$outboundSchema;
-  /** @deprecated use `HandleOAuthCallbackResponse$Outbound` instead. */
-  export type Outbound = HandleOAuthCallbackResponse$Outbound;
-}
-
-export function handleOAuthCallbackResponseToJSON(
-  handleOAuthCallbackResponse: HandleOAuthCallbackResponse,
-): string {
-  return JSON.stringify(
-    HandleOAuthCallbackResponse$outboundSchema.parse(
-      handleOAuthCallbackResponse,
-    ),
-  );
-}
 
 export function handleOAuthCallbackResponseFromJSON(
   jsonString: string,

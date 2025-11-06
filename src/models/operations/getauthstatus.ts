@@ -55,22 +55,6 @@ export const GetAuthStatusAuthMethod$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetAuthStatusAuthMethod);
 
 /** @internal */
-export const GetAuthStatusAuthMethod$outboundSchema: z.ZodNativeEnum<
-  typeof GetAuthStatusAuthMethod
-> = GetAuthStatusAuthMethod$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthStatusAuthMethod$ {
-  /** @deprecated use `GetAuthStatusAuthMethod$inboundSchema` instead. */
-  export const inboundSchema = GetAuthStatusAuthMethod$inboundSchema;
-  /** @deprecated use `GetAuthStatusAuthMethod$outboundSchema` instead. */
-  export const outboundSchema = GetAuthStatusAuthMethod$outboundSchema;
-}
-
-/** @internal */
 export const GetAuthStatusProviders$inboundSchema: z.ZodType<
   GetAuthStatusProviders,
   z.ZodTypeDef,
@@ -85,50 +69,6 @@ export const GetAuthStatusProviders$inboundSchema: z.ZodType<
     "display_name": "displayName",
   });
 });
-
-/** @internal */
-export type GetAuthStatusProviders$Outbound = {
-  auth_method?: string | undefined;
-  authenticated?: boolean | undefined;
-  display_name?: string | undefined;
-};
-
-/** @internal */
-export const GetAuthStatusProviders$outboundSchema: z.ZodType<
-  GetAuthStatusProviders$Outbound,
-  z.ZodTypeDef,
-  GetAuthStatusProviders
-> = z.object({
-  authMethod: GetAuthStatusAuthMethod$outboundSchema.optional(),
-  authenticated: z.boolean().optional(),
-  displayName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authMethod: "auth_method",
-    displayName: "display_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthStatusProviders$ {
-  /** @deprecated use `GetAuthStatusProviders$inboundSchema` instead. */
-  export const inboundSchema = GetAuthStatusProviders$inboundSchema;
-  /** @deprecated use `GetAuthStatusProviders$outboundSchema` instead. */
-  export const outboundSchema = GetAuthStatusProviders$outboundSchema;
-  /** @deprecated use `GetAuthStatusProviders$Outbound` instead. */
-  export type Outbound = GetAuthStatusProviders$Outbound;
-}
-
-export function getAuthStatusProvidersToJSON(
-  getAuthStatusProviders: GetAuthStatusProviders,
-): string {
-  return JSON.stringify(
-    GetAuthStatusProviders$outboundSchema.parse(getAuthStatusProviders),
-  );
-}
 
 export function getAuthStatusProvidersFromJSON(
   jsonString: string,
@@ -149,42 +89,6 @@ export const GetAuthStatusResponse$inboundSchema: z.ZodType<
   providers: z.record(z.lazy(() => GetAuthStatusProviders$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type GetAuthStatusResponse$Outbound = {
-  providers?: { [k: string]: GetAuthStatusProviders$Outbound } | undefined;
-};
-
-/** @internal */
-export const GetAuthStatusResponse$outboundSchema: z.ZodType<
-  GetAuthStatusResponse$Outbound,
-  z.ZodTypeDef,
-  GetAuthStatusResponse
-> = z.object({
-  providers: z.record(z.lazy(() => GetAuthStatusProviders$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthStatusResponse$ {
-  /** @deprecated use `GetAuthStatusResponse$inboundSchema` instead. */
-  export const inboundSchema = GetAuthStatusResponse$inboundSchema;
-  /** @deprecated use `GetAuthStatusResponse$outboundSchema` instead. */
-  export const outboundSchema = GetAuthStatusResponse$outboundSchema;
-  /** @deprecated use `GetAuthStatusResponse$Outbound` instead. */
-  export type Outbound = GetAuthStatusResponse$Outbound;
-}
-
-export function getAuthStatusResponseToJSON(
-  getAuthStatusResponse: GetAuthStatusResponse,
-): string {
-  return JSON.stringify(
-    GetAuthStatusResponse$outboundSchema.parse(getAuthStatusResponse),
-  );
-}
 
 export function getAuthStatusResponseFromJSON(
   jsonString: string,

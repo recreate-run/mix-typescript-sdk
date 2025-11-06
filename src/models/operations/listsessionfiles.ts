@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListSessionFilesRequest = {
   /**
@@ -13,15 +10,6 @@ export type ListSessionFilesRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const ListSessionFilesRequest$inboundSchema: z.ZodType<
-  ListSessionFilesRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type ListSessionFilesRequest$Outbound = {
@@ -37,33 +25,10 @@ export const ListSessionFilesRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListSessionFilesRequest$ {
-  /** @deprecated use `ListSessionFilesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListSessionFilesRequest$inboundSchema;
-  /** @deprecated use `ListSessionFilesRequest$outboundSchema` instead. */
-  export const outboundSchema = ListSessionFilesRequest$outboundSchema;
-  /** @deprecated use `ListSessionFilesRequest$Outbound` instead. */
-  export type Outbound = ListSessionFilesRequest$Outbound;
-}
-
 export function listSessionFilesRequestToJSON(
   listSessionFilesRequest: ListSessionFilesRequest,
 ): string {
   return JSON.stringify(
     ListSessionFilesRequest$outboundSchema.parse(listSessionFilesRequest),
-  );
-}
-
-export function listSessionFilesRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListSessionFilesRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListSessionFilesRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListSessionFilesRequest' from JSON`,
   );
 }

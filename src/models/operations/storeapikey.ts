@@ -54,37 +54,8 @@ export type StoreApiKeyResponse = {
 };
 
 /** @internal */
-export const Provider$inboundSchema: z.ZodNativeEnum<typeof Provider> = z
+export const Provider$outboundSchema: z.ZodNativeEnum<typeof Provider> = z
   .nativeEnum(Provider);
-
-/** @internal */
-export const Provider$outboundSchema: z.ZodNativeEnum<typeof Provider> =
-  Provider$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Provider$ {
-  /** @deprecated use `Provider$inboundSchema` instead. */
-  export const inboundSchema = Provider$inboundSchema;
-  /** @deprecated use `Provider$outboundSchema` instead. */
-  export const outboundSchema = Provider$outboundSchema;
-}
-
-/** @internal */
-export const StoreApiKeyRequest$inboundSchema: z.ZodType<
-  StoreApiKeyRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  api_key: z.string(),
-  provider: Provider$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "api_key": "apiKey",
-  });
-});
 
 /** @internal */
 export type StoreApiKeyRequest$Outbound = {
@@ -106,34 +77,11 @@ export const StoreApiKeyRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StoreApiKeyRequest$ {
-  /** @deprecated use `StoreApiKeyRequest$inboundSchema` instead. */
-  export const inboundSchema = StoreApiKeyRequest$inboundSchema;
-  /** @deprecated use `StoreApiKeyRequest$outboundSchema` instead. */
-  export const outboundSchema = StoreApiKeyRequest$outboundSchema;
-  /** @deprecated use `StoreApiKeyRequest$Outbound` instead. */
-  export type Outbound = StoreApiKeyRequest$Outbound;
-}
-
 export function storeApiKeyRequestToJSON(
   storeApiKeyRequest: StoreApiKeyRequest,
 ): string {
   return JSON.stringify(
     StoreApiKeyRequest$outboundSchema.parse(storeApiKeyRequest),
-  );
-}
-
-export function storeApiKeyRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<StoreApiKeyRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => StoreApiKeyRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'StoreApiKeyRequest' from JSON`,
   );
 }
 
@@ -147,45 +95,6 @@ export const StoreApiKeyResponse$inboundSchema: z.ZodType<
   provider: z.string().optional(),
   status: z.string().optional(),
 });
-
-/** @internal */
-export type StoreApiKeyResponse$Outbound = {
-  message?: string | undefined;
-  provider?: string | undefined;
-  status?: string | undefined;
-};
-
-/** @internal */
-export const StoreApiKeyResponse$outboundSchema: z.ZodType<
-  StoreApiKeyResponse$Outbound,
-  z.ZodTypeDef,
-  StoreApiKeyResponse
-> = z.object({
-  message: z.string().optional(),
-  provider: z.string().optional(),
-  status: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StoreApiKeyResponse$ {
-  /** @deprecated use `StoreApiKeyResponse$inboundSchema` instead. */
-  export const inboundSchema = StoreApiKeyResponse$inboundSchema;
-  /** @deprecated use `StoreApiKeyResponse$outboundSchema` instead. */
-  export const outboundSchema = StoreApiKeyResponse$outboundSchema;
-  /** @deprecated use `StoreApiKeyResponse$Outbound` instead. */
-  export type Outbound = StoreApiKeyResponse$Outbound;
-}
-
-export function storeApiKeyResponseToJSON(
-  storeApiKeyResponse: StoreApiKeyResponse,
-): string {
-  return JSON.stringify(
-    StoreApiKeyResponse$outboundSchema.parse(storeApiKeyResponse),
-  );
-}
 
 export function storeApiKeyResponseFromJSON(
   jsonString: string,

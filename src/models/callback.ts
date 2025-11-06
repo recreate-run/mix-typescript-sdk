@@ -58,7 +58,7 @@ export type Callback = {
    */
   subAgentType?: string | undefined;
   /**
-   * Tool to attach callback to (e.g., 'show_media', 'bash', '*' for all tools)
+   * Tool to attach callback to (e.g., 'show', 'bash', '*' for all tools)
    */
   toolName: string;
   /**
@@ -70,21 +70,9 @@ export type Callback = {
 /** @internal */
 export const CallbackType$inboundSchema: z.ZodNativeEnum<typeof CallbackType> =
   z.nativeEnum(CallbackType);
-
 /** @internal */
 export const CallbackType$outboundSchema: z.ZodNativeEnum<typeof CallbackType> =
   CallbackType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CallbackType$ {
-  /** @deprecated use `CallbackType$inboundSchema` instead. */
-  export const inboundSchema = CallbackType$inboundSchema;
-  /** @deprecated use `CallbackType$outboundSchema` instead. */
-  export const outboundSchema = CallbackType$outboundSchema;
-}
 
 /** @internal */
 export const Callback$inboundSchema: z.ZodType<
@@ -103,7 +91,6 @@ export const Callback$inboundSchema: z.ZodType<
   toolName: z.string(),
   type: CallbackType$inboundSchema,
 });
-
 /** @internal */
 export type Callback$Outbound = {
   bashCommand?: string | undefined;
@@ -136,23 +123,9 @@ export const Callback$outboundSchema: z.ZodType<
   type: CallbackType$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Callback$ {
-  /** @deprecated use `Callback$inboundSchema` instead. */
-  export const inboundSchema = Callback$inboundSchema;
-  /** @deprecated use `Callback$outboundSchema` instead. */
-  export const outboundSchema = Callback$outboundSchema;
-  /** @deprecated use `Callback$Outbound` instead. */
-  export type Outbound = Callback$Outbound;
-}
-
 export function callbackToJSON(callback: Callback): string {
   return JSON.stringify(Callback$outboundSchema.parse(callback));
 }
-
 export function callbackFromJSON(
   jsonString: string,
 ): SafeParseResult<Callback, SDKValidationError> {

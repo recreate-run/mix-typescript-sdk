@@ -44,22 +44,6 @@ export const RESTErrorType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(RESTErrorType);
 
 /** @internal */
-export const RESTErrorType$outboundSchema: z.ZodNativeEnum<
-  typeof RESTErrorType
-> = RESTErrorType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RESTErrorType$ {
-  /** @deprecated use `RESTErrorType$inboundSchema` instead. */
-  export const inboundSchema = RESTErrorType$inboundSchema;
-  /** @deprecated use `RESTErrorType$outboundSchema` instead. */
-  export const outboundSchema = RESTErrorType$outboundSchema;
-}
-
-/** @internal */
 export const RESTError$inboundSchema: z.ZodType<
   RESTError,
   z.ZodTypeDef,
@@ -69,41 +53,6 @@ export const RESTError$inboundSchema: z.ZodType<
   message: z.string(),
   type: RESTErrorType$inboundSchema,
 });
-
-/** @internal */
-export type RESTError$Outbound = {
-  code: number;
-  message: string;
-  type: string;
-};
-
-/** @internal */
-export const RESTError$outboundSchema: z.ZodType<
-  RESTError$Outbound,
-  z.ZodTypeDef,
-  RESTError
-> = z.object({
-  code: z.number().int(),
-  message: z.string(),
-  type: RESTErrorType$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RESTError$ {
-  /** @deprecated use `RESTError$inboundSchema` instead. */
-  export const inboundSchema = RESTError$inboundSchema;
-  /** @deprecated use `RESTError$outboundSchema` instead. */
-  export const outboundSchema = RESTError$outboundSchema;
-  /** @deprecated use `RESTError$Outbound` instead. */
-  export type Outbound = RESTError$Outbound;
-}
-
-export function restErrorToJSON(restError: RESTError): string {
-  return JSON.stringify(RESTError$outboundSchema.parse(restError));
-}
 
 export function restErrorFromJSON(
   jsonString: string,

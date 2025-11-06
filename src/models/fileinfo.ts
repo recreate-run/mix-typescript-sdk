@@ -43,45 +43,6 @@ export const FileInfo$inboundSchema: z.ZodType<
   url: z.string(),
 });
 
-/** @internal */
-export type FileInfo$Outbound = {
-  isDir: boolean;
-  modified: number;
-  name: string;
-  size: number;
-  url: string;
-};
-
-/** @internal */
-export const FileInfo$outboundSchema: z.ZodType<
-  FileInfo$Outbound,
-  z.ZodTypeDef,
-  FileInfo
-> = z.object({
-  isDir: z.boolean(),
-  modified: z.number().int(),
-  name: z.string(),
-  size: z.number().int(),
-  url: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileInfo$ {
-  /** @deprecated use `FileInfo$inboundSchema` instead. */
-  export const inboundSchema = FileInfo$inboundSchema;
-  /** @deprecated use `FileInfo$outboundSchema` instead. */
-  export const outboundSchema = FileInfo$outboundSchema;
-  /** @deprecated use `FileInfo$Outbound` instead. */
-  export type Outbound = FileInfo$Outbound;
-}
-
-export function fileInfoToJSON(fileInfo: FileInfo): string {
-  return JSON.stringify(FileInfo$outboundSchema.parse(fileInfo));
-}
-
 export function fileInfoFromJSON(
   jsonString: string,
 ): SafeParseResult<FileInfo, SDKValidationError> {

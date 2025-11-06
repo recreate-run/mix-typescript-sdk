@@ -48,32 +48,3 @@ export const ErrorResponse$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type ErrorResponse$Outbound = {
-  error: models.RESTError$Outbound;
-};
-
-/** @internal */
-export const ErrorResponse$outboundSchema: z.ZodType<
-  ErrorResponse$Outbound,
-  z.ZodTypeDef,
-  ErrorResponse
-> = z.instanceof(ErrorResponse)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    error: models.RESTError$outboundSchema,
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ErrorResponse$ {
-  /** @deprecated use `ErrorResponse$inboundSchema` instead. */
-  export const inboundSchema = ErrorResponse$inboundSchema;
-  /** @deprecated use `ErrorResponse$outboundSchema` instead. */
-  export const outboundSchema = ErrorResponse$outboundSchema;
-  /** @deprecated use `ErrorResponse$Outbound` instead. */
-  export type Outbound = ErrorResponse$Outbound;
-}

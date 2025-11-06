@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetMessageHistoryRequest = {
   /**
@@ -17,16 +14,6 @@ export type GetMessageHistoryRequest = {
    */
   offset?: number | undefined;
 };
-
-/** @internal */
-export const GetMessageHistoryRequest$inboundSchema: z.ZodType<
-  GetMessageHistoryRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  limit: z.number().int().default(50),
-  offset: z.number().int().default(0),
-});
 
 /** @internal */
 export type GetMessageHistoryRequest$Outbound = {
@@ -44,33 +31,10 @@ export const GetMessageHistoryRequest$outboundSchema: z.ZodType<
   offset: z.number().int().default(0),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMessageHistoryRequest$ {
-  /** @deprecated use `GetMessageHistoryRequest$inboundSchema` instead. */
-  export const inboundSchema = GetMessageHistoryRequest$inboundSchema;
-  /** @deprecated use `GetMessageHistoryRequest$outboundSchema` instead. */
-  export const outboundSchema = GetMessageHistoryRequest$outboundSchema;
-  /** @deprecated use `GetMessageHistoryRequest$Outbound` instead. */
-  export type Outbound = GetMessageHistoryRequest$Outbound;
-}
-
 export function getMessageHistoryRequestToJSON(
   getMessageHistoryRequest: GetMessageHistoryRequest,
 ): string {
   return JSON.stringify(
     GetMessageHistoryRequest$outboundSchema.parse(getMessageHistoryRequest),
-  );
-}
-
-export function getMessageHistoryRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMessageHistoryRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMessageHistoryRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMessageHistoryRequest' from JSON`,
   );
 }

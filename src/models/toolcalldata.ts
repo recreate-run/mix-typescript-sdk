@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  ToolName,
-  ToolName$inboundSchema,
-  ToolName$Outbound,
-  ToolName$outboundSchema,
-} from "./toolname.js";
+import { ToolName, ToolName$inboundSchema } from "./toolname.js";
 
 export type ToolCallData = {
   /**
@@ -58,49 +53,6 @@ export const ToolCallData$inboundSchema: z.ZodType<
   result: z.string().optional(),
   type: z.string(),
 });
-
-/** @internal */
-export type ToolCallData$Outbound = {
-  finished: boolean;
-  id: string;
-  input: string;
-  isError?: boolean | undefined;
-  name: ToolName$Outbound;
-  result?: string | undefined;
-  type: string;
-};
-
-/** @internal */
-export const ToolCallData$outboundSchema: z.ZodType<
-  ToolCallData$Outbound,
-  z.ZodTypeDef,
-  ToolCallData
-> = z.object({
-  finished: z.boolean(),
-  id: z.string(),
-  input: z.string(),
-  isError: z.boolean().optional(),
-  name: ToolName$outboundSchema,
-  result: z.string().optional(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ToolCallData$ {
-  /** @deprecated use `ToolCallData$inboundSchema` instead. */
-  export const inboundSchema = ToolCallData$inboundSchema;
-  /** @deprecated use `ToolCallData$outboundSchema` instead. */
-  export const outboundSchema = ToolCallData$outboundSchema;
-  /** @deprecated use `ToolCallData$Outbound` instead. */
-  export type Outbound = ToolCallData$Outbound;
-}
-
-export function toolCallDataToJSON(toolCallData: ToolCallData): string {
-  return JSON.stringify(ToolCallData$outboundSchema.parse(toolCallData));
-}
 
 export function toolCallDataFromJSON(
   jsonString: string,

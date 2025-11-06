@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import {
-  Callback,
-  Callback$inboundSchema,
-  Callback$Outbound,
-  Callback$outboundSchema,
-} from "./callback.js";
+import { Callback, Callback$inboundSchema } from "./callback.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
@@ -121,38 +116,8 @@ export const SessionType$inboundSchema: z.ZodNativeEnum<typeof SessionType> = z
   .nativeEnum(SessionType);
 
 /** @internal */
-export const SessionType$outboundSchema: z.ZodNativeEnum<typeof SessionType> =
-  SessionType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SessionType$ {
-  /** @deprecated use `SessionType$inboundSchema` instead. */
-  export const inboundSchema = SessionType$inboundSchema;
-  /** @deprecated use `SessionType$outboundSchema` instead. */
-  export const outboundSchema = SessionType$outboundSchema;
-}
-
-/** @internal */
 export const SubagentType$inboundSchema: z.ZodNativeEnum<typeof SubagentType> =
   z.nativeEnum(SubagentType);
-
-/** @internal */
-export const SubagentType$outboundSchema: z.ZodNativeEnum<typeof SubagentType> =
-  SubagentType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubagentType$ {
-  /** @deprecated use `SubagentType$inboundSchema` instead. */
-  export const inboundSchema = SubagentType$inboundSchema;
-  /** @deprecated use `SubagentType$outboundSchema` instead. */
-  export const outboundSchema = SubagentType$outboundSchema;
-}
 
 /** @internal */
 export const SessionData$inboundSchema: z.ZodType<
@@ -176,65 +141,6 @@ export const SessionData$inboundSchema: z.ZodType<
   toolCallCount: z.number().int(),
   userMessageCount: z.number().int(),
 });
-
-/** @internal */
-export type SessionData$Outbound = {
-  assistantMessageCount: number;
-  callbacks?: Array<Callback$Outbound> | undefined;
-  completionTokens: number;
-  cost: number;
-  createdAt: string;
-  firstUserMessage?: string | undefined;
-  id: string;
-  parentSessionId?: string | undefined;
-  parentToolCallId?: string | undefined;
-  promptTokens: number;
-  sessionType: string;
-  subagentType?: string | undefined;
-  title: string;
-  toolCallCount: number;
-  userMessageCount: number;
-};
-
-/** @internal */
-export const SessionData$outboundSchema: z.ZodType<
-  SessionData$Outbound,
-  z.ZodTypeDef,
-  SessionData
-> = z.object({
-  assistantMessageCount: z.number().int(),
-  callbacks: z.array(Callback$outboundSchema).optional(),
-  completionTokens: z.number().int(),
-  cost: z.number(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  firstUserMessage: z.string().optional(),
-  id: z.string(),
-  parentSessionId: z.string().optional(),
-  parentToolCallId: z.string().optional(),
-  promptTokens: z.number().int(),
-  sessionType: SessionType$outboundSchema,
-  subagentType: SubagentType$outboundSchema.optional(),
-  title: z.string(),
-  toolCallCount: z.number().int(),
-  userMessageCount: z.number().int(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SessionData$ {
-  /** @deprecated use `SessionData$inboundSchema` instead. */
-  export const inboundSchema = SessionData$inboundSchema;
-  /** @deprecated use `SessionData$outboundSchema` instead. */
-  export const outboundSchema = SessionData$outboundSchema;
-  /** @deprecated use `SessionData$Outbound` instead. */
-  export type Outbound = SessionData$Outbound;
-}
-
-export function sessionDataToJSON(sessionData: SessionData): string {
-  return JSON.stringify(SessionData$outboundSchema.parse(sessionData));
-}
 
 export function sessionDataFromJSON(
   jsonString: string,

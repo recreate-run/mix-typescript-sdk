@@ -22,15 +22,6 @@ export type ExportSessionResponse = {
 };
 
 /** @internal */
-export const ExportSessionRequest$inboundSchema: z.ZodType<
-  ExportSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type ExportSessionRequest$Outbound = {
   id: string;
 };
@@ -44,34 +35,11 @@ export const ExportSessionRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExportSessionRequest$ {
-  /** @deprecated use `ExportSessionRequest$inboundSchema` instead. */
-  export const inboundSchema = ExportSessionRequest$inboundSchema;
-  /** @deprecated use `ExportSessionRequest$outboundSchema` instead. */
-  export const outboundSchema = ExportSessionRequest$outboundSchema;
-  /** @deprecated use `ExportSessionRequest$Outbound` instead. */
-  export type Outbound = ExportSessionRequest$Outbound;
-}
-
 export function exportSessionRequestToJSON(
   exportSessionRequest: ExportSessionRequest,
 ): string {
   return JSON.stringify(
     ExportSessionRequest$outboundSchema.parse(exportSessionRequest),
-  );
-}
-
-export function exportSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ExportSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ExportSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ExportSessionRequest' from JSON`,
   );
 }
 
@@ -89,48 +57,6 @@ export const ExportSessionResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type ExportSessionResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: models.ExportSession$Outbound;
-};
-
-/** @internal */
-export const ExportSessionResponse$outboundSchema: z.ZodType<
-  ExportSessionResponse$Outbound,
-  z.ZodTypeDef,
-  ExportSessionResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: models.ExportSession$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExportSessionResponse$ {
-  /** @deprecated use `ExportSessionResponse$inboundSchema` instead. */
-  export const inboundSchema = ExportSessionResponse$inboundSchema;
-  /** @deprecated use `ExportSessionResponse$outboundSchema` instead. */
-  export const outboundSchema = ExportSessionResponse$outboundSchema;
-  /** @deprecated use `ExportSessionResponse$Outbound` instead. */
-  export type Outbound = ExportSessionResponse$Outbound;
-}
-
-export function exportSessionResponseToJSON(
-  exportSessionResponse: ExportSessionResponse,
-): string {
-  return JSON.stringify(
-    ExportSessionResponse$outboundSchema.parse(exportSessionResponse),
-  );
-}
 
 export function exportSessionResponseFromJSON(
   jsonString: string,

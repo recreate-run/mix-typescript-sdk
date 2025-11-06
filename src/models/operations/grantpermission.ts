@@ -25,15 +25,6 @@ export type GrantPermissionResponse = {
 };
 
 /** @internal */
-export const GrantPermissionRequest$inboundSchema: z.ZodType<
-  GrantPermissionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type GrantPermissionRequest$Outbound = {
   id: string;
 };
@@ -47,34 +38,11 @@ export const GrantPermissionRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GrantPermissionRequest$ {
-  /** @deprecated use `GrantPermissionRequest$inboundSchema` instead. */
-  export const inboundSchema = GrantPermissionRequest$inboundSchema;
-  /** @deprecated use `GrantPermissionRequest$outboundSchema` instead. */
-  export const outboundSchema = GrantPermissionRequest$outboundSchema;
-  /** @deprecated use `GrantPermissionRequest$Outbound` instead. */
-  export type Outbound = GrantPermissionRequest$Outbound;
-}
-
 export function grantPermissionRequestToJSON(
   grantPermissionRequest: GrantPermissionRequest,
 ): string {
   return JSON.stringify(
     GrantPermissionRequest$outboundSchema.parse(grantPermissionRequest),
-  );
-}
-
-export function grantPermissionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GrantPermissionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GrantPermissionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GrantPermissionRequest' from JSON`,
   );
 }
 
@@ -86,41 +54,6 @@ export const GrantPermissionResponse$inboundSchema: z.ZodType<
 > = z.object({
   granted: z.boolean().optional(),
 });
-
-/** @internal */
-export type GrantPermissionResponse$Outbound = {
-  granted?: boolean | undefined;
-};
-
-/** @internal */
-export const GrantPermissionResponse$outboundSchema: z.ZodType<
-  GrantPermissionResponse$Outbound,
-  z.ZodTypeDef,
-  GrantPermissionResponse
-> = z.object({
-  granted: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GrantPermissionResponse$ {
-  /** @deprecated use `GrantPermissionResponse$inboundSchema` instead. */
-  export const inboundSchema = GrantPermissionResponse$inboundSchema;
-  /** @deprecated use `GrantPermissionResponse$outboundSchema` instead. */
-  export const outboundSchema = GrantPermissionResponse$outboundSchema;
-  /** @deprecated use `GrantPermissionResponse$Outbound` instead. */
-  export type Outbound = GrantPermissionResponse$Outbound;
-}
-
-export function grantPermissionResponseToJSON(
-  grantPermissionResponse: GrantPermissionResponse,
-): string {
-  return JSON.stringify(
-    GrantPermissionResponse$outboundSchema.parse(grantPermissionResponse),
-  );
-}
 
 export function grantPermissionResponseFromJSON(
   jsonString: string,

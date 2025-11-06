@@ -7,12 +7,7 @@ import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  ToolName,
-  ToolName$inboundSchema,
-  ToolName$Outbound,
-  ToolName$outboundSchema,
-} from "./toolname.js";
+import { ToolName, ToolName$inboundSchema } from "./toolname.js";
 
 /**
  * Event type identifier
@@ -1046,22 +1041,6 @@ export const SSESessionDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSESessionDeletedEventEvent);
 
 /** @internal */
-export const SSESessionDeletedEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSESessionDeletedEventEvent
-> = SSESessionDeletedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESessionDeletedEventEvent$ {
-  /** @deprecated use `SSESessionDeletedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSESessionDeletedEventEvent$inboundSchema;
-  /** @deprecated use `SSESessionDeletedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSESessionDeletedEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSESessionDeletedEventData$inboundSchema: z.ZodType<
   SSESessionDeletedEventData,
   z.ZodTypeDef,
@@ -1070,43 +1049,6 @@ export const SSESessionDeletedEventData$inboundSchema: z.ZodType<
   sessionId: z.string(),
   type: z.string(),
 });
-
-/** @internal */
-export type SSESessionDeletedEventData$Outbound = {
-  sessionId: string;
-  type: string;
-};
-
-/** @internal */
-export const SSESessionDeletedEventData$outboundSchema: z.ZodType<
-  SSESessionDeletedEventData$Outbound,
-  z.ZodTypeDef,
-  SSESessionDeletedEventData
-> = z.object({
-  sessionId: z.string(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESessionDeletedEventData$ {
-  /** @deprecated use `SSESessionDeletedEventData$inboundSchema` instead. */
-  export const inboundSchema = SSESessionDeletedEventData$inboundSchema;
-  /** @deprecated use `SSESessionDeletedEventData$outboundSchema` instead. */
-  export const outboundSchema = SSESessionDeletedEventData$outboundSchema;
-  /** @deprecated use `SSESessionDeletedEventData$Outbound` instead. */
-  export type Outbound = SSESessionDeletedEventData$Outbound;
-}
-
-export function sseSessionDeletedEventDataToJSON(
-  sseSessionDeletedEventData: SSESessionDeletedEventData,
-): string {
-  return JSON.stringify(
-    SSESessionDeletedEventData$outboundSchema.parse(sseSessionDeletedEventData),
-  );
-}
 
 export function sseSessionDeletedEventDataFromJSON(
   jsonString: string,
@@ -1140,47 +1082,6 @@ export const SSESessionDeletedEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSESessionDeletedEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSESessionDeletedEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSESessionDeletedEventData$Outbound;
-};
-
-/** @internal */
-export const SSESessionDeletedEvent$outboundSchema: z.ZodType<
-  SSESessionDeletedEvent$Outbound,
-  z.ZodTypeDef,
-  SSESessionDeletedEvent
-> = z.object({
-  event: SSESessionDeletedEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSESessionDeletedEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESessionDeletedEvent$ {
-  /** @deprecated use `SSESessionDeletedEvent$inboundSchema` instead. */
-  export const inboundSchema = SSESessionDeletedEvent$inboundSchema;
-  /** @deprecated use `SSESessionDeletedEvent$outboundSchema` instead. */
-  export const outboundSchema = SSESessionDeletedEvent$outboundSchema;
-  /** @deprecated use `SSESessionDeletedEvent$Outbound` instead. */
-  export type Outbound = SSESessionDeletedEvent$Outbound;
-}
-
-export function sseSessionDeletedEventToJSON(
-  sseSessionDeletedEvent: SSESessionDeletedEvent,
-): string {
-  return JSON.stringify(
-    SSESessionDeletedEvent$outboundSchema.parse(sseSessionDeletedEvent),
-  );
-}
-
 export function sseSessionDeletedEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSESessionDeletedEvent, SDKValidationError> {
@@ -1197,22 +1098,6 @@ export const SSESessionCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSESessionCreatedEventEvent);
 
 /** @internal */
-export const SSESessionCreatedEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSESessionCreatedEventEvent
-> = SSESessionCreatedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESessionCreatedEventEvent$ {
-  /** @deprecated use `SSESessionCreatedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSESessionCreatedEventEvent$inboundSchema;
-  /** @deprecated use `SSESessionCreatedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSESessionCreatedEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSESessionCreatedEventData$inboundSchema: z.ZodType<
   SSESessionCreatedEventData,
   z.ZodTypeDef,
@@ -1223,47 +1108,6 @@ export const SSESessionCreatedEventData$inboundSchema: z.ZodType<
   title: z.string(),
   type: z.string(),
 });
-
-/** @internal */
-export type SSESessionCreatedEventData$Outbound = {
-  createdAt: number;
-  sessionId: string;
-  title: string;
-  type: string;
-};
-
-/** @internal */
-export const SSESessionCreatedEventData$outboundSchema: z.ZodType<
-  SSESessionCreatedEventData$Outbound,
-  z.ZodTypeDef,
-  SSESessionCreatedEventData
-> = z.object({
-  createdAt: z.number().int(),
-  sessionId: z.string(),
-  title: z.string(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESessionCreatedEventData$ {
-  /** @deprecated use `SSESessionCreatedEventData$inboundSchema` instead. */
-  export const inboundSchema = SSESessionCreatedEventData$inboundSchema;
-  /** @deprecated use `SSESessionCreatedEventData$outboundSchema` instead. */
-  export const outboundSchema = SSESessionCreatedEventData$outboundSchema;
-  /** @deprecated use `SSESessionCreatedEventData$Outbound` instead. */
-  export type Outbound = SSESessionCreatedEventData$Outbound;
-}
-
-export function sseSessionCreatedEventDataToJSON(
-  sseSessionCreatedEventData: SSESessionCreatedEventData,
-): string {
-  return JSON.stringify(
-    SSESessionCreatedEventData$outboundSchema.parse(sseSessionCreatedEventData),
-  );
-}
 
 export function sseSessionCreatedEventDataFromJSON(
   jsonString: string,
@@ -1297,47 +1141,6 @@ export const SSESessionCreatedEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSESessionCreatedEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSESessionCreatedEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSESessionCreatedEventData$Outbound;
-};
-
-/** @internal */
-export const SSESessionCreatedEvent$outboundSchema: z.ZodType<
-  SSESessionCreatedEvent$Outbound,
-  z.ZodTypeDef,
-  SSESessionCreatedEvent
-> = z.object({
-  event: SSESessionCreatedEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSESessionCreatedEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSESessionCreatedEvent$ {
-  /** @deprecated use `SSESessionCreatedEvent$inboundSchema` instead. */
-  export const inboundSchema = SSESessionCreatedEvent$inboundSchema;
-  /** @deprecated use `SSESessionCreatedEvent$outboundSchema` instead. */
-  export const outboundSchema = SSESessionCreatedEvent$outboundSchema;
-  /** @deprecated use `SSESessionCreatedEvent$Outbound` instead. */
-  export type Outbound = SSESessionCreatedEvent$Outbound;
-}
-
-export function sseSessionCreatedEventToJSON(
-  sseSessionCreatedEvent: SSESessionCreatedEvent,
-): string {
-  return JSON.stringify(
-    SSESessionCreatedEvent$outboundSchema.parse(sseSessionCreatedEvent),
-  );
-}
-
 export function sseSessionCreatedEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSESessionCreatedEvent, SDKValidationError> {
@@ -1354,22 +1157,6 @@ export const SSEUserMessageCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEUserMessageCreatedEventEvent);
 
 /** @internal */
-export const SSEUserMessageCreatedEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEUserMessageCreatedEventEvent
-> = SSEUserMessageCreatedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEUserMessageCreatedEventEvent$ {
-  /** @deprecated use `SSEUserMessageCreatedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEUserMessageCreatedEventEvent$inboundSchema;
-  /** @deprecated use `SSEUserMessageCreatedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEUserMessageCreatedEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEUserMessageCreatedEventData$inboundSchema: z.ZodType<
   SSEUserMessageCreatedEventData,
   z.ZodTypeDef,
@@ -1380,49 +1167,6 @@ export const SSEUserMessageCreatedEventData$inboundSchema: z.ZodType<
   parentToolCallId: z.string().optional(),
   type: z.string(),
 });
-
-/** @internal */
-export type SSEUserMessageCreatedEventData$Outbound = {
-  content: string;
-  messageId: string;
-  parentToolCallId?: string | undefined;
-  type: string;
-};
-
-/** @internal */
-export const SSEUserMessageCreatedEventData$outboundSchema: z.ZodType<
-  SSEUserMessageCreatedEventData$Outbound,
-  z.ZodTypeDef,
-  SSEUserMessageCreatedEventData
-> = z.object({
-  content: z.string(),
-  messageId: z.string(),
-  parentToolCallId: z.string().optional(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEUserMessageCreatedEventData$ {
-  /** @deprecated use `SSEUserMessageCreatedEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEUserMessageCreatedEventData$inboundSchema;
-  /** @deprecated use `SSEUserMessageCreatedEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEUserMessageCreatedEventData$outboundSchema;
-  /** @deprecated use `SSEUserMessageCreatedEventData$Outbound` instead. */
-  export type Outbound = SSEUserMessageCreatedEventData$Outbound;
-}
-
-export function sseUserMessageCreatedEventDataToJSON(
-  sseUserMessageCreatedEventData: SSEUserMessageCreatedEventData,
-): string {
-  return JSON.stringify(
-    SSEUserMessageCreatedEventData$outboundSchema.parse(
-      sseUserMessageCreatedEventData,
-    ),
-  );
-}
 
 export function sseUserMessageCreatedEventDataFromJSON(
   jsonString: string,
@@ -1456,47 +1200,6 @@ export const SSEUserMessageCreatedEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEUserMessageCreatedEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEUserMessageCreatedEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEUserMessageCreatedEventData$Outbound;
-};
-
-/** @internal */
-export const SSEUserMessageCreatedEvent$outboundSchema: z.ZodType<
-  SSEUserMessageCreatedEvent$Outbound,
-  z.ZodTypeDef,
-  SSEUserMessageCreatedEvent
-> = z.object({
-  event: SSEUserMessageCreatedEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEUserMessageCreatedEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEUserMessageCreatedEvent$ {
-  /** @deprecated use `SSEUserMessageCreatedEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEUserMessageCreatedEvent$inboundSchema;
-  /** @deprecated use `SSEUserMessageCreatedEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEUserMessageCreatedEvent$outboundSchema;
-  /** @deprecated use `SSEUserMessageCreatedEvent$Outbound` instead. */
-  export type Outbound = SSEUserMessageCreatedEvent$Outbound;
-}
-
-export function sseUserMessageCreatedEventToJSON(
-  sseUserMessageCreatedEvent: SSEUserMessageCreatedEvent,
-): string {
-  return JSON.stringify(
-    SSEUserMessageCreatedEvent$outboundSchema.parse(sseUserMessageCreatedEvent),
-  );
-}
-
 export function sseUserMessageCreatedEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEUserMessageCreatedEvent, SDKValidationError> {
@@ -1513,51 +1216,8 @@ export const SSEPermissionEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEPermissionEventEvent);
 
 /** @internal */
-export const SSEPermissionEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEPermissionEventEvent
-> = SSEPermissionEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEPermissionEventEvent$ {
-  /** @deprecated use `SSEPermissionEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEPermissionEventEvent$inboundSchema;
-  /** @deprecated use `SSEPermissionEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEPermissionEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const Params$inboundSchema: z.ZodType<Params, z.ZodTypeDef, unknown> = z
   .object({});
-
-/** @internal */
-export type Params$Outbound = {};
-
-/** @internal */
-export const Params$outboundSchema: z.ZodType<
-  Params$Outbound,
-  z.ZodTypeDef,
-  Params
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Params$ {
-  /** @deprecated use `Params$inboundSchema` instead. */
-  export const inboundSchema = Params$inboundSchema;
-  /** @deprecated use `Params$outboundSchema` instead. */
-  export const outboundSchema = Params$outboundSchema;
-  /** @deprecated use `Params$Outbound` instead. */
-  export type Outbound = Params$Outbound;
-}
-
-export function paramsToJSON(params: Params): string {
-  return JSON.stringify(Params$outboundSchema.parse(params));
-}
 
 export function paramsFromJSON(
   jsonString: string,
@@ -1585,57 +1245,6 @@ export const SSEPermissionEventData$inboundSchema: z.ZodType<
   toolName: ToolName$inboundSchema,
   type: z.string(),
 });
-
-/** @internal */
-export type SSEPermissionEventData$Outbound = {
-  action: string;
-  description: string;
-  id: string;
-  params?: Params$Outbound | undefined;
-  parentToolCallId?: string | undefined;
-  path?: string | undefined;
-  sessionId: string;
-  toolName: ToolName$Outbound;
-  type: string;
-};
-
-/** @internal */
-export const SSEPermissionEventData$outboundSchema: z.ZodType<
-  SSEPermissionEventData$Outbound,
-  z.ZodTypeDef,
-  SSEPermissionEventData
-> = z.object({
-  action: z.string(),
-  description: z.string(),
-  id: z.string(),
-  params: z.lazy(() => Params$outboundSchema).optional(),
-  parentToolCallId: z.string().optional(),
-  path: z.string().optional(),
-  sessionId: z.string(),
-  toolName: ToolName$outboundSchema,
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEPermissionEventData$ {
-  /** @deprecated use `SSEPermissionEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEPermissionEventData$inboundSchema;
-  /** @deprecated use `SSEPermissionEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEPermissionEventData$outboundSchema;
-  /** @deprecated use `SSEPermissionEventData$Outbound` instead. */
-  export type Outbound = SSEPermissionEventData$Outbound;
-}
-
-export function ssePermissionEventDataToJSON(
-  ssePermissionEventData: SSEPermissionEventData,
-): string {
-  return JSON.stringify(
-    SSEPermissionEventData$outboundSchema.parse(ssePermissionEventData),
-  );
-}
 
 export function ssePermissionEventDataFromJSON(
   jsonString: string,
@@ -1669,47 +1278,6 @@ export const SSEPermissionEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEPermissionEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEPermissionEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEPermissionEventData$Outbound;
-};
-
-/** @internal */
-export const SSEPermissionEvent$outboundSchema: z.ZodType<
-  SSEPermissionEvent$Outbound,
-  z.ZodTypeDef,
-  SSEPermissionEvent
-> = z.object({
-  event: SSEPermissionEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEPermissionEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEPermissionEvent$ {
-  /** @deprecated use `SSEPermissionEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEPermissionEvent$inboundSchema;
-  /** @deprecated use `SSEPermissionEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEPermissionEvent$outboundSchema;
-  /** @deprecated use `SSEPermissionEvent$Outbound` instead. */
-  export type Outbound = SSEPermissionEvent$Outbound;
-}
-
-export function ssePermissionEventToJSON(
-  ssePermissionEvent: SSEPermissionEvent,
-): string {
-  return JSON.stringify(
-    SSEPermissionEvent$outboundSchema.parse(ssePermissionEvent),
-  );
-}
-
 export function ssePermissionEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEPermissionEvent, SDKValidationError> {
@@ -1726,23 +1294,6 @@ export const SSEToolExecutionCompleteEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEToolExecutionCompleteEventEvent);
 
 /** @internal */
-export const SSEToolExecutionCompleteEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEToolExecutionCompleteEventEvent
-> = SSEToolExecutionCompleteEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolExecutionCompleteEventEvent$ {
-  /** @deprecated use `SSEToolExecutionCompleteEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEToolExecutionCompleteEventEvent$inboundSchema;
-  /** @deprecated use `SSEToolExecutionCompleteEventEvent$outboundSchema` instead. */
-  export const outboundSchema =
-    SSEToolExecutionCompleteEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
   SSEToolExecutionCompleteEventData,
   z.ZodTypeDef,
@@ -1755,54 +1306,6 @@ export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
   toolName: ToolName$inboundSchema,
   type: z.string(),
 });
-
-/** @internal */
-export type SSEToolExecutionCompleteEventData$Outbound = {
-  parentToolCallId?: string | undefined;
-  progress: string;
-  success: boolean;
-  toolCallId: string;
-  toolName: ToolName$Outbound;
-  type: string;
-};
-
-/** @internal */
-export const SSEToolExecutionCompleteEventData$outboundSchema: z.ZodType<
-  SSEToolExecutionCompleteEventData$Outbound,
-  z.ZodTypeDef,
-  SSEToolExecutionCompleteEventData
-> = z.object({
-  parentToolCallId: z.string().optional(),
-  progress: z.string(),
-  success: z.boolean(),
-  toolCallId: z.string(),
-  toolName: ToolName$outboundSchema,
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolExecutionCompleteEventData$ {
-  /** @deprecated use `SSEToolExecutionCompleteEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEToolExecutionCompleteEventData$inboundSchema;
-  /** @deprecated use `SSEToolExecutionCompleteEventData$outboundSchema` instead. */
-  export const outboundSchema =
-    SSEToolExecutionCompleteEventData$outboundSchema;
-  /** @deprecated use `SSEToolExecutionCompleteEventData$Outbound` instead. */
-  export type Outbound = SSEToolExecutionCompleteEventData$Outbound;
-}
-
-export function sseToolExecutionCompleteEventDataToJSON(
-  sseToolExecutionCompleteEventData: SSEToolExecutionCompleteEventData,
-): string {
-  return JSON.stringify(
-    SSEToolExecutionCompleteEventData$outboundSchema.parse(
-      sseToolExecutionCompleteEventData,
-    ),
-  );
-}
 
 export function sseToolExecutionCompleteEventDataFromJSON(
   jsonString: string,
@@ -1836,49 +1339,6 @@ export const SSEToolExecutionCompleteEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEToolExecutionCompleteEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEToolExecutionCompleteEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEToolExecutionCompleteEventData$Outbound;
-};
-
-/** @internal */
-export const SSEToolExecutionCompleteEvent$outboundSchema: z.ZodType<
-  SSEToolExecutionCompleteEvent$Outbound,
-  z.ZodTypeDef,
-  SSEToolExecutionCompleteEvent
-> = z.object({
-  event: SSEToolExecutionCompleteEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEToolExecutionCompleteEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolExecutionCompleteEvent$ {
-  /** @deprecated use `SSEToolExecutionCompleteEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEToolExecutionCompleteEvent$inboundSchema;
-  /** @deprecated use `SSEToolExecutionCompleteEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEToolExecutionCompleteEvent$outboundSchema;
-  /** @deprecated use `SSEToolExecutionCompleteEvent$Outbound` instead. */
-  export type Outbound = SSEToolExecutionCompleteEvent$Outbound;
-}
-
-export function sseToolExecutionCompleteEventToJSON(
-  sseToolExecutionCompleteEvent: SSEToolExecutionCompleteEvent,
-): string {
-  return JSON.stringify(
-    SSEToolExecutionCompleteEvent$outboundSchema.parse(
-      sseToolExecutionCompleteEvent,
-    ),
-  );
-}
-
 export function sseToolExecutionCompleteEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEToolExecutionCompleteEvent, SDKValidationError> {
@@ -1895,22 +1355,6 @@ export const SSEToolExecutionStartEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEToolExecutionStartEventEvent);
 
 /** @internal */
-export const SSEToolExecutionStartEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEToolExecutionStartEventEvent
-> = SSEToolExecutionStartEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolExecutionStartEventEvent$ {
-  /** @deprecated use `SSEToolExecutionStartEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEToolExecutionStartEventEvent$inboundSchema;
-  /** @deprecated use `SSEToolExecutionStartEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEToolExecutionStartEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
   SSEToolExecutionStartEventData,
   z.ZodTypeDef,
@@ -1922,51 +1366,6 @@ export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
   toolName: ToolName$inboundSchema,
   type: z.string(),
 });
-
-/** @internal */
-export type SSEToolExecutionStartEventData$Outbound = {
-  parentToolCallId?: string | undefined;
-  progress: string;
-  toolCallId: string;
-  toolName: ToolName$Outbound;
-  type: string;
-};
-
-/** @internal */
-export const SSEToolExecutionStartEventData$outboundSchema: z.ZodType<
-  SSEToolExecutionStartEventData$Outbound,
-  z.ZodTypeDef,
-  SSEToolExecutionStartEventData
-> = z.object({
-  parentToolCallId: z.string().optional(),
-  progress: z.string(),
-  toolCallId: z.string(),
-  toolName: ToolName$outboundSchema,
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolExecutionStartEventData$ {
-  /** @deprecated use `SSEToolExecutionStartEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEToolExecutionStartEventData$inboundSchema;
-  /** @deprecated use `SSEToolExecutionStartEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEToolExecutionStartEventData$outboundSchema;
-  /** @deprecated use `SSEToolExecutionStartEventData$Outbound` instead. */
-  export type Outbound = SSEToolExecutionStartEventData$Outbound;
-}
-
-export function sseToolExecutionStartEventDataToJSON(
-  sseToolExecutionStartEventData: SSEToolExecutionStartEventData,
-): string {
-  return JSON.stringify(
-    SSEToolExecutionStartEventData$outboundSchema.parse(
-      sseToolExecutionStartEventData,
-    ),
-  );
-}
 
 export function sseToolExecutionStartEventDataFromJSON(
   jsonString: string,
@@ -2000,47 +1399,6 @@ export const SSEToolExecutionStartEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEToolExecutionStartEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEToolExecutionStartEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEToolExecutionStartEventData$Outbound;
-};
-
-/** @internal */
-export const SSEToolExecutionStartEvent$outboundSchema: z.ZodType<
-  SSEToolExecutionStartEvent$Outbound,
-  z.ZodTypeDef,
-  SSEToolExecutionStartEvent
-> = z.object({
-  event: SSEToolExecutionStartEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEToolExecutionStartEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolExecutionStartEvent$ {
-  /** @deprecated use `SSEToolExecutionStartEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEToolExecutionStartEvent$inboundSchema;
-  /** @deprecated use `SSEToolExecutionStartEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEToolExecutionStartEvent$outboundSchema;
-  /** @deprecated use `SSEToolExecutionStartEvent$Outbound` instead. */
-  export type Outbound = SSEToolExecutionStartEvent$Outbound;
-}
-
-export function sseToolExecutionStartEventToJSON(
-  sseToolExecutionStartEvent: SSEToolExecutionStartEvent,
-): string {
-  return JSON.stringify(
-    SSEToolExecutionStartEvent$outboundSchema.parse(sseToolExecutionStartEvent),
-  );
-}
-
 export function sseToolExecutionStartEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEToolExecutionStartEvent, SDKValidationError> {
@@ -2057,23 +1415,6 @@ export const SSEToolUseParameterDeltaEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEToolUseParameterDeltaEventEvent);
 
 /** @internal */
-export const SSEToolUseParameterDeltaEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEToolUseParameterDeltaEventEvent
-> = SSEToolUseParameterDeltaEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseParameterDeltaEventEvent$ {
-  /** @deprecated use `SSEToolUseParameterDeltaEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEToolUseParameterDeltaEventEvent$inboundSchema;
-  /** @deprecated use `SSEToolUseParameterDeltaEventEvent$outboundSchema` instead. */
-  export const outboundSchema =
-    SSEToolUseParameterDeltaEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEToolUseParameterDeltaEventData$inboundSchema: z.ZodType<
   SSEToolUseParameterDeltaEventData,
   z.ZodTypeDef,
@@ -2085,52 +1426,6 @@ export const SSEToolUseParameterDeltaEventData$inboundSchema: z.ZodType<
   toolCallId: z.string(),
   type: z.string(),
 });
-
-/** @internal */
-export type SSEToolUseParameterDeltaEventData$Outbound = {
-  assistantMessageId?: string | undefined;
-  input: string;
-  parentToolCallId?: string | undefined;
-  toolCallId: string;
-  type: string;
-};
-
-/** @internal */
-export const SSEToolUseParameterDeltaEventData$outboundSchema: z.ZodType<
-  SSEToolUseParameterDeltaEventData$Outbound,
-  z.ZodTypeDef,
-  SSEToolUseParameterDeltaEventData
-> = z.object({
-  assistantMessageId: z.string().optional(),
-  input: z.string(),
-  parentToolCallId: z.string().optional(),
-  toolCallId: z.string(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseParameterDeltaEventData$ {
-  /** @deprecated use `SSEToolUseParameterDeltaEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEToolUseParameterDeltaEventData$inboundSchema;
-  /** @deprecated use `SSEToolUseParameterDeltaEventData$outboundSchema` instead. */
-  export const outboundSchema =
-    SSEToolUseParameterDeltaEventData$outboundSchema;
-  /** @deprecated use `SSEToolUseParameterDeltaEventData$Outbound` instead. */
-  export type Outbound = SSEToolUseParameterDeltaEventData$Outbound;
-}
-
-export function sseToolUseParameterDeltaEventDataToJSON(
-  sseToolUseParameterDeltaEventData: SSEToolUseParameterDeltaEventData,
-): string {
-  return JSON.stringify(
-    SSEToolUseParameterDeltaEventData$outboundSchema.parse(
-      sseToolUseParameterDeltaEventData,
-    ),
-  );
-}
 
 export function sseToolUseParameterDeltaEventDataFromJSON(
   jsonString: string,
@@ -2164,49 +1459,6 @@ export const SSEToolUseParameterDeltaEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEToolUseParameterDeltaEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEToolUseParameterDeltaEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEToolUseParameterDeltaEventData$Outbound;
-};
-
-/** @internal */
-export const SSEToolUseParameterDeltaEvent$outboundSchema: z.ZodType<
-  SSEToolUseParameterDeltaEvent$Outbound,
-  z.ZodTypeDef,
-  SSEToolUseParameterDeltaEvent
-> = z.object({
-  event: SSEToolUseParameterDeltaEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEToolUseParameterDeltaEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseParameterDeltaEvent$ {
-  /** @deprecated use `SSEToolUseParameterDeltaEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEToolUseParameterDeltaEvent$inboundSchema;
-  /** @deprecated use `SSEToolUseParameterDeltaEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEToolUseParameterDeltaEvent$outboundSchema;
-  /** @deprecated use `SSEToolUseParameterDeltaEvent$Outbound` instead. */
-  export type Outbound = SSEToolUseParameterDeltaEvent$Outbound;
-}
-
-export function sseToolUseParameterDeltaEventToJSON(
-  sseToolUseParameterDeltaEvent: SSEToolUseParameterDeltaEvent,
-): string {
-  return JSON.stringify(
-    SSEToolUseParameterDeltaEvent$outboundSchema.parse(
-      sseToolUseParameterDeltaEvent,
-    ),
-  );
-}
-
 export function sseToolUseParameterDeltaEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEToolUseParameterDeltaEvent, SDKValidationError> {
@@ -2223,24 +1475,6 @@ export const SSEToolUseParameterStreamingCompleteEventEvent$inboundSchema:
     .nativeEnum(SSEToolUseParameterStreamingCompleteEventEvent);
 
 /** @internal */
-export const SSEToolUseParameterStreamingCompleteEventEvent$outboundSchema:
-  z.ZodNativeEnum<typeof SSEToolUseParameterStreamingCompleteEventEvent> =
-    SSEToolUseParameterStreamingCompleteEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseParameterStreamingCompleteEventEvent$ {
-  /** @deprecated use `SSEToolUseParameterStreamingCompleteEventEvent$inboundSchema` instead. */
-  export const inboundSchema =
-    SSEToolUseParameterStreamingCompleteEventEvent$inboundSchema;
-  /** @deprecated use `SSEToolUseParameterStreamingCompleteEventEvent$outboundSchema` instead. */
-  export const outboundSchema =
-    SSEToolUseParameterStreamingCompleteEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEToolUseParameterStreamingCompleteEventData$inboundSchema:
   z.ZodType<
     SSEToolUseParameterStreamingCompleteEventData,
@@ -2254,57 +1488,6 @@ export const SSEToolUseParameterStreamingCompleteEventData$inboundSchema:
     parentToolCallId: z.string().optional(),
     type: z.string(),
   });
-
-/** @internal */
-export type SSEToolUseParameterStreamingCompleteEventData$Outbound = {
-  assistantMessageId?: string | undefined;
-  id: string;
-  input: string;
-  name: ToolName$Outbound;
-  parentToolCallId?: string | undefined;
-  type: string;
-};
-
-/** @internal */
-export const SSEToolUseParameterStreamingCompleteEventData$outboundSchema:
-  z.ZodType<
-    SSEToolUseParameterStreamingCompleteEventData$Outbound,
-    z.ZodTypeDef,
-    SSEToolUseParameterStreamingCompleteEventData
-  > = z.object({
-    assistantMessageId: z.string().optional(),
-    id: z.string(),
-    input: z.string(),
-    name: ToolName$outboundSchema,
-    parentToolCallId: z.string().optional(),
-    type: z.string(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseParameterStreamingCompleteEventData$ {
-  /** @deprecated use `SSEToolUseParameterStreamingCompleteEventData$inboundSchema` instead. */
-  export const inboundSchema =
-    SSEToolUseParameterStreamingCompleteEventData$inboundSchema;
-  /** @deprecated use `SSEToolUseParameterStreamingCompleteEventData$outboundSchema` instead. */
-  export const outboundSchema =
-    SSEToolUseParameterStreamingCompleteEventData$outboundSchema;
-  /** @deprecated use `SSEToolUseParameterStreamingCompleteEventData$Outbound` instead. */
-  export type Outbound = SSEToolUseParameterStreamingCompleteEventData$Outbound;
-}
-
-export function sseToolUseParameterStreamingCompleteEventDataToJSON(
-  sseToolUseParameterStreamingCompleteEventData:
-    SSEToolUseParameterStreamingCompleteEventData,
-): string {
-  return JSON.stringify(
-    SSEToolUseParameterStreamingCompleteEventData$outboundSchema.parse(
-      sseToolUseParameterStreamingCompleteEventData,
-    ),
-  );
-}
 
 export function sseToolUseParameterStreamingCompleteEventDataFromJSON(
   jsonString: string,
@@ -2346,55 +1529,6 @@ export const SSEToolUseParameterStreamingCompleteEvent$inboundSchema: z.ZodType<
   ),
 });
 
-/** @internal */
-export type SSEToolUseParameterStreamingCompleteEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEToolUseParameterStreamingCompleteEventData$Outbound;
-};
-
-/** @internal */
-export const SSEToolUseParameterStreamingCompleteEvent$outboundSchema:
-  z.ZodType<
-    SSEToolUseParameterStreamingCompleteEvent$Outbound,
-    z.ZodTypeDef,
-    SSEToolUseParameterStreamingCompleteEvent
-  > = z.object({
-    event: SSEToolUseParameterStreamingCompleteEventEvent$outboundSchema,
-    id: z.string(),
-    retry: z.number().int().optional(),
-    data: z.lazy(() =>
-      SSEToolUseParameterStreamingCompleteEventData$outboundSchema
-    ),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseParameterStreamingCompleteEvent$ {
-  /** @deprecated use `SSEToolUseParameterStreamingCompleteEvent$inboundSchema` instead. */
-  export const inboundSchema =
-    SSEToolUseParameterStreamingCompleteEvent$inboundSchema;
-  /** @deprecated use `SSEToolUseParameterStreamingCompleteEvent$outboundSchema` instead. */
-  export const outboundSchema =
-    SSEToolUseParameterStreamingCompleteEvent$outboundSchema;
-  /** @deprecated use `SSEToolUseParameterStreamingCompleteEvent$Outbound` instead. */
-  export type Outbound = SSEToolUseParameterStreamingCompleteEvent$Outbound;
-}
-
-export function sseToolUseParameterStreamingCompleteEventToJSON(
-  sseToolUseParameterStreamingCompleteEvent:
-    SSEToolUseParameterStreamingCompleteEvent,
-): string {
-  return JSON.stringify(
-    SSEToolUseParameterStreamingCompleteEvent$outboundSchema.parse(
-      sseToolUseParameterStreamingCompleteEvent,
-    ),
-  );
-}
-
 export function sseToolUseParameterStreamingCompleteEventFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -2417,22 +1551,6 @@ export const SSEToolUseStartEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEToolUseStartEventEvent);
 
 /** @internal */
-export const SSEToolUseStartEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEToolUseStartEventEvent
-> = SSEToolUseStartEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseStartEventEvent$ {
-  /** @deprecated use `SSEToolUseStartEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEToolUseStartEventEvent$inboundSchema;
-  /** @deprecated use `SSEToolUseStartEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEToolUseStartEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEToolUseStartEventData$inboundSchema: z.ZodType<
   SSEToolUseStartEventData,
   z.ZodTypeDef,
@@ -2444,49 +1562,6 @@ export const SSEToolUseStartEventData$inboundSchema: z.ZodType<
   parentToolCallId: z.string().optional(),
   type: z.string(),
 });
-
-/** @internal */
-export type SSEToolUseStartEventData$Outbound = {
-  assistantMessageId?: string | undefined;
-  id: string;
-  name: ToolName$Outbound;
-  parentToolCallId?: string | undefined;
-  type: string;
-};
-
-/** @internal */
-export const SSEToolUseStartEventData$outboundSchema: z.ZodType<
-  SSEToolUseStartEventData$Outbound,
-  z.ZodTypeDef,
-  SSEToolUseStartEventData
-> = z.object({
-  assistantMessageId: z.string().optional(),
-  id: z.string(),
-  name: ToolName$outboundSchema,
-  parentToolCallId: z.string().optional(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseStartEventData$ {
-  /** @deprecated use `SSEToolUseStartEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEToolUseStartEventData$inboundSchema;
-  /** @deprecated use `SSEToolUseStartEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEToolUseStartEventData$outboundSchema;
-  /** @deprecated use `SSEToolUseStartEventData$Outbound` instead. */
-  export type Outbound = SSEToolUseStartEventData$Outbound;
-}
-
-export function sseToolUseStartEventDataToJSON(
-  sseToolUseStartEventData: SSEToolUseStartEventData,
-): string {
-  return JSON.stringify(
-    SSEToolUseStartEventData$outboundSchema.parse(sseToolUseStartEventData),
-  );
-}
 
 export function sseToolUseStartEventDataFromJSON(
   jsonString: string,
@@ -2520,47 +1595,6 @@ export const SSEToolUseStartEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEToolUseStartEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEToolUseStartEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEToolUseStartEventData$Outbound;
-};
-
-/** @internal */
-export const SSEToolUseStartEvent$outboundSchema: z.ZodType<
-  SSEToolUseStartEvent$Outbound,
-  z.ZodTypeDef,
-  SSEToolUseStartEvent
-> = z.object({
-  event: SSEToolUseStartEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEToolUseStartEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEToolUseStartEvent$ {
-  /** @deprecated use `SSEToolUseStartEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEToolUseStartEvent$inboundSchema;
-  /** @deprecated use `SSEToolUseStartEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEToolUseStartEvent$outboundSchema;
-  /** @deprecated use `SSEToolUseStartEvent$Outbound` instead. */
-  export type Outbound = SSEToolUseStartEvent$Outbound;
-}
-
-export function sseToolUseStartEventToJSON(
-  sseToolUseStartEvent: SSEToolUseStartEvent,
-): string {
-  return JSON.stringify(
-    SSEToolUseStartEvent$outboundSchema.parse(sseToolUseStartEvent),
-  );
-}
-
 export function sseToolUseStartEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEToolUseStartEvent, SDKValidationError> {
@@ -2577,22 +1611,6 @@ export const SSEContentEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEContentEventEvent);
 
 /** @internal */
-export const SSEContentEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEContentEventEvent
-> = SSEContentEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEContentEventEvent$ {
-  /** @deprecated use `SSEContentEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEContentEventEvent$inboundSchema;
-  /** @deprecated use `SSEContentEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEContentEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEContentEventData$inboundSchema: z.ZodType<
   SSEContentEventData,
   z.ZodTypeDef,
@@ -2603,47 +1621,6 @@ export const SSEContentEventData$inboundSchema: z.ZodType<
   parentToolCallId: z.string().optional(),
   type: z.string(),
 });
-
-/** @internal */
-export type SSEContentEventData$Outbound = {
-  assistantMessageId?: string | undefined;
-  content: string;
-  parentToolCallId?: string | undefined;
-  type: string;
-};
-
-/** @internal */
-export const SSEContentEventData$outboundSchema: z.ZodType<
-  SSEContentEventData$Outbound,
-  z.ZodTypeDef,
-  SSEContentEventData
-> = z.object({
-  assistantMessageId: z.string().optional(),
-  content: z.string(),
-  parentToolCallId: z.string().optional(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEContentEventData$ {
-  /** @deprecated use `SSEContentEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEContentEventData$inboundSchema;
-  /** @deprecated use `SSEContentEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEContentEventData$outboundSchema;
-  /** @deprecated use `SSEContentEventData$Outbound` instead. */
-  export type Outbound = SSEContentEventData$Outbound;
-}
-
-export function sseContentEventDataToJSON(
-  sseContentEventData: SSEContentEventData,
-): string {
-  return JSON.stringify(
-    SSEContentEventData$outboundSchema.parse(sseContentEventData),
-  );
-}
 
 export function sseContentEventDataFromJSON(
   jsonString: string,
@@ -2677,45 +1654,6 @@ export const SSEContentEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEContentEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEContentEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEContentEventData$Outbound;
-};
-
-/** @internal */
-export const SSEContentEvent$outboundSchema: z.ZodType<
-  SSEContentEvent$Outbound,
-  z.ZodTypeDef,
-  SSEContentEvent
-> = z.object({
-  event: SSEContentEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEContentEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEContentEvent$ {
-  /** @deprecated use `SSEContentEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEContentEvent$inboundSchema;
-  /** @deprecated use `SSEContentEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEContentEvent$outboundSchema;
-  /** @deprecated use `SSEContentEvent$Outbound` instead. */
-  export type Outbound = SSEContentEvent$Outbound;
-}
-
-export function sseContentEventToJSON(
-  sseContentEvent: SSEContentEvent,
-): string {
-  return JSON.stringify(SSEContentEvent$outboundSchema.parse(sseContentEvent));
-}
-
 export function sseContentEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEContentEvent, SDKValidationError> {
@@ -2732,22 +1670,6 @@ export const SSEThinkingEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEThinkingEventEvent);
 
 /** @internal */
-export const SSEThinkingEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEThinkingEventEvent
-> = SSEThinkingEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEThinkingEventEvent$ {
-  /** @deprecated use `SSEThinkingEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEThinkingEventEvent$inboundSchema;
-  /** @deprecated use `SSEThinkingEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEThinkingEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEThinkingEventData$inboundSchema: z.ZodType<
   SSEThinkingEventData,
   z.ZodTypeDef,
@@ -2758,47 +1680,6 @@ export const SSEThinkingEventData$inboundSchema: z.ZodType<
   parentToolCallId: z.string().optional(),
   type: z.string(),
 });
-
-/** @internal */
-export type SSEThinkingEventData$Outbound = {
-  assistantMessageId?: string | undefined;
-  content: string;
-  parentToolCallId?: string | undefined;
-  type: string;
-};
-
-/** @internal */
-export const SSEThinkingEventData$outboundSchema: z.ZodType<
-  SSEThinkingEventData$Outbound,
-  z.ZodTypeDef,
-  SSEThinkingEventData
-> = z.object({
-  assistantMessageId: z.string().optional(),
-  content: z.string(),
-  parentToolCallId: z.string().optional(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEThinkingEventData$ {
-  /** @deprecated use `SSEThinkingEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEThinkingEventData$inboundSchema;
-  /** @deprecated use `SSEThinkingEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEThinkingEventData$outboundSchema;
-  /** @deprecated use `SSEThinkingEventData$Outbound` instead. */
-  export type Outbound = SSEThinkingEventData$Outbound;
-}
-
-export function sseThinkingEventDataToJSON(
-  sseThinkingEventData: SSEThinkingEventData,
-): string {
-  return JSON.stringify(
-    SSEThinkingEventData$outboundSchema.parse(sseThinkingEventData),
-  );
-}
 
 export function sseThinkingEventDataFromJSON(
   jsonString: string,
@@ -2832,47 +1713,6 @@ export const SSEThinkingEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEThinkingEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEThinkingEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEThinkingEventData$Outbound;
-};
-
-/** @internal */
-export const SSEThinkingEvent$outboundSchema: z.ZodType<
-  SSEThinkingEvent$Outbound,
-  z.ZodTypeDef,
-  SSEThinkingEvent
-> = z.object({
-  event: SSEThinkingEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEThinkingEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEThinkingEvent$ {
-  /** @deprecated use `SSEThinkingEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEThinkingEvent$inboundSchema;
-  /** @deprecated use `SSEThinkingEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEThinkingEvent$outboundSchema;
-  /** @deprecated use `SSEThinkingEvent$Outbound` instead. */
-  export type Outbound = SSEThinkingEvent$Outbound;
-}
-
-export function sseThinkingEventToJSON(
-  sseThinkingEvent: SSEThinkingEvent,
-): string {
-  return JSON.stringify(
-    SSEThinkingEvent$outboundSchema.parse(sseThinkingEvent),
-  );
-}
-
 export function sseThinkingEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEThinkingEvent, SDKValidationError> {
@@ -2889,22 +1729,6 @@ export const SSECompleteEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSECompleteEventEvent);
 
 /** @internal */
-export const SSECompleteEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSECompleteEventEvent
-> = SSECompleteEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSECompleteEventEvent$ {
-  /** @deprecated use `SSECompleteEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSECompleteEventEvent$inboundSchema;
-  /** @deprecated use `SSECompleteEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSECompleteEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSECompleteEventData$inboundSchema: z.ZodType<
   SSECompleteEventData,
   z.ZodTypeDef,
@@ -2918,53 +1742,6 @@ export const SSECompleteEventData$inboundSchema: z.ZodType<
   reasoningDuration: z.number().int().optional(),
   type: z.string(),
 });
-
-/** @internal */
-export type SSECompleteEventData$Outbound = {
-  content?: string | undefined;
-  done: boolean;
-  messageId?: string | undefined;
-  parentToolCallId?: string | undefined;
-  reasoning?: string | undefined;
-  reasoningDuration?: number | undefined;
-  type: string;
-};
-
-/** @internal */
-export const SSECompleteEventData$outboundSchema: z.ZodType<
-  SSECompleteEventData$Outbound,
-  z.ZodTypeDef,
-  SSECompleteEventData
-> = z.object({
-  content: z.string().optional(),
-  done: z.boolean(),
-  messageId: z.string().optional(),
-  parentToolCallId: z.string().optional(),
-  reasoning: z.string().optional(),
-  reasoningDuration: z.number().int().optional(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSECompleteEventData$ {
-  /** @deprecated use `SSECompleteEventData$inboundSchema` instead. */
-  export const inboundSchema = SSECompleteEventData$inboundSchema;
-  /** @deprecated use `SSECompleteEventData$outboundSchema` instead. */
-  export const outboundSchema = SSECompleteEventData$outboundSchema;
-  /** @deprecated use `SSECompleteEventData$Outbound` instead. */
-  export type Outbound = SSECompleteEventData$Outbound;
-}
-
-export function sseCompleteEventDataToJSON(
-  sseCompleteEventData: SSECompleteEventData,
-): string {
-  return JSON.stringify(
-    SSECompleteEventData$outboundSchema.parse(sseCompleteEventData),
-  );
-}
 
 export function sseCompleteEventDataFromJSON(
   jsonString: string,
@@ -2998,47 +1775,6 @@ export const SSECompleteEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSECompleteEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSECompleteEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSECompleteEventData$Outbound;
-};
-
-/** @internal */
-export const SSECompleteEvent$outboundSchema: z.ZodType<
-  SSECompleteEvent$Outbound,
-  z.ZodTypeDef,
-  SSECompleteEvent
-> = z.object({
-  event: SSECompleteEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSECompleteEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSECompleteEvent$ {
-  /** @deprecated use `SSECompleteEvent$inboundSchema` instead. */
-  export const inboundSchema = SSECompleteEvent$inboundSchema;
-  /** @deprecated use `SSECompleteEvent$outboundSchema` instead. */
-  export const outboundSchema = SSECompleteEvent$outboundSchema;
-  /** @deprecated use `SSECompleteEvent$Outbound` instead. */
-  export type Outbound = SSECompleteEvent$Outbound;
-}
-
-export function sseCompleteEventToJSON(
-  sseCompleteEvent: SSECompleteEvent,
-): string {
-  return JSON.stringify(
-    SSECompleteEvent$outboundSchema.parse(sseCompleteEvent),
-  );
-}
-
 export function sseCompleteEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSECompleteEvent, SDKValidationError> {
@@ -3055,22 +1791,6 @@ export const SSEErrorEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEErrorEventEvent);
 
 /** @internal */
-export const SSEErrorEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEErrorEventEvent
-> = SSEErrorEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEErrorEventEvent$ {
-  /** @deprecated use `SSEErrorEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEErrorEventEvent$inboundSchema;
-  /** @deprecated use `SSEErrorEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEErrorEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEErrorEventData$inboundSchema: z.ZodType<
   SSEErrorEventData,
   z.ZodTypeDef,
@@ -3083,51 +1803,6 @@ export const SSEErrorEventData$inboundSchema: z.ZodType<
   retryAfter: z.number().int().optional(),
   type: z.string().optional(),
 });
-
-/** @internal */
-export type SSEErrorEventData$Outbound = {
-  attempt?: number | undefined;
-  error: string;
-  maxAttempts?: number | undefined;
-  parentToolCallId?: string | undefined;
-  retryAfter?: number | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const SSEErrorEventData$outboundSchema: z.ZodType<
-  SSEErrorEventData$Outbound,
-  z.ZodTypeDef,
-  SSEErrorEventData
-> = z.object({
-  attempt: z.number().int().optional(),
-  error: z.string(),
-  maxAttempts: z.number().int().optional(),
-  parentToolCallId: z.string().optional(),
-  retryAfter: z.number().int().optional(),
-  type: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEErrorEventData$ {
-  /** @deprecated use `SSEErrorEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEErrorEventData$inboundSchema;
-  /** @deprecated use `SSEErrorEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEErrorEventData$outboundSchema;
-  /** @deprecated use `SSEErrorEventData$Outbound` instead. */
-  export type Outbound = SSEErrorEventData$Outbound;
-}
-
-export function sseErrorEventDataToJSON(
-  sseErrorEventData: SSEErrorEventData,
-): string {
-  return JSON.stringify(
-    SSEErrorEventData$outboundSchema.parse(sseErrorEventData),
-  );
-}
 
 export function sseErrorEventDataFromJSON(
   jsonString: string,
@@ -3161,43 +1836,6 @@ export const SSEErrorEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEErrorEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEErrorEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEErrorEventData$Outbound;
-};
-
-/** @internal */
-export const SSEErrorEvent$outboundSchema: z.ZodType<
-  SSEErrorEvent$Outbound,
-  z.ZodTypeDef,
-  SSEErrorEvent
-> = z.object({
-  event: SSEErrorEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEErrorEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEErrorEvent$ {
-  /** @deprecated use `SSEErrorEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEErrorEvent$inboundSchema;
-  /** @deprecated use `SSEErrorEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEErrorEvent$outboundSchema;
-  /** @deprecated use `SSEErrorEvent$Outbound` instead. */
-  export type Outbound = SSEErrorEvent$Outbound;
-}
-
-export function sseErrorEventToJSON(sseErrorEvent: SSEErrorEvent): string {
-  return JSON.stringify(SSEErrorEvent$outboundSchema.parse(sseErrorEvent));
-}
-
 export function sseErrorEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEErrorEvent, SDKValidationError> {
@@ -3214,22 +1852,6 @@ export const SSEHeartbeatEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEHeartbeatEventEvent);
 
 /** @internal */
-export const SSEHeartbeatEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEHeartbeatEventEvent
-> = SSEHeartbeatEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEHeartbeatEventEvent$ {
-  /** @deprecated use `SSEHeartbeatEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEHeartbeatEventEvent$inboundSchema;
-  /** @deprecated use `SSEHeartbeatEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEHeartbeatEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEHeartbeatEventData$inboundSchema: z.ZodType<
   SSEHeartbeatEventData,
   z.ZodTypeDef,
@@ -3237,41 +1859,6 @@ export const SSEHeartbeatEventData$inboundSchema: z.ZodType<
 > = z.object({
   type: z.string(),
 });
-
-/** @internal */
-export type SSEHeartbeatEventData$Outbound = {
-  type: string;
-};
-
-/** @internal */
-export const SSEHeartbeatEventData$outboundSchema: z.ZodType<
-  SSEHeartbeatEventData$Outbound,
-  z.ZodTypeDef,
-  SSEHeartbeatEventData
-> = z.object({
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEHeartbeatEventData$ {
-  /** @deprecated use `SSEHeartbeatEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEHeartbeatEventData$inboundSchema;
-  /** @deprecated use `SSEHeartbeatEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEHeartbeatEventData$outboundSchema;
-  /** @deprecated use `SSEHeartbeatEventData$Outbound` instead. */
-  export type Outbound = SSEHeartbeatEventData$Outbound;
-}
-
-export function sseHeartbeatEventDataToJSON(
-  sseHeartbeatEventData: SSEHeartbeatEventData,
-): string {
-  return JSON.stringify(
-    SSEHeartbeatEventData$outboundSchema.parse(sseHeartbeatEventData),
-  );
-}
 
 export function sseHeartbeatEventDataFromJSON(
   jsonString: string,
@@ -3305,47 +1892,6 @@ export const SSEHeartbeatEvent$inboundSchema: z.ZodType<
   }).pipe(z.lazy(() => SSEHeartbeatEventData$inboundSchema)),
 });
 
-/** @internal */
-export type SSEHeartbeatEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEHeartbeatEventData$Outbound;
-};
-
-/** @internal */
-export const SSEHeartbeatEvent$outboundSchema: z.ZodType<
-  SSEHeartbeatEvent$Outbound,
-  z.ZodTypeDef,
-  SSEHeartbeatEvent
-> = z.object({
-  event: SSEHeartbeatEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEHeartbeatEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEHeartbeatEvent$ {
-  /** @deprecated use `SSEHeartbeatEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEHeartbeatEvent$inboundSchema;
-  /** @deprecated use `SSEHeartbeatEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEHeartbeatEvent$outboundSchema;
-  /** @deprecated use `SSEHeartbeatEvent$Outbound` instead. */
-  export type Outbound = SSEHeartbeatEvent$Outbound;
-}
-
-export function sseHeartbeatEventToJSON(
-  sseHeartbeatEvent: SSEHeartbeatEvent,
-): string {
-  return JSON.stringify(
-    SSEHeartbeatEvent$outboundSchema.parse(sseHeartbeatEvent),
-  );
-}
-
 export function sseHeartbeatEventFromJSON(
   jsonString: string,
 ): SafeParseResult<SSEHeartbeatEvent, SDKValidationError> {
@@ -3362,22 +1908,6 @@ export const SSEConnectedEventEvent$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SSEConnectedEventEvent);
 
 /** @internal */
-export const SSEConnectedEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof SSEConnectedEventEvent
-> = SSEConnectedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEConnectedEventEvent$ {
-  /** @deprecated use `SSEConnectedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEConnectedEventEvent$inboundSchema;
-  /** @deprecated use `SSEConnectedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEConnectedEventEvent$outboundSchema;
-}
-
-/** @internal */
 export const SSEConnectedEventData$inboundSchema: z.ZodType<
   SSEConnectedEventData,
   z.ZodTypeDef,
@@ -3385,41 +1915,6 @@ export const SSEConnectedEventData$inboundSchema: z.ZodType<
 > = z.object({
   sessionId: z.string(),
 });
-
-/** @internal */
-export type SSEConnectedEventData$Outbound = {
-  sessionId: string;
-};
-
-/** @internal */
-export const SSEConnectedEventData$outboundSchema: z.ZodType<
-  SSEConnectedEventData$Outbound,
-  z.ZodTypeDef,
-  SSEConnectedEventData
-> = z.object({
-  sessionId: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEConnectedEventData$ {
-  /** @deprecated use `SSEConnectedEventData$inboundSchema` instead. */
-  export const inboundSchema = SSEConnectedEventData$inboundSchema;
-  /** @deprecated use `SSEConnectedEventData$outboundSchema` instead. */
-  export const outboundSchema = SSEConnectedEventData$outboundSchema;
-  /** @deprecated use `SSEConnectedEventData$Outbound` instead. */
-  export type Outbound = SSEConnectedEventData$Outbound;
-}
-
-export function sseConnectedEventDataToJSON(
-  sseConnectedEventData: SSEConnectedEventData,
-): string {
-  return JSON.stringify(
-    SSEConnectedEventData$outboundSchema.parse(sseConnectedEventData),
-  );
-}
 
 export function sseConnectedEventDataFromJSON(
   jsonString: string,
@@ -3452,47 +1947,6 @@ export const SSEConnectedEvent$inboundSchema: z.ZodType<
     }
   }).pipe(z.lazy(() => SSEConnectedEventData$inboundSchema)),
 });
-
-/** @internal */
-export type SSEConnectedEvent$Outbound = {
-  event: string;
-  id: string;
-  retry?: number | undefined;
-  data: SSEConnectedEventData$Outbound;
-};
-
-/** @internal */
-export const SSEConnectedEvent$outboundSchema: z.ZodType<
-  SSEConnectedEvent$Outbound,
-  z.ZodTypeDef,
-  SSEConnectedEvent
-> = z.object({
-  event: SSEConnectedEventEvent$outboundSchema,
-  id: z.string(),
-  retry: z.number().int().optional(),
-  data: z.lazy(() => SSEConnectedEventData$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEConnectedEvent$ {
-  /** @deprecated use `SSEConnectedEvent$inboundSchema` instead. */
-  export const inboundSchema = SSEConnectedEvent$inboundSchema;
-  /** @deprecated use `SSEConnectedEvent$outboundSchema` instead. */
-  export const outboundSchema = SSEConnectedEvent$outboundSchema;
-  /** @deprecated use `SSEConnectedEvent$Outbound` instead. */
-  export type Outbound = SSEConnectedEvent$Outbound;
-}
-
-export function sseConnectedEventToJSON(
-  sseConnectedEvent: SSEConnectedEvent,
-): string {
-  return JSON.stringify(
-    SSEConnectedEvent$outboundSchema.parse(sseConnectedEvent),
-  );
-}
 
 export function sseConnectedEventFromJSON(
   jsonString: string,
@@ -3585,129 +2039,6 @@ export const SSEEventStream$inboundSchema: z.ZodType<
     })),
   ),
 ]);
-
-/** @internal */
-export type SSEEventStream$Outbound =
-  | (SSECompleteEvent$Outbound & { event: "complete" })
-  | (SSEConnectedEvent$Outbound & { event: "connected" })
-  | (SSEContentEvent$Outbound & { event: "content" })
-  | (SSEErrorEvent$Outbound & { event: "error" })
-  | (SSEHeartbeatEvent$Outbound & { event: "heartbeat" })
-  | (SSEPermissionEvent$Outbound & { event: "permission" })
-  | (SSESessionCreatedEvent$Outbound & { event: "session_created" })
-  | (SSESessionDeletedEvent$Outbound & { event: "session_deleted" })
-  | (SSEThinkingEvent$Outbound & { event: "thinking" })
-  | (SSEToolExecutionCompleteEvent$Outbound & {
-    event: "tool_execution_complete";
-  })
-  | (SSEToolExecutionStartEvent$Outbound & { event: "tool_execution_start" })
-  | (SSEToolUseParameterDeltaEvent$Outbound & {
-    event: "tool_use_parameter_delta";
-  })
-  | (SSEToolUseParameterStreamingCompleteEvent$Outbound & {
-    event: "tool_use_parameter_streaming_complete";
-  })
-  | (SSEToolUseStartEvent$Outbound & { event: "tool_use_start" })
-  | (SSEUserMessageCreatedEvent$Outbound & { event: "user_message_created" });
-
-/** @internal */
-export const SSEEventStream$outboundSchema: z.ZodType<
-  SSEEventStream$Outbound,
-  z.ZodTypeDef,
-  SSEEventStream
-> = z.union([
-  z.lazy(() => SSECompleteEvent$outboundSchema).and(
-    z.object({ event: z.literal("complete") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEConnectedEvent$outboundSchema).and(
-    z.object({ event: z.literal("connected") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEContentEvent$outboundSchema).and(
-    z.object({ event: z.literal("content") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEErrorEvent$outboundSchema).and(
-    z.object({ event: z.literal("error") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEHeartbeatEvent$outboundSchema).and(
-    z.object({ event: z.literal("heartbeat") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEPermissionEvent$outboundSchema).and(
-    z.object({ event: z.literal("permission") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSESessionCreatedEvent$outboundSchema).and(
-    z.object({ event: z.literal("session_created") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSESessionDeletedEvent$outboundSchema).and(
-    z.object({ event: z.literal("session_deleted") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEThinkingEvent$outboundSchema).and(
-    z.object({ event: z.literal("thinking") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEToolExecutionCompleteEvent$outboundSchema).and(
-    z.object({ event: z.literal("tool_execution_complete") }).transform((
-      v,
-    ) => ({ event: v.event })),
-  ),
-  z.lazy(() => SSEToolExecutionStartEvent$outboundSchema).and(
-    z.object({ event: z.literal("tool_execution_start") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEToolUseParameterDeltaEvent$outboundSchema).and(
-    z.object({ event: z.literal("tool_use_parameter_delta") }).transform((
-      v,
-    ) => ({ event: v.event })),
-  ),
-  z.lazy(() => SSEToolUseParameterStreamingCompleteEvent$outboundSchema).and(
-    z.object({ event: z.literal("tool_use_parameter_streaming_complete") })
-      .transform((v) => ({ event: v.event })),
-  ),
-  z.lazy(() => SSEToolUseStartEvent$outboundSchema).and(
-    z.object({ event: z.literal("tool_use_start") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-  z.lazy(() => SSEUserMessageCreatedEvent$outboundSchema).and(
-    z.object({ event: z.literal("user_message_created") }).transform((v) => ({
-      event: v.event,
-    })),
-  ),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SSEEventStream$ {
-  /** @deprecated use `SSEEventStream$inboundSchema` instead. */
-  export const inboundSchema = SSEEventStream$inboundSchema;
-  /** @deprecated use `SSEEventStream$outboundSchema` instead. */
-  export const outboundSchema = SSEEventStream$outboundSchema;
-  /** @deprecated use `SSEEventStream$Outbound` instead. */
-  export type Outbound = SSEEventStream$Outbound;
-}
-
-export function sseEventStreamToJSON(sseEventStream: SSEEventStream): string {
-  return JSON.stringify(SSEEventStream$outboundSchema.parse(sseEventStream));
-}
 
 export function sseEventStreamFromJSON(
   jsonString: string,

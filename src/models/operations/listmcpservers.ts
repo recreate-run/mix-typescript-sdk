@@ -47,43 +47,6 @@ export const ListMcpServersTool$inboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/** @internal */
-export type ListMcpServersTool$Outbound = {
-  description: string;
-  name: string;
-};
-
-/** @internal */
-export const ListMcpServersTool$outboundSchema: z.ZodType<
-  ListMcpServersTool$Outbound,
-  z.ZodTypeDef,
-  ListMcpServersTool
-> = z.object({
-  description: z.string(),
-  name: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListMcpServersTool$ {
-  /** @deprecated use `ListMcpServersTool$inboundSchema` instead. */
-  export const inboundSchema = ListMcpServersTool$inboundSchema;
-  /** @deprecated use `ListMcpServersTool$outboundSchema` instead. */
-  export const outboundSchema = ListMcpServersTool$outboundSchema;
-  /** @deprecated use `ListMcpServersTool$Outbound` instead. */
-  export type Outbound = ListMcpServersTool$Outbound;
-}
-
-export function listMcpServersToolToJSON(
-  listMcpServersTool: ListMcpServersTool,
-): string {
-  return JSON.stringify(
-    ListMcpServersTool$outboundSchema.parse(listMcpServersTool),
-  );
-}
-
 export function listMcpServersToolFromJSON(
   jsonString: string,
 ): SafeParseResult<ListMcpServersTool, SDKValidationError> {
@@ -106,48 +69,6 @@ export const ListMcpServersResponse$inboundSchema: z.ZodType<
   tools: z.nullable(z.array(z.lazy(() => ListMcpServersTool$inboundSchema)))
     .optional(),
 });
-
-/** @internal */
-export type ListMcpServersResponse$Outbound = {
-  connected: boolean;
-  name: string;
-  status: string;
-  tools?: Array<ListMcpServersTool$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const ListMcpServersResponse$outboundSchema: z.ZodType<
-  ListMcpServersResponse$Outbound,
-  z.ZodTypeDef,
-  ListMcpServersResponse
-> = z.object({
-  connected: z.boolean(),
-  name: z.string(),
-  status: z.string(),
-  tools: z.nullable(z.array(z.lazy(() => ListMcpServersTool$outboundSchema)))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListMcpServersResponse$ {
-  /** @deprecated use `ListMcpServersResponse$inboundSchema` instead. */
-  export const inboundSchema = ListMcpServersResponse$inboundSchema;
-  /** @deprecated use `ListMcpServersResponse$outboundSchema` instead. */
-  export const outboundSchema = ListMcpServersResponse$outboundSchema;
-  /** @deprecated use `ListMcpServersResponse$Outbound` instead. */
-  export type Outbound = ListMcpServersResponse$Outbound;
-}
-
-export function listMcpServersResponseToJSON(
-  listMcpServersResponse: ListMcpServersResponse,
-): string {
-  return JSON.stringify(
-    ListMcpServersResponse$outboundSchema.parse(listMcpServersResponse),
-  );
-}
 
 export function listMcpServersResponseFromJSON(
   jsonString: string,

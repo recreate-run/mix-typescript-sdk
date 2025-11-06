@@ -45,33 +45,6 @@ export const ParametersT$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type ParametersT$Outbound = {};
-
-/** @internal */
-export const ParametersT$outboundSchema: z.ZodType<
-  ParametersT$Outbound,
-  z.ZodTypeDef,
-  ParametersT
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ParametersT$ {
-  /** @deprecated use `ParametersT$inboundSchema` instead. */
-  export const inboundSchema = ParametersT$inboundSchema;
-  /** @deprecated use `ParametersT$outboundSchema` instead. */
-  export const outboundSchema = ParametersT$outboundSchema;
-  /** @deprecated use `ParametersT$Outbound` instead. */
-  export type Outbound = ParametersT$Outbound;
-}
-
-export function parametersToJSON(parametersT: ParametersT): string {
-  return JSON.stringify(ParametersT$outboundSchema.parse(parametersT));
-}
-
 export function parametersFromJSON(
   jsonString: string,
 ): SafeParseResult<ParametersT, SDKValidationError> {
@@ -94,47 +67,6 @@ export const ListLLMToolsTool$inboundSchema: z.ZodType<
   required: z.array(z.string()).optional(),
 });
 
-/** @internal */
-export type ListLLMToolsTool$Outbound = {
-  description?: string | undefined;
-  name?: string | undefined;
-  parameters?: ParametersT$Outbound | undefined;
-  required?: Array<string> | undefined;
-};
-
-/** @internal */
-export const ListLLMToolsTool$outboundSchema: z.ZodType<
-  ListLLMToolsTool$Outbound,
-  z.ZodTypeDef,
-  ListLLMToolsTool
-> = z.object({
-  description: z.string().optional(),
-  name: z.string().optional(),
-  parameters: z.lazy(() => ParametersT$outboundSchema).optional(),
-  required: z.array(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListLLMToolsTool$ {
-  /** @deprecated use `ListLLMToolsTool$inboundSchema` instead. */
-  export const inboundSchema = ListLLMToolsTool$inboundSchema;
-  /** @deprecated use `ListLLMToolsTool$outboundSchema` instead. */
-  export const outboundSchema = ListLLMToolsTool$outboundSchema;
-  /** @deprecated use `ListLLMToolsTool$Outbound` instead. */
-  export type Outbound = ListLLMToolsTool$Outbound;
-}
-
-export function listLLMToolsToolToJSON(
-  listLLMToolsTool: ListLLMToolsTool,
-): string {
-  return JSON.stringify(
-    ListLLMToolsTool$outboundSchema.parse(listLLMToolsTool),
-  );
-}
-
 export function listLLMToolsToolFromJSON(
   jsonString: string,
 ): SafeParseResult<ListLLMToolsTool, SDKValidationError> {
@@ -153,41 +85,6 @@ export const ListLLMToolsResponse$inboundSchema: z.ZodType<
 > = z.object({
   tools: z.array(z.lazy(() => ListLLMToolsTool$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type ListLLMToolsResponse$Outbound = {
-  tools?: Array<ListLLMToolsTool$Outbound> | undefined;
-};
-
-/** @internal */
-export const ListLLMToolsResponse$outboundSchema: z.ZodType<
-  ListLLMToolsResponse$Outbound,
-  z.ZodTypeDef,
-  ListLLMToolsResponse
-> = z.object({
-  tools: z.array(z.lazy(() => ListLLMToolsTool$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListLLMToolsResponse$ {
-  /** @deprecated use `ListLLMToolsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListLLMToolsResponse$inboundSchema;
-  /** @deprecated use `ListLLMToolsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListLLMToolsResponse$outboundSchema;
-  /** @deprecated use `ListLLMToolsResponse$Outbound` instead. */
-  export type Outbound = ListLLMToolsResponse$Outbound;
-}
-
-export function listLLMToolsResponseToJSON(
-  listLLMToolsResponse: ListLLMToolsResponse,
-): string {
-  return JSON.stringify(
-    ListLLMToolsResponse$outboundSchema.parse(listLLMToolsResponse),
-  );
-}
 
 export function listLLMToolsResponseFromJSON(
   jsonString: string,

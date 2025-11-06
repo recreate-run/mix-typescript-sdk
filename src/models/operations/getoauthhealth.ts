@@ -88,22 +88,6 @@ export const ProvidersStatus$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(ProvidersStatus);
 
 /** @internal */
-export const ProvidersStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ProvidersStatus
-> = ProvidersStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProvidersStatus$ {
-  /** @deprecated use `ProvidersStatus$inboundSchema` instead. */
-  export const inboundSchema = ProvidersStatus$inboundSchema;
-  /** @deprecated use `ProvidersStatus$outboundSchema` instead. */
-  export const outboundSchema = ProvidersStatus$outboundSchema;
-}
-
-/** @internal */
 export const GetOAuthHealthProviders$inboundSchema: z.ZodType<
   GetOAuthHealthProviders,
   z.ZodTypeDef,
@@ -126,57 +110,6 @@ export const GetOAuthHealthProviders$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type GetOAuthHealthProviders$Outbound = {
-  error?: string | undefined;
-  expires_at?: string | undefined;
-  expires_in?: string | undefined;
-  last_refresh?: string | undefined;
-  provider: string;
-  status: string;
-};
-
-/** @internal */
-export const GetOAuthHealthProviders$outboundSchema: z.ZodType<
-  GetOAuthHealthProviders$Outbound,
-  z.ZodTypeDef,
-  GetOAuthHealthProviders
-> = z.object({
-  error: z.string().optional(),
-  expiresAt: z.date().transform(v => v.toISOString()).optional(),
-  expiresIn: z.string().optional(),
-  lastRefresh: z.date().transform(v => v.toISOString()).optional(),
-  provider: z.string(),
-  status: ProvidersStatus$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    expiresAt: "expires_at",
-    expiresIn: "expires_in",
-    lastRefresh: "last_refresh",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetOAuthHealthProviders$ {
-  /** @deprecated use `GetOAuthHealthProviders$inboundSchema` instead. */
-  export const inboundSchema = GetOAuthHealthProviders$inboundSchema;
-  /** @deprecated use `GetOAuthHealthProviders$outboundSchema` instead. */
-  export const outboundSchema = GetOAuthHealthProviders$outboundSchema;
-  /** @deprecated use `GetOAuthHealthProviders$Outbound` instead. */
-  export type Outbound = GetOAuthHealthProviders$Outbound;
-}
-
-export function getOAuthHealthProvidersToJSON(
-  getOAuthHealthProviders: GetOAuthHealthProviders,
-): string {
-  return JSON.stringify(
-    GetOAuthHealthProviders$outboundSchema.parse(getOAuthHealthProviders),
-  );
-}
-
 export function getOAuthHealthProvidersFromJSON(
   jsonString: string,
 ): SafeParseResult<GetOAuthHealthProviders, SDKValidationError> {
@@ -192,21 +125,6 @@ export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
   .nativeEnum(Status);
 
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
-}
-
-/** @internal */
 export const GetOAuthHealthResponse$inboundSchema: z.ZodType<
   GetOAuthHealthResponse,
   z.ZodTypeDef,
@@ -216,45 +134,6 @@ export const GetOAuthHealthResponse$inboundSchema: z.ZodType<
   status: Status$inboundSchema,
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
-
-/** @internal */
-export type GetOAuthHealthResponse$Outbound = {
-  providers: { [k: string]: GetOAuthHealthProviders$Outbound };
-  status: string;
-  timestamp: string;
-};
-
-/** @internal */
-export const GetOAuthHealthResponse$outboundSchema: z.ZodType<
-  GetOAuthHealthResponse$Outbound,
-  z.ZodTypeDef,
-  GetOAuthHealthResponse
-> = z.object({
-  providers: z.record(z.lazy(() => GetOAuthHealthProviders$outboundSchema)),
-  status: Status$outboundSchema,
-  timestamp: z.date().transform(v => v.toISOString()),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetOAuthHealthResponse$ {
-  /** @deprecated use `GetOAuthHealthResponse$inboundSchema` instead. */
-  export const inboundSchema = GetOAuthHealthResponse$inboundSchema;
-  /** @deprecated use `GetOAuthHealthResponse$outboundSchema` instead. */
-  export const outboundSchema = GetOAuthHealthResponse$outboundSchema;
-  /** @deprecated use `GetOAuthHealthResponse$Outbound` instead. */
-  export type Outbound = GetOAuthHealthResponse$Outbound;
-}
-
-export function getOAuthHealthResponseToJSON(
-  getOAuthHealthResponse: GetOAuthHealthResponse,
-): string {
-  return JSON.stringify(
-    GetOAuthHealthResponse$outboundSchema.parse(getOAuthHealthResponse),
-  );
-}
 
 export function getOAuthHealthResponseFromJSON(
   jsonString: string,

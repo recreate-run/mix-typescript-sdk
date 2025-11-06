@@ -61,41 +61,9 @@ export type SendMessageResponse = {
 };
 
 /** @internal */
-export const ThinkingLevel$inboundSchema: z.ZodNativeEnum<
-  typeof ThinkingLevel
-> = z.nativeEnum(ThinkingLevel);
-
-/** @internal */
 export const ThinkingLevel$outboundSchema: z.ZodNativeEnum<
   typeof ThinkingLevel
-> = ThinkingLevel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThinkingLevel$ {
-  /** @deprecated use `ThinkingLevel$inboundSchema` instead. */
-  export const inboundSchema = ThinkingLevel$inboundSchema;
-  /** @deprecated use `ThinkingLevel$outboundSchema` instead. */
-  export const outboundSchema = ThinkingLevel$outboundSchema;
-}
-
-/** @internal */
-export const SendMessageRequestBody$inboundSchema: z.ZodType<
-  SendMessageRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  plan_mode: z.boolean().default(false),
-  text: z.string(),
-  thinking_level: z.nullable(ThinkingLevel$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "plan_mode": "planMode",
-    "thinking_level": "thinkingLevel",
-  });
-});
+> = z.nativeEnum(ThinkingLevel);
 
 /** @internal */
 export type SendMessageRequestBody$Outbound = {
@@ -120,19 +88,6 @@ export const SendMessageRequestBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendMessageRequestBody$ {
-  /** @deprecated use `SendMessageRequestBody$inboundSchema` instead. */
-  export const inboundSchema = SendMessageRequestBody$inboundSchema;
-  /** @deprecated use `SendMessageRequestBody$outboundSchema` instead. */
-  export const outboundSchema = SendMessageRequestBody$outboundSchema;
-  /** @deprecated use `SendMessageRequestBody$Outbound` instead. */
-  export type Outbound = SendMessageRequestBody$Outbound;
-}
-
 export function sendMessageRequestBodyToJSON(
   sendMessageRequestBody: SendMessageRequestBody,
 ): string {
@@ -140,30 +95,6 @@ export function sendMessageRequestBodyToJSON(
     SendMessageRequestBody$outboundSchema.parse(sendMessageRequestBody),
   );
 }
-
-export function sendMessageRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<SendMessageRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SendMessageRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SendMessageRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const SendMessageRequest$inboundSchema: z.ZodType<
-  SendMessageRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => SendMessageRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type SendMessageRequest$Outbound = {
@@ -185,34 +116,11 @@ export const SendMessageRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendMessageRequest$ {
-  /** @deprecated use `SendMessageRequest$inboundSchema` instead. */
-  export const inboundSchema = SendMessageRequest$inboundSchema;
-  /** @deprecated use `SendMessageRequest$outboundSchema` instead. */
-  export const outboundSchema = SendMessageRequest$outboundSchema;
-  /** @deprecated use `SendMessageRequest$Outbound` instead. */
-  export type Outbound = SendMessageRequest$Outbound;
-}
-
 export function sendMessageRequestToJSON(
   sendMessageRequest: SendMessageRequest,
 ): string {
   return JSON.stringify(
     SendMessageRequest$outboundSchema.parse(sendMessageRequest),
-  );
-}
-
-export function sendMessageRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<SendMessageRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SendMessageRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SendMessageRequest' from JSON`,
   );
 }
 
@@ -225,43 +133,6 @@ export const SendMessageResponse$inboundSchema: z.ZodType<
   sessionId: z.string(),
   status: z.string(),
 });
-
-/** @internal */
-export type SendMessageResponse$Outbound = {
-  sessionId: string;
-  status: string;
-};
-
-/** @internal */
-export const SendMessageResponse$outboundSchema: z.ZodType<
-  SendMessageResponse$Outbound,
-  z.ZodTypeDef,
-  SendMessageResponse
-> = z.object({
-  sessionId: z.string(),
-  status: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendMessageResponse$ {
-  /** @deprecated use `SendMessageResponse$inboundSchema` instead. */
-  export const inboundSchema = SendMessageResponse$inboundSchema;
-  /** @deprecated use `SendMessageResponse$outboundSchema` instead. */
-  export const outboundSchema = SendMessageResponse$outboundSchema;
-  /** @deprecated use `SendMessageResponse$Outbound` instead. */
-  export type Outbound = SendMessageResponse$Outbound;
-}
-
-export function sendMessageResponseToJSON(
-  sendMessageResponse: SendMessageResponse,
-): string {
-  return JSON.stringify(
-    SendMessageResponse$outboundSchema.parse(sendMessageResponse),
-  );
-}
 
 export function sendMessageResponseFromJSON(
   jsonString: string,

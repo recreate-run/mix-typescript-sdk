@@ -31,43 +31,6 @@ export const RefreshOAuthTokensResponse$inboundSchema: z.ZodType<
   status: z.string().optional(),
 });
 
-/** @internal */
-export type RefreshOAuthTokensResponse$Outbound = {
-  message?: string | undefined;
-  status?: string | undefined;
-};
-
-/** @internal */
-export const RefreshOAuthTokensResponse$outboundSchema: z.ZodType<
-  RefreshOAuthTokensResponse$Outbound,
-  z.ZodTypeDef,
-  RefreshOAuthTokensResponse
-> = z.object({
-  message: z.string().optional(),
-  status: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RefreshOAuthTokensResponse$ {
-  /** @deprecated use `RefreshOAuthTokensResponse$inboundSchema` instead. */
-  export const inboundSchema = RefreshOAuthTokensResponse$inboundSchema;
-  /** @deprecated use `RefreshOAuthTokensResponse$outboundSchema` instead. */
-  export const outboundSchema = RefreshOAuthTokensResponse$outboundSchema;
-  /** @deprecated use `RefreshOAuthTokensResponse$Outbound` instead. */
-  export type Outbound = RefreshOAuthTokensResponse$Outbound;
-}
-
-export function refreshOAuthTokensResponseToJSON(
-  refreshOAuthTokensResponse: RefreshOAuthTokensResponse,
-): string {
-  return JSON.stringify(
-    RefreshOAuthTokensResponse$outboundSchema.parse(refreshOAuthTokensResponse),
-  );
-}
-
 export function refreshOAuthTokensResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<RefreshOAuthTokensResponse, SDKValidationError> {

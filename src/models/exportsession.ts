@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  ExportMessage,
-  ExportMessage$inboundSchema,
-  ExportMessage$Outbound,
-  ExportMessage$outboundSchema,
-} from "./exportmessage.js";
+import { ExportMessage, ExportMessage$inboundSchema } from "./exportmessage.js";
 
 /**
  * Comprehensive session export with all messages, tool calls, and metadata
@@ -83,57 +78,6 @@ export const ExportSession$inboundSchema: z.ZodType<
     .optional(),
   userMessageCount: z.number().int().optional(),
 });
-
-/** @internal */
-export type ExportSession$Outbound = {
-  assistantMessageCount?: number | undefined;
-  completionTokens?: number | undefined;
-  cost?: number | undefined;
-  createdAt?: string | undefined;
-  id: string;
-  messages: Array<ExportMessage$Outbound>;
-  promptTokens?: number | undefined;
-  title: string;
-  toolCallCount?: number | undefined;
-  updatedAt?: string | undefined;
-  userMessageCount?: number | undefined;
-};
-
-/** @internal */
-export const ExportSession$outboundSchema: z.ZodType<
-  ExportSession$Outbound,
-  z.ZodTypeDef,
-  ExportSession
-> = z.object({
-  assistantMessageCount: z.number().int().optional(),
-  completionTokens: z.number().int().optional(),
-  cost: z.number().optional(),
-  createdAt: z.date().transform(v => v.toISOString()).optional(),
-  id: z.string(),
-  messages: z.array(ExportMessage$outboundSchema),
-  promptTokens: z.number().int().optional(),
-  title: z.string(),
-  toolCallCount: z.number().int().optional(),
-  updatedAt: z.date().transform(v => v.toISOString()).optional(),
-  userMessageCount: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExportSession$ {
-  /** @deprecated use `ExportSession$inboundSchema` instead. */
-  export const inboundSchema = ExportSession$inboundSchema;
-  /** @deprecated use `ExportSession$outboundSchema` instead. */
-  export const outboundSchema = ExportSession$outboundSchema;
-  /** @deprecated use `ExportSession$Outbound` instead. */
-  export type Outbound = ExportSession$Outbound;
-}
-
-export function exportSessionToJSON(exportSession: ExportSession): string {
-  return JSON.stringify(ExportSession$outboundSchema.parse(exportSession));
-}
 
 export function exportSessionFromJSON(
   jsonString: string,

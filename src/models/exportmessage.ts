@@ -9,8 +9,6 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   ExportToolCall,
   ExportToolCall$inboundSchema,
-  ExportToolCall$Outbound,
-  ExportToolCall$outboundSchema,
 } from "./exporttoolcall.js";
 
 /**
@@ -76,55 +74,6 @@ export const ExportMessage$inboundSchema: z.ZodType<
   toolCalls: z.array(ExportToolCall$inboundSchema).optional(),
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
-
-/** @internal */
-export type ExportMessage$Outbound = {
-  content: string;
-  createdAt: string;
-  finishReason?: string | undefined;
-  id: string;
-  model?: string | undefined;
-  reasoning?: string | undefined;
-  reasoningDuration?: number | undefined;
-  role: string;
-  toolCalls?: Array<ExportToolCall$Outbound> | undefined;
-  updatedAt: string;
-};
-
-/** @internal */
-export const ExportMessage$outboundSchema: z.ZodType<
-  ExportMessage$Outbound,
-  z.ZodTypeDef,
-  ExportMessage
-> = z.object({
-  content: z.string(),
-  createdAt: z.date().transform(v => v.toISOString()),
-  finishReason: z.string().optional(),
-  id: z.string(),
-  model: z.string().optional(),
-  reasoning: z.string().optional(),
-  reasoningDuration: z.number().int().optional(),
-  role: z.string(),
-  toolCalls: z.array(ExportToolCall$outboundSchema).optional(),
-  updatedAt: z.date().transform(v => v.toISOString()),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExportMessage$ {
-  /** @deprecated use `ExportMessage$inboundSchema` instead. */
-  export const inboundSchema = ExportMessage$inboundSchema;
-  /** @deprecated use `ExportMessage$outboundSchema` instead. */
-  export const outboundSchema = ExportMessage$outboundSchema;
-  /** @deprecated use `ExportMessage$Outbound` instead. */
-  export type Outbound = ExportMessage$Outbound;
-}
-
-export function exportMessageToJSON(exportMessage: ExportMessage): string {
-  return JSON.stringify(ExportMessage$outboundSchema.parse(exportMessage));
-}
 
 export function exportMessageFromJSON(
   jsonString: string,

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
 export type UpdateSessionCallbacksRequestBody = {
@@ -25,15 +22,6 @@ export type UpdateSessionCallbacksRequest = {
 };
 
 /** @internal */
-export const UpdateSessionCallbacksRequestBody$inboundSchema: z.ZodType<
-  UpdateSessionCallbacksRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  callbacks: z.array(models.Callback$inboundSchema),
-});
-
-/** @internal */
 export type UpdateSessionCallbacksRequestBody$Outbound = {
   callbacks: Array<models.Callback$Outbound>;
 };
@@ -47,20 +35,6 @@ export const UpdateSessionCallbacksRequestBody$outboundSchema: z.ZodType<
   callbacks: z.array(models.Callback$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateSessionCallbacksRequestBody$ {
-  /** @deprecated use `UpdateSessionCallbacksRequestBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateSessionCallbacksRequestBody$inboundSchema;
-  /** @deprecated use `UpdateSessionCallbacksRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateSessionCallbacksRequestBody$outboundSchema;
-  /** @deprecated use `UpdateSessionCallbacksRequestBody$Outbound` instead. */
-  export type Outbound = UpdateSessionCallbacksRequestBody$Outbound;
-}
-
 export function updateSessionCallbacksRequestBodyToJSON(
   updateSessionCallbacksRequestBody: UpdateSessionCallbacksRequestBody,
 ): string {
@@ -70,30 +44,6 @@ export function updateSessionCallbacksRequestBodyToJSON(
     ),
   );
 }
-
-export function updateSessionCallbacksRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateSessionCallbacksRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateSessionCallbacksRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateSessionCallbacksRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateSessionCallbacksRequest$inboundSchema: z.ZodType<
-  UpdateSessionCallbacksRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => UpdateSessionCallbacksRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type UpdateSessionCallbacksRequest$Outbound = {
@@ -115,19 +65,6 @@ export const UpdateSessionCallbacksRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateSessionCallbacksRequest$ {
-  /** @deprecated use `UpdateSessionCallbacksRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateSessionCallbacksRequest$inboundSchema;
-  /** @deprecated use `UpdateSessionCallbacksRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateSessionCallbacksRequest$outboundSchema;
-  /** @deprecated use `UpdateSessionCallbacksRequest$Outbound` instead. */
-  export type Outbound = UpdateSessionCallbacksRequest$Outbound;
-}
-
 export function updateSessionCallbacksRequestToJSON(
   updateSessionCallbacksRequest: UpdateSessionCallbacksRequest,
 ): string {
@@ -135,15 +72,5 @@ export function updateSessionCallbacksRequestToJSON(
     UpdateSessionCallbacksRequest$outboundSchema.parse(
       updateSessionCallbacksRequest,
     ),
-  );
-}
-
-export function updateSessionCallbacksRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateSessionCallbacksRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateSessionCallbacksRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateSessionCallbacksRequest' from JSON`,
   );
 }

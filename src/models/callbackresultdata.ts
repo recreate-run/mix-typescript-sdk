@@ -84,22 +84,6 @@ export const CallbackResultDataCallbackType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CallbackResultDataCallbackType);
 
 /** @internal */
-export const CallbackResultDataCallbackType$outboundSchema: z.ZodNativeEnum<
-  typeof CallbackResultDataCallbackType
-> = CallbackResultDataCallbackType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CallbackResultDataCallbackType$ {
-  /** @deprecated use `CallbackResultDataCallbackType$inboundSchema` instead. */
-  export const inboundSchema = CallbackResultDataCallbackType$inboundSchema;
-  /** @deprecated use `CallbackResultDataCallbackType$outboundSchema` instead. */
-  export const outboundSchema = CallbackResultDataCallbackType$outboundSchema;
-}
-
-/** @internal */
 export const CallbackResultData$inboundSchema: z.ZodType<
   CallbackResultData,
   z.ZodTypeDef,
@@ -129,74 +113,6 @@ export const CallbackResultData$inboundSchema: z.ZodType<
     "tool_name": "toolName",
   });
 });
-
-/** @internal */
-export type CallbackResultData$Outbound = {
-  callback_name?: string | undefined;
-  callback_type: string;
-  error?: string | undefined;
-  exclude_from_context?: boolean | undefined;
-  exit_code?: number | undefined;
-  stderr?: string | undefined;
-  stdout?: string | undefined;
-  subagent_id?: string | undefined;
-  subagent_result?: string | undefined;
-  success: boolean;
-  tool_call_id: string;
-  tool_name: string;
-};
-
-/** @internal */
-export const CallbackResultData$outboundSchema: z.ZodType<
-  CallbackResultData$Outbound,
-  z.ZodTypeDef,
-  CallbackResultData
-> = z.object({
-  callbackName: z.string().optional(),
-  callbackType: CallbackResultDataCallbackType$outboundSchema,
-  error: z.string().optional(),
-  excludeFromContext: z.boolean().optional(),
-  exitCode: z.number().int().optional(),
-  stderr: z.string().optional(),
-  stdout: z.string().optional(),
-  subagentId: z.string().optional(),
-  subagentResult: z.string().optional(),
-  success: z.boolean(),
-  toolCallId: z.string(),
-  toolName: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    callbackName: "callback_name",
-    callbackType: "callback_type",
-    excludeFromContext: "exclude_from_context",
-    exitCode: "exit_code",
-    subagentId: "subagent_id",
-    subagentResult: "subagent_result",
-    toolCallId: "tool_call_id",
-    toolName: "tool_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CallbackResultData$ {
-  /** @deprecated use `CallbackResultData$inboundSchema` instead. */
-  export const inboundSchema = CallbackResultData$inboundSchema;
-  /** @deprecated use `CallbackResultData$outboundSchema` instead. */
-  export const outboundSchema = CallbackResultData$outboundSchema;
-  /** @deprecated use `CallbackResultData$Outbound` instead. */
-  export type Outbound = CallbackResultData$Outbound;
-}
-
-export function callbackResultDataToJSON(
-  callbackResultData: CallbackResultData,
-): string {
-  return JSON.stringify(
-    CallbackResultData$outboundSchema.parse(callbackResultData),
-  );
-}
 
 export function callbackResultDataFromJSON(
   jsonString: string,

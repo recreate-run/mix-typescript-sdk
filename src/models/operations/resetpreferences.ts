@@ -79,69 +79,6 @@ export const ResetPreferencesResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ResetPreferencesResponse$Outbound = {
-  created_at?: number | undefined;
-  main_agent_max_tokens?: number | undefined;
-  main_agent_model?: string | undefined;
-  main_agent_reasoning_effort?: string | undefined;
-  preferred_provider?: string | undefined;
-  sub_agent_max_tokens?: number | undefined;
-  sub_agent_model?: string | undefined;
-  sub_agent_reasoning_effort?: string | undefined;
-  updated_at?: number | undefined;
-};
-
-/** @internal */
-export const ResetPreferencesResponse$outboundSchema: z.ZodType<
-  ResetPreferencesResponse$Outbound,
-  z.ZodTypeDef,
-  ResetPreferencesResponse
-> = z.object({
-  createdAt: z.number().int().optional(),
-  mainAgentMaxTokens: z.number().int().optional(),
-  mainAgentModel: z.string().optional(),
-  mainAgentReasoningEffort: z.string().optional(),
-  preferredProvider: z.string().optional(),
-  subAgentMaxTokens: z.number().int().optional(),
-  subAgentModel: z.string().optional(),
-  subAgentReasoningEffort: z.string().optional(),
-  updatedAt: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    createdAt: "created_at",
-    mainAgentMaxTokens: "main_agent_max_tokens",
-    mainAgentModel: "main_agent_model",
-    mainAgentReasoningEffort: "main_agent_reasoning_effort",
-    preferredProvider: "preferred_provider",
-    subAgentMaxTokens: "sub_agent_max_tokens",
-    subAgentModel: "sub_agent_model",
-    subAgentReasoningEffort: "sub_agent_reasoning_effort",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResetPreferencesResponse$ {
-  /** @deprecated use `ResetPreferencesResponse$inboundSchema` instead. */
-  export const inboundSchema = ResetPreferencesResponse$inboundSchema;
-  /** @deprecated use `ResetPreferencesResponse$outboundSchema` instead. */
-  export const outboundSchema = ResetPreferencesResponse$outboundSchema;
-  /** @deprecated use `ResetPreferencesResponse$Outbound` instead. */
-  export type Outbound = ResetPreferencesResponse$Outbound;
-}
-
-export function resetPreferencesResponseToJSON(
-  resetPreferencesResponse: ResetPreferencesResponse,
-): string {
-  return JSON.stringify(
-    ResetPreferencesResponse$outboundSchema.parse(resetPreferencesResponse),
-  );
-}
-
 export function resetPreferencesResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ResetPreferencesResponse, SDKValidationError> {

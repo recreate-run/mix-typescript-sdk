@@ -33,15 +33,6 @@ export type GetCommandResponse = {
 };
 
 /** @internal */
-export const GetCommandRequest$inboundSchema: z.ZodType<
-  GetCommandRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-});
-
-/** @internal */
 export type GetCommandRequest$Outbound = {
   name: string;
 };
@@ -55,34 +46,11 @@ export const GetCommandRequest$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCommandRequest$ {
-  /** @deprecated use `GetCommandRequest$inboundSchema` instead. */
-  export const inboundSchema = GetCommandRequest$inboundSchema;
-  /** @deprecated use `GetCommandRequest$outboundSchema` instead. */
-  export const outboundSchema = GetCommandRequest$outboundSchema;
-  /** @deprecated use `GetCommandRequest$Outbound` instead. */
-  export type Outbound = GetCommandRequest$Outbound;
-}
-
 export function getCommandRequestToJSON(
   getCommandRequest: GetCommandRequest,
 ): string {
   return JSON.stringify(
     GetCommandRequest$outboundSchema.parse(getCommandRequest),
-  );
-}
-
-export function getCommandRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetCommandRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetCommandRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetCommandRequest' from JSON`,
   );
 }
 
@@ -96,45 +64,6 @@ export const GetCommandResponse$inboundSchema: z.ZodType<
   name: z.string().optional(),
   usage: z.string().optional(),
 });
-
-/** @internal */
-export type GetCommandResponse$Outbound = {
-  description?: string | undefined;
-  name?: string | undefined;
-  usage?: string | undefined;
-};
-
-/** @internal */
-export const GetCommandResponse$outboundSchema: z.ZodType<
-  GetCommandResponse$Outbound,
-  z.ZodTypeDef,
-  GetCommandResponse
-> = z.object({
-  description: z.string().optional(),
-  name: z.string().optional(),
-  usage: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCommandResponse$ {
-  /** @deprecated use `GetCommandResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCommandResponse$inboundSchema;
-  /** @deprecated use `GetCommandResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCommandResponse$outboundSchema;
-  /** @deprecated use `GetCommandResponse$Outbound` instead. */
-  export type Outbound = GetCommandResponse$Outbound;
-}
-
-export function getCommandResponseToJSON(
-  getCommandResponse: GetCommandResponse,
-): string {
-  return JSON.stringify(
-    GetCommandResponse$outboundSchema.parse(getCommandResponse),
-  );
-}
 
 export function getCommandResponseFromJSON(
   jsonString: string,

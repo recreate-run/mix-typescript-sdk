@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListSessionsRequest = {
   /**
@@ -13,15 +10,6 @@ export type ListSessionsRequest = {
    */
   includeSubagents?: boolean | undefined;
 };
-
-/** @internal */
-export const ListSessionsRequest$inboundSchema: z.ZodType<
-  ListSessionsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  includeSubagents: z.boolean().default(false),
-});
 
 /** @internal */
 export type ListSessionsRequest$Outbound = {
@@ -37,33 +25,10 @@ export const ListSessionsRequest$outboundSchema: z.ZodType<
   includeSubagents: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListSessionsRequest$ {
-  /** @deprecated use `ListSessionsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListSessionsRequest$inboundSchema;
-  /** @deprecated use `ListSessionsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListSessionsRequest$outboundSchema;
-  /** @deprecated use `ListSessionsRequest$Outbound` instead. */
-  export type Outbound = ListSessionsRequest$Outbound;
-}
-
 export function listSessionsRequestToJSON(
   listSessionsRequest: ListSessionsRequest,
 ): string {
   return JSON.stringify(
     ListSessionsRequest$outboundSchema.parse(listSessionsRequest),
-  );
-}
-
-export function listSessionsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListSessionsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListSessionsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListSessionsRequest' from JSON`,
   );
 }

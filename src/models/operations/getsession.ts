@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetSessionRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetSessionRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetSessionRequest$inboundSchema: z.ZodType<
-  GetSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GetSessionRequest$Outbound = {
@@ -37,33 +25,10 @@ export const GetSessionRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSessionRequest$ {
-  /** @deprecated use `GetSessionRequest$inboundSchema` instead. */
-  export const inboundSchema = GetSessionRequest$inboundSchema;
-  /** @deprecated use `GetSessionRequest$outboundSchema` instead. */
-  export const outboundSchema = GetSessionRequest$outboundSchema;
-  /** @deprecated use `GetSessionRequest$Outbound` instead. */
-  export type Outbound = GetSessionRequest$Outbound;
-}
-
 export function getSessionRequestToJSON(
   getSessionRequest: GetSessionRequest,
 ): string {
   return JSON.stringify(
     GetSessionRequest$outboundSchema.parse(getSessionRequest),
-  );
-}
-
-export function getSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSessionRequest' from JSON`,
   );
 }

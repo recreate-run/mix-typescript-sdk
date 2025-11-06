@@ -28,43 +28,6 @@ export const ListCommandsResponse$inboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/** @internal */
-export type ListCommandsResponse$Outbound = {
-  description?: string | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const ListCommandsResponse$outboundSchema: z.ZodType<
-  ListCommandsResponse$Outbound,
-  z.ZodTypeDef,
-  ListCommandsResponse
-> = z.object({
-  description: z.string().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCommandsResponse$ {
-  /** @deprecated use `ListCommandsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListCommandsResponse$inboundSchema;
-  /** @deprecated use `ListCommandsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListCommandsResponse$outboundSchema;
-  /** @deprecated use `ListCommandsResponse$Outbound` instead. */
-  export type Outbound = ListCommandsResponse$Outbound;
-}
-
-export function listCommandsResponseToJSON(
-  listCommandsResponse: ListCommandsResponse,
-): string {
-  return JSON.stringify(
-    ListCommandsResponse$outboundSchema.parse(listCommandsResponse),
-  );
-}
-
 export function listCommandsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListCommandsResponse, SDKValidationError> {

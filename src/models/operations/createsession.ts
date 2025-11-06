@@ -3,10 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
 /**
@@ -76,56 +73,12 @@ export type CreateSessionRequest = {
 };
 
 /** @internal */
-export const PromptMode$inboundSchema: z.ZodNativeEnum<typeof PromptMode> = z
+export const PromptMode$outboundSchema: z.ZodNativeEnum<typeof PromptMode> = z
   .nativeEnum(PromptMode);
 
 /** @internal */
-export const PromptMode$outboundSchema: z.ZodNativeEnum<typeof PromptMode> =
-  PromptMode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PromptMode$ {
-  /** @deprecated use `PromptMode$inboundSchema` instead. */
-  export const inboundSchema = PromptMode$inboundSchema;
-  /** @deprecated use `PromptMode$outboundSchema` instead. */
-  export const outboundSchema = PromptMode$outboundSchema;
-}
-
-/** @internal */
-export const SessionType$inboundSchema: z.ZodNativeEnum<typeof SessionType> = z
+export const SessionType$outboundSchema: z.ZodNativeEnum<typeof SessionType> = z
   .nativeEnum(SessionType);
-
-/** @internal */
-export const SessionType$outboundSchema: z.ZodNativeEnum<typeof SessionType> =
-  SessionType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SessionType$ {
-  /** @deprecated use `SessionType$inboundSchema` instead. */
-  export const inboundSchema = SessionType$inboundSchema;
-  /** @deprecated use `SessionType$outboundSchema` instead. */
-  export const outboundSchema = SessionType$outboundSchema;
-}
-
-/** @internal */
-export const CreateSessionRequest$inboundSchema: z.ZodType<
-  CreateSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  callbacks: z.array(models.Callback$inboundSchema).optional(),
-  customSystemPrompt: z.string().optional(),
-  promptMode: PromptMode$inboundSchema.default("default"),
-  sessionType: SessionType$inboundSchema.default("main"),
-  subagentType: z.string().optional(),
-  title: z.string(),
-});
 
 /** @internal */
 export type CreateSessionRequest$Outbound = {
@@ -151,33 +104,10 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
   title: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateSessionRequest$ {
-  /** @deprecated use `CreateSessionRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateSessionRequest$inboundSchema;
-  /** @deprecated use `CreateSessionRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateSessionRequest$outboundSchema;
-  /** @deprecated use `CreateSessionRequest$Outbound` instead. */
-  export type Outbound = CreateSessionRequest$Outbound;
-}
-
 export function createSessionRequestToJSON(
   createSessionRequest: CreateSessionRequest,
 ): string {
   return JSON.stringify(
     CreateSessionRequest$outboundSchema.parse(createSessionRequest),
-  );
-}
-
-export function createSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateSessionRequest' from JSON`,
   );
 }

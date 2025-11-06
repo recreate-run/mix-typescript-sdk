@@ -26,41 +26,6 @@ export const GetSystemInfoResponse$inboundSchema: z.ZodType<
   storageBasePath: z.string(),
 });
 
-/** @internal */
-export type GetSystemInfoResponse$Outbound = {
-  storageBasePath: string;
-};
-
-/** @internal */
-export const GetSystemInfoResponse$outboundSchema: z.ZodType<
-  GetSystemInfoResponse$Outbound,
-  z.ZodTypeDef,
-  GetSystemInfoResponse
-> = z.object({
-  storageBasePath: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSystemInfoResponse$ {
-  /** @deprecated use `GetSystemInfoResponse$inboundSchema` instead. */
-  export const inboundSchema = GetSystemInfoResponse$inboundSchema;
-  /** @deprecated use `GetSystemInfoResponse$outboundSchema` instead. */
-  export const outboundSchema = GetSystemInfoResponse$outboundSchema;
-  /** @deprecated use `GetSystemInfoResponse$Outbound` instead. */
-  export type Outbound = GetSystemInfoResponse$Outbound;
-}
-
-export function getSystemInfoResponseToJSON(
-  getSystemInfoResponse: GetSystemInfoResponse,
-): string {
-  return JSON.stringify(
-    GetSystemInfoResponse$outboundSchema.parse(getSystemInfoResponse),
-  );
-}
-
 export function getSystemInfoResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<GetSystemInfoResponse, SDKValidationError> {

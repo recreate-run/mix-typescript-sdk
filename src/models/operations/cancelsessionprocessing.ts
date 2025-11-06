@@ -25,15 +25,6 @@ export type CancelSessionProcessingResponse = {
 };
 
 /** @internal */
-export const CancelSessionProcessingRequest$inboundSchema: z.ZodType<
-  CancelSessionProcessingRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type CancelSessionProcessingRequest$Outbound = {
   id: string;
 };
@@ -47,19 +38,6 @@ export const CancelSessionProcessingRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CancelSessionProcessingRequest$ {
-  /** @deprecated use `CancelSessionProcessingRequest$inboundSchema` instead. */
-  export const inboundSchema = CancelSessionProcessingRequest$inboundSchema;
-  /** @deprecated use `CancelSessionProcessingRequest$outboundSchema` instead. */
-  export const outboundSchema = CancelSessionProcessingRequest$outboundSchema;
-  /** @deprecated use `CancelSessionProcessingRequest$Outbound` instead. */
-  export type Outbound = CancelSessionProcessingRequest$Outbound;
-}
-
 export function cancelSessionProcessingRequestToJSON(
   cancelSessionProcessingRequest: CancelSessionProcessingRequest,
 ): string {
@@ -67,16 +45,6 @@ export function cancelSessionProcessingRequestToJSON(
     CancelSessionProcessingRequest$outboundSchema.parse(
       cancelSessionProcessingRequest,
     ),
-  );
-}
-
-export function cancelSessionProcessingRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CancelSessionProcessingRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CancelSessionProcessingRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CancelSessionProcessingRequest' from JSON`,
   );
 }
 
@@ -88,43 +56,6 @@ export const CancelSessionProcessingResponse$inboundSchema: z.ZodType<
 > = z.object({
   cancelled: z.boolean().optional(),
 });
-
-/** @internal */
-export type CancelSessionProcessingResponse$Outbound = {
-  cancelled?: boolean | undefined;
-};
-
-/** @internal */
-export const CancelSessionProcessingResponse$outboundSchema: z.ZodType<
-  CancelSessionProcessingResponse$Outbound,
-  z.ZodTypeDef,
-  CancelSessionProcessingResponse
-> = z.object({
-  cancelled: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CancelSessionProcessingResponse$ {
-  /** @deprecated use `CancelSessionProcessingResponse$inboundSchema` instead. */
-  export const inboundSchema = CancelSessionProcessingResponse$inboundSchema;
-  /** @deprecated use `CancelSessionProcessingResponse$outboundSchema` instead. */
-  export const outboundSchema = CancelSessionProcessingResponse$outboundSchema;
-  /** @deprecated use `CancelSessionProcessingResponse$Outbound` instead. */
-  export type Outbound = CancelSessionProcessingResponse$Outbound;
-}
-
-export function cancelSessionProcessingResponseToJSON(
-  cancelSessionProcessingResponse: CancelSessionProcessingResponse,
-): string {
-  return JSON.stringify(
-    CancelSessionProcessingResponse$outboundSchema.parse(
-      cancelSessionProcessingResponse,
-    ),
-  );
-}
 
 export function cancelSessionProcessingResponseFromJSON(
   jsonString: string,

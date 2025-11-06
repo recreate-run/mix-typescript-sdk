@@ -52,24 +52,6 @@ export const ValidatePreferredProviderAuthMethod$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(ValidatePreferredProviderAuthMethod);
 
 /** @internal */
-export const ValidatePreferredProviderAuthMethod$outboundSchema:
-  z.ZodNativeEnum<typeof ValidatePreferredProviderAuthMethod> =
-    ValidatePreferredProviderAuthMethod$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValidatePreferredProviderAuthMethod$ {
-  /** @deprecated use `ValidatePreferredProviderAuthMethod$inboundSchema` instead. */
-  export const inboundSchema =
-    ValidatePreferredProviderAuthMethod$inboundSchema;
-  /** @deprecated use `ValidatePreferredProviderAuthMethod$outboundSchema` instead. */
-  export const outboundSchema =
-    ValidatePreferredProviderAuthMethod$outboundSchema;
-}
-
-/** @internal */
 export const ValidatePreferredProviderResponse$inboundSchema: z.ZodType<
   ValidatePreferredProviderResponse,
   z.ZodTypeDef,
@@ -84,54 +66,6 @@ export const ValidatePreferredProviderResponse$inboundSchema: z.ZodType<
     "auth_method": "authMethod",
   });
 });
-
-/** @internal */
-export type ValidatePreferredProviderResponse$Outbound = {
-  auth_method?: string | undefined;
-  message?: string | undefined;
-  provider?: string | undefined;
-  valid?: boolean | undefined;
-};
-
-/** @internal */
-export const ValidatePreferredProviderResponse$outboundSchema: z.ZodType<
-  ValidatePreferredProviderResponse$Outbound,
-  z.ZodTypeDef,
-  ValidatePreferredProviderResponse
-> = z.object({
-  authMethod: ValidatePreferredProviderAuthMethod$outboundSchema.optional(),
-  message: z.string().optional(),
-  provider: z.string().optional(),
-  valid: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authMethod: "auth_method",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValidatePreferredProviderResponse$ {
-  /** @deprecated use `ValidatePreferredProviderResponse$inboundSchema` instead. */
-  export const inboundSchema = ValidatePreferredProviderResponse$inboundSchema;
-  /** @deprecated use `ValidatePreferredProviderResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ValidatePreferredProviderResponse$outboundSchema;
-  /** @deprecated use `ValidatePreferredProviderResponse$Outbound` instead. */
-  export type Outbound = ValidatePreferredProviderResponse$Outbound;
-}
-
-export function validatePreferredProviderResponseToJSON(
-  validatePreferredProviderResponse: ValidatePreferredProviderResponse,
-): string {
-  return JSON.stringify(
-    ValidatePreferredProviderResponse$outboundSchema.parse(
-      validatePreferredProviderResponse,
-    ),
-  );
-}
 
 export function validatePreferredProviderResponseFromJSON(
   jsonString: string,

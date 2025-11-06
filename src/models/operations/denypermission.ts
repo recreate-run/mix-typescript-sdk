@@ -25,15 +25,6 @@ export type DenyPermissionResponse = {
 };
 
 /** @internal */
-export const DenyPermissionRequest$inboundSchema: z.ZodType<
-  DenyPermissionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type DenyPermissionRequest$Outbound = {
   id: string;
 };
@@ -47,34 +38,11 @@ export const DenyPermissionRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DenyPermissionRequest$ {
-  /** @deprecated use `DenyPermissionRequest$inboundSchema` instead. */
-  export const inboundSchema = DenyPermissionRequest$inboundSchema;
-  /** @deprecated use `DenyPermissionRequest$outboundSchema` instead. */
-  export const outboundSchema = DenyPermissionRequest$outboundSchema;
-  /** @deprecated use `DenyPermissionRequest$Outbound` instead. */
-  export type Outbound = DenyPermissionRequest$Outbound;
-}
-
 export function denyPermissionRequestToJSON(
   denyPermissionRequest: DenyPermissionRequest,
 ): string {
   return JSON.stringify(
     DenyPermissionRequest$outboundSchema.parse(denyPermissionRequest),
-  );
-}
-
-export function denyPermissionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DenyPermissionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DenyPermissionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DenyPermissionRequest' from JSON`,
   );
 }
 
@@ -86,41 +54,6 @@ export const DenyPermissionResponse$inboundSchema: z.ZodType<
 > = z.object({
   denied: z.boolean().optional(),
 });
-
-/** @internal */
-export type DenyPermissionResponse$Outbound = {
-  denied?: boolean | undefined;
-};
-
-/** @internal */
-export const DenyPermissionResponse$outboundSchema: z.ZodType<
-  DenyPermissionResponse$Outbound,
-  z.ZodTypeDef,
-  DenyPermissionResponse
-> = z.object({
-  denied: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DenyPermissionResponse$ {
-  /** @deprecated use `DenyPermissionResponse$inboundSchema` instead. */
-  export const inboundSchema = DenyPermissionResponse$inboundSchema;
-  /** @deprecated use `DenyPermissionResponse$outboundSchema` instead. */
-  export const outboundSchema = DenyPermissionResponse$outboundSchema;
-  /** @deprecated use `DenyPermissionResponse$Outbound` instead. */
-  export type Outbound = DenyPermissionResponse$Outbound;
-}
-
-export function denyPermissionResponseToJSON(
-  denyPermissionResponse: DenyPermissionResponse,
-): string {
-  return JSON.stringify(
-    DenyPermissionResponse$outboundSchema.parse(denyPermissionResponse),
-  );
-}
 
 export function denyPermissionResponseFromJSON(
   jsonString: string,
