@@ -1,13 +1,13 @@
-# SSEContentEventEvent
+# SSEToolUseParameterDeltaEventEvent
 
 Event type identifier
 
 ## Example Usage
 
 ```typescript
-import { SSEContentEventEvent } from "mix-typescript-sdk/models";
+import { SSEToolUseParameterDeltaEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSEContentEventEvent = "error";
+let value: SSEToolUseParameterDeltaEventEvent = "tool_use_start";
 ```
 
 ## Values

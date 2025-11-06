@@ -134,28 +134,11 @@ const value: models.SSEThinkingEvent = {
 };
 ```
 
-### `models.SSEToolEvent`
-
-```typescript
-const value: models.SSEToolEvent = {
-  event: "tool_execution_start",
-  id: "1234567890",
-  retry: 30000,
-  data: {
-    id: "<id>",
-    input: "<value>",
-    name: "brave_search",
-    status: "<value>",
-    type: "<value>",
-  },
-};
-```
-
 ### `models.SSEToolExecutionCompleteEvent`
 
 ```typescript
 const value: models.SSEToolExecutionCompleteEvent = {
-  event: "thinking",
+  event: "content",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -184,16 +167,47 @@ const value: models.SSEToolExecutionStartEvent = {
 };
 ```
 
-### `models.SSEToolParameterDeltaEvent`
+### `models.SSEToolUseParameterDeltaEvent`
 
 ```typescript
-const value: models.SSEToolParameterDeltaEvent = {
-  event: "heartbeat",
+const value: models.SSEToolUseParameterDeltaEvent = {
+  event: "tool_use_parameter_streaming_complete",
   id: "1234567890",
   retry: 30000,
   data: {
     input: "<value>",
     toolCallId: "<id>",
+    type: "<value>",
+  },
+};
+```
+
+### `models.SSEToolUseParameterStreamingCompleteEvent`
+
+```typescript
+const value: models.SSEToolUseParameterStreamingCompleteEvent = {
+  event: "content",
+  id: "1234567890",
+  retry: 30000,
+  data: {
+    id: "<id>",
+    input: "<value>",
+    name: "brave_search",
+    type: "<value>",
+  },
+};
+```
+
+### `models.SSEToolUseStartEvent`
+
+```typescript
+const value: models.SSEToolUseStartEvent = {
+  event: "tool_use_parameter_delta",
+  id: "1234567890",
+  retry: 30000,
+  data: {
+    id: "<id>",
+    name: "brave_search",
     type: "<value>",
   },
 };

@@ -1,13 +1,13 @@
-# SSEContentEventEvent
+# SSEToolUseStartEventEvent
 
 Event type identifier
 
 ## Example Usage
 
 ```typescript
-import { SSEContentEventEvent } from "mix-typescript-sdk/models";
+import { SSEToolUseStartEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSEContentEventEvent = "error";
+let value: SSEToolUseStartEventEvent = "heartbeat";
 ```
 
 ## Values

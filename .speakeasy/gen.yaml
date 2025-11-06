@@ -29,7 +29,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.9.1
+  version: 0.10.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -41,6 +41,7 @@ typescript:
     repository:
       type: git
       url: https://github.com/recreate-run/mix-typescript-sdk
+  additionalScripts: {}
   author: Speakeasy
   baseErrorName: MixError
   clientServerStatusCodesAsErrors: true

@@ -7,11 +7,12 @@ Event type identifier
 ```typescript
 import { SSEToolExecutionCompleteEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSEToolExecutionCompleteEventEvent = "tool_parameter_delta";
+let value: SSEToolExecutionCompleteEventEvent =
+  "tool_use_parameter_streaming_complete";
 ```
 
 ## Values
 
 ```typescript
-"connected" | "heartbeat" | "error" | "complete" | "thinking" | "content" | "tool" | "tool_parameter_delta" | "tool_execution_start" | "tool_execution_complete" | "permission" | "user_message_created" | "session_created" | "session_deleted"
+"connected" | "heartbeat" | "error" | "complete" | "thinking" | "content" | "tool_use_start" | "tool_use_parameter_streaming_complete" | "tool_use_parameter_delta" | "tool_execution_start" | "tool_execution_complete" | "permission" | "user_message_created" | "session_created" | "session_deleted"
 ```

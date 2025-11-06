@@ -1,21 +1,19 @@
-# SSEToolExecutionCompleteEvent
+# SSEToolUseParameterDeltaEvent
 
 Base SSE event with standard fields
 
 ## Example Usage
 
 ```typescript
-import { SSEToolExecutionCompleteEvent } from "mix-typescript-sdk/models";
+import { SSEToolUseParameterDeltaEvent } from "mix-typescript-sdk/models";
 
-let value: SSEToolExecutionCompleteEvent = {
-  event: "content",
+let value: SSEToolUseParameterDeltaEvent = {
+  event: "tool_use_parameter_streaming_complete",
   id: "1234567890",
   retry: 30000,
   data: {
-    progress: "<value>",
-    success: true,
+    input: "<value>",
     toolCallId: "<id>",
-    toolName: "brave_search",
     type: "<value>",
   },
 };
@@ -25,7 +23,7 @@ let value: SSEToolExecutionCompleteEvent = {
 
 | Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `event`                                                                                      | [models.SSEToolExecutionCompleteEventEvent](../models/ssetoolexecutioncompleteeventevent.md) | :heavy_check_mark:                                                                           | Event type identifier                                                                        |                                                                                              |
+| `event`                                                                                      | [models.SSEToolUseParameterDeltaEventEvent](../models/ssetooluseparameterdeltaeventevent.md) | :heavy_check_mark:                                                                           | Event type identifier                                                                        |                                                                                              |
 | `id`                                                                                         | *string*                                                                                     | :heavy_check_mark:                                                                           | Unique sequential event identifier for ordering and reconnection                             | 1234567890                                                                                   |
 | `retry`                                                                                      | *number*                                                                                     | :heavy_minus_sign:                                                                           | Client retry interval in milliseconds                                                        | 30000                                                                                        |
-| `data`                                                                                       | [models.SSEToolExecutionCompleteEventData](../models/ssetoolexecutioncompleteeventdata.md)   | :heavy_check_mark:                                                                           | N/A                                                                                          |                                                                                              |
+| `data`                                                                                       | [models.SSEToolUseParameterDeltaEventData](../models/ssetooluseparameterdeltaeventdata.md)   | :heavy_check_mark:                                                                           | N/A                                                                                          |                                                                                              |

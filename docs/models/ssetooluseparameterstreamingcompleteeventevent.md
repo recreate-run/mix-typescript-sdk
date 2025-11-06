@@ -1,13 +1,13 @@
-# SSEContentEventEvent
+# SSEToolUseParameterStreamingCompleteEventEvent
 
 Event type identifier
 
 ## Example Usage
 
 ```typescript
-import { SSEContentEventEvent } from "mix-typescript-sdk/models";
+import { SSEToolUseParameterStreamingCompleteEventEvent } from "mix-typescript-sdk/models";
 
-let value: SSEContentEventEvent = "error";
+let value: SSEToolUseParameterStreamingCompleteEventEvent = "heartbeat";
 ```
 
 ## Values

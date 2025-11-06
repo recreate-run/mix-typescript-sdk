@@ -1,25 +1,25 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: e900d9f56c905513160b863e68b3100c
+  docChecksum: ec631191d88ab84e9ea8de0fe0db1cbf
   docVersion: 1.0.0
-  speakeasyVersion: 1.639.3
-  generationVersion: 2.730.5
-  releaseVersion: 0.9.1
-  configChecksum: 2aebaa059f970ea3c7be6e191e2e81da
+  speakeasyVersion: 1.649.0
+  generationVersion: 2.739.1
+  releaseVersion: 0.10.0
+  configChecksum: 330380f7b8ece785c543d87d1af1506f
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.24.1
+    core: 3.26.0
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.5
+    globalServerURLs: 2.83.0
     methodArguments: 0.1.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
@@ -160,18 +160,21 @@ generatedFiles:
   - docs/models/ssethinkingevent.md
   - docs/models/ssethinkingeventdata.md
   - docs/models/ssethinkingeventevent.md
-  - docs/models/ssetoolevent.md
-  - docs/models/ssetooleventdata.md
-  - docs/models/ssetooleventevent.md
   - docs/models/ssetoolexecutioncompleteevent.md
   - docs/models/ssetoolexecutioncompleteeventdata.md
   - docs/models/ssetoolexecutioncompleteeventevent.md
   - docs/models/ssetoolexecutionstartevent.md
   - docs/models/ssetoolexecutionstarteventdata.md
   - docs/models/ssetoolexecutionstarteventevent.md
-  - docs/models/ssetoolparameterdeltaevent.md
-  - docs/models/ssetoolparameterdeltaeventdata.md
-  - docs/models/ssetoolparameterdeltaeventevent.md
+  - docs/models/ssetooluseparameterdeltaevent.md
+  - docs/models/ssetooluseparameterdeltaeventdata.md
+  - docs/models/ssetooluseparameterdeltaeventevent.md
+  - docs/models/ssetooluseparameterstreamingcompleteevent.md
+  - docs/models/ssetooluseparameterstreamingcompleteeventdata.md
+  - docs/models/ssetooluseparameterstreamingcompleteeventevent.md
+  - docs/models/ssetoolusestartevent.md
+  - docs/models/ssetoolusestarteventdata.md
+  - docs/models/ssetoolusestarteventevent.md
   - docs/models/sseusermessagecreatedevent.md
   - docs/models/sseusermessagecreatedeventdata.md
   - docs/models/sseusermessagecreatedeventevent.md
