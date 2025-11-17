@@ -19,7 +19,9 @@ Returns the list of all LLM tools that Claude can invoke. The list is dynamicall
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.tools.listLLMTools();
@@ -40,7 +42,9 @@ import { toolsListLLMTools } from "mix-typescript-sdk/funcs/toolsListLLMTools.js
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await toolsListLLMTools(mix);
@@ -84,7 +88,9 @@ Returns authentication/credential status for external tool integrations (Brave S
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.tools.getToolCredentialsStatus();
@@ -105,7 +111,9 @@ import { toolsGetToolCredentialsStatus } from "mix-typescript-sdk/funcs/toolsGet
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await toolsGetToolCredentialsStatus(mix);
@@ -149,7 +157,9 @@ Get status and authentication information for all available tools and categories
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.tools.getToolsStatus();
@@ -170,7 +180,9 @@ import { toolsGetToolsStatus } from "mix-typescript-sdk/funcs/toolsGetToolsStatu
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await toolsGetToolsStatus(mix);

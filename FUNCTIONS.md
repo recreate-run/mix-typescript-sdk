@@ -24,7 +24,9 @@ import { authenticationStoreApiKey } from "mix-typescript-sdk/funcs/authenticati
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationStoreApiKey(mix, {

@@ -20,7 +20,9 @@ Retrieve message history across all sessions with optional pagination
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.messages.getHistory({});
@@ -41,7 +43,9 @@ import { messagesGetHistory } from "mix-typescript-sdk/funcs/messagesGetHistory.
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await messagesGetHistory(mix, {});
@@ -87,7 +91,9 @@ Cancel any ongoing agent processing in the specified session
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.messages.cancelProcessing({
@@ -110,7 +116,9 @@ import { messagesCancelProcessing } from "mix-typescript-sdk/funcs/messagesCance
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await messagesCancelProcessing(mix, {
@@ -157,7 +165,9 @@ Retrieve all messages from a specific session
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.messages.getSession({
@@ -180,7 +190,9 @@ import { messagesGetSession } from "mix-typescript-sdk/funcs/messagesGetSession.
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await messagesGetSession(mix, {
@@ -227,7 +239,9 @@ Send a user message to a specific session for AI processing. Returns immediately
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.messages.send({
@@ -254,7 +268,9 @@ import { messagesSend } from "mix-typescript-sdk/funcs/messagesSend.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await messagesSend(mix, {

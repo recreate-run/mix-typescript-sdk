@@ -5,7 +5,6 @@
 import { sessionsCreate } from "../funcs/sessionsCreate.js";
 import { sessionsDelete } from "../funcs/sessionsDelete.js";
 import { sessionsExportSession } from "../funcs/sessionsExportSession.js";
-import { sessionsFork } from "../funcs/sessionsFork.js";
 import { sessionsGet } from "../funcs/sessionsGet.js";
 import { sessionsList } from "../funcs/sessionsList.js";
 import { sessionsRewindSession } from "../funcs/sessionsRewindSession.js";
@@ -112,23 +111,6 @@ export class Sessions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.ExportSessionResponse> {
     return unwrapAsync(sessionsExportSession(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Fork a session
-   *
-   * @remarks
-   * Create a new session based on an existing session, copying messages up to a specified index
-   */
-  async fork(
-    request: operations.ForkSessionRequest,
-    options?: RequestOptions,
-  ): Promise<models.SessionData> {
-    return unwrapAsync(sessionsFork(
       this,
       request,
       options,

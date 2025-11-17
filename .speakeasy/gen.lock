@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 205d647c447ec82e79a1e3f537cad3c7
+  docChecksum: eb1e5fcf34ad86e3902676f037408f2d
   docVersion: 1.0.0
-  speakeasyVersion: 1.650.0
-  generationVersion: 2.743.2
-  releaseVersion: 0.10.1
-  configChecksum: 8195a527e2b37cafa2d23d2f5d17001a
+  speakeasyVersion: 1.658.1
+  generationVersion: 2.755.6
+  releaseVersion: 0.10.2
+  configChecksum: 3a9538c94262ad180903a1c29c309d95
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.3
+    core: 3.26.7
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -64,8 +64,6 @@ generatedFiles:
   - docs/models/operations/exportsessionrequest.md
   - docs/models/operations/exportsessionresponse.md
   - docs/models/operations/filet.md
-  - docs/models/operations/forksessionrequest.md
-  - docs/models/operations/forksessionrequestbody.md
   - docs/models/operations/getauthstatusauthmethod.md
   - docs/models/operations/getauthstatusproviders.md
   - docs/models/operations/getauthstatusresponse.md
@@ -225,7 +223,6 @@ generatedFiles:
   - src/funcs/sessionsCreate.ts
   - src/funcs/sessionsDelete.ts
   - src/funcs/sessionsExportSession.ts
-  - src/funcs/sessionsFork.ts
   - src/funcs/sessionsGet.ts
   - src/funcs/sessionsList.ts
   - src/funcs/sessionsRewindSession.ts
@@ -283,7 +280,6 @@ generatedFiles:
   - src/models/operations/deletesessionfile.ts
   - src/models/operations/denypermission.ts
   - src/models/operations/exportsession.ts
-  - src/models/operations/forksession.ts
   - src/models/operations/getauthstatus.ts
   - src/models/operations/getavailableproviders.ts
   - src/models/operations/getcommand.ts
@@ -521,7 +517,7 @@ examples:
         application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
-          application/json: {"error": {"code": 400, "message": "API can only create main sessions. Use /fork endpoint for forked sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
+          application/json: {"error": {"code": 400, "message": "API can only create main sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
     subagent_type_not_allowed:
       requestBody:
         application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
@@ -543,7 +539,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "sessionType": "forked", "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
+          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "sessionType": "main", "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
         "404":
           application/json: {"error": {"code": 125836, "message": "<value>", "type": "validation_error"}}
   forkSession:
@@ -807,7 +803,7 @@ examples:
         application/json: {"callbacks": []}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 153449, "cost": 7326.83, "createdAt": "2025-06-03T08:16:16.107Z", "id": "<id>", "promptTokens": 141234, "sessionType": "forked", "title": "<value>", "toolCallCount": 169864, "userMessageCount": 805406}
+          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 153449, "cost": 7326.83, "createdAt": "2025-06-03T08:16:16.107Z", "id": "<id>", "promptTokens": 141234, "sessionType": "main", "title": "<value>", "toolCallCount": 169864, "userMessageCount": 805406}
         "400":
           application/json: {"error": {"code": 971135, "message": "<value>", "type": "internal_error"}}
   listLLMTools:

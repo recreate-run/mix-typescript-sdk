@@ -30,13 +30,13 @@ export const PromptMode = {
 export type PromptMode = ClosedEnum<typeof PromptMode>;
 
 /**
- * Session type. API can only create 'main' sessions. Forked sessions are created via /fork endpoint. Subagent sessions are created automatically by the task delegation system.
+ * Session type. API can only create 'main' sessions. Subagent sessions are created automatically by the task delegation system.
  */
 export const SessionType = {
   Main: "main",
 } as const;
 /**
- * Session type. API can only create 'main' sessions. Forked sessions are created via /fork endpoint. Subagent sessions are created automatically by the task delegation system.
+ * Session type. API can only create 'main' sessions. Subagent sessions are created automatically by the task delegation system.
  */
 export type SessionType = ClosedEnum<typeof SessionType>;
 
@@ -59,7 +59,7 @@ export type CreateSessionRequest = {
    */
   promptMode?: PromptMode | undefined;
   /**
-   * Session type. API can only create 'main' sessions. Forked sessions are created via /fork endpoint. Subagent sessions are created automatically by the task delegation system.
+   * Session type. API can only create 'main' sessions. Subagent sessions are created automatically by the task delegation system.
    */
   sessionType?: SessionType | undefined;
   /**

@@ -18,7 +18,9 @@ Deny a specific permission
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.permissions.deny({
@@ -41,7 +43,9 @@ import { permissionsDeny } from "mix-typescript-sdk/funcs/permissionsDeny.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await permissionsDeny(mix, {
@@ -89,7 +93,9 @@ Grant a specific permission
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.permissions.grant({
@@ -112,7 +118,9 @@ import { permissionsGrant } from "mix-typescript-sdk/funcs/permissionsGrant.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await permissionsGrant(mix, {

@@ -20,7 +20,9 @@ List all files in session storage directory
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.files.list({
@@ -43,7 +45,9 @@ import { filesList } from "mix-typescript-sdk/funcs/filesList.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await filesList(mix, {
@@ -91,7 +95,9 @@ Upload a file to session-specific storage directory
 import { Mix } from "mix-typescript-sdk";
 import { openAsBlob } from "node:fs";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.files.upload({
@@ -118,7 +124,9 @@ import { openAsBlob } from "node:fs";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await filesUpload(mix, {
@@ -168,7 +176,9 @@ Delete a specific file from session storage. Only files are supported - director
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   await mix.files.delete({
@@ -192,7 +202,9 @@ import { filesDelete } from "mix-typescript-sdk/funcs/filesDelete.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await filesDelete(mix, {
@@ -240,7 +252,9 @@ Download or serve a specific file from session storage. Supports thumbnail gener
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.files.get({
@@ -264,7 +278,9 @@ import { filesGet } from "mix-typescript-sdk/funcs/filesGet.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await filesGet(mix, {

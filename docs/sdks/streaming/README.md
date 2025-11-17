@@ -17,7 +17,9 @@ Establishes a persistent SSE connection for receiving real-time updates during m
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.streaming.streamEvents({
@@ -42,7 +44,9 @@ import { streamingStreamEvents } from "mix-typescript-sdk/funcs/streamingStreamE
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await streamingStreamEvents(mix, {

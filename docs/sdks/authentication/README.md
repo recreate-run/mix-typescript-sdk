@@ -24,7 +24,9 @@ Store API key for direct authentication with a specific provider
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.storeApiKey({
@@ -48,7 +50,9 @@ import { authenticationStoreApiKey } from "mix-typescript-sdk/funcs/authenticati
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationStoreApiKey(mix, {
@@ -97,7 +101,9 @@ Process OAuth callback and exchange code for access token
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.handleOAuthCallback({
@@ -122,7 +128,9 @@ import { authenticationHandleOAuthCallback } from "mix-typescript-sdk/funcs/auth
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationHandleOAuthCallback(mix, {
@@ -172,7 +180,9 @@ Initiate OAuth authentication flow for a specific provider
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.startOAuthFlow({
@@ -195,7 +205,9 @@ import { authenticationStartOAuthFlow } from "mix-typescript-sdk/funcs/authentic
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationStartOAuthFlow(mix, {
@@ -243,7 +255,9 @@ Get authentication status for all supported providers
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.getAuthStatus();
@@ -264,7 +278,9 @@ import { authenticationGetAuthStatus } from "mix-typescript-sdk/funcs/authentica
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationGetAuthStatus(mix);
@@ -308,7 +324,9 @@ Check if the user's preferred provider is authenticated
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.validatePreferredProvider();
@@ -329,7 +347,9 @@ import { authenticationValidatePreferredProvider } from "mix-typescript-sdk/func
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationValidatePreferredProvider(mix);
@@ -373,7 +393,9 @@ Delete stored API key and/or OAuth credentials for a provider
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.deleteCredentials({
@@ -396,7 +418,9 @@ import { authenticationDeleteCredentials } from "mix-typescript-sdk/funcs/authen
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationDeleteCredentials(mix, {
@@ -444,7 +468,9 @@ Get health status of all OAuth credentials. Background service refreshes tokens 
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.getOAuthHealth();
@@ -465,7 +491,9 @@ import { authenticationGetOAuthHealth } from "mix-typescript-sdk/funcs/authentic
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationGetOAuthHealth(mix);
@@ -509,7 +537,9 @@ Manually trigger OAuth token refresh for all expired tokens. Normally tokens are
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.refreshOAuthTokens();
@@ -530,7 +560,9 @@ import { authenticationRefreshOAuthTokens } from "mix-typescript-sdk/funcs/authe
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationRefreshOAuthTokens(mix);

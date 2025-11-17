@@ -11,7 +11,6 @@
 * [get](#get) - Get a specific session
 * [updateSessionCallbacks](#updatesessioncallbacks) - Update session callbacks
 * [exportSession](#exportsession) - Export session transcript
-* [fork](#fork) - Fork a session
 * [rewindSession](#rewindsession) - Rewind a session
 
 ## list
@@ -24,7 +23,9 @@ Retrieve a list of all available sessions with their metadata
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.sessions.list({});
@@ -45,7 +46,9 @@ import { sessionsList } from "mix-typescript-sdk/funcs/sessionsList.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await sessionsList(mix, {});
@@ -91,7 +94,9 @@ Create a new session with required title and optional custom system prompt. Sess
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.sessions.create({
@@ -114,7 +119,9 @@ import { sessionsCreate } from "mix-typescript-sdk/funcs/sessionsCreate.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await sessionsCreate(mix, {
@@ -161,7 +168,9 @@ Permanently delete a session and all its data
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   await mix.sessions.delete({
@@ -184,7 +193,9 @@ import { sessionsDelete } from "mix-typescript-sdk/funcs/sessionsDelete.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await sessionsDelete(mix, {
@@ -231,7 +242,9 @@ Retrieve detailed information about a specific session
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.sessions.get({
@@ -254,7 +267,9 @@ import { sessionsGet } from "mix-typescript-sdk/funcs/sessionsGet.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await sessionsGet(mix, {
@@ -301,7 +316,9 @@ Update the callback configurations for a session. Callbacks execute automaticall
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.sessions.updateSessionCallbacks({
@@ -327,7 +344,9 @@ import { sessionsUpdateSessionCallbacks } from "mix-typescript-sdk/funcs/session
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await sessionsUpdateSessionCallbacks(mix, {
@@ -377,7 +396,9 @@ Export complete session transcript with all messages, tool calls, reasoning, and
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.sessions.exportSession({
@@ -400,7 +421,9 @@ import { sessionsExportSession } from "mix-typescript-sdk/funcs/sessionsExportSe
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await sessionsExportSession(mix, {
@@ -438,82 +461,6 @@ run();
 | errors.ErrorResponse   | 500                    | application/json       |
 | errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
 
-## fork
-
-Create a new session based on an existing session, copying messages up to a specified index
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="forkSession" method="post" path="/api/sessions/{id}/fork" -->
-```typescript
-import { Mix } from "mix-typescript-sdk";
-
-const mix = new Mix();
-
-async function run() {
-  const result = await mix.sessions.fork({
-    id: "<id>",
-    requestBody: {
-      messageIndex: 385832,
-    },
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { MixCore } from "mix-typescript-sdk/core.js";
-import { sessionsFork } from "mix-typescript-sdk/funcs/sessionsFork.js";
-
-// Use `MixCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const mix = new MixCore();
-
-async function run() {
-  const res = await sessionsFork(mix, {
-    id: "<id>",
-    requestBody: {
-      messageIndex: 385832,
-    },
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("sessionsFork failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ForkSessionRequest](../../models/operations/forksessionrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[models.SessionData](../../models/sessiondata.md)\>**
-
-### Errors
-
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.ErrorResponse   | 400, 404               | application/json       |
-| errors.MixDefaultError | 4XX, 5XX               | \*/\*                  |
-
 ## rewindSession
 
 Delete messages after a specified message in the current session, optionally cleaning up media files created after that point
@@ -524,7 +471,9 @@ Delete messages after a specified message in the current session, optionally cle
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.sessions.rewindSession({
@@ -550,7 +499,9 @@ import { sessionsRewindSession } from "mix-typescript-sdk/funcs/sessionsRewindSe
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await sessionsRewindSession(mix, {

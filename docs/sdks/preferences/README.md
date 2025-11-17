@@ -20,7 +20,9 @@ Retrieve current user preferences including model and provider settings
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.preferences.get();
@@ -41,7 +43,9 @@ import { preferencesGet } from "mix-typescript-sdk/funcs/preferencesGet.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await preferencesGet(mix);
@@ -85,7 +89,9 @@ Update user preferences including model and provider settings
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.preferences.update({});
@@ -106,7 +112,9 @@ import { preferencesUpdate } from "mix-typescript-sdk/funcs/preferencesUpdate.js
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await preferencesUpdate(mix, {});
@@ -152,7 +160,9 @@ Retrieve list of available AI providers and their supported models
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.preferences.getProviders();
@@ -173,7 +183,9 @@ import { preferencesGetProviders } from "mix-typescript-sdk/funcs/preferencesGet
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await preferencesGetProviders(mix);
@@ -217,7 +229,9 @@ Reset user preferences to default values
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.preferences.reset();
@@ -238,7 +252,9 @@ import { preferencesReset } from "mix-typescript-sdk/funcs/preferencesReset.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await preferencesReset(mix);

@@ -30,7 +30,6 @@ Mix REST API: REST API for the Mix application - session management, messaging, 
   * [File uploads](#file-uploads)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
-  * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
 * [Development](#development)
@@ -86,7 +85,9 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.storeApiKey({
@@ -161,7 +162,6 @@ run();
 * [get](docs/sdks/sessions/README.md#get) - Get a specific session
 * [updateSessionCallbacks](docs/sdks/sessions/README.md#updatesessioncallbacks) - Update session callbacks
 * [exportSession](docs/sdks/sessions/README.md#exportsession) - Export session transcript
-* [fork](docs/sdks/sessions/README.md#fork) - Fork a session
 * [rewindSession](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
 
 ### [streaming](docs/sdks/streaming/README.md)
@@ -227,7 +227,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`sessionsCreate`](docs/sdks/sessions/README.md#create) - Create a new session
 - [`sessionsDelete`](docs/sdks/sessions/README.md#delete) - Delete a session
 - [`sessionsExportSession`](docs/sdks/sessions/README.md#exportsession) - Export session transcript
-- [`sessionsFork`](docs/sdks/sessions/README.md#fork) - Fork a session
 - [`sessionsGet`](docs/sdks/sessions/README.md#get) - Get a specific session
 - [`sessionsList`](docs/sdks/sessions/README.md#list) - List all sessions
 - [`sessionsRewindSession`](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
@@ -257,7 +256,9 @@ underlying connection.
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.streaming.streamEvents({
@@ -295,7 +296,9 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 import { Mix } from "mix-typescript-sdk";
 import { openAsBlob } from "node:fs";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.files.upload({
@@ -322,7 +325,9 @@ To change the default retry strategy for a single API call, simply provide a ret
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.authentication.storeApiKey({
@@ -353,6 +358,7 @@ If you'd like to override the default retry strategy for all operations that sup
 import { Mix } from "mix-typescript-sdk";
 
 const mix = new Mix({
+  serverURL: "https://api.example.com",
   retryConfig: {
     strategy: "backoff",
     backoff: {
@@ -398,7 +404,9 @@ run();
 import { Mix } from "mix-typescript-sdk";
 import * as errors from "mix-typescript-sdk/models/errors";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   try {
@@ -452,33 +460,6 @@ run();
 
 \* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
-
-<!-- Start Server Selection [server] -->
-## Server Selection
-
-### Override Server URL Per-Client
-
-The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
-```typescript
-import { Mix } from "mix-typescript-sdk";
-
-const mix = new Mix({
-  serverURL: "http://localhost:8088",
-});
-
-async function run() {
-  const result = await mix.authentication.storeApiKey({
-    apiKey: "<value>",
-    provider: "openrouter",
-  });
-
-  console.log(result);
-}
-
-run();
-
-```
-<!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client

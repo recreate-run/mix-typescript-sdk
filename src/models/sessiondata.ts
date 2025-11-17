@@ -14,12 +14,10 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
  *
  * @remarks
  * - 'main': Root-level user interactions
- * - 'forked': User-created conversation branches
  * - 'subagent': Delegated task workers
  */
 export const SessionType = {
   Main: "main",
-  Forked: "forked",
   Subagent: "subagent",
 } as const;
 /**
@@ -27,7 +25,6 @@ export const SessionType = {
  *
  * @remarks
  * - 'main': Root-level user interactions
- * - 'forked': User-created conversation branches
  * - 'subagent': Delegated task workers
  */
 export type SessionType = ClosedEnum<typeof SessionType>;
@@ -73,7 +70,7 @@ export type SessionData = {
    */
   id: string;
   /**
-   * Parent session ID for forked and subagent sessions (null for main sessions)
+   * Parent session ID for subagent sessions (null for main sessions)
    */
   parentSessionId?: string | undefined;
   /**
@@ -89,7 +86,6 @@ export type SessionData = {
    *
    * @remarks
    * - 'main': Root-level user interactions
-   * - 'forked': User-created conversation branches
    * - 'subagent': Delegated task workers
    */
   sessionType: SessionType;

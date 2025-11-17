@@ -21,7 +21,9 @@ Retrieve list of all available commands
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.system.listCommands();
@@ -42,7 +44,9 @@ import { systemListCommands } from "mix-typescript-sdk/funcs/systemListCommands.
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await systemListCommands(mix);
@@ -87,7 +91,9 @@ Retrieve details about a specific command
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.system.getCommand({
@@ -110,7 +116,9 @@ import { systemGetCommand } from "mix-typescript-sdk/funcs/systemGetCommand.js";
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await systemGetCommand(mix, {
@@ -157,7 +165,9 @@ Retrieve list of available Model Context Protocol (MCP) servers
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.system.listMcpServers();
@@ -178,7 +188,9 @@ import { systemListMcpServers } from "mix-typescript-sdk/funcs/systemListMcpServ
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await systemListMcpServers(mix);
@@ -223,7 +235,9 @@ Retrieve system information including storage configuration
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.system.getSystemInfo();
@@ -244,7 +258,9 @@ import { systemGetSystemInfo } from "mix-typescript-sdk/funcs/systemGetSystemInf
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await systemGetSystemInfo(mix);
@@ -288,7 +304,9 @@ Check server health and status
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.system.healthCheck();
@@ -309,7 +327,9 @@ import { systemHealthCheck } from "mix-typescript-sdk/funcs/systemHealthCheck.js
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await systemHealthCheck(mix);

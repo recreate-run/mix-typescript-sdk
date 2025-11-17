@@ -11,10 +11,7 @@ import { Params, pathToFunc } from "./url.js";
  * Contains the list of servers available to the SDK
  */
 export const ServerList = [
-  /**
-   * Development server
-   */
-  "http://localhost:8088",
+  "/",
 ] as const;
 
 export type SDKOptions = {
@@ -24,9 +21,9 @@ export type SDKOptions = {
    */
   serverIdx?: number | undefined;
   /**
-   * Allows overriding the default server URL used by the SDK
+   * Specifies the server URL to be used by the SDK
    */
-  serverURL?: string | undefined;
+  serverURL: string;
   /**
    * Allows overriding the default user agent used by the SDK
    */
@@ -59,7 +56,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "0.10.1",
-  genVersion: "2.743.2",
-  userAgent: "speakeasy-sdk/typescript 0.10.1 2.743.2 1.0.0 mix-typescript-sdk",
+  sdkVersion: "0.10.2",
+  genVersion: "2.755.6",
+  userAgent: "speakeasy-sdk/typescript 0.10.2 2.755.6 1.0.0 mix-typescript-sdk",
 } as const;

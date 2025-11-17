@@ -17,7 +17,9 @@ Manually trigger OAuth token refresh for all expired tokens. Normally tokens are
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
-const mix = new Mix();
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const result = await mix.internal.refreshOAuthTokens();
@@ -38,7 +40,9 @@ import { authenticationRefreshOAuthTokens } from "mix-typescript-sdk/funcs/authe
 
 // Use `MixCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const mix = new MixCore();
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
 
 async function run() {
   const res = await authenticationRefreshOAuthTokens(mix);
