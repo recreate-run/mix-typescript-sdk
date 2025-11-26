@@ -13,5 +13,5 @@ let value: CoreToolName = "ExitPlanMode";
 ## Values
 
 ```typescript
-"Bash" | "ReadText" | "Glob" | "ReadMedia" | "Grep" | "Write" | "Edit" | "python_execution" | "Search" | "TodoWrite" | "ExitPlanMode" | "Show" | "Task"
+"Bash" | "ReadText" | "Glob" | "ReadMedia" | "Grep" | "Write" | "Edit" | "Search" | "TodoWrite" | "ExitPlanMode" | "Show" | "Task"
 ```

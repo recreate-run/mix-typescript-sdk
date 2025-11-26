@@ -16,7 +16,6 @@ export const CoreToolName = {
   Grep: "Grep",
   Write: "Write",
   Edit: "Edit",
-  PythonExecution: "python_execution",
   Search: "Search",
   TodoWrite: "TodoWrite",
   ExitPlanMode: "ExitPlanMode",

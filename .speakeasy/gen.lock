@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: eb1e5fcf34ad86e3902676f037408f2d
+  docChecksum: 48f3f42cee439075ad0fe770d7bdeb36
   docVersion: 1.0.0
-  speakeasyVersion: 1.658.1
-  generationVersion: 2.755.6
-  releaseVersion: 0.10.2
-  configChecksum: 3a9538c94262ad180903a1c29c309d95
+  speakeasyVersion: 1.661.2
+  generationVersion: 2.763.3
+  releaseVersion: 0.10.3
+  configChecksum: e2d711724282d31289b1f6e386e39f9b
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.7
+    core: 3.26.10
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     downloadStreams: 0.1.1
@@ -339,6 +339,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/unrecognized.ts
   - tsconfig.json
 examples:
   setApiKey:

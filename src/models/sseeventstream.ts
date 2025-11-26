@@ -1073,10 +1073,7 @@ export const SSESessionDeletedEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSESessionDeletedEventData$inboundSchema)),
@@ -1132,10 +1129,7 @@ export const SSESessionCreatedEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSESessionCreatedEventData$inboundSchema)),
@@ -1191,10 +1185,7 @@ export const SSEUserMessageCreatedEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEUserMessageCreatedEventData$inboundSchema)),
@@ -1269,10 +1260,7 @@ export const SSEPermissionEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEPermissionEventData$inboundSchema)),
@@ -1330,10 +1318,7 @@ export const SSEToolExecutionCompleteEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEToolExecutionCompleteEventData$inboundSchema)),
@@ -1390,10 +1375,7 @@ export const SSEToolExecutionStartEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEToolExecutionStartEventData$inboundSchema)),
@@ -1450,10 +1432,7 @@ export const SSEToolUseParameterDeltaEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEToolUseParameterDeltaEventData$inboundSchema)),
@@ -1518,10 +1497,7 @@ export const SSEToolUseParameterStreamingCompleteEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(
@@ -1586,10 +1562,7 @@ export const SSEToolUseStartEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEToolUseStartEventData$inboundSchema)),
@@ -1645,10 +1618,7 @@ export const SSEContentEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEContentEventData$inboundSchema)),
@@ -1704,10 +1674,7 @@ export const SSEThinkingEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEThinkingEventData$inboundSchema)),
@@ -1766,10 +1733,7 @@ export const SSECompleteEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSECompleteEventData$inboundSchema)),
@@ -1827,10 +1791,7 @@ export const SSEErrorEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEErrorEventData$inboundSchema)),
@@ -1883,10 +1844,7 @@ export const SSEHeartbeatEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEHeartbeatEventData$inboundSchema)),
@@ -1939,10 +1897,7 @@ export const SSEConnectedEvent$inboundSchema: z.ZodType<
     try {
       return JSON.parse(v);
     } catch (err) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `malformed json: ${err}`,
-      });
+      ctx.addIssue({ code: "custom", message: `malformed json: ${err}` });
       return z.NEVER;
     }
   }).pipe(z.lazy(() => SSEConnectedEventData$inboundSchema)),
@@ -1965,78 +1920,49 @@ export const SSEEventStream$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => SSECompleteEvent$inboundSchema).and(
-    z.object({ event: z.literal("complete") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("complete") }),
   ),
   z.lazy(() => SSEConnectedEvent$inboundSchema).and(
-    z.object({ event: z.literal("connected") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("connected") }),
   ),
   z.lazy(() => SSEContentEvent$inboundSchema).and(
-    z.object({ event: z.literal("content") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("content") }),
   ),
   z.lazy(() => SSEErrorEvent$inboundSchema).and(
-    z.object({ event: z.literal("error") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("error") }),
   ),
   z.lazy(() => SSEHeartbeatEvent$inboundSchema).and(
-    z.object({ event: z.literal("heartbeat") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("heartbeat") }),
   ),
   z.lazy(() => SSEPermissionEvent$inboundSchema).and(
-    z.object({ event: z.literal("permission") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("permission") }),
   ),
   z.lazy(() => SSESessionCreatedEvent$inboundSchema).and(
-    z.object({ event: z.literal("session_created") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("session_created") }),
   ),
   z.lazy(() => SSESessionDeletedEvent$inboundSchema).and(
-    z.object({ event: z.literal("session_deleted") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("session_deleted") }),
   ),
   z.lazy(() => SSEThinkingEvent$inboundSchema).and(
-    z.object({ event: z.literal("thinking") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("thinking") }),
   ),
   z.lazy(() => SSEToolExecutionCompleteEvent$inboundSchema).and(
-    z.object({ event: z.literal("tool_execution_complete") }).transform((
-      v,
-    ) => ({ event: v.event })),
+    z.object({ event: z.literal("tool_execution_complete") }),
   ),
   z.lazy(() => SSEToolExecutionStartEvent$inboundSchema).and(
-    z.object({ event: z.literal("tool_execution_start") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("tool_execution_start") }),
   ),
   z.lazy(() => SSEToolUseParameterDeltaEvent$inboundSchema).and(
-    z.object({ event: z.literal("tool_use_parameter_delta") }).transform((
-      v,
-    ) => ({ event: v.event })),
+    z.object({ event: z.literal("tool_use_parameter_delta") }),
   ),
   z.lazy(() => SSEToolUseParameterStreamingCompleteEvent$inboundSchema).and(
-    z.object({ event: z.literal("tool_use_parameter_streaming_complete") })
-      .transform((v) => ({ event: v.event })),
+    z.object({ event: z.literal("tool_use_parameter_streaming_complete") }),
   ),
   z.lazy(() => SSEToolUseStartEvent$inboundSchema).and(
-    z.object({ event: z.literal("tool_use_start") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("tool_use_start") }),
   ),
   z.lazy(() => SSEUserMessageCreatedEvent$inboundSchema).and(
-    z.object({ event: z.literal("user_message_created") }).transform((v) => ({
-      event: v.event,
-    })),
+    z.object({ event: z.literal("user_message_created") }),
   ),
 ]);
 
