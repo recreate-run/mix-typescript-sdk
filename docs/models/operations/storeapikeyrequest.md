@@ -13,7 +13,7 @@ let value: StoreApiKeyRequest = {
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `apiKey`                                                     | *string*                                                     | :heavy_check_mark:                                           | API key for authentication                                   |
-| `provider`                                                   | [operations.Provider](../../models/operations/provider.md)   | :heavy_check_mark:                                           | Provider name (anthropic, openai, openrouter, gemini, brave) |
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `apiKey`                                                                    | *string*                                                                    | :heavy_check_mark:                                                          | API key for authentication                                                  |
+| `provider`                                                                  | [operations.Provider](../../models/operations/provider.md)                  | :heavy_check_mark:                                                          | Provider name (anthropic, azure-foundry, openai, openrouter, gemini, brave) |

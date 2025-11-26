@@ -22,7 +22,7 @@ export type UpdatePreferencesRequest = {
    */
   mainAgentReasoningEffort?: string | undefined;
   /**
-   * Preferred AI provider (anthropic, openai, openrouter)
+   * Preferred AI provider (anthropic, azure-foundry, openai, openrouter)
    */
   preferredProvider?: string | undefined;
   /**

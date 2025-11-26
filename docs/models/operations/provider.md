@@ -1,17 +1,17 @@
 # Provider
 
-Provider name (anthropic, openai, openrouter, gemini, brave)
+Provider name (anthropic, azure-foundry, openai, openrouter, gemini, brave)
 
 ## Example Usage
 
 ```typescript
 import { Provider } from "mix-typescript-sdk/models/operations";
 
-let value: Provider = "anthropic";
+let value: Provider = "azure-foundry";
 ```
 
 ## Values
 
 ```typescript
-"anthropic" | "openai" | "openrouter" | "gemini" | "brave"
+"anthropic" | "azure-foundry" | "openai" | "openrouter" | "gemini" | "brave"
 ```
