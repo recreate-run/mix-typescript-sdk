@@ -9,10 +9,10 @@ import { ExportMessage } from "mix-typescript-sdk/models";
 
 let value: ExportMessage = {
   content: "<value>",
-  createdAt: new Date("2025-02-13T18:20:20.455Z"),
+  createdAt: new Date("2026-02-13T18:20:20.455Z"),
   id: "<id>",
   role: "<value>",
-  updatedAt: new Date("2024-10-12T09:08:55.973Z"),
+  updatedAt: new Date("2025-10-12T09:08:55.973Z"),
 };
 ```
 

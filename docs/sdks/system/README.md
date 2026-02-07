@@ -1,5 +1,4 @@
 # System
-(*system*)
 
 ## Overview
 

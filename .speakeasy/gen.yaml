@@ -16,6 +16,7 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: true
     sharedErrorComponentsApr2025: true
+    sharedNestedComponentsJan2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
@@ -25,12 +26,14 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  versioningStrategy: automatic
+  persistentEdits: {}
   tests:
     generateTests: false
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.10.4
+  version: 0.11.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -55,10 +58,12 @@ typescript:
   enumFormat: union
   envVarPrefix: MIX
   exportZodModelNamespace: false
+  flatAdditionalProperties: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
   formStringArrayEncodeMode: encoded-string
   forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateExamples: true
   githubURL: https://github.com/recreate-run/mix-typescript-sdk
   imports:
@@ -73,12 +78,16 @@ typescript:
   inputModelSuffix: input
   jsonpath: rfc9535
   laxMode: strict
+  legacyFileNaming: true
   maxMethodParams: 0
   methodArguments: infer-optional-args
   modelPropertyCasing: camel
   moduleFormat: dual
+  multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: mix-typescript-sdk
+  preApplyUnionDiscriminators: true
+  preserveModelFieldNames: false
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2

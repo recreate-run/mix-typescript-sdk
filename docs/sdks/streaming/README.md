@@ -1,5 +1,4 @@
 # Streaming
-(*streaming*)
 
 ## Overview
 

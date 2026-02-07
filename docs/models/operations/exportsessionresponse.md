@@ -25,10 +25,10 @@ let value: ExportSessionResponse = {
     messages: [
       {
         content: "<value>",
-        createdAt: new Date("2023-05-08T11:28:36.432Z"),
+        createdAt: new Date("2024-05-07T11:28:36.432Z"),
         id: "<id>",
         role: "<value>",
-        updatedAt: new Date("2023-08-18T22:35:02.040Z"),
+        updatedAt: new Date("2024-08-17T22:35:02.040Z"),
       },
     ],
     title: "<value>",

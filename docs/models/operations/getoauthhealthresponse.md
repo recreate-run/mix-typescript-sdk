@@ -16,7 +16,7 @@ let value: GetOAuthHealthResponse = {
     },
   },
   status: "healthy",
-  timestamp: new Date("2025-04-10T14:05:44.748Z"),
+  timestamp: new Date("2026-04-10T14:05:44.748Z"),
 };
 ```
 

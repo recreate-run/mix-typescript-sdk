@@ -40,7 +40,7 @@ export type Preferences = {
    */
   mainAgentReasoningEffort?: string | undefined;
   /**
-   * Preferred AI provider (anthropic, azure-foundry, openai, openrouter)
+   * Preferred AI provider (anthropic, openai, openrouter)
    */
   preferredProvider?: string | undefined;
   /**

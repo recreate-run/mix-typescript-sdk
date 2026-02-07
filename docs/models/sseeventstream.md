@@ -9,11 +9,11 @@ Server-Sent Event stream with discriminated event types
 
 ```typescript
 const value: models.SSECompleteEvent = {
-  event: "heartbeat",
+  event: "complete",
   id: "1234567890",
   retry: 30000,
   data: {
-    done: false,
+    done: true,
     type: "<value>",
   },
 };
@@ -23,7 +23,7 @@ const value: models.SSECompleteEvent = {
 
 ```typescript
 const value: models.SSEConnectedEvent = {
-  event: "session_deleted",
+  event: "connected",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -36,7 +36,7 @@ const value: models.SSEConnectedEvent = {
 
 ```typescript
 const value: models.SSEContentEvent = {
-  event: "session_created",
+  event: "content",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -50,7 +50,7 @@ const value: models.SSEContentEvent = {
 
 ```typescript
 const value: models.SSEErrorEvent = {
-  event: "tool_execution_complete",
+  event: "error",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -63,7 +63,7 @@ const value: models.SSEErrorEvent = {
 
 ```typescript
 const value: models.SSEHeartbeatEvent = {
-  event: "user_message_created",
+  event: "heartbeat",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -76,12 +76,13 @@ const value: models.SSEHeartbeatEvent = {
 
 ```typescript
 const value: models.SSEPermissionEvent = {
-  event: "session_deleted",
+  event: "permission",
   id: "1234567890",
   retry: 30000,
   data: {
     action: "<value>",
-    description: "deed or reflate huzzah",
+    description:
+      "gee lashes sate far puff huzzah although considering railway incidentally",
     id: "<id>",
     sessionId: "<id>",
     toolName: "brave_search",
@@ -94,11 +95,11 @@ const value: models.SSEPermissionEvent = {
 
 ```typescript
 const value: models.SSESessionCreatedEvent = {
-  event: "heartbeat",
+  event: "session_created",
   id: "1234567890",
   retry: 30000,
   data: {
-    createdAt: 419339,
+    createdAt: 86291,
     sessionId: "<id>",
     title: "<value>",
     type: "session_created",
@@ -110,7 +111,7 @@ const value: models.SSESessionCreatedEvent = {
 
 ```typescript
 const value: models.SSESessionDeletedEvent = {
-  event: "session_created",
+  event: "session_deleted",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -124,7 +125,7 @@ const value: models.SSESessionDeletedEvent = {
 
 ```typescript
 const value: models.SSEThinkingEvent = {
-  event: "connected",
+  event: "thinking",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -138,7 +139,7 @@ const value: models.SSEThinkingEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionCompleteEvent = {
-  event: "content",
+  event: "tool_execution_complete",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -155,7 +156,7 @@ const value: models.SSEToolExecutionCompleteEvent = {
 
 ```typescript
 const value: models.SSEToolExecutionStartEvent = {
-  event: "user_message_created",
+  event: "tool_execution_start",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -171,7 +172,7 @@ const value: models.SSEToolExecutionStartEvent = {
 
 ```typescript
 const value: models.SSEToolUseParameterDeltaEvent = {
-  event: "tool_use_parameter_streaming_complete",
+  event: "tool_use_parameter_delta",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -186,7 +187,7 @@ const value: models.SSEToolUseParameterDeltaEvent = {
 
 ```typescript
 const value: models.SSEToolUseParameterStreamingCompleteEvent = {
-  event: "content",
+  event: "tool_use_parameter_streaming_complete",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -202,7 +203,7 @@ const value: models.SSEToolUseParameterStreamingCompleteEvent = {
 
 ```typescript
 const value: models.SSEToolUseStartEvent = {
-  event: "tool_use_parameter_delta",
+  event: "tool_use_start",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -217,7 +218,7 @@ const value: models.SSEToolUseStartEvent = {
 
 ```typescript
 const value: models.SSEUserMessageCreatedEvent = {
-  event: "thinking",
+  event: "user_message_created",
   id: "1234567890",
   retry: 30000,
   data: {

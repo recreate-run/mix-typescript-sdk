@@ -10,18 +10,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Provider name (anthropic, azure-foundry, openai, openrouter, gemini, brave)
+ * Provider name (anthropic, openai, openrouter, gemini, brave)
  */
 export const Provider = {
   Anthropic: "anthropic",
-  AzureFoundry: "azure-foundry",
   Openai: "openai",
   Openrouter: "openrouter",
   Gemini: "gemini",
   Brave: "brave",
 } as const;
 /**
- * Provider name (anthropic, azure-foundry, openai, openrouter, gemini, brave)
+ * Provider name (anthropic, openai, openrouter, gemini, brave)
  */
 export type Provider = ClosedEnum<typeof Provider>;
 
@@ -31,7 +30,7 @@ export type StoreApiKeyRequest = {
    */
   apiKey: string;
   /**
-   * Provider name (anthropic, azure-foundry, openai, openrouter, gemini, brave)
+   * Provider name (anthropic, openai, openrouter, gemini, brave)
    */
   provider: Provider;
 };

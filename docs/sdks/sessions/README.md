@@ -1,5 +1,4 @@
 # Sessions
-(*sessions*)
 
 ## Overview
 
@@ -88,9 +87,9 @@ run();
 
 Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory. Supports session-level callbacks for automated actions after tool execution.
 
-### Example Usage
+### Example Usage: invalid_prompt_mode
 
-<!-- UsageSnippet language="typescript" operationID="createSession" method="post" path="/api/sessions" -->
+<!-- UsageSnippet language="typescript" operationID="createSession" method="post" path="/api/sessions" example="invalid_prompt_mode" -->
 ```typescript
 import { Mix } from "mix-typescript-sdk";
 
@@ -100,6 +99,17 @@ const mix = new Mix({
 
 async function run() {
   const result = await mix.sessions.create({
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
     title: "<value>",
   });
 
@@ -125,6 +135,372 @@ const mix = new MixCore({
 
 async function run() {
   const res = await sessionsCreate(mix, {
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsCreate failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: invalid_session_type
+
+<!-- UsageSnippet language="typescript" operationID="createSession" method="post" path="/api/sessions" example="invalid_session_type" -->
+```typescript
+import { Mix } from "mix-typescript-sdk";
+
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const result = await mix.sessions.create({
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { MixCore } from "mix-typescript-sdk/core.js";
+import { sessionsCreate } from "mix-typescript-sdk/funcs/sessionsCreate.js";
+
+// Use `MixCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const res = await sessionsCreate(mix, {
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsCreate failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: missing_title
+
+<!-- UsageSnippet language="typescript" operationID="createSession" method="post" path="/api/sessions" example="missing_title" -->
+```typescript
+import { Mix } from "mix-typescript-sdk";
+
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const result = await mix.sessions.create({
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { MixCore } from "mix-typescript-sdk/core.js";
+import { sessionsCreate } from "mix-typescript-sdk/funcs/sessionsCreate.js";
+
+// Use `MixCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const res = await sessionsCreate(mix, {
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsCreate failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: prompt_size_exceeded_append
+
+<!-- UsageSnippet language="typescript" operationID="createSession" method="post" path="/api/sessions" example="prompt_size_exceeded_append" -->
+```typescript
+import { Mix } from "mix-typescript-sdk";
+
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const result = await mix.sessions.create({
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { MixCore } from "mix-typescript-sdk/core.js";
+import { sessionsCreate } from "mix-typescript-sdk/funcs/sessionsCreate.js";
+
+// Use `MixCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const res = await sessionsCreate(mix, {
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsCreate failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: prompt_size_exceeded_replace
+
+<!-- UsageSnippet language="typescript" operationID="createSession" method="post" path="/api/sessions" example="prompt_size_exceeded_replace" -->
+```typescript
+import { Mix } from "mix-typescript-sdk";
+
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const result = await mix.sessions.create({
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { MixCore } from "mix-typescript-sdk/core.js";
+import { sessionsCreate } from "mix-typescript-sdk/funcs/sessionsCreate.js";
+
+// Use `MixCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const res = await sessionsCreate(mix, {
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsCreate failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: subagent_type_not_allowed
+
+<!-- UsageSnippet language="typescript" operationID="createSession" method="post" path="/api/sessions" example="subagent_type_not_allowed" -->
+```typescript
+import { Mix } from "mix-typescript-sdk";
+
+const mix = new Mix({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const result = await mix.sessions.create({
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
+    title: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { MixCore } from "mix-typescript-sdk/core.js";
+import { sessionsCreate } from "mix-typescript-sdk/funcs/sessionsCreate.js";
+
+// Use `MixCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const mix = new MixCore({
+  serverURL: "https://api.example.com",
+});
+
+async function run() {
+  const res = await sessionsCreate(mix, {
+    callbacks: [
+      {
+        messageContent: "Please review the changes and run tests",
+        name: "Log Output",
+        toolName: "*",
+        type: "send_message",
+      },
+    ],
+    customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    promptMode: "append",
+    subagentType: "",
     title: "<value>",
   });
   if (res.ok) {

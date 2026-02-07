@@ -109,7 +109,7 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [authentication](docs/sdks/authentication/README.md)
+### [Authentication](docs/sdks/authentication/README.md)
 
 * [storeApiKey](docs/sdks/authentication/README.md#storeapikey) - Store API key
 * [handleOAuthCallback](docs/sdks/authentication/README.md#handleoauthcallback) - Handle OAuth callback
@@ -120,41 +120,41 @@ run();
 * [getOAuthHealth](docs/sdks/authentication/README.md#getoauthhealth) - Get OAuth authentication health
 * [refreshOAuthTokens](docs/sdks/authentication/README.md#refreshoauthtokens) - Manually refresh OAuth tokens
 
-### [files](docs/sdks/files/README.md)
+### [Files](docs/sdks/files/README.md)
 
 * [list](docs/sdks/files/README.md#list) - List session files
 * [upload](docs/sdks/files/README.md#upload) - Upload file to session
 * [delete](docs/sdks/files/README.md#delete) - Delete session file
 * [get](docs/sdks/files/README.md#get) - Get session file
 
-### [health](docs/sdks/health/README.md)
+### [Health](docs/sdks/health/README.md)
 
 * [getOAuthHealth](docs/sdks/health/README.md#getoauthhealth) - Get OAuth authentication health
 
-### [internal](docs/sdks/internal/README.md)
+### [Internal](docs/sdks/internal/README.md)
 
 * [refreshOAuthTokens](docs/sdks/internal/README.md#refreshoauthtokens) - Manually refresh OAuth tokens
 
-### [messages](docs/sdks/messages/README.md)
+### [Messages](docs/sdks/messages/README.md)
 
 * [getHistory](docs/sdks/messages/README.md#gethistory) - Get global message history
 * [cancelProcessing](docs/sdks/messages/README.md#cancelprocessing) - Cancel agent processing
 * [getSession](docs/sdks/messages/README.md#getsession) - List session messages
 * [send](docs/sdks/messages/README.md#send) - Send a message to session (async)
 
-### [permissions](docs/sdks/permissions/README.md)
+### [Permissions](docs/sdks/permissions/README.md)
 
 * [deny](docs/sdks/permissions/README.md#deny) - Deny permission
 * [grant](docs/sdks/permissions/README.md#grant) - Grant permission
 
-### [preferences](docs/sdks/preferences/README.md)
+### [Preferences](docs/sdks/preferences/README.md)
 
 * [get](docs/sdks/preferences/README.md#get) - Get user preferences
 * [update](docs/sdks/preferences/README.md#update) - Update user preferences
 * [getProviders](docs/sdks/preferences/README.md#getproviders) - Get available providers
 * [reset](docs/sdks/preferences/README.md#reset) - Reset preferences
 
-### [sessions](docs/sdks/sessions/README.md)
+### [Sessions](docs/sdks/sessions/README.md)
 
 * [list](docs/sdks/sessions/README.md#list) - List all sessions
 * [create](docs/sdks/sessions/README.md#create) - Create a new session
@@ -164,11 +164,11 @@ run();
 * [exportSession](docs/sdks/sessions/README.md#exportsession) - Export session transcript
 * [rewindSession](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
 
-### [streaming](docs/sdks/streaming/README.md)
+### [Streaming](docs/sdks/streaming/README.md)
 
 * [streamEvents](docs/sdks/streaming/README.md#streamevents) - Server-Sent Events stream for real-time updates
 
-### [system](docs/sdks/system/README.md)
+### [System](docs/sdks/system/README.md)
 
 * [listCommands](docs/sdks/system/README.md#listcommands) - List available commands
 * [getCommand](docs/sdks/system/README.md#getcommand) - Get specific command
@@ -176,7 +176,7 @@ run();
 * [getSystemInfo](docs/sdks/system/README.md#getsysteminfo) - Get system information
 * [healthCheck](docs/sdks/system/README.md#healthcheck) - Health check
 
-### [tools](docs/sdks/tools/README.md)
+### [Tools](docs/sdks/tools/README.md)
 
 * [listLLMTools](docs/sdks/tools/README.md#listllmtools) - List LLM tools
 * [getToolCredentialsStatus](docs/sdks/tools/README.md#gettoolcredentialsstatus) - Get tool credentials status

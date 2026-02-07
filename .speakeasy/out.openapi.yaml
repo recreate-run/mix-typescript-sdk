@@ -18,10 +18,9 @@ paths:
                   description: "API key for authentication"
                   type: "string"
                 "provider":
-                  description: "Provider name (anthropic, azure-foundry, openai, openrouter, gemini, brave)"
+                  description: "Provider name (anthropic, openai, openrouter, gemini, brave)"
                   enum:
                     - "anthropic"
-                    - "azure-foundry"
                     - "openai"
                     - "openrouter"
                     - "gemini"
@@ -566,7 +565,7 @@ paths:
                         description: "Reasoning effort setting for main agent"
                         type: "string"
                       "preferred_provider":
-                        description: "Preferred AI provider (anthropic, azure-foundry, openai, openrouter)"
+                        description: "Preferred AI provider (anthropic, openai, openrouter)"
                         type: "string"
                       "sub_agent_max_tokens":
                         description: "Maximum tokens for sub agent responses"
@@ -612,7 +611,7 @@ paths:
                   description: "Reasoning effort setting for main agent"
                   type: "string"
                 "preferred_provider":
-                  description: "Preferred AI provider (anthropic, azure-foundry, openai, openrouter)"
+                  description: "Preferred AI provider (anthropic, openai, openrouter)"
                   type: "string"
                 "sub_agent_max_tokens":
                   description: "Maximum tokens for sub agent responses"
