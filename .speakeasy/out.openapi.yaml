@@ -442,6 +442,57 @@ paths:
       tags:
         - "Messages"
       x-speakeasy-name-override: "getHistory"
+  "/api/notifications/{id}/respond":
+    post:
+      description: "Send user's response to a notification request"
+      operationId: "respondToNotification"
+      parameters:
+        - description: "Notification ID"
+          in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "string"
+      requestBody:
+        content:
+          "application/json":
+            schema:
+              properties:
+                "type":
+                  description: "Response type"
+                  enum:
+                    - "acknowledge"
+                    - "text"
+                    - "choice"
+                  type: "string"
+                "value":
+                  description: "User's text input or selected choice (optional for acknowledge type)"
+                  type: "string"
+              required:
+                - "type"
+              type: "object"
+        required: true
+      responses:
+        "204":
+          description: "Notification response accepted"
+        "401":
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+          description: "Unauthorized - authentication required"
+        "404":
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+          description: "Notification not found or already responded"
+        "500":
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+          description: "Internal server error"
+      summary: "Respond to notification"
+      tags:
+        - "Notifications"
   "/api/permissions/{id}/deny":
     post:
       description: "Deny a specific permission"

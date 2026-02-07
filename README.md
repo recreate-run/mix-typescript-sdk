@@ -142,6 +142,10 @@ run();
 * [getSession](docs/sdks/messages/README.md#getsession) - List session messages
 * [send](docs/sdks/messages/README.md#send) - Send a message to session (async)
 
+### [Notifications](docs/sdks/notifications/README.md)
+
+* [respondToNotification](docs/sdks/notifications/README.md#respondtonotification) - Respond to notification
+
 ### [Permissions](docs/sdks/permissions/README.md)
 
 * [deny](docs/sdks/permissions/README.md#deny) - Deny permission
@@ -218,6 +222,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesGetHistory`](docs/sdks/messages/README.md#gethistory) - Get global message history
 - [`messagesGetSession`](docs/sdks/messages/README.md#getsession) - List session messages
 - [`messagesSend`](docs/sdks/messages/README.md#send) - Send a message to session (async)
+- [`notificationsRespondToNotification`](docs/sdks/notifications/README.md#respondtonotification) - Respond to notification
 - [`permissionsDeny`](docs/sdks/permissions/README.md#deny) - Deny permission
 - [`permissionsGrant`](docs/sdks/permissions/README.md#grant) - Grant permission
 - [`preferencesGet`](docs/sdks/preferences/README.md#get) - Get user preferences

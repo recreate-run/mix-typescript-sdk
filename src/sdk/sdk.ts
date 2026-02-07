@@ -8,6 +8,7 @@ import { Files } from "./files.js";
 import { Health } from "./health.js";
 import { Internal } from "./internal.js";
 import { Messages } from "./messages.js";
+import { Notifications } from "./notifications.js";
 import { Permissions } from "./permissions.js";
 import { Preferences } from "./preferences.js";
 import { Sessions } from "./sessions.js";
@@ -29,6 +30,11 @@ export class Mix extends ClientSDK {
   private _messages?: Messages;
   get messages(): Messages {
     return (this._messages ??= new Messages(this._options));
+  }
+
+  private _notifications?: Notifications;
+  get notifications(): Notifications {
+    return (this._notifications ??= new Notifications(this._options));
   }
 
   private _permissions?: Permissions;

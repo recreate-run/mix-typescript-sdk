@@ -31,6 +31,7 @@ export * from "./listsessionfiles.js";
 export * from "./listsessions.js";
 export * from "./refreshoauthtokens.js";
 export * from "./resetpreferences.js";
+export * from "./respondtonotification.js";
 export * from "./rewindsession.js";
 export * from "./sendmessage.js";
 export * from "./startoauthflow.js";
