@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 0302219c-9df1-4051-a6ae-45f579bcc8d3
 management:
-  docChecksum: 58e1186dfe150d9274b82a341f0bef7d
+  docChecksum: 2f877ad96336c6581dc82d13c730e780
   docVersion: 1.0.0
-  speakeasyVersion: 1.708.2
-  generationVersion: 2.811.4
-  releaseVersion: 0.11.1
-  configChecksum: af015658826daf2f9d19be6c13880ad8
+  speakeasyVersion: 1.709.4
+  generationVersion: 2.816.0
+  releaseVersion: 0.11.2
+  configChecksum: 1bcab4bb0d50037232c46c740f640723
   published: true
 persistentEdits:
-  generation_id: ade25a58-ade2-46e9-8c1f-40c27ea0eb67
-  pristine_commit_hash: 94450faca879213efdd6be2133761035cc8e62bc
-  pristine_tree_hash: 3f3aa8206d8f14d002347aa12e4ac1ef90ab4917
+  generation_id: e0adfc52-865b-4b4c-8c43-5fe6cd140c49
+  pristine_commit_hash: 274d98868a4e95fac64120faf8c6fbdc38c00405
+  pristine_tree_hash: 55701a12b8b4c22320a530f0de754978e3c2c059
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -74,6 +74,10 @@ trackedFiles:
     id: 000c8003a1dd
     last_write_checksum: sha1:b423d8b2db52fc53e239ca816e060080f638d085
     pristine_git_object: b758052fb44326828596bbbb0d91f6aa33341fe2
+  docs/models/browsermode.md:
+    id: c214556ca512
+    last_write_checksum: sha1:ba8acb396213be34de4846eb84aae05c7f63acc3
+    pristine_git_object: edc096bffac1ea2e8b70dc4b63ff87b8c53106e4
   docs/models/callback.md:
     id: ddbeb3fa1d60
     last_write_checksum: sha1:016a85391da403ad17b58d696e0e361746c243b0
@@ -118,10 +122,18 @@ trackedFiles:
     id: 4c5ecf6db4f5
     last_write_checksum: sha1:d2332a6dd67a00081aedff219132c3d7ba473dcb
     pristine_git_object: 37130ed013c44b23db1e52a920be39fc00f4a6d7
+  docs/models/notificationtype.md:
+    id: 656e4b2a3c7c
+    last_write_checksum: sha1:7eeb0d31708bda63bfced48e2e2791ea8d566d1c
+    pristine_git_object: 23a95f0ec1bccc6ed9ce5e1a7098765a9004d906
   docs/models/operations/availableproviders.md:
     id: 9fc9a1a95d48
     last_write_checksum: sha1:eded6ff4cdeb1ced8a2649b37792f57900ce341e
     pristine_git_object: bdf9b85f03b946755ac55f84dc0364995e4510d6
+  docs/models/operations/browsermode.md:
+    id: 2e117f946cc8
+    last_write_checksum: sha1:f4f449a94dc3fcdadc905beb4a07f21ebcc6a9cc
+    pristine_git_object: e660f762dfc4159737b17b9d8d392c41ed0a728e
   docs/models/operations/cancelsessionprocessingrequest.md:
     id: a077c0bca943
     last_write_checksum: sha1:56be724d682cd920b16ae978eed83b67635413ca
@@ -132,8 +144,8 @@ trackedFiles:
     pristine_git_object: 53fdf45e724907ed7d43ec7952f90f4650af3d4c
   docs/models/operations/createsessionrequest.md:
     id: d181ed65111e
-    last_write_checksum: sha1:cfb29179bea741fe235c14f3f9a2261893f0f2e5
-    pristine_git_object: 89af6255cc5254e6bdac197527ce7e464fce674b
+    last_write_checksum: sha1:5aeb8d09fc18848439aa4757a9c0e3edbfdd40a3
+    pristine_git_object: 8eef34a302c73d83265e942b65f4f628ddf6bb0b
   docs/models/operations/deletecredentialsrequest.md:
     id: 5c987f828345
     last_write_checksum: sha1:cd452ba1e494988af44f65b058e7f42877546a90
@@ -430,6 +442,10 @@ trackedFiles:
     id: 9c85a55b7b80
     last_write_checksum: sha1:7ff03c2f9ca2af42484cb6a8ad6f2e0062d34224
     pristine_git_object: 18b8ae3efad9b0da7ccddb2596de612547b10d2a
+  docs/models/responsetype.md:
+    id: 4be34cb8f272
+    last_write_checksum: sha1:b66d13a266b86bb84a2adb917e76356ed30b2c36
+    pristine_git_object: 61bb03491e9a60931634273fa657a76e4fc569e9
   docs/models/resterror.md:
     id: ed07982f509d
     last_write_checksum: sha1:bef41f7c87425e5915b4ad19a633cea70a4cf75d
@@ -440,136 +456,208 @@ trackedFiles:
     pristine_git_object: 0b13b7eb9d70cd28e22fefdcf0a788adc44ee522
   docs/models/sessiondata.md:
     id: fa87d6b649be
-    last_write_checksum: sha1:e6aa7e66c179313c390af5e44042cf8dc125a3c3
-    pristine_git_object: 36cd1c58296355eea020cd61c97435fb4b528b53
+    last_write_checksum: sha1:a8961d392f906a3a11ffab0d455bff439e8956c5
+    pristine_git_object: 6f41daaca2b04c7305a5fb653ca6dfd95be8497b
   docs/models/sessiontype.md:
     id: 3570155d5779
     last_write_checksum: sha1:5600638c355303a50cab20a9baaf79d7e5a9efa0
     pristine_git_object: abb28226db8ec42c36a6dfff0861a6cd52421db1
   docs/models/ssecompleteevent.md:
     id: d6809fad131e
-    last_write_checksum: sha1:d5dd0dfa9d536b72faa8f831692e51cfe20d3f96
-    pristine_git_object: 801fb229fa89a3470e204c13799bc672e293708e
+    last_write_checksum: sha1:ba9c0d64bb0125c541a2c3deb7d9c7705dde1d1d
+    pristine_git_object: 0dfb113b11085847a93b244acbf1864d34bb18b0
   docs/models/ssecompleteeventdata.md:
     id: 484e29664618
     last_write_checksum: sha1:41453989d6787d6e86c336256a31efc209dcbae5
     pristine_git_object: 69427c9a7f3312088311ee7696e5fbfa2525b374
+  docs/models/ssecompleteeventevent.md:
+    id: fe9ff685ec36
+    last_write_checksum: sha1:ff0803592008df8f01b41b2b05acdf5fdc04fc89
+    pristine_git_object: 2906470af6738632f9cef5284f6391c52782a743
   docs/models/sseconnectedevent.md:
     id: ed9140d5fb16
-    last_write_checksum: sha1:686b49d0ba49dbce67e47750bddd79e159cb359e
-    pristine_git_object: 428f3220a73fc9f3e86c8864bbfaff99438a36a5
+    last_write_checksum: sha1:819410c39ca619d1447ac75287cb14805ddb49c3
+    pristine_git_object: a7fef60c33ebb2909b22c8de04a3d65d4cfeb367
   docs/models/sseconnectedeventdata.md:
     id: f085df9c8871
     last_write_checksum: sha1:bf08b7868b5596ffc73d4a3e6ae31a57067f5cf6
     pristine_git_object: 56aff39fb11348924e2dc07dee8053077679902d
+  docs/models/sseconnectedeventevent.md:
+    id: 6a9ddd9e1dfa
+    last_write_checksum: sha1:e79f137fabd7f900a79602feed7bcf6b7e1b5aa8
+    pristine_git_object: 42cabe253cf4813c66edd734d944e65152e0c14d
   docs/models/ssecontentevent.md:
     id: 76d6dd9f5ede
-    last_write_checksum: sha1:99f467e2f5f9ffae13d7824c82b2ad319ab89ad9
-    pristine_git_object: f8c0dbbad1691b85996058b617b22e44b611c2e0
+    last_write_checksum: sha1:41c997e5634145fde124298270795339a2ed17ea
+    pristine_git_object: c91f083ad3a6be47b3a510bf0389db3353adb842
   docs/models/ssecontenteventdata.md:
     id: 8f636343ae52
     last_write_checksum: sha1:235bb949ef03dae12ec7ce4291999a19dcd3088b
     pristine_git_object: 70f0dc5c5ca8efa0b80b17d47e8674f96451c49b
+  docs/models/ssecontenteventevent.md:
+    id: 5f69d93675a7
+    last_write_checksum: sha1:e6b0ea51308adc7d4572794ced60e57a974cd13a
+    pristine_git_object: 1c04bdf57a2b09f90af39868a333e2e1318b6a64
   docs/models/sseerrorevent.md:
     id: 0416029a8a33
-    last_write_checksum: sha1:86191c1c799feaeb0e1b2d0157860abe5bd980f4
-    pristine_git_object: bc0a690840a95ac3ca2e5b62f24a2615425ffdff
+    last_write_checksum: sha1:4b1a2c96d5fe996eb071979b7398e81975149d4e
+    pristine_git_object: 68a0c2e6ff04db049e766b60a16eb46ee558310c
   docs/models/sseerroreventdata.md:
     id: b8374dba8744
     last_write_checksum: sha1:ffd65f5b500a2fdc183c07af073323bd34efaa4c
     pristine_git_object: d8bbd17442fe2c8fefc886e4cc58879c131685c1
+  docs/models/sseerroreventevent.md:
+    id: 4f7ee6f59b7d
+    last_write_checksum: sha1:c2dbb39344414cb8c10aa3bc6def9c70074209ef
+    pristine_git_object: 9a3731a522eed9b57dff6409c640e34eef445c2f
   docs/models/sseeventstream.md:
     id: baa26ad9a060
-    last_write_checksum: sha1:dbd322d84e1c40c24e5a64f64b924e78b00a2a99
-    pristine_git_object: b2da7a6791a588d5ce90bfa0bbdae7bb2b1fba5d
+    last_write_checksum: sha1:a68d3577a018da7994d74134f492960fba41c533
+    pristine_git_object: 05d5ca1d42bc094f7dd2bdfe06c0261988079518
   docs/models/sseheartbeatevent.md:
     id: ddf2a1133845
-    last_write_checksum: sha1:e770510c4f115637eeced5b4be6442639135fc1e
-    pristine_git_object: bb959746b261ea89b4627858e73d7a4acdf4518f
+    last_write_checksum: sha1:32ce513005f3a1038a39935153893ba659d72056
+    pristine_git_object: bdd0d089698217314e92a74062ec00471c65e2a1
   docs/models/sseheartbeateventdata.md:
     id: 76a52443ff86
     last_write_checksum: sha1:153f0e2890268a666113611bef5e163e16d99df1
     pristine_git_object: c69b7aa764e0f49e86bbcddb687a7c04d8ee5294
+  docs/models/sseheartbeateventevent.md:
+    id: a95feda09f61
+    last_write_checksum: sha1:911f9f80d09aa01012af242f5571687a21c52df2
+    pristine_git_object: ecd991e0108f03967f5d7ddeeef155dfadfe3d74
+  docs/models/ssenotificationevent.md:
+    id: 4f20dd24a503
+    last_write_checksum: sha1:ae3f47968607ae7d06e8f2caf7730ac22f0d7bee
+    pristine_git_object: 0a3527a71698756b701c935dcaccaffe881940bb
+  docs/models/ssenotificationeventdata.md:
+    id: 637dcf8166c1
+    last_write_checksum: sha1:08289ef9728c021912b10ae6e668baa5e079978e
+    pristine_git_object: 6f9a1ed7de3e28ee3aa7b058e82f78b457cc3a71
+  docs/models/ssenotificationeventevent.md:
+    id: 5cb4f6eb3f12
+    last_write_checksum: sha1:b5ebee8f1658edbe4837da0f53fcf415ace3c3a2
+    pristine_git_object: bdbff7e09723bd3ba3eb1065aebd28fa91d54695
   docs/models/ssepermissionevent.md:
     id: 3b350c3433cf
-    last_write_checksum: sha1:8e715e4a62d3d1df8f4635150f91d55f3ab6a5c6
-    pristine_git_object: 35daedec1843a6164564d7234d3fcef558e75ef6
+    last_write_checksum: sha1:a8b7f870098200eb2fbeb4c04422742e6a699797
+    pristine_git_object: fec10dd527e627d4d83bca04b48d63728e25961e
   docs/models/ssepermissioneventdata.md:
     id: c3b1b3ca15e7
     last_write_checksum: sha1:309bc6bd273a5b84639fa4e7d53c86d3be3ba850
     pristine_git_object: 670070ad93bd5a8b193e4dcee8ee69642804a470
+  docs/models/ssepermissioneventevent.md:
+    id: dbb5bbd9a9fe
+    last_write_checksum: sha1:c848265b8353e47b243fcf54385ee1aa583b8840
+    pristine_git_object: 4a30fea784f99048927475f15b0602225e7f42e5
   docs/models/ssesessioncreatedevent.md:
     id: 07c739caee63
-    last_write_checksum: sha1:6e9cdbcee6c4a64404ef528b095ba6b49ab5487f
-    pristine_git_object: ec685fad8bfc07c7cf375af6926ebdbe4cea6aaa
+    last_write_checksum: sha1:ef3d2f94efa6ae98ac3fed94c45fd20153153816
+    pristine_git_object: 0402321af455f871cd0dc0bab807205686005e08
   docs/models/ssesessioncreatedeventdata.md:
     id: f5a57675b729
     last_write_checksum: sha1:e0105a4f3f503bf845d2a340f50dffa78ceeb4d8
     pristine_git_object: cbf943094d97976cc42333367c81ed19a08c9efa
+  docs/models/ssesessioncreatedeventevent.md:
+    id: abc8f5cbe373
+    last_write_checksum: sha1:5f9bbc777e16f2e4312f75eb9f23de27d521f930
+    pristine_git_object: 870a9f27c8c53b4bc2c1435a38a3e0cdcc196a15
   docs/models/ssesessiondeletedevent.md:
     id: 4df438634961
-    last_write_checksum: sha1:f647ec21f62897d863d41205e16fc92ae6377fe4
-    pristine_git_object: 5b981c90b15eb15d6683570a069302a08f7b47fe
+    last_write_checksum: sha1:2341cdc2d058343360f46102355e4781929fbf12
+    pristine_git_object: f41a6fcef8bdaac2c0816d941027a2f52ff0b112
   docs/models/ssesessiondeletedeventdata.md:
     id: dafb1ebe2ad9
     last_write_checksum: sha1:c74cd5a190c88e6ce6fba89838be11246ea4dc95
     pristine_git_object: 21758c22a348e6717a8ac08391b4c477e1173247
+  docs/models/ssesessiondeletedeventevent.md:
+    id: 5be9d0124faf
+    last_write_checksum: sha1:1766a2b8a59590207fe70605cbccc384f1faed21
+    pristine_git_object: f948d2336b07fc356ea8084e1d96b603df9c0e98
   docs/models/ssethinkingevent.md:
     id: f099f9f77711
-    last_write_checksum: sha1:ed2d93150ba198d8485207c4951ed3b3f028a08e
-    pristine_git_object: b5a6a835721ae0d74726820f07a9e765a751a0db
+    last_write_checksum: sha1:50f89fae7a10e1f438d6caa360232e6ec82331b0
+    pristine_git_object: 75ae91017cd1adace28af0dbb615d285cd605646
   docs/models/ssethinkingeventdata.md:
     id: 9eea0c8b71c9
     last_write_checksum: sha1:f5ed351f3157a86b797df7f0cc69b0a6d01b48bf
     pristine_git_object: 26097ef0ab4cf27a11d8aad791220defaa17e7d3
+  docs/models/ssethinkingeventevent.md:
+    id: e590f64a9d67
+    last_write_checksum: sha1:acdafddbc703cc488d8e79a8cd776f5567fe2e22
+    pristine_git_object: baf99821d38d6c076a088c2e33b961a621517d10
   docs/models/ssetoolexecutioncompleteevent.md:
     id: 709b56c804ad
-    last_write_checksum: sha1:2cfb8720a418aa589875bac87fe6861fd0371ff4
-    pristine_git_object: cd8178b17475eda070bff301ae5cc7a09881f401
+    last_write_checksum: sha1:aaeb6055b05ccf487c5381cd551d68f6ceb13fbe
+    pristine_git_object: 2af449cf885595f90fd7e17f7124534002e42938
   docs/models/ssetoolexecutioncompleteeventdata.md:
     id: 5c010bf632eb
     last_write_checksum: sha1:d9c44a6548d9c6b03cfe1fe26fefd04521b17d96
     pristine_git_object: d1fc4a44fe16658a85024171fd8bf49ca8b43189
+  docs/models/ssetoolexecutioncompleteeventevent.md:
+    id: ec1c6643bd11
+    last_write_checksum: sha1:353cd1e267d6851ac51e736ea55b86fd43ea3be5
+    pristine_git_object: 2250d6449658dec9a84c43c7386ac6c19738bdc7
   docs/models/ssetoolexecutionstartevent.md:
     id: a863e90cfcc7
-    last_write_checksum: sha1:4263ffc3feb6b3b904c091fc8a8612fc72dd05ba
-    pristine_git_object: 0ab7c58e6aba779a979a4b5d2fbc4314205ae1f1
+    last_write_checksum: sha1:84900ce459acf5794c8886a6bac54f3ee7a9a07a
+    pristine_git_object: 1222693e09966782f0a5b5ba4f356e4e016930ac
   docs/models/ssetoolexecutionstarteventdata.md:
     id: b293587fb728
     last_write_checksum: sha1:cd080514a6da93f054af74fe424c9b4c9d2b45ac
     pristine_git_object: e5aa6ac86de7628918c0b34d9b5d579b8d89c3d1
+  docs/models/ssetoolexecutionstarteventevent.md:
+    id: c0da9f53effd
+    last_write_checksum: sha1:3b589360ea23a3b829d4ea22c831e9edc96b4ca3
+    pristine_git_object: c2b3a8c94e41a9575db6de55fb9a549ec347876a
   docs/models/ssetooluseparameterdeltaevent.md:
     id: 86f73ca80c7a
-    last_write_checksum: sha1:c031478e0889dc7c637d40a07fc7f8dc47cf9095
-    pristine_git_object: c93e11e2604d512a12f52746bb9f43165ed0d3e0
+    last_write_checksum: sha1:f21e39775d7b1e5cbcf8f2b5042c296f70ffdc79
+    pristine_git_object: aa323a234add83b4420f377b35ed5e2cd96abcc7
   docs/models/ssetooluseparameterdeltaeventdata.md:
     id: 6e8723d8935e
     last_write_checksum: sha1:aca20ed0f005d68f01e94fd7c85a80378940e738
     pristine_git_object: d378f80805a2263a5edf606651bc7b02bf0ae085
+  docs/models/ssetooluseparameterdeltaeventevent.md:
+    id: 28b9f3a6ce7a
+    last_write_checksum: sha1:5d93e932353aa51fead6edf519e542097b812057
+    pristine_git_object: 353ae7137ea0cc38dbc64f1b7d845cba71645141
   docs/models/ssetooluseparameterstreamingcompleteevent.md:
     id: afa6ec9ca847
-    last_write_checksum: sha1:5142758670925ae5e62cd066e983d9b51e01eb48
-    pristine_git_object: 0ba0fdbe78461ee25c0b49a9505e0489e9ba9188
+    last_write_checksum: sha1:6427056ab562abe10713e017cc9a2f883dc87574
+    pristine_git_object: ec87cac8b8399f879e7ffd6115dac46d19e80f47
   docs/models/ssetooluseparameterstreamingcompleteeventdata.md:
     id: 77e2d1442859
     last_write_checksum: sha1:d6826802889a8e53cec47eafab5d3a3c00087c5a
     pristine_git_object: 3fcd8052e670fbd7623546a7e86d288920d7f638
+  docs/models/ssetooluseparameterstreamingcompleteeventevent.md:
+    id: 923079a19728
+    last_write_checksum: sha1:6e8cf7342cb75da382be65c8e441b4f1e8770739
+    pristine_git_object: b795e8aa6cd2dc393e501fc95cbcc3f8dcb8f166
   docs/models/ssetoolusestartevent.md:
     id: 205e3dcf6e4e
-    last_write_checksum: sha1:5abda5605b27cee17875ffc6ef7ce1b76cfd9923
-    pristine_git_object: 35f41b89e4bfc3cb828f724e2009458f21f32a01
+    last_write_checksum: sha1:3fb2c3523e44859551b7a371a24c0b8854fcfc0a
+    pristine_git_object: 1711ec2f87a93b6691116515a9d9f5b485de6828
   docs/models/ssetoolusestarteventdata.md:
     id: c76a0c009699
     last_write_checksum: sha1:74a5ff5afe0b54266943467f965ca118aad6f72c
     pristine_git_object: fecb766a323129663f6087ac553f1c0dd146694c
+  docs/models/ssetoolusestarteventevent.md:
+    id: 70349d7e6795
+    last_write_checksum: sha1:aa82a9159d535083ce9c8422b4d53eb6a6bbefce
+    pristine_git_object: d2a27f8fe13e58e0bb9cf381af8a0dde9bfd2952
   docs/models/sseusermessagecreatedevent.md:
     id: 91b251a3b3c4
-    last_write_checksum: sha1:075756f70e44dd84d3d56a478656ee5d5db9bd05
-    pristine_git_object: f84dd29f30c56e5a5deb1a8a5885f5abe5fb13e1
+    last_write_checksum: sha1:af4c046bcab6c113af6f02f4405cfb89580a5211
+    pristine_git_object: 9635cf91e73bead93cf8e68a41977ba3954eb3e9
   docs/models/sseusermessagecreatedeventdata.md:
     id: 579e9b48df70
     last_write_checksum: sha1:2f306ec90e9da2850fdd87f6eb513e9a22394ce9
     pristine_git_object: aa48465090c89056f3f84c2481b253283b8fda98
+  docs/models/sseusermessagecreatedeventevent.md:
+    id: 579ec1173d7f
+    last_write_checksum: sha1:3302a7ea2dca49f2a6f4a55e2096356f4bfbd84b
+    pristine_git_object: bc473a5384f5ff37d52dcba9feb7a0a2440cd556
   docs/models/subagenttype.md:
     id: 99df57971257
     last_write_checksum: sha1:d41452532b003670022b613a3f24e95a19f47826
@@ -616,8 +704,8 @@ trackedFiles:
     pristine_git_object: 7c5e0b47876e0066efa92219fb58466e8fb3b26f
   docs/sdks/sessions/README.md:
     id: 57ad62844f79
-    last_write_checksum: sha1:b92c06350b6ab94d2398c641595ffc5c9b3cb0dd
-    pristine_git_object: 663f7249560a9c21f5f7cafa02592165b78dcffa
+    last_write_checksum: sha1:4cbb50160b17a637e4ba5acaac90b60ab3249af4
+    pristine_git_object: b763b2fe03b32728d7cb41d29bc9fe26855b3b61
   docs/sdks/streaming/README.md:
     id: de52a04909eb
     last_write_checksum: sha1:cbe31cfabc6f2bcfb8bfcf6e8706f3c2e29ccf6b
@@ -652,12 +740,12 @@ trackedFiles:
     pristine_git_object: 46d1718226284fa009884a75260bc9594a65a125
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:dc55e3ddbe1b92615b297ad6972d2b2a7bd98ded
-    pristine_git_object: bba2f4faea824473f4e59d49fd9b4fbf8ffdc757
+    last_write_checksum: sha1:0d97a2233cca23c7d4477ad392fe21c463b4aa12
+    pristine_git_object: cabc1948453cab5d5e85e9bbb3fa491296e69e7e
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:a0e78b2a2926a20862b098f0ab3a1b2b31603e68
-    pristine_git_object: 4b3c9a1dc8fb9819b7f9930d5b0dcbb4bb5bf8e1
+    last_write_checksum: sha1:4eb07587ea7373bf73019586e36a071f400c0079
+    pristine_git_object: d49dcf7f8e49ca3e549fdbbd6eca0e1c140735ef
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ee072f155fdf27834f459845beb36c0e821c0d4e
@@ -840,8 +928,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:8b0b34a5a6ff52c2894fbb3fb39e26f12de40bd0
-    pristine_git_object: 59abb6ae1387435acea7f0d0606b3dfd6343f9b1
+    last_write_checksum: sha1:62ee4cc263fed22424860b29c78471cb0d8b8daf
+    pristine_git_object: 0e014878f573546398b17adab8e3156d276a55d9
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -972,8 +1060,8 @@ trackedFiles:
     pristine_git_object: b34134b3b343c28d39584a4deba338317f2dcef1
   src/models/operations/createsession.ts:
     id: 3fa2158b9b52
-    last_write_checksum: sha1:baa40aa261cc72ee53ef6ca233e0f28bf69da95b
-    pristine_git_object: fc5920aeffb8c8778fc243f22dc8fe5261ecf38d
+    last_write_checksum: sha1:004092200ab4ce212739b21369770b335ade0df4
+    pristine_git_object: ea3e26f9388e56ecbdfa8015dcf46344c89ba551
   src/models/operations/deletecredentials.ts:
     id: c696526d7798
     last_write_checksum: sha1:c958282268b37dae5207b1e51bea2a99c5724402
@@ -1132,12 +1220,12 @@ trackedFiles:
     pristine_git_object: e68f5726dd6a50519be1d01c37533b76d74ec4c0
   src/models/sessiondata.ts:
     id: 5c5afd0e4267
-    last_write_checksum: sha1:f14d5a0dd8ce4b689cfef4b7f29acfa98ba16401
-    pristine_git_object: 87e169f50bf04ef61cc803c6003f0b8e8de09472
+    last_write_checksum: sha1:2b775abd26555152b332e5343435c76490066e86
+    pristine_git_object: 3889136c1b1d6107a4807570b790c7ef34015793
   src/models/sseeventstream.ts:
     id: 39f0b630a41e
-    last_write_checksum: sha1:41d6dd73e7b0e28c4e98a05657a0fddfffe6d8c5
-    pristine_git_object: 053c515198dff772ffc6e5cd0acf8c106ba327ec
+    last_write_checksum: sha1:5c2888c75b1ce0ea718febfb7005e7922e45a45d
+    pristine_git_object: 878033fd96f49fc6d626023412769abd883b4c2a
   src/models/toolcalldata.ts:
     id: f5a6b0151838
     last_write_checksum: sha1:4b0931fbfd4242c0f4d206e59cb2b09605b5681c
@@ -1380,7 +1468,7 @@ examples:
           includeSubagents: false
       responses:
         "200":
-          application/json: [{"assistantMessageCount": 103950, "completionTokens": 539404, "cost": 7346.82, "createdAt": "2025-02-04T14:58:04.231Z", "id": "<id>", "promptTokens": 244425, "sessionType": "main", "title": "<value>", "toolCallCount": 717181, "userMessageCount": 270800}]
+          application/json: [{"assistantMessageCount": 103950, "browserMode": "electron-embedded-browser", "completionTokens": 539404, "cost": 7346.82, "createdAt": "2025-02-04T14:58:04.231Z", "id": "<id>", "promptTokens": 244425, "sessionType": "main", "title": "<value>", "toolCallCount": 717181, "userMessageCount": 270800}]
         "401":
           application/json: {"error": {"code": 306652, "message": "<value>", "type": "bad_request"}}
         "500":
@@ -1388,45 +1476,45 @@ examples:
   createSession:
     speakeasy-default-create-session:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "201":
-          application/json: {"assistantMessageCount": 880027, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "completionTokens": 524380, "cost": 8710.41, "createdAt": "2024-03-18T16:52:26.875Z", "id": "<id>", "promptTokens": 469380, "sessionType": "subagent", "title": "<value>", "toolCallCount": 70138, "userMessageCount": 844160}
+          application/json: {"assistantMessageCount": 880027, "browserMode": "remote-cdp-websocket", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "completionTokens": 524380, "cost": 8710.41, "createdAt": "2024-03-18T16:52:26.875Z", "id": "<id>", "promptTokens": 469380, "sessionType": "subagent", "title": "<value>", "toolCallCount": 70138, "userMessageCount": 844160}
         "400":
           application/json: {"error": {"code": 481369, "message": "<value>", "type": "validation_error"}}
     invalid_prompt_mode:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "promptMode must be 'default', 'append', or 'replace'", "type": "validation_error"}}
     missing_title:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "title is required", "type": "validation_error"}}
     prompt_size_exceeded_append:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "Custom prompt size (75KB) exceeds append mode limit of 50KB", "type": "validation_error"}}
     prompt_size_exceeded_replace:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "Custom prompt size (150KB) exceeds replace mode limit of 100KB", "type": "validation_error"}}
     invalid_session_type:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "API can only create main sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
     subagent_type_not_allowed:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system.", "type": "validation_error"}}
@@ -1445,7 +1533,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "sessionType": "main", "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
+          application/json: {"assistantMessageCount": 387834, "browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "completionTokens": 407862, "cost": 588.53, "createdAt": "2025-01-09T12:44:06.736Z", "id": "<id>", "promptTokens": 306630, "sessionType": "main", "title": "<value>", "toolCallCount": 945765, "userMessageCount": 844040}
         "404":
           application/json: {"error": {"code": 125836, "message": "<value>", "type": "validation_error"}}
   forkSession:
@@ -1664,7 +1752,7 @@ examples:
         application/json: {"cleanupMedia": true, "messageId": "<id>"}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "completionTokens": 18242, "cost": 1903.72, "createdAt": "2024-09-02T07:59:03.378Z", "id": "<id>", "promptTokens": 505203, "sessionType": "subagent", "title": "<value>", "toolCallCount": 938253, "userMessageCount": 629623}
+          application/json: {"assistantMessageCount": 676019, "browserMode": "remote-cdp-websocket", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "completionTokens": 18242, "cost": 1903.72, "createdAt": "2024-09-02T07:59:03.378Z", "id": "<id>", "promptTokens": 505203, "sessionType": "subagent", "title": "<value>", "toolCallCount": 938253, "userMessageCount": 629623}
         "400":
           application/json: {"error": {"code": 877894, "message": "<value>", "type": "bad_request"}}
   exportSession:
@@ -1709,7 +1797,7 @@ examples:
         application/json: {"callbacks": []}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 153449, "cost": 7326.83, "createdAt": "2025-06-03T08:16:16.107Z", "id": "<id>", "promptTokens": 141234, "sessionType": "main", "title": "<value>", "toolCallCount": 169864, "userMessageCount": 805406}
+          application/json: {"assistantMessageCount": 331297, "browserMode": "electron-embedded-browser", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "completionTokens": 153449, "cost": 7326.83, "createdAt": "2025-06-03T08:16:16.107Z", "id": "<id>", "promptTokens": 141234, "sessionType": "main", "title": "<value>", "toolCallCount": 169864, "userMessageCount": 805406}
         "400":
           application/json: {"error": {"code": 971135, "message": "<value>", "type": "internal_error"}}
   listLLMTools:

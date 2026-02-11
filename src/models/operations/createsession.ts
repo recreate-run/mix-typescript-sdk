@@ -7,6 +7,29 @@ import { ClosedEnum } from "../../types/enums.js";
 import * as models from "../index.js";
 
 /**
+ * Browser automation mode (required):
+ *
+ * @remarks
+ * - 'electron-embedded-browser': Electron app with embedded Chromium browser
+ * - 'local-browser-service': Local browser-service (GoRod-based)
+ * - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+ */
+export const BrowserMode = {
+  ElectronEmbeddedBrowser: "electron-embedded-browser",
+  LocalBrowserService: "local-browser-service",
+  RemoteCdpWebsocket: "remote-cdp-websocket",
+} as const;
+/**
+ * Browser automation mode (required):
+ *
+ * @remarks
+ * - 'electron-embedded-browser': Electron app with embedded Chromium browser
+ * - 'local-browser-service': Local browser-service (GoRod-based)
+ * - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+ */
+export type BrowserMode = ClosedEnum<typeof BrowserMode>;
+
+/**
  * Custom prompt handling mode:
  *
  * @remarks
@@ -42,9 +65,22 @@ export type SessionType = ClosedEnum<typeof SessionType>;
 
 export type CreateSessionRequest = {
   /**
+   * Browser automation mode (required):
+   *
+   * @remarks
+   * - 'electron-embedded-browser': Electron app with embedded Chromium browser
+   * - 'local-browser-service': Local browser-service (GoRod-based)
+   * - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+   */
+  browserMode: BrowserMode;
+  /**
    * Session-level callbacks that execute after tool completion. Environment variables available: CALLBACK_TOOL_RESULT, CALLBACK_TOOL_NAME, CALLBACK_TOOL_ID, CALLBACK_SESSION_ID
    */
   callbacks?: Array<models.Callback> | undefined;
+  /**
+   * CDP WebSocket URL for remote browser connections. Required when browserMode is 'remote-cdp-websocket'. Must start with 'ws://' or 'wss://'.
+   */
+  cdpUrl?: string | undefined;
   /**
    * Custom system prompt content. Size limits apply based on promptMode: 100KB (102,400 bytes) for replace mode, 50KB (51,200 bytes) for append mode. Ignored in default mode. Supports environment variable substitution with $<variable> syntax.
    */
@@ -73,6 +109,10 @@ export type CreateSessionRequest = {
 };
 
 /** @internal */
+export const BrowserMode$outboundSchema: z.ZodNativeEnum<typeof BrowserMode> = z
+  .nativeEnum(BrowserMode);
+
+/** @internal */
 export const PromptMode$outboundSchema: z.ZodNativeEnum<typeof PromptMode> = z
   .nativeEnum(PromptMode);
 
@@ -82,7 +122,9 @@ export const SessionType$outboundSchema: z.ZodNativeEnum<typeof SessionType> = z
 
 /** @internal */
 export type CreateSessionRequest$Outbound = {
+  browserMode: string;
   callbacks?: Array<models.Callback$Outbound> | undefined;
+  cdpUrl?: string | undefined;
   customSystemPrompt?: string | undefined;
   promptMode: string;
   sessionType: string;
@@ -96,7 +138,9 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSessionRequest
 > = z.object({
+  browserMode: BrowserMode$outboundSchema,
   callbacks: z.array(models.Callback$outboundSchema).optional(),
+  cdpUrl: z.string().optional(),
   customSystemPrompt: z.string().optional(),
   promptMode: PromptMode$outboundSchema.default("default"),
   sessionType: SessionType$outboundSchema.default("main"),

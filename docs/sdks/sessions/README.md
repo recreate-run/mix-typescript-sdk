@@ -99,6 +99,7 @@ const mix = new Mix({
 
 async function run() {
   const result = await mix.sessions.create({
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -107,6 +108,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -135,6 +137,7 @@ const mix = new MixCore({
 
 async function run() {
   const res = await sessionsCreate(mix, {
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -143,6 +146,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -170,6 +174,7 @@ const mix = new Mix({
 
 async function run() {
   const result = await mix.sessions.create({
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -178,6 +183,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -206,6 +212,7 @@ const mix = new MixCore({
 
 async function run() {
   const res = await sessionsCreate(mix, {
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -214,6 +221,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -241,6 +249,7 @@ const mix = new Mix({
 
 async function run() {
   const result = await mix.sessions.create({
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -249,6 +258,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -277,6 +287,7 @@ const mix = new MixCore({
 
 async function run() {
   const res = await sessionsCreate(mix, {
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -285,6 +296,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -312,6 +324,7 @@ const mix = new Mix({
 
 async function run() {
   const result = await mix.sessions.create({
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -320,6 +333,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -348,6 +362,7 @@ const mix = new MixCore({
 
 async function run() {
   const res = await sessionsCreate(mix, {
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -356,6 +371,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -383,6 +399,7 @@ const mix = new Mix({
 
 async function run() {
   const result = await mix.sessions.create({
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -391,6 +408,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -419,6 +437,7 @@ const mix = new MixCore({
 
 async function run() {
   const res = await sessionsCreate(mix, {
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -427,6 +446,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -454,6 +474,7 @@ const mix = new Mix({
 
 async function run() {
   const result = await mix.sessions.create({
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -462,6 +483,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",
@@ -490,6 +512,7 @@ const mix = new MixCore({
 
 async function run() {
   const res = await sessionsCreate(mix, {
+    browserMode: "local-browser-service",
     callbacks: [
       {
         messageContent: "Please review the changes and run tests",
@@ -498,6 +521,7 @@ async function run() {
         type: "send_message",
       },
     ],
+    cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
     promptMode: "append",
     subagentType: "",

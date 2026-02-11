@@ -10,6 +10,29 @@ import { Callback, Callback$inboundSchema } from "./callback.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
+ * Browser automation mode:
+ *
+ * @remarks
+ * - 'electron-embedded-browser': Electron app with embedded Chromium browser
+ * - 'local-browser-service': Local browser-service (GoRod-based)
+ * - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+ */
+export const BrowserMode = {
+  ElectronEmbeddedBrowser: "electron-embedded-browser",
+  LocalBrowserService: "local-browser-service",
+  RemoteCdpWebsocket: "remote-cdp-websocket",
+} as const;
+/**
+ * Browser automation mode:
+ *
+ * @remarks
+ * - 'electron-embedded-browser': Electron app with embedded Chromium browser
+ * - 'local-browser-service': Local browser-service (GoRod-based)
+ * - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+ */
+export type BrowserMode = ClosedEnum<typeof BrowserMode>;
+
+/**
  * Session type:
  *
  * @remarks
@@ -46,9 +69,22 @@ export type SessionData = {
    */
   assistantMessageCount: number;
   /**
+   * Browser automation mode:
+   *
+   * @remarks
+   * - 'electron-embedded-browser': Electron app with embedded Chromium browser
+   * - 'local-browser-service': Local browser-service (GoRod-based)
+   * - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+   */
+  browserMode: BrowserMode;
+  /**
    * Session-level callback configurations (optional)
    */
   callbacks?: Array<Callback> | undefined;
+  /**
+   * CDP WebSocket URL for remote browser connections (only present when browserMode is 'remote-cdp-websocket')
+   */
+  cdpUrl?: string | undefined;
   /**
    * Total completion tokens used
    */
@@ -108,6 +144,10 @@ export type SessionData = {
 };
 
 /** @internal */
+export const BrowserMode$inboundSchema: z.ZodNativeEnum<typeof BrowserMode> = z
+  .nativeEnum(BrowserMode);
+
+/** @internal */
 export const SessionType$inboundSchema: z.ZodNativeEnum<typeof SessionType> = z
   .nativeEnum(SessionType);
 
@@ -122,7 +162,9 @@ export const SessionData$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   assistantMessageCount: z.number().int(),
+  browserMode: BrowserMode$inboundSchema,
   callbacks: z.array(Callback$inboundSchema).optional(),
+  cdpUrl: z.string().optional(),
   completionTokens: z.number().int(),
   cost: z.number(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
