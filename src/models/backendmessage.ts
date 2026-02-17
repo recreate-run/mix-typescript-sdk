@@ -21,13 +21,37 @@ export type BackendMessage = {
    */
   assistantResponse?: string | undefined;
   /**
+   * Tokens used for prompt cache creation (optional)
+   */
+  cacheCreationTokens?: number | undefined;
+  /**
+   * Tokens read from prompt cache (optional)
+   */
+  cacheReadTokens?: number | undefined;
+  /**
    * Callback execution results (optional)
    */
   callbackResults?: Array<CallbackResultData> | undefined;
   /**
+   * Cost for this specific message in USD
+   */
+  cost?: number | undefined;
+  /**
    * Unique message identifier
    */
   id: string;
+  /**
+   * Input tokens used for this message (includes cache creation)
+   */
+  inputTokens?: number | undefined;
+  /**
+   * Model used for this message (e.g., 'claude-sonnet-4')
+   */
+  model?: string | undefined;
+  /**
+   * Output tokens generated for this message (includes cache reads)
+   */
+  outputTokens?: number | undefined;
   /**
    * Reasoning process (optional)
    */
@@ -61,8 +85,14 @@ export const BackendMessage$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   assistantResponse: z.string().optional(),
+  cacheCreationTokens: z.number().int().optional(),
+  cacheReadTokens: z.number().int().optional(),
   callbackResults: z.array(CallbackResultData$inboundSchema).optional(),
+  cost: z.number().optional(),
   id: z.string(),
+  inputTokens: z.number().int().optional(),
+  model: z.string().optional(),
+  outputTokens: z.number().int().optional(),
   reasoning: z.string().optional(),
   reasoningDuration: z.number().int().optional(),
   role: z.string(),

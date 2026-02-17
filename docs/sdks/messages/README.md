@@ -246,6 +246,7 @@ async function run() {
   const result = await mix.messages.send({
     id: "<id>",
     requestBody: {
+      maxSteps: 25,
       text: "<value>",
       thinkingLevel: "medium",
     },
@@ -275,6 +276,7 @@ async function run() {
   const res = await messagesSend(mix, {
     id: "<id>",
     requestBody: {
+      maxSteps: 25,
       text: "<value>",
       thinkingLevel: "medium",
     },

@@ -8,6 +8,7 @@ import { SendMessageRequest } from "mix-typescript-sdk/models/operations";
 let value: SendMessageRequest = {
   id: "<id>",
   requestBody: {
+    maxSteps: 25,
     text: "<value>",
     thinkingLevel: "medium",
   },

@@ -18,14 +18,13 @@ let value: ExportToolCall = {
 
 ## Fields
 
-| Field                                          | Type                                           | Required                                       | Description                                    |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| `finished`                                     | *boolean*                                      | :heavy_check_mark:                             | Whether tool execution finished                |
-| `id`                                           | *string*                                       | :heavy_check_mark:                             | Tool call identifier                           |
-| `input`                                        | *string*                                       | :heavy_check_mark:                             | Tool input as JSON string                      |
-| `inputJson`                                    | [models.InputJson](../models/inputjson.md)     | :heavy_minus_sign:                             | Parsed tool input (optional)                   |
-| `isError`                                      | *boolean*                                      | :heavy_minus_sign:                             | Whether execution resulted in error (optional) |
-| `metadata`                                     | *string*                                       | :heavy_minus_sign:                             | Additional tool metadata (optional)            |
-| `name`                                         | *string*                                       | :heavy_check_mark:                             | Tool name                                      |
-| `result`                                       | *string*                                       | :heavy_minus_sign:                             | Tool execution result (optional)               |
-| `type`                                         | *string*                                       | :heavy_check_mark:                             | Tool type                                      |
+| Field                                                     | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `finished`                                                | *boolean*                                                 | :heavy_check_mark:                                        | Whether tool execution finished                           |
+| `id`                                                      | *string*                                                  | :heavy_check_mark:                                        | Tool call identifier                                      |
+| `input`                                                   | *string*                                                  | :heavy_check_mark:                                        | Tool input as JSON string                                 |
+| `inputJson`                                               | [models.InputJson](../models/inputjson.md)                | :heavy_minus_sign:                                        | Parsed tool input (optional)                              |
+| `name`                                                    | *string*                                                  | :heavy_check_mark:                                        | Tool name                                                 |
+| `result`                                                  | *string*                                                  | :heavy_minus_sign:                                        | Tool execution result (optional)                          |
+| `screenshotUrls`                                          | *string*[]                                                | :heavy_minus_sign:                                        | Screenshot URLs captured during tool execution (optional) |
+| `type`                                                    | *string*                                                  | :heavy_check_mark:                                        | Tool type                                                 |

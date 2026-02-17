@@ -151,13 +151,6 @@ run();
 * [deny](docs/sdks/permissions/README.md#deny) - Deny permission
 * [grant](docs/sdks/permissions/README.md#grant) - Grant permission
 
-### [Preferences](docs/sdks/preferences/README.md)
-
-* [get](docs/sdks/preferences/README.md#get) - Get user preferences
-* [update](docs/sdks/preferences/README.md#update) - Update user preferences
-* [getProviders](docs/sdks/preferences/README.md#getproviders) - Get available providers
-* [reset](docs/sdks/preferences/README.md#reset) - Reset preferences
-
 ### [Sessions](docs/sdks/sessions/README.md)
 
 * [list](docs/sdks/sessions/README.md#list) - List all sessions
@@ -225,10 +218,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`notificationsRespondToNotification`](docs/sdks/notifications/README.md#respondtonotification) - Respond to notification
 - [`permissionsDeny`](docs/sdks/permissions/README.md#deny) - Deny permission
 - [`permissionsGrant`](docs/sdks/permissions/README.md#grant) - Grant permission
-- [`preferencesGet`](docs/sdks/preferences/README.md#get) - Get user preferences
-- [`preferencesGetProviders`](docs/sdks/preferences/README.md#getproviders) - Get available providers
-- [`preferencesReset`](docs/sdks/preferences/README.md#reset) - Reset preferences
-- [`preferencesUpdate`](docs/sdks/preferences/README.md#update) - Update user preferences
 - [`sessionsCreate`](docs/sdks/sessions/README.md#create) - Create a new session
 - [`sessionsDelete`](docs/sdks/sessions/README.md#delete) - Delete a session
 - [`sessionsExportSession`](docs/sdks/sessions/README.md#exportsession) - Export session transcript
@@ -479,19 +468,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { Mix } from "mix-typescript-sdk";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "mix-typescript-sdk/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {

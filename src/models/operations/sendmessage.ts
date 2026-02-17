@@ -25,6 +25,10 @@ export type ThinkingLevel = ClosedEnum<typeof ThinkingLevel>;
 
 export type SendMessageRequestBody = {
   /**
+   * Maximum tool call iterations for this message. If not provided, unlimited iterations allowed.
+   */
+  maxSteps?: number | undefined;
+  /**
    * Whether the message is in planning mode
    */
   planMode?: boolean | undefined;
@@ -67,6 +71,7 @@ export const ThinkingLevel$outboundSchema: z.ZodNativeEnum<
 
 /** @internal */
 export type SendMessageRequestBody$Outbound = {
+  max_steps?: number | undefined;
   plan_mode: boolean;
   text: string;
   thinking_level?: string | null | undefined;
@@ -78,11 +83,13 @@ export const SendMessageRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendMessageRequestBody
 > = z.object({
+  maxSteps: z.number().int().optional(),
   planMode: z.boolean().default(false),
   text: z.string(),
   thinkingLevel: z.nullable(ThinkingLevel$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    maxSteps: "max_steps",
     planMode: "plan_mode",
     thinkingLevel: "thinking_level",
   });

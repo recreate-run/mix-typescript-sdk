@@ -34,6 +34,10 @@ export type ToolCallData = {
    */
   result?: string | undefined;
   /**
+   * Screenshot URLs captured during tool execution (optional)
+   */
+  screenshotUrls?: Array<string> | undefined;
+  /**
    * Tool type
    */
   type: string;
@@ -51,6 +55,7 @@ export const ToolCallData$inboundSchema: z.ZodType<
   isError: z.boolean().optional(),
   name: ToolName$inboundSchema,
   result: z.string().optional(),
+  screenshotUrls: z.array(z.string()).optional(),
   type: z.string(),
 });
 

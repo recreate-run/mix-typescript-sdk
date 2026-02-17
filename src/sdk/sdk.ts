@@ -10,7 +10,6 @@ import { Internal } from "./internal.js";
 import { Messages } from "./messages.js";
 import { Notifications } from "./notifications.js";
 import { Permissions } from "./permissions.js";
-import { Preferences } from "./preferences.js";
 import { Sessions } from "./sessions.js";
 import { Streaming } from "./streaming.js";
 import { System } from "./system.js";
@@ -40,11 +39,6 @@ export class Mix extends ClientSDK {
   private _permissions?: Permissions;
   get permissions(): Permissions {
     return (this._permissions ??= new Permissions(this._options));
-  }
-
-  private _preferences?: Preferences;
-  get preferences(): Preferences {
-    return (this._preferences ??= new Preferences(this._options));
   }
 
   private _sessions?: Sessions;

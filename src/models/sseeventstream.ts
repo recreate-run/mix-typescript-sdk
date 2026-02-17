@@ -9,33 +9,6 @@ import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { ToolName, ToolName$inboundSchema } from "./toolname.js";
 
-/**
- * Event type identifier
- */
-export const SSESessionDeletedEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSESessionDeletedEventEvent = ClosedEnum<
-  typeof SSESessionDeletedEventEvent
->;
-
 export type SSESessionDeletedEventData = {
   /**
    * ID of the deleted session
@@ -54,7 +27,7 @@ export type SSESessionDeletedEvent = {
   /**
    * Event type identifier
    */
-  event: SSESessionDeletedEventEvent;
+  event: "session_deleted";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -65,33 +38,6 @@ export type SSESessionDeletedEvent = {
   retry?: number | undefined;
   data: SSESessionDeletedEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSESessionCreatedEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSESessionCreatedEventEvent = ClosedEnum<
-  typeof SSESessionCreatedEventEvent
->;
 
 export type SSESessionCreatedEventData = {
   /**
@@ -119,7 +65,7 @@ export type SSESessionCreatedEvent = {
   /**
    * Event type identifier
    */
-  event: SSESessionCreatedEventEvent;
+  event: "session_created";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -130,33 +76,6 @@ export type SSESessionCreatedEvent = {
   retry?: number | undefined;
   data: SSESessionCreatedEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEUserMessageCreatedEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEUserMessageCreatedEventEvent = ClosedEnum<
-  typeof SSEUserMessageCreatedEventEvent
->;
 
 export type SSEUserMessageCreatedEventData = {
   /**
@@ -184,7 +103,7 @@ export type SSEUserMessageCreatedEvent = {
   /**
    * Event type identifier
    */
-  event: SSEUserMessageCreatedEventEvent;
+  event: "user_message_created";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -195,33 +114,6 @@ export type SSEUserMessageCreatedEvent = {
   retry?: number | undefined;
   data: SSEUserMessageCreatedEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSENotificationEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSENotificationEventEvent = ClosedEnum<
-  typeof SSENotificationEventEvent
->;
 
 /**
  * Type of notification
@@ -304,7 +196,7 @@ export type SSENotificationEvent = {
   /**
    * Event type identifier
    */
-  event: SSENotificationEventEvent;
+  event: "notification";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -315,33 +207,6 @@ export type SSENotificationEvent = {
   retry?: number | undefined;
   data: SSENotificationEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEPermissionEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEPermissionEventEvent = ClosedEnum<
-  typeof SSEPermissionEventEvent
->;
 
 /**
  * Additional parameters for the permission request
@@ -394,7 +259,7 @@ export type SSEPermissionEvent = {
   /**
    * Event type identifier
    */
-  event: SSEPermissionEventEvent;
+  event: "permission";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -405,33 +270,6 @@ export type SSEPermissionEvent = {
   retry?: number | undefined;
   data: SSEPermissionEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEToolExecutionCompleteEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEToolExecutionCompleteEventEvent = ClosedEnum<
-  typeof SSEToolExecutionCompleteEventEvent
->;
 
 export type SSEToolExecutionCompleteEventData = {
   /**
@@ -467,7 +305,7 @@ export type SSEToolExecutionCompleteEvent = {
   /**
    * Event type identifier
    */
-  event: SSEToolExecutionCompleteEventEvent;
+  event: "tool_execution_complete";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -478,33 +316,6 @@ export type SSEToolExecutionCompleteEvent = {
   retry?: number | undefined;
   data: SSEToolExecutionCompleteEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEToolExecutionStartEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEToolExecutionStartEventEvent = ClosedEnum<
-  typeof SSEToolExecutionStartEventEvent
->;
 
 export type SSEToolExecutionStartEventData = {
   /**
@@ -536,7 +347,7 @@ export type SSEToolExecutionStartEvent = {
   /**
    * Event type identifier
    */
-  event: SSEToolExecutionStartEventEvent;
+  event: "tool_execution_start";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -547,33 +358,6 @@ export type SSEToolExecutionStartEvent = {
   retry?: number | undefined;
   data: SSEToolExecutionStartEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEToolUseParameterDeltaEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEToolUseParameterDeltaEventEvent = ClosedEnum<
-  typeof SSEToolUseParameterDeltaEventEvent
->;
 
 export type SSEToolUseParameterDeltaEventData = {
   /**
@@ -605,7 +389,7 @@ export type SSEToolUseParameterDeltaEvent = {
   /**
    * Event type identifier
    */
-  event: SSEToolUseParameterDeltaEventEvent;
+  event: "tool_use_parameter_delta";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -616,33 +400,6 @@ export type SSEToolUseParameterDeltaEvent = {
   retry?: number | undefined;
   data: SSEToolUseParameterDeltaEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEToolUseParameterStreamingCompleteEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEToolUseParameterStreamingCompleteEventEvent = ClosedEnum<
-  typeof SSEToolUseParameterStreamingCompleteEventEvent
->;
 
 export type SSEToolUseParameterStreamingCompleteEventData = {
   /**
@@ -678,7 +435,7 @@ export type SSEToolUseParameterStreamingCompleteEvent = {
   /**
    * Event type identifier
    */
-  event: SSEToolUseParameterStreamingCompleteEventEvent;
+  event: "tool_use_parameter_streaming_complete";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -689,33 +446,6 @@ export type SSEToolUseParameterStreamingCompleteEvent = {
   retry?: number | undefined;
   data: SSEToolUseParameterStreamingCompleteEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEToolUseStartEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEToolUseStartEventEvent = ClosedEnum<
-  typeof SSEToolUseStartEventEvent
->;
 
 export type SSEToolUseStartEventData = {
   /**
@@ -747,7 +477,7 @@ export type SSEToolUseStartEvent = {
   /**
    * Event type identifier
    */
-  event: SSEToolUseStartEventEvent;
+  event: "tool_use_start";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -758,31 +488,6 @@ export type SSEToolUseStartEvent = {
   retry?: number | undefined;
   data: SSEToolUseStartEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEContentEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEContentEventEvent = ClosedEnum<typeof SSEContentEventEvent>;
 
 export type SSEContentEventData = {
   /**
@@ -810,7 +515,7 @@ export type SSEContentEvent = {
   /**
    * Event type identifier
    */
-  event: SSEContentEventEvent;
+  event: "content";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -821,31 +526,6 @@ export type SSEContentEvent = {
   retry?: number | undefined;
   data: SSEContentEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEThinkingEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEThinkingEventEvent = ClosedEnum<typeof SSEThinkingEventEvent>;
 
 export type SSEThinkingEventData = {
   /**
@@ -873,7 +553,7 @@ export type SSEThinkingEvent = {
   /**
    * Event type identifier
    */
-  event: SSEThinkingEventEvent;
+  event: "thinking";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -884,31 +564,6 @@ export type SSEThinkingEvent = {
   retry?: number | undefined;
   data: SSEThinkingEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSECompleteEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSECompleteEventEvent = ClosedEnum<typeof SSECompleteEventEvent>;
 
 export type SSECompleteEventData = {
   /**
@@ -948,7 +603,7 @@ export type SSECompleteEvent = {
   /**
    * Event type identifier
    */
-  event: SSECompleteEventEvent;
+  event: "complete";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -959,31 +614,6 @@ export type SSECompleteEvent = {
   retry?: number | undefined;
   data: SSECompleteEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEErrorEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEErrorEventEvent = ClosedEnum<typeof SSEErrorEventEvent>;
 
 export type SSEErrorEventData = {
   /**
@@ -1019,7 +649,7 @@ export type SSEErrorEvent = {
   /**
    * Event type identifier
    */
-  event: SSEErrorEventEvent;
+  event: "error";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -1030,31 +660,6 @@ export type SSEErrorEvent = {
   retry?: number | undefined;
   data: SSEErrorEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEHeartbeatEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEHeartbeatEventEvent = ClosedEnum<typeof SSEHeartbeatEventEvent>;
 
 export type SSEHeartbeatEventData = {
   /**
@@ -1070,7 +675,7 @@ export type SSEHeartbeatEvent = {
   /**
    * Event type identifier
    */
-  event: SSEHeartbeatEventEvent;
+  event: "heartbeat";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -1081,31 +686,6 @@ export type SSEHeartbeatEvent = {
   retry?: number | undefined;
   data: SSEHeartbeatEventData;
 };
-
-/**
- * Event type identifier
- */
-export const SSEConnectedEventEvent = {
-  Connected: "connected",
-  Heartbeat: "heartbeat",
-  Error: "error",
-  Complete: "complete",
-  Thinking: "thinking",
-  Content: "content",
-  ToolUseStart: "tool_use_start",
-  ToolUseParameterStreamingComplete: "tool_use_parameter_streaming_complete",
-  ToolUseParameterDelta: "tool_use_parameter_delta",
-  ToolExecutionStart: "tool_execution_start",
-  ToolExecutionComplete: "tool_execution_complete",
-  Permission: "permission",
-  UserMessageCreated: "user_message_created",
-  SessionCreated: "session_created",
-  SessionDeleted: "session_deleted",
-} as const;
-/**
- * Event type identifier
- */
-export type SSEConnectedEventEvent = ClosedEnum<typeof SSEConnectedEventEvent>;
 
 export type SSEConnectedEventData = {
   /**
@@ -1121,7 +701,7 @@ export type SSEConnectedEvent = {
   /**
    * Event type identifier
    */
-  event: SSEConnectedEventEvent;
+  event: "connected";
   /**
    * Unique sequential event identifier for ordering and reconnection
    */
@@ -1137,27 +717,22 @@ export type SSEConnectedEvent = {
  * Server-Sent Event stream with discriminated event types
  */
 export type SSEEventStream =
-  | SSEConnectedEvent
-  | SSEHeartbeatEvent
-  | SSEErrorEvent
   | SSECompleteEvent
-  | SSEThinkingEvent
+  | SSEConnectedEvent
   | SSEContentEvent
-  | SSEToolUseStartEvent
-  | SSEToolUseParameterStreamingCompleteEvent
-  | SSEToolUseParameterDeltaEvent
-  | SSEToolExecutionStartEvent
-  | SSEToolExecutionCompleteEvent
-  | SSEPermissionEvent
+  | SSEErrorEvent
+  | SSEHeartbeatEvent
   | SSENotificationEvent
-  | SSEUserMessageCreatedEvent
+  | SSEPermissionEvent
   | SSESessionCreatedEvent
-  | SSESessionDeletedEvent;
-
-/** @internal */
-export const SSESessionDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSESessionDeletedEventEvent
-> = z.nativeEnum(SSESessionDeletedEventEvent);
+  | SSESessionDeletedEvent
+  | SSEThinkingEvent
+  | SSEToolExecutionCompleteEvent
+  | SSEToolExecutionStartEvent
+  | SSEToolUseParameterDeltaEvent
+  | SSEToolUseParameterStreamingCompleteEvent
+  | SSEToolUseStartEvent
+  | SSEUserMessageCreatedEvent;
 
 /** @internal */
 export const SSESessionDeletedEventData$inboundSchema: z.ZodType<
@@ -1185,7 +760,7 @@ export const SSESessionDeletedEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSESessionDeletedEventEvent$inboundSchema,
+  event: z.literal("session_deleted"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1207,11 +782,6 @@ export function sseSessionDeletedEventFromJSON(
     `Failed to parse 'SSESessionDeletedEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSESessionCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSESessionCreatedEventEvent
-> = z.nativeEnum(SSESessionCreatedEventEvent);
 
 /** @internal */
 export const SSESessionCreatedEventData$inboundSchema: z.ZodType<
@@ -1241,7 +811,7 @@ export const SSESessionCreatedEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSESessionCreatedEventEvent$inboundSchema,
+  event: z.literal("session_created"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1263,11 +833,6 @@ export function sseSessionCreatedEventFromJSON(
     `Failed to parse 'SSESessionCreatedEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEUserMessageCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEUserMessageCreatedEventEvent
-> = z.nativeEnum(SSEUserMessageCreatedEventEvent);
 
 /** @internal */
 export const SSEUserMessageCreatedEventData$inboundSchema: z.ZodType<
@@ -1297,7 +862,7 @@ export const SSEUserMessageCreatedEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEUserMessageCreatedEventEvent$inboundSchema,
+  event: z.literal("user_message_created"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1319,11 +884,6 @@ export function sseUserMessageCreatedEventFromJSON(
     `Failed to parse 'SSEUserMessageCreatedEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSENotificationEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSENotificationEventEvent
-> = z.nativeEnum(SSENotificationEventEvent);
 
 /** @internal */
 export const NotificationType$inboundSchema: z.ZodNativeEnum<
@@ -1369,7 +929,7 @@ export const SSENotificationEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSENotificationEventEvent$inboundSchema,
+  event: z.literal("notification"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1391,11 +951,6 @@ export function sseNotificationEventFromJSON(
     `Failed to parse 'SSENotificationEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEPermissionEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEPermissionEventEvent
-> = z.nativeEnum(SSEPermissionEventEvent);
 
 /** @internal */
 export const Params$inboundSchema: z.ZodType<Params, z.ZodTypeDef, unknown> = z
@@ -1444,7 +999,7 @@ export const SSEPermissionEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEPermissionEventEvent$inboundSchema,
+  event: z.literal("permission"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1466,11 +1021,6 @@ export function ssePermissionEventFromJSON(
     `Failed to parse 'SSEPermissionEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEToolExecutionCompleteEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEToolExecutionCompleteEventEvent
-> = z.nativeEnum(SSEToolExecutionCompleteEventEvent);
 
 /** @internal */
 export const SSEToolExecutionCompleteEventData$inboundSchema: z.ZodType<
@@ -1502,7 +1052,7 @@ export const SSEToolExecutionCompleteEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEToolExecutionCompleteEventEvent$inboundSchema,
+  event: z.literal("tool_execution_complete"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1524,11 +1074,6 @@ export function sseToolExecutionCompleteEventFromJSON(
     `Failed to parse 'SSEToolExecutionCompleteEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEToolExecutionStartEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEToolExecutionStartEventEvent
-> = z.nativeEnum(SSEToolExecutionStartEventEvent);
 
 /** @internal */
 export const SSEToolExecutionStartEventData$inboundSchema: z.ZodType<
@@ -1559,7 +1104,7 @@ export const SSEToolExecutionStartEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEToolExecutionStartEventEvent$inboundSchema,
+  event: z.literal("tool_execution_start"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1581,11 +1126,6 @@ export function sseToolExecutionStartEventFromJSON(
     `Failed to parse 'SSEToolExecutionStartEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEToolUseParameterDeltaEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEToolUseParameterDeltaEventEvent
-> = z.nativeEnum(SSEToolUseParameterDeltaEventEvent);
 
 /** @internal */
 export const SSEToolUseParameterDeltaEventData$inboundSchema: z.ZodType<
@@ -1616,7 +1156,7 @@ export const SSEToolUseParameterDeltaEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEToolUseParameterDeltaEventEvent$inboundSchema,
+  event: z.literal("tool_use_parameter_delta"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1638,11 +1178,6 @@ export function sseToolUseParameterDeltaEventFromJSON(
     `Failed to parse 'SSEToolUseParameterDeltaEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEToolUseParameterStreamingCompleteEventEvent$inboundSchema:
-  z.ZodNativeEnum<typeof SSEToolUseParameterStreamingCompleteEventEvent> = z
-    .nativeEnum(SSEToolUseParameterStreamingCompleteEventEvent);
 
 /** @internal */
 export const SSEToolUseParameterStreamingCompleteEventData$inboundSchema:
@@ -1681,7 +1216,7 @@ export const SSEToolUseParameterStreamingCompleteEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEToolUseParameterStreamingCompleteEventEvent$inboundSchema,
+  event: z.literal("tool_use_parameter_streaming_complete"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1713,11 +1248,6 @@ export function sseToolUseParameterStreamingCompleteEventFromJSON(
 }
 
 /** @internal */
-export const SSEToolUseStartEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEToolUseStartEventEvent
-> = z.nativeEnum(SSEToolUseStartEventEvent);
-
-/** @internal */
 export const SSEToolUseStartEventData$inboundSchema: z.ZodType<
   SSEToolUseStartEventData,
   z.ZodTypeDef,
@@ -1746,7 +1276,7 @@ export const SSEToolUseStartEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEToolUseStartEventEvent$inboundSchema,
+  event: z.literal("tool_use_start"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1768,11 +1298,6 @@ export function sseToolUseStartEventFromJSON(
     `Failed to parse 'SSEToolUseStartEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEContentEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEContentEventEvent
-> = z.nativeEnum(SSEContentEventEvent);
 
 /** @internal */
 export const SSEContentEventData$inboundSchema: z.ZodType<
@@ -1802,7 +1327,7 @@ export const SSEContentEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEContentEventEvent$inboundSchema,
+  event: z.literal("content"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1824,11 +1349,6 @@ export function sseContentEventFromJSON(
     `Failed to parse 'SSEContentEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEThinkingEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEThinkingEventEvent
-> = z.nativeEnum(SSEThinkingEventEvent);
 
 /** @internal */
 export const SSEThinkingEventData$inboundSchema: z.ZodType<
@@ -1858,7 +1378,7 @@ export const SSEThinkingEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEThinkingEventEvent$inboundSchema,
+  event: z.literal("thinking"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1880,11 +1400,6 @@ export function sseThinkingEventFromJSON(
     `Failed to parse 'SSEThinkingEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSECompleteEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSECompleteEventEvent
-> = z.nativeEnum(SSECompleteEventEvent);
 
 /** @internal */
 export const SSECompleteEventData$inboundSchema: z.ZodType<
@@ -1917,7 +1432,7 @@ export const SSECompleteEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSECompleteEventEvent$inboundSchema,
+  event: z.literal("complete"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1939,11 +1454,6 @@ export function sseCompleteEventFromJSON(
     `Failed to parse 'SSECompleteEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEErrorEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEErrorEventEvent
-> = z.nativeEnum(SSEErrorEventEvent);
 
 /** @internal */
 export const SSEErrorEventData$inboundSchema: z.ZodType<
@@ -1975,7 +1485,7 @@ export const SSEErrorEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEErrorEventEvent$inboundSchema,
+  event: z.literal("error"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -1997,11 +1507,6 @@ export function sseErrorEventFromJSON(
     `Failed to parse 'SSEErrorEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEHeartbeatEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEHeartbeatEventEvent
-> = z.nativeEnum(SSEHeartbeatEventEvent);
 
 /** @internal */
 export const SSEHeartbeatEventData$inboundSchema: z.ZodType<
@@ -2028,7 +1533,7 @@ export const SSEHeartbeatEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEHeartbeatEventEvent$inboundSchema,
+  event: z.literal("heartbeat"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -2050,11 +1555,6 @@ export function sseHeartbeatEventFromJSON(
     `Failed to parse 'SSEHeartbeatEvent' from JSON`,
   );
 }
-
-/** @internal */
-export const SSEConnectedEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof SSEConnectedEventEvent
-> = z.nativeEnum(SSEConnectedEventEvent);
 
 /** @internal */
 export const SSEConnectedEventData$inboundSchema: z.ZodType<
@@ -2081,7 +1581,7 @@ export const SSEConnectedEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event: SSEConnectedEventEvent$inboundSchema,
+  event: z.literal("connected"),
   id: z.string(),
   retry: z.number().int().optional(),
   data: z.string().transform((v, ctx) => {
@@ -2110,22 +1610,22 @@ export const SSEEventStream$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => SSEConnectedEvent$inboundSchema),
-  z.lazy(() => SSEHeartbeatEvent$inboundSchema),
-  z.lazy(() => SSEErrorEvent$inboundSchema),
   z.lazy(() => SSECompleteEvent$inboundSchema),
-  z.lazy(() => SSEThinkingEvent$inboundSchema),
+  z.lazy(() => SSEConnectedEvent$inboundSchema),
   z.lazy(() => SSEContentEvent$inboundSchema),
-  z.lazy(() => SSEToolUseStartEvent$inboundSchema),
-  z.lazy(() => SSEToolUseParameterStreamingCompleteEvent$inboundSchema),
-  z.lazy(() => SSEToolUseParameterDeltaEvent$inboundSchema),
-  z.lazy(() => SSEToolExecutionStartEvent$inboundSchema),
-  z.lazy(() => SSEToolExecutionCompleteEvent$inboundSchema),
-  z.lazy(() => SSEPermissionEvent$inboundSchema),
+  z.lazy(() => SSEErrorEvent$inboundSchema),
+  z.lazy(() => SSEHeartbeatEvent$inboundSchema),
   z.lazy(() => SSENotificationEvent$inboundSchema),
-  z.lazy(() => SSEUserMessageCreatedEvent$inboundSchema),
+  z.lazy(() => SSEPermissionEvent$inboundSchema),
   z.lazy(() => SSESessionCreatedEvent$inboundSchema),
   z.lazy(() => SSESessionDeletedEvent$inboundSchema),
+  z.lazy(() => SSEThinkingEvent$inboundSchema),
+  z.lazy(() => SSEToolExecutionCompleteEvent$inboundSchema),
+  z.lazy(() => SSEToolExecutionStartEvent$inboundSchema),
+  z.lazy(() => SSEToolUseParameterDeltaEvent$inboundSchema),
+  z.lazy(() => SSEToolUseParameterStreamingCompleteEvent$inboundSchema),
+  z.lazy(() => SSEToolUseStartEvent$inboundSchema),
+  z.lazy(() => SSEUserMessageCreatedEvent$inboundSchema),
 ]);
 
 export function sseEventStreamFromJSON(

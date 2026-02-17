@@ -33,14 +33,6 @@ export type ExportToolCall = {
    */
   inputJson?: InputJson | undefined;
   /**
-   * Whether execution resulted in error (optional)
-   */
-  isError?: boolean | undefined;
-  /**
-   * Additional tool metadata (optional)
-   */
-  metadata?: string | undefined;
-  /**
    * Tool name
    */
   name: string;
@@ -48,6 +40,10 @@ export type ExportToolCall = {
    * Tool execution result (optional)
    */
   result?: string | undefined;
+  /**
+   * Screenshot URLs captured during tool execution (optional)
+   */
+  screenshotUrls?: Array<string> | undefined;
   /**
    * Tool type
    */
@@ -81,10 +77,9 @@ export const ExportToolCall$inboundSchema: z.ZodType<
   id: z.string(),
   input: z.string(),
   inputJson: z.lazy(() => InputJson$inboundSchema).optional(),
-  isError: z.boolean().optional(),
-  metadata: z.string().optional(),
   name: z.string(),
   result: z.string().optional(),
+  screenshotUrls: z.array(z.string()).optional(),
   type: z.string(),
 });
 

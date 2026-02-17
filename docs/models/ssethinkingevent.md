@@ -8,7 +8,7 @@ Base SSE event with standard fields
 import { SSEThinkingEvent } from "mix-typescript-sdk/models";
 
 let value: SSEThinkingEvent = {
-  event: "connected",
+  event: "thinking",
   id: "1234567890",
   retry: 30000,
   data: {
@@ -20,9 +20,9 @@ let value: SSEThinkingEvent = {
 
 ## Fields
 
-| Field                                                              | Type                                                               | Required                                                           | Description                                                        | Example                                                            |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `event`                                                            | [models.SSEThinkingEventEvent](../models/ssethinkingeventevent.md) | :heavy_check_mark:                                                 | Event type identifier                                              |                                                                    |
-| `id`                                                               | *string*                                                           | :heavy_check_mark:                                                 | Unique sequential event identifier for ordering and reconnection   | 1234567890                                                         |
-| `retry`                                                            | *number*                                                           | :heavy_minus_sign:                                                 | Client retry interval in milliseconds                              | 30000                                                              |
-| `data`                                                             | [models.SSEThinkingEventData](../models/ssethinkingeventdata.md)   | :heavy_check_mark:                                                 | N/A                                                                |                                                                    |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `event`                                                          | *"thinking"*                                                     | :heavy_check_mark:                                               | Event type identifier                                            |                                                                  |
+| `id`                                                             | *string*                                                         | :heavy_check_mark:                                               | Unique sequential event identifier for ordering and reconnection | 1234567890                                                       |
+| `retry`                                                          | *number*                                                         | :heavy_minus_sign:                                               | Client retry interval in milliseconds                            | 30000                                                            |
+| `data`                                                           | [models.SSEThinkingEventData](../models/ssethinkingeventdata.md) | :heavy_check_mark:                                               | N/A                                                              |                                                                  |
