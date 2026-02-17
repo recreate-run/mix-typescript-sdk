@@ -1,4 +1,4 @@
-speakeasyVersion: 1.720.0
+speakeasyVersion: 1.721.0
 sources:
     Mix REST API:
         sourceNamespace: mix-rest-api
@@ -13,21 +13,19 @@ targets:
         sourceNamespace: mix-rest-api
         sourceRevisionDigest: sha256:9579f8f4bab308b2b45509bcb6a408b0e11b38ea97001cc1a81ce3fcb7c6f16f
         sourceBlobDigest: sha256:af7c4c5bf0e2f23fd180bf20733169f2b8b406684ee39d91589cae3ad3b13e7b
-        codeSamplesNamespace: mix-rest-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:9af43494c03920e22b4d81bf6e39b9a9d9f24500815f53cb598760f4262dac0e
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         Mix REST API:
             inputs:
-                - location: ../mix/mix_sdk/openapi.json
+                - location: ../mix-agent-worktree/mix_sdk/openapi.json
             overlays:
                 - location: .speakeasy/speakeasy-modifications-overlay.yaml
                 - location: .speakeasy/speakeasy-modifications-overlay-1.yaml
             output: .speakeasy/out.openapi.yaml
             registry:
-                location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api
+                location: registry.speakeasyapi.dev/recreate/mix-agent-worktree/mix-rest-api
     targets:
         mix-ts-target:
             target: typescript
@@ -37,7 +35,7 @@ workflow:
                     token: $npm_token
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api-typescript-code-samples
+                    location: registry.speakeasyapi.dev/recreate/mix-agent-worktree/mix-rest-api-typescript-code-samples
                 labelOverride:
                     fixedValue: Typescript (SDK)
                 blocking: false

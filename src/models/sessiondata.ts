@@ -106,6 +106,10 @@ export type SessionData = {
    */
   id: string;
   /**
+   * Model ID configured for this session (empty means system default is used)
+   */
+  modelId?: string | undefined;
+  /**
    * Parent session ID for subagent sessions (null for main sessions)
    */
   parentSessionId?: string | undefined;
@@ -117,6 +121,10 @@ export type SessionData = {
    * Total prompt tokens used
    */
   promptTokens: number;
+  /**
+   * LLM provider configured for this session (empty means system default is used)
+   */
+  provider?: string | undefined;
   /**
    * Session type:
    *
@@ -170,9 +178,11 @@ export const SessionData$inboundSchema: z.ZodType<
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   firstUserMessage: z.string().optional(),
   id: z.string(),
+  modelId: z.string().optional(),
   parentSessionId: z.string().optional(),
   parentToolCallId: z.string().optional(),
   promptTokens: z.number().int(),
+  provider: z.string().optional(),
   sessionType: SessionType$inboundSchema,
   subagentType: SubagentType$inboundSchema.optional(),
   title: z.string(),

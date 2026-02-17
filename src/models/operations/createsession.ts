@@ -86,6 +86,10 @@ export type CreateSessionRequest = {
    */
   customSystemPrompt?: string | undefined;
   /**
+   * Model ID to use for this session (e.g. 'gemini-3-flash-preview'). Defaults to system default when omitted. Must be a model supported by the specified provider.
+   */
+  modelId?: string | undefined;
+  /**
    * Custom prompt handling mode:
    *
    * @remarks
@@ -94,6 +98,10 @@ export type CreateSessionRequest = {
    * - 'replace': Replace base system prompt with customSystemPrompt (100KB limit)
    */
   promptMode?: PromptMode | undefined;
+  /**
+   * LLM provider for this session (e.g. 'gemini', 'anthropic', 'openai'). Required when modelId is set. Must match the provider that owns the specified model.
+   */
+  provider?: string | undefined;
   /**
    * Session type. API can only create 'main' sessions. Subagent sessions are created automatically by the task delegation system.
    */
@@ -126,7 +134,9 @@ export type CreateSessionRequest$Outbound = {
   callbacks?: Array<models.Callback$Outbound> | undefined;
   cdpUrl?: string | undefined;
   customSystemPrompt?: string | undefined;
+  modelId?: string | undefined;
   promptMode: string;
+  provider?: string | undefined;
   sessionType: string;
   subagentType?: string | undefined;
   title: string;
@@ -142,7 +152,9 @@ export const CreateSessionRequest$outboundSchema: z.ZodType<
   callbacks: z.array(models.Callback$outboundSchema).optional(),
   cdpUrl: z.string().optional(),
   customSystemPrompt: z.string().optional(),
+  modelId: z.string().optional(),
   promptMode: PromptMode$outboundSchema.default("default"),
+  provider: z.string().optional(),
   sessionType: SessionType$outboundSchema.default("main"),
   subagentType: z.string().optional(),
   title: z.string(),

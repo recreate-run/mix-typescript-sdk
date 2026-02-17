@@ -110,7 +110,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -148,7 +150,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -185,7 +189,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -223,7 +229,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -260,7 +268,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -298,7 +308,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -335,7 +347,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -373,7 +387,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -410,7 +426,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -448,7 +466,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -485,7 +505,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });
@@ -523,7 +545,9 @@ async function run() {
     ],
     cdpUrl: "wss://connect.browserbase.com/v1/sessions/abc123",
     customSystemPrompt: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.",
+    modelId: "gemini-3-flash-preview",
     promptMode: "append",
+    provider: "gemini",
     subagentType: "",
     title: "<value>",
   });

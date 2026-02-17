@@ -680,6 +680,10 @@ paths:
                   example: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate."
                   maxLength: 102400
                   type: "string"
+                modelId:
+                  description: "Model ID to use for this session (e.g. 'gemini-3-flash-preview'). Defaults to system default when omitted. Must be a model supported by the specified provider."
+                  example: "gemini-3-flash-preview"
+                  type: "string"
                 promptMode:
                   default: "default"
                   description: "Custom prompt handling mode:\n- 'default': Use base system prompt only (customSystemPrompt ignored)\n- 'append': Append customSystemPrompt to base system prompt (50KB limit)\n- 'replace': Replace base system prompt with customSystemPrompt (100KB limit)"
@@ -688,6 +692,10 @@ paths:
                     - "append"
                     - "replace"
                   example: "append"
+                  type: "string"
+                provider:
+                  description: "LLM provider for this session (e.g. 'gemini', 'anthropic', 'openai'). Required when modelId is set. Must match the provider that owns the specified model."
+                  example: "gemini"
                   type: "string"
                 sessionType:
                   default: "main"
@@ -2695,6 +2703,10 @@ components:
         id:
           description: "Unique session identifier"
           type: "string"
+        modelId:
+          description: "Model ID configured for this session (empty means system default is used)"
+          example: "gemini-3-flash-preview"
+          type: "string"
         parentSessionId:
           description: "Parent session ID for subagent sessions (null for main sessions)"
           type: "string"
@@ -2704,6 +2716,10 @@ components:
         promptTokens:
           description: "Total prompt tokens used"
           type: "integer"
+        provider:
+          description: "LLM provider configured for this session (empty means system default is used)"
+          example: "gemini"
+          type: "string"
         sessionType:
           description: "Session type:\n- 'main': Root-level user interactions\n- 'subagent': Delegated task workers"
           enum:
